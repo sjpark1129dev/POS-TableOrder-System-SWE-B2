@@ -6,5 +6,11 @@ namespace POS
         {
             InitializeComponent();
         }
+
+        private void TableManagerButton_Click(object sender, EventArgs e)
+        {
+            TableManagerBoundary tableManagerBoundary = new TableManagerBoundary();
+            tableManagerBoundary.Show();
+        }
     }
 }
