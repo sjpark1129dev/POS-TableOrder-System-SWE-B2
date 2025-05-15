@@ -1,8 +1,8 @@
 namespace TableOrder
 {
-    public partial class Form1 : Form
+    public partial class TableOrderBoundary : Form
     {
-        public Form1()
+        public TableOrderBoundary()
         {
             InitializeComponent();
         }

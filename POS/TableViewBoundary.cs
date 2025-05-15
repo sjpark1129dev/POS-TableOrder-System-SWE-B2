@@ -1,8 +1,8 @@
 namespace POS
 {
-    public partial class Form1 : Form
+    public partial class TableViewBoundary : Form
     {
-        public Form1()
+        public TableViewBoundary()
         {
             InitializeComponent();
         }
