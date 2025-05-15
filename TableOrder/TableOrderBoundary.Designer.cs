@@ -28,10 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "TableOrderBoundary";
+            SuspendLayout();
+            // 
+            // TableOrderBoundary
+            // 
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(800, 450);
+            Name = "TableOrderBoundary";
+            Text = "TableOrderBoundary";
+            ResumeLayout(false);
         }
 
         #endregion
