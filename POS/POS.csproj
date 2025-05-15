@@ -13,4 +13,10 @@
     <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Controller\" />
+    <Folder Include="Entity\" />
+    <Folder Include="Repostiory\" />
+  </ItemGroup>
+
 </Project>
