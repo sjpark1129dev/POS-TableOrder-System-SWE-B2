@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POS.Entity
 {
-    internal class TableInfo
+    internal class TableEntity
     {
     }
 }
