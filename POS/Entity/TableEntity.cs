@@ -3,14 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis; // Optional: For detailed mapping
 
 namespace POS.Entity
 {
     public enum EntityState { Unchanged, New, Modified, Deleted }
-    internal class TableEntity
+    public class TableEntity
     {
+        [Key]
         public int Id { get; set; }
+        [Required]
+        [StringLength(50)]
+        [Column("table_name")]
         public string Name { get; set; }
-        public EntityState State { get; set; } = EntityState.Unchanged; // Default state is New
+        public EntityState State { get; set; } = EntityState.Unchanged;
+
+        public TableEntity(string name)
+        {
+            Name = name;
+        }
     }
 }

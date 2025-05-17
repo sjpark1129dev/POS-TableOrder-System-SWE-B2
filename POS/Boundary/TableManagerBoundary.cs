@@ -1,5 +1,4 @@
-﻿using POS.Repostiory;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,54 +14,145 @@ namespace POS
 {
     public partial class TableManagerBoundary : Form
     {
-        private TableController tableController = new TableController();
+        private TableController tableController = AppControllers.Instance.TableController;
         private List<TableEntity> tableList;
         private int? selectedTableId = null;  // 선택된 테이블 ID 보관 (nullable int)
         public TableManagerBoundary()
         {
             InitializeComponent();
             tableList = tableController.GetAllTables();
+            LoadTablesToPanel();
         }
 
         private void LoadTablesToPanel()
         {
-            //tableLayoutPanel1.Controls.Clear(); // 기존 버튼들 제거
+            tableLayoutPanelTables.Controls.Clear(); // 기존 버튼 제거
 
-            //var tableList = tableController.GetAllTables(); // 테이블 목록 조회
+            foreach (var table in tableList.Where(t => t.State != EntityState.Deleted))
+            {
+                var btn = new Button();
+                btn.Text = $"테이블: {table.Name}";
+                btn.Tag = table.Id;
+                btn.Dock = DockStyle.Fill;
+                btn.Margin = new Padding(10);
+                btn.BackColor = Color.White; // ✅ 기본 배경 흰색
 
-            //foreach (var table in tableList)
-            //{
-            //    var btn = new Button();
-            //    btn.Text = $"테이블 {table.Id}";
-            //    btn.Tag = table.Id; // ID 저장
-            //    btn.Width = 100;
-            //    btn.Height = 60;
-            //    btn.Margin = new Padding(10);
-            //    btn.BackColor = SystemColors.Control;
-            //    btn.Click += TableButton_Click;
+                btn.Click += TableButton_Click;
 
-            //    tableLayoutPanel1.Controls.Add(btn);
-            //}
+                tableLayoutPanelTables.Controls.Add(btn);
+            }
         }
 
         private void tableCreateButton_Click(object sender, EventArgs e)
         {
-            TableEntity newTable = tableController.CreateTable();
-            tableList.Add(newTable); // 새 테이블 추가
+            string newName = tableNameTextBox.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(newName))
+            {
+                MessageBox.Show("테이블 이름을 입력하세요.");
+                return;
+            }
+
+            if (tableController.IsDuplicateName(tableList, newName))
+            {
+                MessageBox.Show("이미 존재하는 테이블 이름입니다.");
+                return;
+            }
+
+            var newTable = tableController.CreateTable(newName);
+            newTable.State = EntityState.New;
+            tableList.Add(newTable);
+            LoadTablesToPanel();
         }
 
         private void tableDeleteButton_Click(object sender, EventArgs e)
         {
-            // 테이블 ID 받아오는 로직 추가 필요
-            // tableController.DeleteTable(selectedTableId.Value);
+            if (selectedTableId == null)
+            {
+                MessageBox.Show("삭제할 테이블을 선택하세요.");
+                return;
+            }
+
+            tableController.MarkDeleted(tableList, selectedTableId.Value);
+            selectedTableId = null;
+            LoadTablesToPanel();
         }
 
         private void tableSaveButton_Click(object sender, EventArgs e)
         {
-            // 테이블 전체 저장 로직 필요
-            // 테이블 엔티디에 상태 정보 저장 필요
-            tableController.SaveAllTables(tableList); // 지시만 함
+            tableController.SaveAllTables(tableList);
+
+            foreach (var table in tableList.ToList())
+            {
+                if (table.State == EntityState.Deleted)
+                    tableList.Remove(table);
+                else
+                    table.State = EntityState.Unchanged;
+            }
+
+            LoadTablesToPanel(); // UI 갱신
             MessageBox.Show("저장 완료");
+        }
+
+        private void TableButton_Click(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            selectedTableId = (int)btn.Tag;
+
+            // 선택 강조 초기화
+            foreach (Button b in tableLayoutPanelTables.Controls)
+                b.BackColor = Color.White;
+
+            btn.BackColor = Color.LightGreen;
+
+            // 버튼에 저장된 ID로 테이블 정보 찾기
+            var selectedTable = tableList.FirstOrDefault(t => t.Id == selectedTableId);
+
+            if (selectedTable != null)
+            {
+                tableNameTextBox.Text = selectedTable.Name;
+                tableIdTextBox.Text = selectedTable.Id.ToString();
+            }
+            else
+            {
+                tableNameTextBox.Text = "선택 안됨";
+                tableIdTextBox.Text = "선택 안됨";
+            }
+        }
+
+        private void ClearSelection()
+        {
+            selectedTableId = null;
+
+            foreach (Button b in tableLayoutPanelTables.Controls)
+                b.BackColor = Color.White;
+
+            tableNameTextBox.Text = "선택 안됨";
+            tableIdTextBox.Text = "선택 안됨";
+        }
+
+        private void TableManagerBoundary_Load(object sender, EventArgs e)
+        {
+            // 폼의 모든 컨트롤 순회해서 마우스다운 이벤트 연결
+            AttachMouseDownHandlers(this);
+        }
+        private void AttachMouseDownHandlers(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                // 버튼은 제외
+                if (ctrl is Button) continue;
+
+                ctrl.MouseDown += NonButtonControl_MouseDown;
+
+                // 컨테이너 안에 또 컨트롤이 있다면 재귀적으로 적용
+                if (ctrl.HasChildren)
+                    AttachMouseDownHandlers(ctrl);
+            }
+        }
+        private void NonButtonControl_MouseDown(object sender, MouseEventArgs e)
+        {
+            ClearSelection();
         }
     }
 }

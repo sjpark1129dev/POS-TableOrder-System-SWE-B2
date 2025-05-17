@@ -29,21 +29,16 @@
         private void InitializeComponent()
         {
             tableLayoutPanel1 = new TableLayoutPanel();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            panel6 = new Panel();
-            panel5 = new Panel();
-            panel4 = new Panel();
-            panel3 = new Panel();
-            panel2 = new Panel();
-            panel1 = new Panel();
+            tableLayoutPanelTables = new TableLayoutPanel();
             panel7 = new Panel();
+            tableIdTextBox = new TextBox();
+            tableIdLabel = new Label();
             tableSaveButton = new Button();
             tableDeleteButton = new Button();
             tableCreateButton = new Button();
-            label1 = new Label();
-            textBox1 = new TextBox();
+            tableNameLabel = new Label();
+            tableNameTextBox = new TextBox();
             tableLayoutPanel1.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
             panel7.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,7 +47,7 @@
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 0);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanelTables, 0, 0);
             tableLayoutPanel1.Controls.Add(panel7, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
@@ -63,87 +58,55 @@
             tableLayoutPanel1.Size = new Size(800, 450);
             tableLayoutPanel1.TabIndex = 0;
             // 
-            // tableLayoutPanel2
+            // tableLayoutPanelTables
             // 
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.Controls.Add(panel6, 1, 2);
-            tableLayoutPanel2.Controls.Add(panel5, 0, 2);
-            tableLayoutPanel2.Controls.Add(panel4, 1, 1);
-            tableLayoutPanel2.Controls.Add(panel3, 0, 1);
-            tableLayoutPanel2.Controls.Add(panel2, 1, 0);
-            tableLayoutPanel2.Controls.Add(panel1, 0, 0);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 3);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 3;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel2.Size = new Size(394, 444);
-            tableLayoutPanel2.TabIndex = 0;
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.White;
-            panel6.Location = new Point(200, 297);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(191, 100);
-            panel6.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.White;
-            panel5.Location = new Point(3, 297);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(191, 100);
-            panel5.TabIndex = 1;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.White;
-            panel4.Location = new Point(200, 150);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(191, 100);
-            panel4.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.White;
-            panel3.Location = new Point(3, 150);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(191, 100);
-            panel3.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.White;
-            panel2.Location = new Point(200, 3);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(191, 100);
-            panel2.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.White;
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(191, 100);
-            panel1.TabIndex = 0;
+            tableLayoutPanelTables.ColumnCount = 2;
+            tableLayoutPanelTables.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelTables.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelTables.Dock = DockStyle.Fill;
+            tableLayoutPanelTables.Location = new Point(3, 3);
+            tableLayoutPanelTables.Name = "tableLayoutPanelTables";
+            tableLayoutPanelTables.RowCount = 5;
+            tableLayoutPanelTables.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanelTables.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanelTables.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanelTables.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanelTables.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanelTables.Size = new Size(394, 444);
+            tableLayoutPanelTables.TabIndex = 0;
             // 
             // panel7
             // 
+            panel7.BackColor = Color.LightSteelBlue;
+            panel7.Controls.Add(tableIdTextBox);
+            panel7.Controls.Add(tableIdLabel);
             panel7.Controls.Add(tableSaveButton);
             panel7.Controls.Add(tableDeleteButton);
             panel7.Controls.Add(tableCreateButton);
-            panel7.Controls.Add(label1);
-            panel7.Controls.Add(textBox1);
+            panel7.Controls.Add(tableNameLabel);
+            panel7.Controls.Add(tableNameTextBox);
             panel7.Dock = DockStyle.Fill;
             panel7.Location = new Point(403, 3);
             panel7.Name = "panel7";
             panel7.Size = new Size(394, 444);
             panel7.TabIndex = 1;
+            // 
+            // tableIdTextBox
+            // 
+            tableIdTextBox.Enabled = false;
+            tableIdTextBox.Location = new Point(139, 29);
+            tableIdTextBox.Name = "tableIdTextBox";
+            tableIdTextBox.Size = new Size(185, 23);
+            tableIdTextBox.TabIndex = 8;
+            // 
+            // tableIdLabel
+            // 
+            tableIdLabel.AutoSize = true;
+            tableIdLabel.Location = new Point(50, 32);
+            tableIdLabel.Name = "tableIdLabel";
+            tableIdLabel.Size = new Size(83, 15);
+            tableIdLabel.TabIndex = 7;
+            tableIdLabel.Text = "테이블 고유ID";
             // 
             // tableSaveButton
             // 
@@ -175,21 +138,21 @@
             tableCreateButton.UseVisualStyleBackColor = true;
             tableCreateButton.Click += tableCreateButton_Click;
             // 
-            // label1
+            // tableNameLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(72, 35);
-            label1.Name = "label1";
-            label1.Size = new Size(39, 15);
-            label1.TabIndex = 1;
-            label1.Text = "label1";
+            tableNameLabel.AutoSize = true;
+            tableNameLabel.Location = new Point(62, 60);
+            tableNameLabel.Name = "tableNameLabel";
+            tableNameLabel.Size = new Size(71, 15);
+            tableNameLabel.TabIndex = 1;
+            tableNameLabel.Text = "테이블 이름";
             // 
-            // textBox1
+            // tableNameTextBox
             // 
-            textBox1.Location = new Point(156, 32);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(185, 23);
-            textBox1.TabIndex = 0;
+            tableNameTextBox.Location = new Point(139, 58);
+            tableNameTextBox.Name = "tableNameTextBox";
+            tableNameTextBox.Size = new Size(185, 23);
+            tableNameTextBox.TabIndex = 0;
             // 
             // TableManagerBoundary
             // 
@@ -199,8 +162,8 @@
             Controls.Add(tableLayoutPanel1);
             Name = "TableManagerBoundary";
             Text = "TableManagerBoundary";
+            Load += TableManagerBoundary_Load;
             tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel2.ResumeLayout(false);
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             ResumeLayout(false);
@@ -209,18 +172,14 @@
         #endregion
 
         private TableLayoutPanel tableLayoutPanel1;
-        private TableLayoutPanel tableLayoutPanel2;
-        private Panel panel6;
-        private Panel panel5;
-        private Panel panel4;
-        private Panel panel3;
-        private Panel panel2;
-        private Panel panel1;
+        private TableLayoutPanel tableLayoutPanelTables;
         private Panel panel7;
         private Button tableSaveButton;
         private Button tableDeleteButton;
         private Button tableCreateButton;
-        private Label label1;
-        private TextBox textBox1;
+        private Label tableNameLabel;
+        private TextBox tableNameTextBox;
+        private TextBox tableIdTextBox;
+        private Label tableIdLabel;
     }
 }
