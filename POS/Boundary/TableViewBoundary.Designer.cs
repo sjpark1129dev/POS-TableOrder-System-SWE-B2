@@ -52,6 +52,7 @@
             MenuManagerButton.TabIndex = 1;
             MenuManagerButton.Text = "메뉴 관리";
             MenuManagerButton.UseVisualStyleBackColor = true;
+            MenuManagerButton.Click += MenuManagerButton_Click;
             // 
             // SalesManagerButton
             // 
