@@ -29,7 +29,7 @@ namespace POS.Controller
         public bool IsDuplicateName(List<TableEntity> list, string name)
         {
             return list.Any(t => t.State != EntityState.Deleted &&
-                                 t.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+                                 t.tableName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
         public bool DeleteTable()
         {

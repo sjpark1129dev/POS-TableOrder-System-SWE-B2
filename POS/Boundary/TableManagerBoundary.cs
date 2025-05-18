@@ -31,7 +31,7 @@ namespace POS
             foreach (var table in tableList.Where(t => t.State != EntityState.Deleted))
             {
                 var btn = new Button();
-                btn.Text = $"테이블: {table.Name}";
+                btn.Text = $"테이블: {table.tableName}";
                 btn.Tag = table.Id;
                 btn.Dock = DockStyle.Fill;
                 btn.Margin = new Padding(10);
@@ -110,7 +110,7 @@ namespace POS
 
             if (selectedTable != null)
             {
-                tableNameTextBox.Text = selectedTable.Name;
+                tableNameTextBox.Text = selectedTable.tableName;
                 tableIdTextBox.Text = selectedTable.Id.ToString();
             }
             else

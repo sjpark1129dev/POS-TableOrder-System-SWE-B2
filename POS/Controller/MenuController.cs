@@ -28,7 +28,7 @@ namespace POS.Controller
         public bool IsDuplicateName(List<MenuEntity> list, string name)
         {
             return list.Any(m => m.State != EntityState.Deleted &&
-                                 m.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+                                 m.menuName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public void MarkDeleted(List<MenuEntity> menus, int id)
