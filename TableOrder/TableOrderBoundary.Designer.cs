@@ -39,37 +39,37 @@
             button13 = new Button();
             button12 = new Button();
             button11 = new Button();
-            button10 = new Button();
-            button9 = new Button();
+            subButton = new Button();
+            addButton = new Button();
             label12 = new Label();
             label11 = new Label();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
-            label7 = new Label();
+            menuPrice = new Label();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            label1 = new Label();
-            pictureBox6 = new PictureBox();
+            menuName = new Label();
+            menuPicture = new PictureBox();
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
-            button8 = new Button();
-            button7 = new Button();
-            장바구니 = new ListBox();
+            orderCheckButton = new Button();
+            orderButton = new Button();
+            shoppingList = new ListBox();
             button6 = new Button();
             button5 = new Button();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
-            button1 = new Button();
+            kategorieButton = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)menuPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -89,35 +89,35 @@
             panel1.Controls.Add(button13);
             panel1.Controls.Add(button12);
             panel1.Controls.Add(button11);
-            panel1.Controls.Add(button10);
-            panel1.Controls.Add(button9);
+            panel1.Controls.Add(subButton);
+            panel1.Controls.Add(addButton);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(label11);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label8);
-            panel1.Controls.Add(label7);
+            panel1.Controls.Add(menuPrice);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(pictureBox6);
+            panel1.Controls.Add(menuName);
+            panel1.Controls.Add(menuPicture);
             panel1.Controls.Add(pictureBox5);
             panel1.Controls.Add(pictureBox4);
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(button8);
-            panel1.Controls.Add(button7);
-            panel1.Controls.Add(장바구니);
+            panel1.Controls.Add(orderCheckButton);
+            panel1.Controls.Add(orderButton);
+            panel1.Controls.Add(shoppingList);
             panel1.Controls.Add(button6);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(kategorieButton);
             panel1.Location = new Point(12, 15);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
@@ -224,25 +224,25 @@
             button11.Text = "+";
             button11.UseVisualStyleBackColor = true;
             // 
-            // button10
+            // subButton
             // 
-            button10.Location = new Point(256, 141);
-            button10.Margin = new Padding(3, 4, 3, 4);
-            button10.Name = "button10";
-            button10.Size = new Size(27, 28);
-            button10.TabIndex = 34;
-            button10.Text = "-";
-            button10.UseVisualStyleBackColor = true;
+            subButton.Location = new Point(256, 141);
+            subButton.Margin = new Padding(3, 4, 3, 4);
+            subButton.Name = "subButton";
+            subButton.Size = new Size(27, 28);
+            subButton.TabIndex = 34;
+            subButton.Text = "-";
+            subButton.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // addButton
             // 
-            button9.Location = new Point(223, 141);
-            button9.Margin = new Padding(3, 4, 3, 4);
-            button9.Name = "button9";
-            button9.Size = new Size(27, 28);
-            button9.TabIndex = 33;
-            button9.Text = "+";
-            button9.UseVisualStyleBackColor = true;
+            addButton.Location = new Point(223, 141);
+            addButton.Margin = new Padding(3, 4, 3, 4);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(27, 28);
+            addButton.TabIndex = 33;
+            addButton.Text = "+";
+            addButton.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
@@ -289,14 +289,14 @@
             label8.TabIndex = 24;
             label8.Text = "10000원";
             // 
-            // label7
+            // menuPrice
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(142, 148);
-            label7.Name = "label7";
-            label7.Size = new Size(54, 15);
-            label7.TabIndex = 22;
-            label7.Text = "10000원";
+            menuPrice.AutoSize = true;
+            menuPrice.Location = new Point(142, 148);
+            menuPrice.Name = "menuPrice";
+            menuPrice.Size = new Size(54, 15);
+            menuPrice.TabIndex = 22;
+            menuPrice.Text = "10000원";
             // 
             // label6
             // 
@@ -343,25 +343,25 @@
             label2.TabIndex = 16;
             label2.Text = "고기";
             // 
-            // label1
+            // menuName
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(145, 122);
-            label1.Name = "label1";
-            label1.Size = new Size(31, 15);
-            label1.TabIndex = 15;
-            label1.Text = "고기";
+            menuName.AutoSize = true;
+            menuName.Location = new Point(146, 122);
+            menuName.Name = "menuName";
+            menuName.Size = new Size(31, 15);
+            menuName.TabIndex = 15;
+            menuName.Text = "고기";
             // 
-            // pictureBox6
+            // menuPicture
             // 
-            pictureBox6.Image = Properties.Resources.고기;
-            pictureBox6.Location = new Point(145, 5);
-            pictureBox6.Margin = new Padding(3, 4, 3, 4);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(138, 113);
-            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox6.TabIndex = 45;
-            pictureBox6.TabStop = false;
+            menuPicture.Image = Properties.Resources.고기;
+            menuPicture.Location = new Point(145, 5);
+            menuPicture.Margin = new Padding(3, 4, 3, 4);
+            menuPicture.Name = "menuPicture";
+            menuPicture.Size = new Size(138, 113);
+            menuPicture.SizeMode = PictureBoxSizeMode.Zoom;
+            menuPicture.TabIndex = 45;
+            menuPicture.TabStop = false;
             // 
             // pictureBox5
             // 
@@ -418,35 +418,35 @@
             pictureBox1.TabIndex = 50;
             pictureBox1.TabStop = false;
             // 
-            // button8
+            // orderCheckButton
             // 
-            button8.Location = new Point(3, 472);
-            button8.Margin = new Padding(3, 4, 3, 4);
-            button8.Name = "button8";
-            button8.Size = new Size(174, 56);
-            button8.TabIndex = 8;
-            button8.Text = "주문내역조회";
-            button8.UseVisualStyleBackColor = true;
+            orderCheckButton.Location = new Point(3, 472);
+            orderCheckButton.Margin = new Padding(3, 4, 3, 4);
+            orderCheckButton.Name = "orderCheckButton";
+            orderCheckButton.Size = new Size(174, 56);
+            orderCheckButton.TabIndex = 8;
+            orderCheckButton.Text = "주문내역조회";
+            orderCheckButton.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // orderButton
             // 
-            button7.Location = new Point(585, 472);
-            button7.Margin = new Padding(3, 4, 3, 4);
-            button7.Name = "button7";
-            button7.Size = new Size(188, 56);
-            button7.TabIndex = 7;
-            button7.Text = "주문";
-            button7.UseVisualStyleBackColor = true;
+            orderButton.Location = new Point(585, 472);
+            orderButton.Margin = new Padding(3, 4, 3, 4);
+            orderButton.Name = "orderButton";
+            orderButton.Size = new Size(188, 56);
+            orderButton.TabIndex = 7;
+            orderButton.Text = "주문";
+            orderButton.UseVisualStyleBackColor = true;
             // 
-            // 장바구니
+            // shoppingList
             // 
-            장바구니.FormattingEnabled = true;
-            장바구니.ItemHeight = 15;
-            장바구니.Location = new Point(585, 5);
-            장바구니.Margin = new Padding(3, 4, 3, 4);
-            장바구니.Name = "장바구니";
-            장바구니.Size = new Size(188, 379);
-            장바구니.TabIndex = 6;
+            shoppingList.FormattingEnabled = true;
+            shoppingList.ItemHeight = 15;
+            shoppingList.Location = new Point(585, 5);
+            shoppingList.Margin = new Padding(3, 4, 3, 4);
+            shoppingList.Name = "shoppingList";
+            shoppingList.Size = new Size(188, 379);
+            shoppingList.TabIndex = 6;
             // 
             // button6
             // 
@@ -498,15 +498,15 @@
             button2.Text = "주류";
             button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // kategorieButton
             // 
-            button1.Location = new Point(4, 5);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(134, 49);
-            button1.TabIndex = 0;
-            button1.Text = "고기";
-            button1.UseVisualStyleBackColor = true;
+            kategorieButton.Location = new Point(4, 5);
+            kategorieButton.Margin = new Padding(3, 4, 3, 4);
+            kategorieButton.Name = "kategorieButton";
+            kategorieButton.Size = new Size(134, 49);
+            kategorieButton.TabIndex = 0;
+            kategorieButton.Text = "고기";
+            kategorieButton.UseVisualStyleBackColor = true;
             // 
             // TableOrderBoundary
             // 
@@ -519,7 +519,7 @@
             Text = "TableOrderBoundary";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)menuPicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -536,29 +536,29 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button kategorieButton;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ListBox 장바구니;
+        private System.Windows.Forms.Button orderCheckButton;
+        private System.Windows.Forms.Button orderButton;
+        private System.Windows.Forms.ListBox shoppingList;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label menuName;
+        private System.Windows.Forms.PictureBox menuPicture;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label menuPrice;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button18;
@@ -569,7 +569,7 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button subButton;
     }
 }
 

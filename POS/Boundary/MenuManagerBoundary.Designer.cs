@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
             menuCreateButton = new Button();
             menuDeleteButton = new Button();
             panel2 = new Panel();
-            button4 = new Button();
+            kategorieManageButton = new Button();
             menuSaveButton = new Button();
             panel4 = new Panel();
             panel3 = new Panel();
             menuIdTextBox = new TextBox();
             label7 = new Label();
-            button5 = new Button();
-            pictureBox2 = new PictureBox();
-            comboBox2 = new ComboBox();
+            pictureAddButton = new Button();
+            pictureBox = new PictureBox();
+            KategorieComboBox = new ComboBox();
             menuPriceTextBox = new TextBox();
             menuNameTextBox = new TextBox();
             label5 = new Label();
@@ -70,7 +70,7 @@
             panel2.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewMenus).BeginInit();
             SuspendLayout();
@@ -126,7 +126,7 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(button4);
+            panel2.Controls.Add(kategorieManageButton);
             panel2.Controls.Add(menuSaveButton);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(304, 3);
@@ -134,14 +134,14 @@
             panel2.Size = new Size(296, 61);
             panel2.TabIndex = 1;
             // 
-            // button4
+            // kategorieManageButton
             // 
-            button4.Location = new Point(0, 9);
-            button4.Name = "button4";
-            button4.Size = new Size(113, 23);
-            button4.TabIndex = 2;
-            button4.Text = "카테고리 관리";
-            button4.UseVisualStyleBackColor = true;
+            kategorieManageButton.Location = new Point(0, 9);
+            kategorieManageButton.Name = "kategorieManageButton";
+            kategorieManageButton.Size = new Size(113, 23);
+            kategorieManageButton.TabIndex = 2;
+            kategorieManageButton.Text = "카테고리 관리";
+            kategorieManageButton.UseVisualStyleBackColor = true;
             // 
             // menuSaveButton
             // 
@@ -175,9 +175,9 @@
             panel3.BackColor = SystemColors.ControlDark;
             panel3.Controls.Add(menuIdTextBox);
             panel3.Controls.Add(label7);
-            panel3.Controls.Add(button5);
-            panel3.Controls.Add(pictureBox2);
-            panel3.Controls.Add(comboBox2);
+            panel3.Controls.Add(pictureAddButton);
+            panel3.Controls.Add(pictureBox);
+            panel3.Controls.Add(KategorieComboBox);
             panel3.Controls.Add(menuPriceTextBox);
             panel3.Controls.Add(menuNameTextBox);
             panel3.Controls.Add(label5);
@@ -206,32 +206,32 @@
             label7.TabIndex = 8;
             label7.Text = "메뉴ID";
             // 
-            // button5
+            // pictureAddButton
             // 
-            button5.Location = new Point(193, 249);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 7;
-            button5.Text = "사진 추가";
-            button5.UseVisualStyleBackColor = true;
+            pictureAddButton.Location = new Point(193, 249);
+            pictureAddButton.Name = "pictureAddButton";
+            pictureAddButton.Size = new Size(75, 23);
+            pictureAddButton.TabIndex = 7;
+            pictureAddButton.Text = "사진 추가";
+            pictureAddButton.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
+            // pictureBox
             // 
-            pictureBox2.BackColor = Color.White;
-            pictureBox2.Location = new Point(31, 36);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(237, 196);
-            pictureBox2.TabIndex = 6;
-            pictureBox2.TabStop = false;
+            pictureBox.BackColor = Color.White;
+            pictureBox.Location = new Point(31, 36);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new Size(237, 196);
+            pictureBox.TabIndex = 6;
+            pictureBox.TabStop = false;
             // 
-            // comboBox2
+            // KategorieComboBox
             // 
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(110, 375);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(158, 23);
-            comboBox2.TabIndex = 5;
+            KategorieComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            KategorieComboBox.FormattingEnabled = true;
+            KategorieComboBox.Location = new Point(110, 375);
+            KategorieComboBox.Name = "KategorieComboBox";
+            KategorieComboBox.Size = new Size(158, 23);
+            KategorieComboBox.TabIndex = 5;
             // 
             // menuPriceTextBox
             // 
@@ -349,37 +349,37 @@
             dataGridViewMenus.AllowUserToResizeColumns = false;
             dataGridViewMenus.AllowUserToResizeRows = false;
             dataGridViewMenus.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridViewMenus.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewMenus.Columns.AddRange(new DataGridViewColumn[] { Id, menuName, Price });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.DefaultCellStyle = dataGridViewCellStyle11;
             dataGridViewMenus.Dock = DockStyle.Fill;
             dataGridViewMenus.Location = new Point(3, 70);
             dataGridViewMenus.MultiSelect = false;
             dataGridViewMenus.Name = "dataGridViewMenus";
             dataGridViewMenus.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = SystemColors.Control;
+            dataGridViewCellStyle12.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dataGridViewMenus.RowHeadersVisible = false;
             dataGridViewMenus.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewMenus.RowTemplate.ReadOnly = true;
@@ -391,9 +391,9 @@
             // Id
             // 
             Id.DataPropertyName = "Id";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            Id.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            Id.DefaultCellStyle = dataGridViewCellStyle8;
             Id.FillWeight = 10F;
             Id.HeaderText = "ID";
             Id.Name = "Id";
@@ -404,9 +404,9 @@
             // 
             menuName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             menuName.DataPropertyName = "menuName";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            menuName.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            menuName.DefaultCellStyle = dataGridViewCellStyle9;
             menuName.FillWeight = 60F;
             menuName.HeaderText = "메뉴명";
             menuName.Name = "menuName";
@@ -416,10 +416,10 @@
             // Price
             // 
             Price.DataPropertyName = "menuPrice";
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            Price.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.Format = "N0";
+            dataGridViewCellStyle10.NullValue = null;
+            Price.DefaultCellStyle = dataGridViewCellStyle10;
             Price.FillWeight = 30F;
             Price.HeaderText = "가격";
             Price.Name = "Price";
@@ -442,7 +442,7 @@
             panel4.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewMenus).EndInit();
             ResumeLayout(false);
@@ -464,16 +464,16 @@
         private ComboBox comboBox1;
         private TextBox textBox2;
         private TextBox textBox1;
-        private Button button4;
+        private Button kategorieManageButton;
         private PictureBox pictureBox1;
         private Button ImageAddButton;
         private DataGridView dataGridViewMenus;
         private Panel panel3;
         private TextBox menuIdTextBox;
         private Label label7;
-        private Button button5;
-        private PictureBox pictureBox2;
-        private ComboBox comboBox2;
+        private Button pictureAddButton;
+        private PictureBox pictureBox;
+        private ComboBox KategorieComboBox;
         private TextBox menuPriceTextBox;
         private TextBox menuNameTextBox;
         private Label label5;

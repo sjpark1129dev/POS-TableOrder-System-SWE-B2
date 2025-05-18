@@ -21,5 +21,10 @@ namespace SalesManagement
             SalesDataView.Rows.Add("2024-05-01", "R001", "목살", 2, 10000);
             SalesDataView.Rows.Add("2024-05-01", "R001", "항정살", 4, 12000);
         }
+
+        private void menutxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
