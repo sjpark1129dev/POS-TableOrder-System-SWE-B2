@@ -6,7 +6,7 @@ namespace POS.Repository
     public class AppDbContext : DbContext
     {
         public DbSet<TableEntity> Tables { get; set; }
-        // public DbSet<MenuEntity> Menus { get; set; }
+        public DbSet<MenuEntity> Menus { get; set; }
         // public DbSet<OrderEntity> Orders { get; set; }
         // public DbSet<UserEntity> Users { get; set; }
 
