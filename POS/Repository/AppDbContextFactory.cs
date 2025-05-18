@@ -9,7 +9,7 @@ namespace POS.Repository
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             optionsBuilder.UseMySql(
-                "server=localhost;port=3306;database=posdb;user=root;password=DeuComputerB2!;",
+                "server=sjpark1129dev.iptime.org;port=8443;database=posdb;user=root;password=DeuComputerB2!;",
                 new MySqlServerVersion(new Version(8, 4, 5)));
 
             return new AppDbContext(optionsBuilder.Options);

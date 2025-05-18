@@ -21,7 +21,7 @@ namespace POS.Controller
         private AppControllers()
         {
             var options = new DbContextOptionsBuilder<AppDbContext>()
-                .UseMySql("server=localhost;port=3306;database=posdb;user=root;password=DeuComputerB2!;",
+                .UseMySql("server=sjpark1129dev.iptime.org;port=8443;database=posdb;user=root;password=DeuComputerB2!;",
                           new MySqlServerVersion(new Version(8, 4, 5)))
                 .Options;
 
