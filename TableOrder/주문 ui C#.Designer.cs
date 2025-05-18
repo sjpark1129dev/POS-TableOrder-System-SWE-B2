@@ -354,55 +354,67 @@
             // 
             // pictureBox6
             // 
-            pictureBox6.Location = new Point(0, 0);
+            pictureBox6.Image = Properties.Resources.고기;
+            pictureBox6.Location = new Point(145, 5);
             pictureBox6.Margin = new Padding(3, 4, 3, 4);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(100, 62);
+            pictureBox6.Size = new Size(138, 113);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 45;
             pictureBox6.TabStop = false;
             // 
             // pictureBox5
             // 
-            pictureBox5.Location = new Point(0, 0);
+            pictureBox5.Image = Properties.Resources.고기2;
+            pictureBox5.Location = new Point(289, 4);
             pictureBox5.Margin = new Padding(3, 4, 3, 4);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(100, 62);
+            pictureBox5.Size = new Size(143, 114);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 46;
             pictureBox5.TabStop = false;
             // 
             // pictureBox4
             // 
-            pictureBox4.Location = new Point(0, 0);
+            pictureBox4.Image = Properties.Resources.고기;
+            pictureBox4.Location = new Point(438, 5);
             pictureBox4.Margin = new Padding(3, 4, 3, 4);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(100, 62);
+            pictureBox4.Size = new Size(141, 113);
+            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 47;
             pictureBox4.TabStop = false;
             // 
             // pictureBox3
             // 
-            pictureBox3.Location = new Point(0, 0);
+            pictureBox3.Image = Properties.Resources.고기2;
+            pictureBox3.Location = new Point(145, 182);
             pictureBox3.Margin = new Padding(3, 4, 3, 4);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(100, 62);
+            pictureBox3.Size = new Size(138, 109);
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 48;
             pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
-            pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Image = Properties.Resources.고기;
+            pictureBox2.Location = new Point(289, 182);
             pictureBox2.Margin = new Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(100, 62);
+            pictureBox2.Size = new Size(143, 109);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 49;
             pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Image = Properties.Resources.고기2;
+            pictureBox1.Location = new Point(438, 182);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 62);
+            pictureBox1.Size = new Size(141, 109);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 50;
             pictureBox1.TabStop = false;
             // 
