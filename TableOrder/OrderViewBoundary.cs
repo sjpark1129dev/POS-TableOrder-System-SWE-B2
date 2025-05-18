@@ -1,8 +1,8 @@
-namespace OrderView
+namespace TableOrder
 {
-    public partial class OrderViewUI : Form
+    public partial class OrderViewBoundary : Form
     {
-        public OrderViewUI()
+        public OrderViewBoundary()
         {
             InitializeComponent();
             LoadData();

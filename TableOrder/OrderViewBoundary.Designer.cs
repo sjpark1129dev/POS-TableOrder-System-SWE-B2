@@ -1,6 +1,6 @@
-﻿namespace OrderView
+﻿namespace TableOrder
 {
-    partial class OrderViewUI
+    partial class OrderViewBoundary
     {
         /// <summary>
         ///  Required designer variable.
