@@ -14,16 +14,19 @@ namespace POS.Entity
     {
         [Key]
         public int Id { get; set; }
+        
         [Required]
         [StringLength(50)]
         [Column("table_name")]
-        public string Name { get; set; }
+        public string tableName { get; set; }
+        
         [NotMapped]
         public EntityState State { get; set; } = EntityState.Unchanged;
 
+        public TableEntity() { }
         public TableEntity(string name)
         {
-            Name = name;
+            this.tableName = name;
         }
     }
 }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
@@ -61,7 +63,7 @@
             label1 = new Label();
             dataGridViewMenus = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
-            MenuName = new DataGridViewTextBoxColumn();
+            menuName = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
@@ -346,6 +348,7 @@
             dataGridViewMenus.AllowUserToDeleteRows = false;
             dataGridViewMenus.AllowUserToResizeColumns = false;
             dataGridViewMenus.AllowUserToResizeRows = false;
+            dataGridViewMenus.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("맑은 고딕", 9F);
@@ -355,13 +358,31 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridViewMenus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewMenus.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewMenus.Columns.AddRange(new DataGridViewColumn[] { Id, MenuName, Price });
+            dataGridViewMenus.Columns.AddRange(new DataGridViewColumn[] { Id, menuName, Price });
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.DefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewMenus.Dock = DockStyle.Fill;
             dataGridViewMenus.Location = new Point(3, 70);
             dataGridViewMenus.MultiSelect = false;
             dataGridViewMenus.Name = "dataGridViewMenus";
             dataGridViewMenus.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewMenus.RowHeadersVisible = false;
+            dataGridViewMenus.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewMenus.RowTemplate.ReadOnly = true;
             dataGridViewMenus.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewMenus.Size = new Size(295, 429);
             dataGridViewMenus.TabIndex = 4;
@@ -371,29 +392,35 @@
             // 
             Id.DataPropertyName = "Id";
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             Id.DefaultCellStyle = dataGridViewCellStyle2;
+            Id.FillWeight = 10F;
             Id.HeaderText = "ID";
             Id.Name = "Id";
             Id.ReadOnly = true;
             Id.Resizable = DataGridViewTriState.False;
-            Id.Width = 35;
             // 
-            // MenuName
+            // menuName
             // 
-            MenuName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            MenuName.DataPropertyName = "menu_name";
+            menuName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            menuName.DataPropertyName = "menuName";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            MenuName.DefaultCellStyle = dataGridViewCellStyle3;
-            MenuName.HeaderText = "메뉴명";
-            MenuName.Name = "MenuName";
-            MenuName.ReadOnly = true;
-            MenuName.Resizable = DataGridViewTriState.False;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            menuName.DefaultCellStyle = dataGridViewCellStyle3;
+            menuName.FillWeight = 60F;
+            menuName.HeaderText = "메뉴명";
+            menuName.Name = "menuName";
+            menuName.ReadOnly = true;
+            menuName.Resizable = DataGridViewTriState.False;
             // 
             // Price
             // 
-            Price.DataPropertyName = "price";
+            Price.DataPropertyName = "menuPrice";
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
             Price.DefaultCellStyle = dataGridViewCellStyle4;
+            Price.FillWeight = 30F;
             Price.HeaderText = "가격";
             Price.Name = "Price";
             Price.ReadOnly = true;
@@ -453,7 +480,7 @@
         private Label label6;
         private Label label4;
         private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn MenuName;
+        private DataGridViewTextBoxColumn menuName;
         private DataGridViewTextBoxColumn Price;
     }
 }

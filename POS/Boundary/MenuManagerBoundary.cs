@@ -28,32 +28,7 @@ namespace POS.Boundary
         private void InitializeDataGridView()
         {
             dataGridViewMenus.AutoGenerateColumns = false;
-            dataGridViewMenus.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewMenus.MultiSelect = false;
-            dataGridViewMenus.DataSource = null;
-
-            dataGridViewMenus.Columns.Clear();
-
-            dataGridViewMenus.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "ID",
-                DataPropertyName = "Id",
-                Width = 50,
-                ReadOnly = true
-            });
-            dataGridViewMenus.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "메뉴명",
-                DataPropertyName = "Name",
-                Width = 150
-            });
-            dataGridViewMenus.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "가격",
-                DataPropertyName = "Price",
-                Width = 100
-            });
-
+            dataGridViewMenus.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             RefreshMenuList();
         }
         
@@ -82,6 +57,7 @@ namespace POS.Boundary
 
             // 바로 DB에 저장
             var newMenu = menuController.CreateMenu(name, price);
+            newMenu.State = EntityState.New;
             menuController.SaveAllMenus(new List<MenuEntity> { newMenu });
 
             // 다시 전체 목록 로드해서 ID 포함된 상태로 반영
@@ -130,8 +106,8 @@ namespace POS.Boundary
             var selectedMenu = menuList.FirstOrDefault(m => m.Id == selectedMenuId);
             if (selectedMenu != null)
             {
-                menuNameTextBox.Text = selectedMenu.Name;
-                menuPriceTextBox.Text = selectedMenu.Price.ToString("N0");
+                menuNameTextBox.Text = selectedMenu.menuName;
+                menuPriceTextBox.Text = selectedMenu.menuPrice.ToString("N0");
             }
         }
     }
