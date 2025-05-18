@@ -1,6 +1,6 @@
 ﻿namespace TableOrder
 {
-    partial class Form1
+    partial class TableOrderBoundary
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -508,15 +508,15 @@
             button1.Text = "고기";
             button1.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // TableOrderBoundary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 562);
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "TableOrderBoundary";
+            Text = "TableOrderBoundary";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
