@@ -1,6 +1,6 @@
 ﻿namespace SalesManagement
 {
-    partial class Form1
+    partial class SalesManagerBoundary
     {
         /// <summary>
         ///  Required designer variable.
@@ -237,15 +237,15 @@
             panel3.Size = new Size(90, 570);
             panel3.TabIndex = 0;
             // 
-            // Form1
+            // SalesManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1307, 633);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "SalesManagerBoundary";
+            Text = "SalesManagerBoundary";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

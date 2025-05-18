@@ -1,8 +1,8 @@
 namespace SalesManagement
 {
-    public partial class Form1 : Form
+    public partial class SalesManagerBoundary : Form
     {
-        public Form1()
+        public SalesManagerBoundary()
         {
             InitializeComponent();
             startDate.Value = DateTime.Now.AddDays(-7);
