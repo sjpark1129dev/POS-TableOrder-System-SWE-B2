@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PosServer\PosServer.csproj" />
+    <ProjectReference Include="..\POS.Shared\POS.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
