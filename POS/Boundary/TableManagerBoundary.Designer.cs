@@ -161,7 +161,7 @@
             tableSaveButton.Name = "tableSaveButton";
             tableSaveButton.Size = new Size(269, 37);
             tableSaveButton.TabIndex = 10;
-            tableSaveButton.Text = "테이블 수정 저장";
+            tableSaveButton.Text = "테이블 저장";
             tableSaveButton.UseVisualStyleBackColor = true;
             // 
             // TableManagerBoundary

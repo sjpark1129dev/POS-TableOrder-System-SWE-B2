@@ -40,7 +40,6 @@
             menuDeleteButton = new Button();
             panel2 = new Panel();
             kategorieManageButton = new Button();
-            menuSaveButton = new Button();
             panel4 = new Panel();
             panel3 = new Panel();
             menuIdTextBox = new TextBox();
@@ -65,6 +64,8 @@
             Id = new DataGridViewTextBoxColumn();
             menuName = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
+            menuResetButton = new Button();
+            menuEditSaveButton = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -127,7 +128,7 @@
             // panel2
             // 
             panel2.Controls.Add(kategorieManageButton);
-            panel2.Controls.Add(menuSaveButton);
+            panel2.Controls.Add(menuEditSaveButton);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(304, 3);
             panel2.Name = "panel2";
@@ -142,16 +143,6 @@
             kategorieManageButton.TabIndex = 2;
             kategorieManageButton.Text = "카테고리 관리";
             kategorieManageButton.UseVisualStyleBackColor = true;
-            // 
-            // menuSaveButton
-            // 
-            menuSaveButton.Location = new Point(122, 9);
-            menuSaveButton.Name = "menuSaveButton";
-            menuSaveButton.Size = new Size(75, 23);
-            menuSaveButton.TabIndex = 1;
-            menuSaveButton.Text = "저장";
-            menuSaveButton.UseVisualStyleBackColor = true;
-            menuSaveButton.Click += menuSaveButton_Click;
             // 
             // panel4
             // 
@@ -173,6 +164,7 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.ControlDark;
+            panel3.Controls.Add(menuResetButton);
             panel3.Controls.Add(menuIdTextBox);
             panel3.Controls.Add(label7);
             panel3.Controls.Add(pictureAddButton);
@@ -192,9 +184,9 @@
             // menuIdTextBox
             // 
             menuIdTextBox.Enabled = false;
-            menuIdTextBox.Location = new Point(110, 7);
+            menuIdTextBox.Location = new Point(91, 7);
             menuIdTextBox.Name = "menuIdTextBox";
-            menuIdTextBox.Size = new Size(158, 23);
+            menuIdTextBox.Size = new Size(106, 23);
             menuIdTextBox.TabIndex = 9;
             // 
             // label7
@@ -426,6 +418,25 @@
             Price.ReadOnly = true;
             Price.Resizable = DataGridViewTriState.False;
             // 
+            // menuResetButton
+            // 
+            menuResetButton.Location = new Point(203, 6);
+            menuResetButton.Name = "menuResetButton";
+            menuResetButton.Size = new Size(65, 23);
+            menuResetButton.TabIndex = 2;
+            menuResetButton.Text = "초기화";
+            menuResetButton.UseVisualStyleBackColor = true;
+            // 
+            // menuEditSaveButton
+            // 
+            menuEditSaveButton.Location = new Point(119, 9);
+            menuEditSaveButton.Name = "menuEditSaveButton";
+            menuEditSaveButton.Size = new Size(75, 23);
+            menuEditSaveButton.TabIndex = 1;
+            menuEditSaveButton.Text = "저장";
+            menuEditSaveButton.UseVisualStyleBackColor = true;
+            menuEditSaveButton.Click += menuSaveButton_Click;
+            // 
             // MenuManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -457,7 +468,6 @@
         private Panel panel4;
         private Button menuCreateButton;
         private Button menuDeleteButton;
-        private Button menuSaveButton;
         private Label label3;
         private Label label2;
         private Label label1;
@@ -482,5 +492,7 @@
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn menuName;
         private DataGridViewTextBoxColumn Price;
+        private Button menuResetButton;
+        private Button menuEditSaveButton;
     }
 }

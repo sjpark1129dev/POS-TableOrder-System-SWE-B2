@@ -31,25 +31,24 @@
             TableManagerButton = new Button();
             MenuManagerButton = new Button();
             SalesManagerButton = new Button();
-            LunchTimeButton = new Button();
             Table1 = new Panel();
             totalAmount = new Label();
+            orderList1 = new ListBox();
             Table2 = new Panel();
+            orderList2 = new ListBox();
             totalAmount2 = new Label();
             Table3 = new Panel();
+            orderList3 = new ListBox();
             totalAmount3 = new Label();
-            orderList1 = new ListBox();
             Table4 = new Panel();
+            orderList4 = new ListBox();
             totalAmount4 = new Label();
             Table5 = new Panel();
+            orderList5 = new ListBox();
             totalAmount5 = new Label();
             Table6 = new Panel();
-            totalAmount6 = new Label();
-            orderList2 = new ListBox();
-            orderList3 = new ListBox();
-            orderList4 = new ListBox();
-            orderList5 = new ListBox();
             orderList6 = new ListBox();
+            totalAmount6 = new Label();
             Table1.SuspendLayout();
             Table2.SuspendLayout();
             Table3.SuspendLayout();
@@ -60,7 +59,7 @@
             // 
             // TableManagerButton
             // 
-            TableManagerButton.Location = new Point(37, 30);
+            TableManagerButton.Location = new Point(50, 30);
             TableManagerButton.Name = "TableManagerButton";
             TableManagerButton.Size = new Size(111, 40);
             TableManagerButton.TabIndex = 0;
@@ -70,7 +69,7 @@
             // 
             // MenuManagerButton
             // 
-            MenuManagerButton.Location = new Point(226, 30);
+            MenuManagerButton.Location = new Point(349, 30);
             MenuManagerButton.Name = "MenuManagerButton";
             MenuManagerButton.Size = new Size(111, 40);
             MenuManagerButton.TabIndex = 1;
@@ -80,21 +79,12 @@
             // 
             // SalesManagerButton
             // 
-            SalesManagerButton.Location = new Point(431, 30);
+            SalesManagerButton.Location = new Point(633, 30);
             SalesManagerButton.Name = "SalesManagerButton";
             SalesManagerButton.Size = new Size(111, 40);
             SalesManagerButton.TabIndex = 2;
             SalesManagerButton.Text = "매출 관리";
             SalesManagerButton.UseVisualStyleBackColor = true;
-            // 
-            // LunchTimeButton
-            // 
-            LunchTimeButton.Location = new Point(633, 30);
-            LunchTimeButton.Name = "LunchTimeButton";
-            LunchTimeButton.Size = new Size(111, 40);
-            LunchTimeButton.TabIndex = 3;
-            LunchTimeButton.Text = "특선 전환";
-            LunchTimeButton.UseVisualStyleBackColor = true;
             // 
             // Table1
             // 
@@ -114,6 +104,16 @@
             totalAmount.TabIndex = 1;
             totalAmount.Text = "총액:@@원";
             // 
+            // orderList1
+            // 
+            orderList1.FormattingEnabled = true;
+            orderList1.ItemHeight = 15;
+            orderList1.Location = new Point(12, 13);
+            orderList1.Name = "orderList1";
+            orderList1.Size = new Size(163, 79);
+            orderList1.TabIndex = 4;
+            orderList1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            // 
             // Table2
             // 
             Table2.Controls.Add(orderList2);
@@ -122,6 +122,15 @@
             Table2.Name = "Table2";
             Table2.Size = new Size(197, 139);
             Table2.TabIndex = 5;
+            // 
+            // orderList2
+            // 
+            orderList2.FormattingEnabled = true;
+            orderList2.ItemHeight = 15;
+            orderList2.Location = new Point(15, 13);
+            orderList2.Name = "orderList2";
+            orderList2.Size = new Size(163, 79);
+            orderList2.TabIndex = 5;
             // 
             // totalAmount2
             // 
@@ -141,6 +150,15 @@
             Table3.Size = new Size(197, 139);
             Table3.TabIndex = 6;
             // 
+            // orderList3
+            // 
+            orderList3.FormattingEnabled = true;
+            orderList3.ItemHeight = 15;
+            orderList3.Location = new Point(15, 13);
+            orderList3.Name = "orderList3";
+            orderList3.Size = new Size(163, 79);
+            orderList3.TabIndex = 6;
+            // 
             // totalAmount3
             // 
             totalAmount3.AutoSize = true;
@@ -150,16 +168,6 @@
             totalAmount3.TabIndex = 7;
             totalAmount3.Text = "총액:@@원";
             // 
-            // orderList1
-            // 
-            orderList1.FormattingEnabled = true;
-            orderList1.ItemHeight = 15;
-            orderList1.Location = new Point(12, 13);
-            orderList1.Name = "orderList1";
-            orderList1.Size = new Size(163, 79);
-            orderList1.TabIndex = 4;
-            orderList1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
-            // 
             // Table4
             // 
             Table4.Controls.Add(orderList4);
@@ -168,6 +176,15 @@
             Table4.Name = "Table4";
             Table4.Size = new Size(197, 139);
             Table4.TabIndex = 5;
+            // 
+            // orderList4
+            // 
+            orderList4.FormattingEnabled = true;
+            orderList4.ItemHeight = 15;
+            orderList4.Location = new Point(12, 15);
+            orderList4.Name = "orderList4";
+            orderList4.Size = new Size(163, 79);
+            orderList4.TabIndex = 8;
             // 
             // totalAmount4
             // 
@@ -187,6 +204,15 @@
             Table5.Size = new Size(197, 139);
             Table5.TabIndex = 5;
             // 
+            // orderList5
+            // 
+            orderList5.FormattingEnabled = true;
+            orderList5.ItemHeight = 15;
+            orderList5.Location = new Point(15, 15);
+            orderList5.Name = "orderList5";
+            orderList5.Size = new Size(163, 79);
+            orderList5.TabIndex = 9;
+            // 
             // totalAmount5
             // 
             totalAmount5.AutoSize = true;
@@ -205,51 +231,6 @@
             Table6.Size = new Size(197, 139);
             Table6.TabIndex = 5;
             // 
-            // totalAmount6
-            // 
-            totalAmount6.AutoSize = true;
-            totalAmount6.Location = new Point(124, 112);
-            totalAmount6.Name = "totalAmount6";
-            totalAmount6.Size = new Size(70, 15);
-            totalAmount6.TabIndex = 1;
-            totalAmount6.Text = "총액:@@원";
-            // 
-            // orderList2
-            // 
-            orderList2.FormattingEnabled = true;
-            orderList2.ItemHeight = 15;
-            orderList2.Location = new Point(15, 13);
-            orderList2.Name = "orderList2";
-            orderList2.Size = new Size(163, 79);
-            orderList2.TabIndex = 5;
-            // 
-            // orderList3
-            // 
-            orderList3.FormattingEnabled = true;
-            orderList3.ItemHeight = 15;
-            orderList3.Location = new Point(15, 13);
-            orderList3.Name = "orderList3";
-            orderList3.Size = new Size(163, 79);
-            orderList3.TabIndex = 6;
-            // 
-            // orderList4
-            // 
-            orderList4.FormattingEnabled = true;
-            orderList4.ItemHeight = 15;
-            orderList4.Location = new Point(12, 15);
-            orderList4.Name = "orderList4";
-            orderList4.Size = new Size(163, 79);
-            orderList4.TabIndex = 8;
-            // 
-            // orderList5
-            // 
-            orderList5.FormattingEnabled = true;
-            orderList5.ItemHeight = 15;
-            orderList5.Location = new Point(15, 15);
-            orderList5.Name = "orderList5";
-            orderList5.Size = new Size(163, 79);
-            orderList5.TabIndex = 9;
-            // 
             // orderList6
             // 
             orderList6.FormattingEnabled = true;
@@ -258,6 +239,15 @@
             orderList6.Name = "orderList6";
             orderList6.Size = new Size(163, 79);
             orderList6.TabIndex = 9;
+            // 
+            // totalAmount6
+            // 
+            totalAmount6.AutoSize = true;
+            totalAmount6.Location = new Point(124, 112);
+            totalAmount6.Name = "totalAmount6";
+            totalAmount6.Size = new Size(70, 15);
+            totalAmount6.TabIndex = 1;
+            totalAmount6.Text = "총액:@@원";
             // 
             // TableViewBoundary
             // 
@@ -271,7 +261,6 @@
             Controls.Add(Table3);
             Controls.Add(Table2);
             Controls.Add(Table1);
-            Controls.Add(LunchTimeButton);
             Controls.Add(SalesManagerButton);
             Controls.Add(MenuManagerButton);
             Controls.Add(TableManagerButton);
@@ -297,7 +286,6 @@
         private Button TableManagerButton;
         private Button MenuManagerButton;
         private Button SalesManagerButton;
-        private Button LunchTimeButton;
         private Panel Table1;
         private Label totalAmount;
         private Panel Table2;
