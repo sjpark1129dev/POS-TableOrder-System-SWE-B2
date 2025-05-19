@@ -1,25 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using PosServer.Entities;
 
 namespace PosServer.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TableController : ControllerBase
+    public class MenuController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public TableController(AppDbContext context)
+        public MenuController(AppDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<TableEntity>>> GetTables()
+        public async Task<ActionResult<List<MenuEntity>>> GetMenus()
         {
-            return await _context.Tables.ToListAsync();
+            return await _context.Menus.ToListAsync();
         }
     }
 }
