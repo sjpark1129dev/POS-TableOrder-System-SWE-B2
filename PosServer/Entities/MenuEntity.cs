@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POS.Entity
+namespace PosServer.Entities
 {
     public class MenuEntity
     {
@@ -21,9 +21,6 @@ namespace POS.Entity
         [Required]
         [Column("menu_price")]
         public decimal menuPrice { get; set; }
-
-        [NotMapped]
-        public EntityState State { get; set; } = EntityState.Unchanged;
 
         public MenuEntity() { }
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using POS.Entity;
+using PosServer.Entities;
 
 namespace PosServer
 {

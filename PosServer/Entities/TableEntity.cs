@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis; // Optional: For detailed mapping
+using System.Diagnostics.CodeAnalysis;
 
-namespace POS.Entity
+namespace PosServer.Entities
 {
-    public enum EntityState { Unchanged, New, Modified, Deleted }
     public class TableEntity
     {
         [Key]
@@ -20,13 +19,10 @@ namespace POS.Entity
         [Column("table_name")]
         public string tableName { get; set; }
         
-        [NotMapped]
-        public EntityState State { get; set; } = EntityState.Unchanged;
-
         public TableEntity() { }
         public TableEntity(string name)
         {
-            this.tableName = name;
+            tableName = name;
         }
     }
 }
