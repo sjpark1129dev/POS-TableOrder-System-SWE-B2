@@ -1,6 +1,4 @@
-using POS.Boundary;
-
-namespace POS
+namespace POS.Boundary
 {
     public partial class TableViewBoundary : Form
     {

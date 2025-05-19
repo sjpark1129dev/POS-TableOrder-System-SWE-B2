@@ -1,4 +1,4 @@
-﻿namespace SalesManagement
+﻿namespace POS.Boundary
 {
     partial class SalesManagerBoundary
     {

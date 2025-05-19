@@ -1,4 +1,4 @@
-﻿namespace POS
+﻿namespace POS.Boundary
 {
     partial class TableManagerBoundary
     {
@@ -40,7 +40,6 @@
             tableNameTextBox = new TextBox();
             tableLayoutPanel1.SuspendLayout();
             panel7.SuspendLayout();
-            SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
@@ -157,7 +156,7 @@
             // TableManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
-            AutoScaleMode = AutoScaleMode.Dpi;
+            this.AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanel1);
             Name = "TableManagerBoundary";
