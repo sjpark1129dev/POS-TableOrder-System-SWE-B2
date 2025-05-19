@@ -1,71 +1,54 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using POS.Shared.DTO;
-using PosServer;
-using PosServer.Entities;
+using PosServer.Services;
 
 namespace PosServer.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MenuController : ControllerBase
+    public class MenuController
     {
-        private readonly AppDbContext _context;
+        private readonly IMenuService _menuService;
 
-        public MenuController(AppDbContext context)
+        public MenuController(IMenuService menuService)
         {
-            _context = context;
+            _menuService = menuService;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<MenuDto>>> GetAll()
         {
-            var menus = await _context.Menus.ToListAsync();
-            return menus.Select(m => new MenuDto
-            {
-                Id = m.Id,
-                Name = m.menuName,
-                Price = m.menuPrice
-            }).ToList();
+            return await _menuService.GetAllAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<MenuDto>> GetById(int id)
         {
-            var menu = await _context.Menus.FindAsync(id);
-            if (menu == null) return NotFound();
-            return new MenuDto { Id = menu.Id, Name = menu.menuName, Price = menu.menuPrice };
+            var result = await _menuService.GetByIdAsync(id);
+            if (result == null) return NotFound();
+            return result;
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(MenuDto dto)
         {
-            var menu = new MenuEntity { menuName = dto.Name, menuPrice = dto.Price };
-            _context.Menus.Add(menu);
-            await _context.SaveChangesAsync();
-            dto.Id = menu.Id;
-            return Ok(dto);
+            var created = await _menuService.AddAsync(dto);
+            return Ok(created);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, MenuDto dto)
         {
-            var menu = await _context.Menus.FindAsync(id);
-            if (menu == null) return NotFound();
-
-            menu.menuName = dto.Name;
-            menu.menuPrice = dto.Price;
-            await _context.SaveChangesAsync();
+            var success = await _menuService.UpdateAsync(id, dto);
+            if (!success) return NotFound();
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var menu = await _context.Menus.FindAsync(id);
-            if (menu == null) return NotFound();
-            _context.Menus.Remove(menu);
-            await _context.SaveChangesAsync();
+            var success = await _menuService.DeleteAsync(id);
+            if (!success) return NotFound();
             return Ok();
         }
     }
