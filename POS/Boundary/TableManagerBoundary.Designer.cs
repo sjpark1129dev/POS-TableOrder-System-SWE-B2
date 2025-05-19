@@ -33,11 +33,12 @@
             panel7 = new Panel();
             tableIdTextBox = new TextBox();
             tableIdLabel = new Label();
-            tableSaveButton = new Button();
             tableDeleteButton = new Button();
             tableCreateButton = new Button();
             tableNameLabel = new Label();
             tableNameTextBox = new TextBox();
+            textBoxResetButton = new Button();
+            tableSaveButton = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel7.SuspendLayout();
             SuspendLayout();
@@ -78,9 +79,10 @@
             // panel7
             // 
             panel7.BackColor = Color.LightSteelBlue;
+            panel7.Controls.Add(tableSaveButton);
+            panel7.Controls.Add(textBoxResetButton);
             panel7.Controls.Add(tableIdTextBox);
             panel7.Controls.Add(tableIdLabel);
-            panel7.Controls.Add(tableSaveButton);
             panel7.Controls.Add(tableDeleteButton);
             panel7.Controls.Add(tableCreateButton);
             panel7.Controls.Add(tableNameLabel);
@@ -108,19 +110,9 @@
             tableIdLabel.TabIndex = 7;
             tableIdLabel.Text = "테이블 고유ID";
             // 
-            // tableSaveButton
-            // 
-            tableSaveButton.Location = new Point(72, 329);
-            tableSaveButton.Name = "tableSaveButton";
-            tableSaveButton.Size = new Size(269, 37);
-            tableSaveButton.TabIndex = 6;
-            tableSaveButton.Text = "테이블 저장";
-            tableSaveButton.UseVisualStyleBackColor = true;
-            tableSaveButton.Click += tableSaveButton_Click;
-            // 
             // tableDeleteButton
             // 
-            tableDeleteButton.Location = new Point(72, 274);
+            tableDeleteButton.Location = new Point(72, 265);
             tableDeleteButton.Name = "tableDeleteButton";
             tableDeleteButton.Size = new Size(269, 37);
             tableDeleteButton.TabIndex = 5;
@@ -154,6 +146,24 @@
             tableNameTextBox.Size = new Size(185, 23);
             tableNameTextBox.TabIndex = 0;
             // 
+            // textBoxResetButton
+            // 
+            textBoxResetButton.Location = new Point(239, 87);
+            textBoxResetButton.Name = "textBoxResetButton";
+            textBoxResetButton.Size = new Size(85, 26);
+            textBoxResetButton.TabIndex = 9;
+            textBoxResetButton.Text = "초기화";
+            textBoxResetButton.UseVisualStyleBackColor = true;
+            // 
+            // tableSaveButton
+            // 
+            tableSaveButton.Location = new Point(72, 308);
+            tableSaveButton.Name = "tableSaveButton";
+            tableSaveButton.Size = new Size(269, 37);
+            tableSaveButton.TabIndex = 10;
+            tableSaveButton.Text = "테이블 수정 저장";
+            tableSaveButton.UseVisualStyleBackColor = true;
+            // 
             // TableManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -174,12 +184,13 @@
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanelTables;
         private Panel panel7;
-        private Button tableSaveButton;
         private Button tableDeleteButton;
         private Button tableCreateButton;
         private Label tableNameLabel;
         private TextBox tableNameTextBox;
         private TextBox tableIdTextBox;
         private Label tableIdLabel;
+        private Button textBoxResetButton;
+        private Button tableSaveButton;
     }
 }
