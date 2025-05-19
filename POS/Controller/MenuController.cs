@@ -1,67 +1,40 @@
-﻿using POS.Entity;
-using POS.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using POS.Api;
+using POS.Shared.DTO;
 
 namespace POS.Controller
 {
     public class MenuController
     {
-        private MenuRepository _repository;
-        public MenuController(MenuRepository repository)
+        private readonly MenuApiClient _apiClient;
+
+        public MenuController()
         {
-            _repository = repository;
-        }
-        public List<MenuEntity> GetAllMenus()
-        {
-            return _repository.GetAllMenus();
+            _apiClient = new MenuApiClient();
         }
 
-        public MenuEntity CreateMenu(string name, decimal price)
+        public Task<List<MenuDto>> GetAllMenusAsync() => _apiClient.GetAllAsync();
+
+        public Task<MenuDto?> GetByIdAsync(int id) => _apiClient.GetByIdAsync(id);
+
+        public Task<bool> CreateMenuAsync(string name, int price)
         {
-            return new MenuEntity(name, price);
+            var dto = new MenuDto { Name = name, Price = price };
+            return _apiClient.AddAsync(dto);
         }
 
-        public bool IsDuplicateName(List<MenuEntity> list, string name)
+        public Task<bool> UpdateMenuAsync(MenuDto dto)
         {
-            return list.Any(m => m.State != EntityState.Deleted &&
-                                 m.menuName.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return _apiClient.UpdateAsync(dto.Id, dto);
         }
 
-        public void MarkDeleted(List<MenuEntity> menus, int id)
+        public Task<bool> DeleteMenuAsync(int id)
         {
-            var menu = GetById(menus, id);
-            if (menu != null)
-            {
-                menu.State = EntityState.Deleted;
-            }
+            return _apiClient.DeleteAsync(id);
         }
 
-        public MenuEntity? GetById(List<MenuEntity> menus, int id)
+        public bool IsDuplicateName(List<MenuDto> list, string name)
         {
-            return menus.FirstOrDefault(m => m.Id == id && m.State != EntityState.Deleted);
-        }
-
-        public void SaveAllMenus(List<MenuEntity> menuList)
-        {
-            foreach (var menu in menuList)
-            {
-                switch (menu.State)
-                {
-                    case EntityState.New:
-                        _repository.Insert(menu);
-                        break;
-                    case EntityState.Modified:
-                        _repository.Update(menu);
-                        break;
-                    case EntityState.Deleted:
-                        _repository.Delete(menu.Id);
-                        break;
-                }
-            }
+            return list.Any(m => m.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
     }
 }
