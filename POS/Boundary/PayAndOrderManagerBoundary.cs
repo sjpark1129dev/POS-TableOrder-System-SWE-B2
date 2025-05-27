@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace POS.Boundary
 {
-    public partial class PayManagerBoundary : Form
+    public partial class PayAndOrderManagerBoundary : Form
     {
-        public PayManagerBoundary()
+        public PayAndOrderManagerBoundary()
         {
             InitializeComponent();
         }
