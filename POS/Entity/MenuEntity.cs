@@ -13,6 +13,7 @@ namespace POS.Entity
         [Key]
         public int Id { get; set; }
 
+        
         [Required]
         [StringLength(100)]
         [Column("menu_name")]
@@ -22,7 +23,11 @@ namespace POS.Entity
         [Column("menu_price")]
         public decimal menuPrice { get; set; }
 
+        
+
         [NotMapped]
+
+        
         public EntityState State { get; set; } = EntityState.Unchanged;
 
         public MenuEntity() { }
