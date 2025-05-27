@@ -22,9 +22,6 @@ namespace POS.Entity
         [Column("menu_price")]
         public decimal menuPrice { get; set; }
 
-        [NotMapped]
-        public EntityState State { get; set; } = EntityState.Unchanged;
-
         public MenuEntity() { }
 
         public MenuEntity(string name, decimal price)

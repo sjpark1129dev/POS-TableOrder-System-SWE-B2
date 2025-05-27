@@ -10,12 +10,7 @@ namespace POS.Controller
 {
     public class TableController
     {
-        private readonly TableRepository _repository;
-
-        public TableController(TableRepository repository)
-        {
-            _repository = repository;
-        }
+        private readonly TableRepository _repository = new TableRepository();
 
         public List<TableEntity> GetAllTables()
         {
@@ -28,8 +23,7 @@ namespace POS.Controller
         }
         public bool IsDuplicateName(List<TableEntity> list, string name)
         {
-            return list.Any(t => t.State != EntityState.Deleted &&
-                                 t.tableName.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return list.Any(t => t.tableName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
         public bool DeleteTable()
         {
@@ -39,32 +33,10 @@ namespace POS.Controller
         public void MarkDeleted(List<TableEntity> tables, int id)
         {
             var table = GetById(tables, id);
-            if (table != null)
-            {
-                table.State = EntityState.Deleted;
-            }
         }
         public TableEntity? GetById(List<TableEntity> tables, int id)
         {
-            return tables.FirstOrDefault(t => t.Id == id && t.State != EntityState.Deleted);
-        }
-        public void SaveAllTables(List<TableEntity> tableList)
-        {
-            foreach (var table in tableList)
-            {
-                switch (table.State)
-                {
-                    case EntityState.New:
-                        _repository.Insert(table);
-                        break;
-                    case EntityState.Modified:
-                        _repository.Update(table);
-                        break;
-                    case EntityState.Deleted:
-                        _repository.Delete(table.Id);
-                        break;
-                }
-            }
+            return tables.FirstOrDefault(t => t.Id == id);
         }
     }
 }

@@ -4,11 +4,10 @@ namespace POS.Repository
 {
     public class TableRepository
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _context = AppDbContext.Instance;
 
-        public TableRepository(AppDbContext context)
+        public TableRepository()
         {
-            _context = context;
         }
 
         public List<TableEntity> GetAllTables()

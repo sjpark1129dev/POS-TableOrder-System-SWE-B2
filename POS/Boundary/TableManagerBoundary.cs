@@ -14,7 +14,7 @@ namespace POS
 {
     public partial class TableManagerBoundary : Form
     {
-        private TableController tableController = AppControllers.Instance.TableController;
+        private TableController tableController = new TableController();
         private List<TableEntity> tableList;
         private int? selectedTableId = null;  // 선택된 테이블 ID 보관 (nullable int)
         public TableManagerBoundary()
@@ -28,7 +28,7 @@ namespace POS
         {
             tableLayoutPanelTables.Controls.Clear(); // 기존 버튼 제거
 
-            foreach (var table in tableList.Where(t => t.State != EntityState.Deleted))
+            foreach (var table in tableList)
             {
                 var btn = new Button();
                 btn.Text = $"테이블: {table.tableName}";
@@ -60,7 +60,6 @@ namespace POS
             }
 
             var newTable = tableController.CreateTable(newName);
-            newTable.State = EntityState.New;
             tableList.Add(newTable);
             LoadTablesToPanel();
         }
@@ -80,16 +79,6 @@ namespace POS
 
         private void tableSaveButton_Click(object sender, EventArgs e)
         {
-            tableController.SaveAllTables(tableList);
-
-            foreach (var table in tableList.ToList())
-            {
-                if (table.State == EntityState.Deleted)
-                    tableList.Remove(table);
-                else
-                    table.State = EntityState.Unchanged;
-            }
-
             LoadTablesToPanel(); // UI 갱신
             MessageBox.Show("저장 완료");
         }

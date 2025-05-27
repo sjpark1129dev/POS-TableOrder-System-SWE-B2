@@ -9,10 +9,9 @@ namespace POS.Repository
 {
     public class MenuRepository
     {
-        private readonly AppDbContext _context;
-        public MenuRepository(AppDbContext context)
+        private readonly AppDbContext _context = AppDbContext.Instance;
+        public MenuRepository()
         {
-            _context = context;
         }
         public List<MenuEntity> GetAllMenus()
         {
