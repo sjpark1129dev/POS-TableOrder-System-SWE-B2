@@ -30,7 +30,7 @@
         {
             label1 = new Label();
             panel1 = new Panel();
-            checkBox = new Button();
+            salesSearchButton = new Button();
             recnumTxt = new TextBox();
             label4 = new Label();
             menuTxt = new TextBox();
@@ -67,7 +67,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(checkBox);
+            panel1.Controls.Add(salesSearchButton);
             panel1.Controls.Add(recnumTxt);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(menuTxt);
@@ -78,25 +78,26 @@
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(2, 2, 2, 2);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
             panel1.Size = new Size(915, 38);
             panel1.TabIndex = 1;
             // 
-            // checkBox
+            // salesSearchButton
             // 
-            checkBox.Location = new Point(800, 10);
-            checkBox.Margin = new Padding(2, 2, 2, 2);
-            checkBox.Name = "checkBox";
-            checkBox.Size = new Size(78, 20);
-            checkBox.TabIndex = 8;
-            checkBox.Text = "조회";
-            checkBox.UseVisualStyleBackColor = true;
+            salesSearchButton.Location = new Point(800, 10);
+            salesSearchButton.Margin = new Padding(2);
+            salesSearchButton.Name = "salesSearchButton";
+            salesSearchButton.Size = new Size(78, 20);
+            salesSearchButton.TabIndex = 8;
+            salesSearchButton.Text = "조회";
+            salesSearchButton.UseVisualStyleBackColor = true;
+            salesSearchButton.Click += salesSearchButton_Click;
             // 
             // recnumTxt
             // 
             recnumTxt.Location = new Point(619, 8);
-            recnumTxt.Margin = new Padding(2, 2, 2, 2);
+            recnumTxt.Margin = new Padding(2);
             recnumTxt.Name = "recnumTxt";
             recnumTxt.Size = new Size(148, 23);
             recnumTxt.TabIndex = 7;
@@ -115,11 +116,10 @@
             // menuTxt
             // 
             menuTxt.Location = new Point(377, 10);
-            menuTxt.Margin = new Padding(2, 2, 2, 2);
+            menuTxt.Margin = new Padding(2);
             menuTxt.Name = "menuTxt";
             menuTxt.Size = new Size(148, 23);
             menuTxt.TabIndex = 5;
-            menuTxt.TextChanged += menutxt_TextChanged;
             // 
             // label3
             // 
@@ -137,7 +137,7 @@
             endDate.CustomFormat = "yyyy-MM-dd";
             endDate.Format = DateTimePickerFormat.Custom;
             endDate.Location = new Point(189, 8);
-            endDate.Margin = new Padding(2, 2, 2, 2);
+            endDate.Margin = new Padding(2);
             endDate.Name = "endDate";
             endDate.Size = new Size(107, 23);
             endDate.TabIndex = 3;
@@ -158,7 +158,7 @@
             startDate.CustomFormat = "yyyy-MM-dd";
             startDate.Format = DateTimePickerFormat.Custom;
             startDate.Location = new Point(57, 8);
-            startDate.Margin = new Padding(2, 2, 2, 2);
+            startDate.Margin = new Padding(2);
             startDate.Name = "startDate";
             startDate.Size = new Size(107, 23);
             startDate.TabIndex = 1;
@@ -171,7 +171,7 @@
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 38);
-            panel2.Margin = new Padding(2, 2, 2, 2);
+            panel2.Margin = new Padding(2);
             panel2.Name = "panel2";
             panel2.Size = new Size(915, 342);
             panel2.TabIndex = 3;
@@ -193,7 +193,7 @@
             SalesDataView.Columns.AddRange(new DataGridViewColumn[] { dateTime, recnum, menuName, qty, unitPrice, totalPrice });
             SalesDataView.Dock = DockStyle.Top;
             SalesDataView.Location = new Point(63, 0);
-            SalesDataView.Margin = new Padding(2, 2, 2, 2);
+            SalesDataView.Margin = new Padding(2);
             SalesDataView.Name = "SalesDataView";
             SalesDataView.RowHeadersWidth = 62;
             SalesDataView.Size = new Size(789, 305);
@@ -239,7 +239,7 @@
             // 
             panel4.Dock = DockStyle.Right;
             panel4.Location = new Point(852, 0);
-            panel4.Margin = new Padding(2, 2, 2, 2);
+            panel4.Margin = new Padding(2);
             panel4.Name = "panel4";
             panel4.Size = new Size(63, 342);
             panel4.TabIndex = 1;
@@ -248,7 +248,7 @@
             // 
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 0);
-            panel3.Margin = new Padding(2, 2, 2, 2);
+            panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
             panel3.Size = new Size(63, 342);
             panel3.TabIndex = 0;
@@ -260,7 +260,7 @@
             ClientSize = new Size(915, 380);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "SalesManagerBoundary";
             Text = "SalesManagerBoundary";
             panel1.ResumeLayout(false);
@@ -278,7 +278,7 @@
         private DateTimePicker endDate;
         private Label label2;
         private DateTimePicker startDate;
-        private Button checkBox;
+        private Button salesSearchButton;
         private TextBox recnumTxt;
         private Label label4;
         private TextBox menuTxt;
