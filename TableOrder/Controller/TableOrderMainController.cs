@@ -25,7 +25,8 @@ namespace TableOrder.Controller
 
         public int CartPriceSum(List<MenuEntity> cart)
         {
-            return cart.Sum(item => item.menuPrice * item.Quantity);
+            return 1;
+            // return cart.Sum(item => item.menuPrice * item.Quantity);
         }
 
         public void OrderRequest(List<MenuEntity> cart)

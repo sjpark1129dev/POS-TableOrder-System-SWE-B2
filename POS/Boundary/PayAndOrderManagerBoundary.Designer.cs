@@ -1,4 +1,6 @@
-﻿namespace POS.Boundary
+﻿using POS.Entity;
+
+namespace POS.Boundary
 {
     partial class PayAndOrderManagerBoundary
     {
@@ -128,7 +130,7 @@
         private object payController;
         private Label totalAmountLabel;
         private int tableId;
-        private List<Order> orderList;
+        private List<OrderEntity> orderList;
         private int finalPrice;
         private DataGridView OrderDataView;
 
