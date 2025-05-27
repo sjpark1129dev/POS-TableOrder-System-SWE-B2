@@ -24,28 +24,20 @@ namespace POS.Boundary
         /// </summary>
         private void InitializeComponent()
         {
-            listView1 = new ListView();
             Total = new Label();
             cancelAll = new Button();
             cancelselect = new Button();
             EditOrder = new Button();
             cardPayment = new Button();
             cashPayment = new Button();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // listView1
-            // 
-            listView1.Location = new Point(147, 72);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(465, 150);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // Total
             // 
             Total.AutoSize = true;
-            Total.Location = new Point(472, 225);
+            Total.Location = new Point(537, 225);
             Total.Name = "Total";
             Total.Size = new Size(42, 15);
             Total.TabIndex = 1;
@@ -97,28 +89,35 @@ namespace POS.Boundary
             cashPayment.Text = "현금 결제";
             cashPayment.UseVisualStyleBackColor = true;
             // 
-            // PayManagerBoundary
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(37, 22);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(647, 200);
+            dataGridView1.TabIndex = 7;
+            // 
+            // PayAndOrderManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(696, 450);
+            Controls.Add(dataGridView1);
             Controls.Add(cashPayment);
             Controls.Add(cardPayment);
             Controls.Add(EditOrder);
             Controls.Add(cancelselect);
             Controls.Add(cancelAll);
             Controls.Add(Total);
-            Controls.Add(listView1);
-            Name = "PayManagerBoundary";
+            Name = "PayAndOrderManagerBoundary";
             Text = "Form1";
             Load += PayManagerBoundary_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ListView listView1;
         private Label Total;
         private Button cancelAll;
         private Button cancelselect;
@@ -175,5 +174,6 @@ namespace POS.Boundary
         private void CalculateTotalPrice()
         {
         }
+        private DataGridView dataGridView1;
     }
 }
