@@ -1,16 +1,10 @@
 ﻿namespace POS.Boundary
 {
-    partial class PayManagerBoundary
+    partial class PayAndOrderManagerBoundary
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+       
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -129,5 +123,55 @@
         private Button EditOrder;
         private Button cardPayment;
         private Button cashPayment;
+
+        // 추가된 필드
+        private object payController;
+        private Label totalAmountLabel;
+        private int tableId;
+        private List<Order> orderList;
+        private int finalPrice;
+        private DataGridView OrderDataView;
+
+        // 추가된 메서드
+        private void LoadOrdersToListView()
+        {
+        }
+
+        private void cancelAllButton_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void paymentCancelButton_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void cardPaymentButton_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void cashPaymentButton_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void addOrder(int tableId, string menuName, int qty, int price)
+        {
+        }
+
+        private OrderEntity updateOrde(string receiptnum, string menuName, int qty, int price)
+        {
+            return null;
+        }
+
+        private void deleteOrder(string receiptnum)
+        {
+        }
+
+        private void saveOrder(string receiptnum, string menuName, int qty, int price)
+        {
+        }
+
+        private void CalculateTotalPrice()
+        {
+        }
     }
 }
