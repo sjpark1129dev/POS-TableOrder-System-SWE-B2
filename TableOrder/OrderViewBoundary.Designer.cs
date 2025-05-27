@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             label1 = new Label();
             panel3 = new Panel();
@@ -49,7 +49,7 @@
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(2, 2, 2, 2);
+            panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
             panel1.Size = new Size(560, 40);
             panel1.TabIndex = 2;
@@ -71,7 +71,7 @@
             panel3.Controls.Add(OrderDataView);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 40);
-            panel3.Margin = new Padding(2, 2, 2, 2);
+            panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
             panel3.Size = new Size(560, 230);
             panel3.TabIndex = 4;
@@ -79,7 +79,7 @@
             // finalPrice
             // 
             finalPrice.AutoSize = true;
-            finalPrice.Location = new Point(479, 154);
+            finalPrice.Location = new Point(481, 171);
             finalPrice.Margin = new Padding(2, 0, 2, 0);
             finalPrice.Name = "finalPrice";
             finalPrice.Size = new Size(26, 15);
@@ -93,7 +93,7 @@
             OrderDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             OrderDataView.Columns.AddRange(new DataGridViewColumn[] { menuName, qty, totalPrice });
             OrderDataView.Location = new Point(60, 26);
-            OrderDataView.Margin = new Padding(2, 2, 2, 2);
+            OrderDataView.Margin = new Padding(2);
             OrderDataView.Name = "OrderDataView";
             OrderDataView.RowHeadersWidth = 62;
             OrderDataView.Size = new Size(447, 143);
@@ -101,24 +101,24 @@
             // 
             // menuName
             // 
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            menuName.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            menuName.DefaultCellStyle = dataGridViewCellStyle1;
             menuName.HeaderText = "메뉴명";
             menuName.MinimumWidth = 8;
             menuName.Name = "menuName";
             // 
             // qty
             // 
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            qty.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            qty.DefaultCellStyle = dataGridViewCellStyle2;
             qty.HeaderText = "수량";
             qty.MinimumWidth = 8;
             qty.Name = "qty";
             // 
             // totalPrice
             // 
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleRight;
-            totalPrice.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleRight;
+            totalPrice.DefaultCellStyle = dataGridViewCellStyle3;
             totalPrice.HeaderText = "금액";
             totalPrice.MinimumWidth = 8;
             totalPrice.Name = "totalPrice";
@@ -130,7 +130,7 @@
             ClientSize = new Size(560, 270);
             Controls.Add(panel3);
             Controls.Add(panel1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "OrderViewBoundary";
             Text = "주문조회";
             panel1.ResumeLayout(false);
