@@ -154,5 +154,10 @@ namespace POS
         {
             ClearSelection();
         }
+
+        private void textBoxResetButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

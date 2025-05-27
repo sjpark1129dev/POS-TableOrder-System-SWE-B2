@@ -31,14 +31,14 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanelTables = new TableLayoutPanel();
             panel7 = new Panel();
+            tableSaveButton = new Button();
+            textBoxResetButton = new Button();
             tableIdTextBox = new TextBox();
             tableIdLabel = new Label();
             tableDeleteButton = new Button();
             tableCreateButton = new Button();
             tableNameLabel = new Label();
             tableNameTextBox = new TextBox();
-            textBoxResetButton = new Button();
-            tableSaveButton = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel7.SuspendLayout();
             SuspendLayout();
@@ -93,6 +93,25 @@
             panel7.Size = new Size(394, 444);
             panel7.TabIndex = 1;
             // 
+            // tableSaveButton
+            // 
+            tableSaveButton.Location = new Point(72, 308);
+            tableSaveButton.Name = "tableSaveButton";
+            tableSaveButton.Size = new Size(269, 37);
+            tableSaveButton.TabIndex = 10;
+            tableSaveButton.Text = "테이블 저장";
+            tableSaveButton.UseVisualStyleBackColor = true;
+            // 
+            // textBoxResetButton
+            // 
+            textBoxResetButton.Location = new Point(239, 87);
+            textBoxResetButton.Name = "textBoxResetButton";
+            textBoxResetButton.Size = new Size(85, 26);
+            textBoxResetButton.TabIndex = 9;
+            textBoxResetButton.Text = "초기화";
+            textBoxResetButton.UseVisualStyleBackColor = true;
+            textBoxResetButton.Click += textBoxResetButton_Click;
+            // 
             // tableIdTextBox
             // 
             tableIdTextBox.Enabled = false;
@@ -145,24 +164,6 @@
             tableNameTextBox.Name = "tableNameTextBox";
             tableNameTextBox.Size = new Size(185, 23);
             tableNameTextBox.TabIndex = 0;
-            // 
-            // textBoxResetButton
-            // 
-            textBoxResetButton.Location = new Point(239, 87);
-            textBoxResetButton.Name = "textBoxResetButton";
-            textBoxResetButton.Size = new Size(85, 26);
-            textBoxResetButton.TabIndex = 9;
-            textBoxResetButton.Text = "초기화";
-            textBoxResetButton.UseVisualStyleBackColor = true;
-            // 
-            // tableSaveButton
-            // 
-            tableSaveButton.Location = new Point(72, 308);
-            tableSaveButton.Name = "tableSaveButton";
-            tableSaveButton.Size = new Size(269, 37);
-            tableSaveButton.TabIndex = 10;
-            tableSaveButton.Text = "테이블 저장";
-            tableSaveButton.UseVisualStyleBackColor = true;
             // 
             // TableManagerBoundary
             // 
