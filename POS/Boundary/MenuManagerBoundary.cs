@@ -14,28 +14,37 @@ namespace POS.Boundary
 {
     public partial class MenuManagerBoundary : Form
     {
-        private MenuController menuController = AppControllers.Instance.MenuController;
+        private MenuCreateController menuCreateController = new MenuCreateController();
+        private MenuEditController menuEditController = new MenuEditController();
+        private MenuLoadController menuLoadController = new MenuLoadController();
+        private MenuRemoveController menuRemoveController = new MenuRemoveController();
         private List<MenuEntity> menuList;
         private int? selectedMenuId = null;
 
         public MenuManagerBoundary()
         {
             InitializeComponent();
-            menuList = menuController.GetAllMenus();
+            LoadAllMenus();
             InitializeDataGridView();
         }
-        
+
         private void InitializeDataGridView()
         {
             dataGridViewMenus.AutoGenerateColumns = false;
             dataGridViewMenus.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            LoadAllMenus();
+        }
+
+        private void LoadAllMenus()
+        {
+            menuList = menuLoadController.MenuLoad();
             RefreshMenuList();
         }
-        
+
         private void RefreshMenuList()
         {
             dataGridViewMenus.DataSource = null;
-            dataGridViewMenus.DataSource = menuList.Where(m => m.State != EntityState.Deleted).ToList();
+            dataGridViewMenus.DataSource = menuList;
         }
         
         private void menuCreateButton_Click(object sender, EventArgs e)
@@ -43,25 +52,23 @@ namespace POS.Boundary
             string name = menuNameTextBox.Text.Trim();
             string priceText = menuPriceTextBox.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(name) || !decimal.TryParse(priceText, out decimal price))
+            if (string.IsNullOrWhiteSpace(name) || !int.TryParse(priceText, out int price))
             {
                 MessageBox.Show("올바른 메뉴명과 가격을 입력하세요.");
                 return;
             }
 
-            if (menuController.IsDuplicateName(menuList, name))
+            if (menuCreateController.Isduplicated(menuList, name))
             {
                 MessageBox.Show("이미 존재하는 메뉴입니다.");
                 return;
             }
 
             // 바로 DB에 저장
-            var newMenu = menuController.CreateMenu(name, price);
-            newMenu.State = EntityState.New;
-            menuController.SaveAllMenus(new List<MenuEntity> { newMenu });
+            menuCreateController.MenuCreate(name, price);
 
             // 다시 전체 목록 로드해서 ID 포함된 상태로 반영
-            menuList = menuController.GetAllMenus();
+            menuList = menuLoadController.MenuLoad();
             RefreshMenuList();
             MessageBox.Show("메뉴가 추가되었습니다.");
         }
@@ -75,23 +82,13 @@ namespace POS.Boundary
             }
 
             var id = (int)dataGridViewMenus.SelectedRows[0].Cells["Id"].Value;
-            menuController.MarkDeleted(menuList, id);
+
             selectedMenuId = null;
             RefreshMenuList();
         }
         
         private void menuSaveButton_Click(object sender, EventArgs e)
         {
-            menuController.SaveAllMenus(menuList);
-
-            foreach (var menu in menuList.ToList())
-            {
-                if (menu.State == EntityState.Deleted)
-                    menuList.Remove(menu);
-                else
-                    menu.State = EntityState.Unchanged;
-            }
-
             RefreshMenuList();
             MessageBox.Show("저장 완료");
         }

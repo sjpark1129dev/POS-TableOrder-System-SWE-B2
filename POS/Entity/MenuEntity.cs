@@ -21,18 +21,11 @@ namespace POS.Entity
 
         [Required]
         [Column("menu_price")]
-        public decimal menuPrice { get; set; }
-
-        
-
-        [NotMapped]
-
-        
-        public EntityState State { get; set; } = EntityState.Unchanged;
+        public int menuPrice { get; set; }
 
         public MenuEntity() { }
 
-        public MenuEntity(string name, decimal price)
+        public MenuEntity(string name, int price)
         {
             menuName = name;
             menuPrice = price;
