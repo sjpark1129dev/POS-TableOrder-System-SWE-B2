@@ -9,7 +9,6 @@ using System.Diagnostics.CodeAnalysis; // Optional: For detailed mapping
 
 namespace POS.Entity
 {
-    public enum EntityState { Unchanged, New, Modified, Deleted }
     public class TableEntity
     {
         [Key]
@@ -19,9 +18,6 @@ namespace POS.Entity
         [StringLength(50)]
         [Column("table_name")]
         public string tableName { get; set; }
-        
-        [NotMapped]
-        public EntityState State { get; set; } = EntityState.Unchanged;
 
         public TableEntity() { }
         public TableEntity(string name)

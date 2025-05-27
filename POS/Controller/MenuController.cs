@@ -10,10 +10,10 @@ namespace POS.Controller
 {
     public class MenuController
     {
-        private MenuRepository _repository;
-        public MenuController(MenuRepository repository)
+        private MenuRepository _repository = new MenuRepository();
+        public MenuController()
         {
-            _repository = repository;
+
         }
         public List<MenuEntity> GetAllMenus()
         {
@@ -27,41 +27,17 @@ namespace POS.Controller
 
         public bool IsDuplicateName(List<MenuEntity> list, string name)
         {
-            return list.Any(m => m.State != EntityState.Deleted &&
-                                 m.menuName.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return list.Any(m => m.menuName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public void MarkDeleted(List<MenuEntity> menus, int id)
         {
             var menu = GetById(menus, id);
-            if (menu != null)
-            {
-                menu.State = EntityState.Deleted;
-            }
         }
 
         public MenuEntity? GetById(List<MenuEntity> menus, int id)
         {
-            return menus.FirstOrDefault(m => m.Id == id && m.State != EntityState.Deleted);
-        }
-
-        public void SaveAllMenus(List<MenuEntity> menuList)
-        {
-            foreach (var menu in menuList)
-            {
-                switch (menu.State)
-                {
-                    case EntityState.New:
-                        _repository.Insert(menu);
-                        break;
-                    case EntityState.Modified:
-                        _repository.Update(menu);
-                        break;
-                    case EntityState.Deleted:
-                        _repository.Delete(menu.Id);
-                        break;
-                }
-            }
+            return menus.FirstOrDefault(m => m.Id == id);
         }
     }
 }
