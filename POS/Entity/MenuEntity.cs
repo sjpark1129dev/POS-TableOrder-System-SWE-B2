@@ -13,6 +13,7 @@ namespace POS.Entity
         [Key]
         public int Id { get; set; }
 
+        
         [Required]
         [StringLength(100)]
         [Column("menu_name")]
