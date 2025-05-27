@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POS.Entity;
 
 namespace POS.Controller
 {
     public class MenuLoadController
     {
-        private MenuRepository menuRepository;
+        private MenuRepository menuRepository = new MenuRepository();
 
-        public void MenuLoad()
+        public List<MenuEntity> MenuLoad()
         {
-
+            return menuRepository.GetAllMenus();
         }
     }
 }
