@@ -75,6 +75,7 @@
             orderCheckButton.TabIndex = 8;
             orderCheckButton.Text = "주문내역조회";
             orderCheckButton.UseVisualStyleBackColor = true;
+            orderCheckButton.Click += orderCheckButton_Click;
             // 
             // orderButton
             // 
@@ -85,6 +86,7 @@
             orderButton.TabIndex = 7;
             orderButton.Text = "주문";
             orderButton.UseVisualStyleBackColor = true;
+            orderButton.Click += orderButton_Click;
             // 
             // shoppingList
             // 
@@ -95,6 +97,7 @@
             shoppingList.Name = "shoppingList";
             shoppingList.Size = new Size(188, 454);
             shoppingList.TabIndex = 6;
+            shoppingList.Tag = "cart";
             // 
             // TableOrderBoundary
             // 
