@@ -14,7 +14,7 @@ namespace POS.Controller
 
         public void MenuRemove(MenuEntity menu)
         {
-
+            menuRepository.Delete(menu.Id);
         }
     }
 }
