@@ -14,6 +14,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Boundary\CategoryManagerBoundary.cs" />
+    <Compile Remove="Boundary\CategoryManagerBoundary.Designer.cs" />
+    <Compile Remove="Boundary\PayAndOrderManagerBoundary.cs" />
+    <Compile Remove="Boundary\PayAndOrderManagerBoundary.Designer.cs" />
+    <Compile Remove="Controller\CategoryController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Boundary\CategoryManagerBoundary.resx" />
+    <EmbeddedResource Remove="Boundary\PayAndOrderManagerBoundary.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.16">
       <PrivateAssets>all</PrivateAssets>

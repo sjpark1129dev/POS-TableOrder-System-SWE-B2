@@ -12,15 +12,19 @@ namespace POS.Controller
     {
         private SalesRepository salesRepository;
 
-        public List<SalesEntity> getAllSales()
+        public SalesController()
         {
+            salesRepository = new SalesRepository();
+        }
 
-            return new List<SalesEntity>();
+        public List<SalesEntity> GetAllSales()
+        {
+            return salesRepository.GetAllSales();
         }
 
         public List<SalesEntity> SearchSales(string menuName, DateTime startDate, DateTime endDate, string receiptNum)
         {
-            return new List<SalesEntity>();
+            return salesRepository.SearchSales(menuName, startDate, endDate, receiptNum);
         }
     }
 }
