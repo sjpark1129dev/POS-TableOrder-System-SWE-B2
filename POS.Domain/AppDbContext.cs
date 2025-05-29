@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using POS.Entity;
 
-namespace POS.Repository
+namespace POS.Domain
 {
     public class AppDbContext : DbContext
     {

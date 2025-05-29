@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using POS.Entity;
+using POS.Domain;
 
 namespace POS.Controller
 {

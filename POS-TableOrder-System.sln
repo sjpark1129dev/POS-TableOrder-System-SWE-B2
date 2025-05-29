@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS", "POS\POS.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableOrder", "TableOrder\TableOrder.csproj", "{80A69C77-3F6E-4ECC-BDB0-75E6BB369560}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.Domain", "POS.Domain\POS.Domain.csproj", "{7EC3900B-AD6C-4CD6-B03C-C2A2E277233E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{80A69C77-3F6E-4ECC-BDB0-75E6BB369560}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80A69C77-3F6E-4ECC-BDB0-75E6BB369560}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80A69C77-3F6E-4ECC-BDB0-75E6BB369560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EC3900B-AD6C-4CD6-B03C-C2A2E277233E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EC3900B-AD6C-4CD6-B03C-C2A2E277233E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EC3900B-AD6C-4CD6-B03C-C2A2E277233E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EC3900B-AD6C-4CD6-B03C-C2A2E277233E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

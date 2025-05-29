@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace POS.Entity
+﻿namespace POS.Domain
 {
-    internal class OrderEntity
+    public class OrderEntity
     {
         private int id { get; set; }
         private string menuName { get; set; }
