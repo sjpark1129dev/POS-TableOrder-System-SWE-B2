@@ -19,7 +19,7 @@ namespace POS
             // 최신 텍스트 렌더링
             Application.SetCompatibleTextRenderingDefault(false);
             ApplicationConfiguration.Initialize();
-            Application.Run(new SalesManagerBoundary());
+            Application.Run(new TableViewBoundary());
         }
     }
 }  

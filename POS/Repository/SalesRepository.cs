@@ -22,7 +22,7 @@ namespace POS.Repository
 
             // 조건에 맞는 데이터만 필터링 (실제 구현 시 DB 쿼리로 대체됨)
             var result = allSales.FindAll(s =>
-                s.salesDate >= startDate && s.salesDate <= endDate 
+                s.SalesDate >= startDate && s.SalesDate <= endDate 
 
             );
 
@@ -34,9 +34,9 @@ namespace POS.Repository
         {
             return new List<SalesEntity>
             {
-                new SalesEntity { salesDate = new DateTime(2025, 5, 28), recnum = "R001", tableID = 1, menuName = "Burger", qty = 2, unitPrice = 5000, price = 10000 },
-                new SalesEntity { salesDate = new DateTime(2025, 5, 28), recnum = "R002", tableID = 2, menuName = "Pizza", qty = 1, unitPrice = 12000, price = 12000 },
-                new SalesEntity { salesDate = new DateTime(2025, 5, 28), recnum = "R003", tableID = 3, menuName = "Burger", qty = 3, unitPrice = 5000, price = 15000 }
+                new SalesEntity { SalesDate = new DateTime(2025, 5, 28), RecNum = "R001", TableId = 1, MenuName = "Burger", Qty = 2, UnitPrice = 5000, Price = 10000 },
+                new SalesEntity { SalesDate = new DateTime(2025, 5, 28), RecNum = "R002", TableId = 2, MenuName = "Pizza", Qty = 1, UnitPrice = 12000, Price = 12000 },
+                new SalesEntity { SalesDate = new DateTime(2025, 5, 28), RecNum = "R003", TableId = 3, MenuName = "Burger", Qty = 3, UnitPrice = 5000, Price = 15000 }
             };
         }
     }

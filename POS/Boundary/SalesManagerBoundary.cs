@@ -1,4 +1,4 @@
-using POS.Entity;
+using POS.Domain;
 using POS.Controller;
 
 namespace POS.Boundary
@@ -39,15 +39,15 @@ namespace POS.Boundary
             foreach (var sale in salesList)
             {
                 SalesDataView.Rows.Add(
-                    sale.salesDate.ToString("yyyy-MM-dd"),
-                    sale.recnum,
-                    sale.menuName,
-                    sale.qty,
-                    sale.unitPrice,
-                    sale.price
+                    sale.SalesDate.ToString("yyyy-MM-dd"),
+                    sale.RecNum,
+                    sale.MenuName,
+                    sale.Qty,
+                    sale.UnitPrice,
+                    sale.Price
                 );
-                totalSales += sale.price; 
-            }
+                totalSales += sale.Price;
+            };
             finalsalesLabel.Text = $"ÃÑ¸ÅÃâ: {totalSales:N0}¿ø";
         }
     }
