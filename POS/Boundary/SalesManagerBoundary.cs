@@ -1,6 +1,6 @@
 using POS.Domain;
 
-namespace SalesManagement
+namespace POS.Boundary
 {
     public partial class SalesManagerBoundary : Form
     {

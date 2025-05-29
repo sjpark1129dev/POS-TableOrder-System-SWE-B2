@@ -1,4 +1,4 @@
-﻿namespace POS
+﻿namespace POS.Boundary
 {
     partial class TableManagerBoundary
     {
