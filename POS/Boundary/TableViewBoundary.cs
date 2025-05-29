@@ -1,10 +1,12 @@
+using MaterialSkin.Controls;
 namespace POS.Boundary
 {
-    public partial class TableViewBoundary : Form
+    public partial class TableViewBoundary : MaterialForm
     {
         public TableViewBoundary()
         {
             InitializeComponent();
+
         }
 
         private void TableManagerButton_Click(object sender, EventArgs e)
