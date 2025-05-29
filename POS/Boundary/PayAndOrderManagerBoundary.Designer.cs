@@ -1,6 +1,4 @@
-﻿using POS.Entity;
-
-namespace POS.Boundary
+﻿namespace POS.Boundary
 {
     partial class PayAndOrderManagerBoundary
     {

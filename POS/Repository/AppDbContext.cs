@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using POS.Entity;
+using POS.Domain;
 
 namespace POS.Repository
 {

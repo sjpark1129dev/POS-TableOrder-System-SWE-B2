@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POS.Domain;
 using TableOrder.Repository;
-using POS.Entity;
 
 namespace TableOrder.Controller
 {
