@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using POS.Entity;
+using TableOrder.Controller;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace TableOrder
 {
     public partial class TableOrderBoundary : Form
     {
+        private List<MenuEntity> cart = new List<MenuEntity>();
+        private List<string> categoryList = new List<string>();
+        private TableOrderMainController _controller;
         public TableOrderBoundary()
         {
             InitializeComponent();
@@ -58,7 +64,39 @@ namespace TableOrder
                 flowLayoutPanelMenus.Controls.Add(item);
             }
         }
+        private void MenuItem_Click(object sender, EventArgs e)
+        {
+            var menu = (MenuEntity)((Button)sender).Tag;
+            cart.Add(menu);
+            RefreshCart();
+        }
+        private void RefreshCart()
+        {
+            shoppingList.Items.Clear();
+            foreach (var item in cart)
+            {
+                shoppingList.Items.Add($"{item.menuName} - {item.menuPrice}원");
+            }
+        }
+        private void orderButton_Click(object sender, EventArgs e)
+        {
+            if (cart.Count == 0)
+            {
+                MessageBox.Show("장바구니가 비어 있습니다.");
+                return;
+            }
 
+            _controller.OrderRequest(cart);
+            MessageBox.Show("주문이 완료되었습니다!");
+            cart.Clear();
+            RefreshCart();
+        }
+
+        private void orderCheckButton_Click(object sender, EventArgs e)
+        {
+            var historyForm = new OrderViewBoundary();
+            historyForm.ShowDialog();
+        }
     }
     public class MenuItemControl : UserControl
     {
