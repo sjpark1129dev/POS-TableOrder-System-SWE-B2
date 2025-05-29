@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using POS.Entity;
+using POS.Domain;
 using TableOrder.Controller;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
