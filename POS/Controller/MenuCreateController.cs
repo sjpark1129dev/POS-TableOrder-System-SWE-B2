@@ -11,7 +11,7 @@ namespace POS.Controller
 
     public class MenuCreateController {
     
-        private MenuRepository menuRepository;
+        private MenuRepository menuRepository = new MenuRepository();
 
         public bool MenuCreate(string name, int price)
         {
@@ -26,7 +26,8 @@ namespace POS.Controller
             MenuEntity newMenu = new MenuEntity
             {
                 menuName = name,
-                menuPrice = price
+                menuPrice = price,
+                CategoryId = 1
             };
 
             menuRepository.Insert(newMenu);

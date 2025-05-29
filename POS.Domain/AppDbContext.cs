@@ -4,7 +4,7 @@ namespace POS.Domain
 {
     public class AppDbContext : DbContext
     {
-        private static AppDbContext? _instance;
+        private static AppDbContext _instance;
         public static AppDbContext Instance => _instance ??= new AppDbContext();
 
         public DbSet<TableEntity> Tables { get; set; }
