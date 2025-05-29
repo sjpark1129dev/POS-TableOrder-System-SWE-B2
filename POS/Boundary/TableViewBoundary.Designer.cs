@@ -32,16 +32,16 @@
             MenuManagerButton = new Button();
             SalesManagerButton = new Button();
             Table4 = new Panel();
+            orderList4 = new ListBox();
             totalAmount4 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
-            orderList4 = new ListBox();
             Table4.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // TableManagerButton
             // 
-            TableManagerButton.Location = new Point(50, 30);
+            TableManagerButton.Location = new Point(75, 75);
             TableManagerButton.Name = "TableManagerButton";
             TableManagerButton.Size = new Size(111, 40);
             TableManagerButton.TabIndex = 0;
@@ -51,7 +51,7 @@
             // 
             // MenuManagerButton
             // 
-            MenuManagerButton.Location = new Point(349, 30);
+            MenuManagerButton.Location = new Point(361, 75);
             MenuManagerButton.Name = "MenuManagerButton";
             MenuManagerButton.Size = new Size(111, 40);
             MenuManagerButton.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             // SalesManagerButton
             // 
-            SalesManagerButton.Location = new Point(633, 30);
+            SalesManagerButton.Location = new Point(603, 75);
             SalesManagerButton.Name = "SalesManagerButton";
             SalesManagerButton.Size = new Size(111, 40);
             SalesManagerButton.TabIndex = 2;
@@ -76,6 +76,15 @@
             Table4.Name = "Table4";
             Table4.Size = new Size(149, 123);
             Table4.TabIndex = 5;
+            // 
+            // orderList4
+            // 
+            orderList4.FormattingEnabled = true;
+            orderList4.ItemHeight = 15;
+            orderList4.Location = new Point(3, 12);
+            orderList4.Name = "orderList4";
+            orderList4.Size = new Size(143, 79);
+            orderList4.TabIndex = 8;
             // 
             // totalAmount4
             // 
@@ -103,20 +112,11 @@
             tableLayoutPanel1.Size = new Size(776, 258);
             tableLayoutPanel1.TabIndex = 6;
             // 
-            // orderList4
-            // 
-            orderList4.FormattingEnabled = true;
-            orderList4.ItemHeight = 15;
-            orderList4.Location = new Point(3, 12);
-            orderList4.Name = "orderList4";
-            orderList4.Size = new Size(143, 79);
-            orderList4.TabIndex = 8;
-            // 
             // TableViewBoundary
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.LightSteelBlue;
+            BackColor = Color.FromArgb(255, 255, 255);
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(SalesManagerButton);
