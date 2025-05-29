@@ -15,7 +15,7 @@ namespace TableOrder
 {
     public partial class TableOrderBoundary : Form
     {
-        private List<MenuEntity> cart = new List<MenuEntity>();
+        private List<CartItem> cart = new List<CartItem>();
         private List<string> categoryList = new List<string>();
         private TableOrderMainController _controller;
         public TableOrderBoundary()
@@ -61,14 +61,19 @@ namespace TableOrder
             foreach (var menu in menus)
             {
                 var item = new MenuItemControl(menu.name, menu.price, dummyImage);
+                item.OnPlusClicked += MenuItemPlusClicked;
                 flowLayoutPanelMenus.Controls.Add(item);
             }
         }
-        private void MenuItem_Click(object sender, EventArgs e)
+        private void MenuItemPlusClicked(object sender, MenuEntity menu)
         {
-            var menu = (MenuEntity)((Button)sender).Tag;
             cart.Add(menu);
             RefreshCart();
+        }
+        public class CartItem
+        {
+            public MenuEntity Menu { get; set; }
+            public int Quantity { get; set; }
         }
         private void RefreshCart()
         {
@@ -106,10 +111,21 @@ namespace TableOrder
         public Button btnMinus;
         public PictureBox picImage;
 
+        public MenuEntity MenuData { get; private set; }
+
+        // 델리게이트 정의
+        public event EventHandler<MenuEntity> OnPlusClicked;
+
         public MenuItemControl(string name, int price, Image image)
         {
             this.Width = 140;
             this.Height = 180;
+
+            MenuData = new MenuEntity
+            {
+                menuName = name,
+                menuPrice = price
+            };
 
             var layout = new TableLayoutPanel();
             layout.RowCount = 4;
@@ -155,6 +171,9 @@ namespace TableOrder
             };
             btnPlus = new Button() { Text = "+", Width = 30, Height = 30 };
             btnMinus = new Button() { Text = "-", Width = 30, Height = 30 };
+
+            btnPlus.Click += (s, e) => OnPlusClicked?.Invoke(this, MenuData);
+
             btnPanel.Controls.Add(btnPlus);
             btnPanel.Controls.Add(btnMinus);
 
