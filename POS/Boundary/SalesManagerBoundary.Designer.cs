@@ -35,9 +35,9 @@
             label4 = new Label();
             menuTxt = new TextBox();
             label3 = new Label();
-            endDate = new DateTimePicker();
-            label2 = new Label();
             startDate = new DateTimePicker();
+            label2 = new Label();
+            endDate = new DateTimePicker();
             panel2 = new Panel();
             finalsalesLabel = new Label();
             SalesDataView = new DataGridView();
@@ -72,9 +72,9 @@
             panel1.Controls.Add(label4);
             panel1.Controls.Add(menuTxt);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(endDate);
-            panel1.Controls.Add(label2);
             panel1.Controls.Add(startDate);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(endDate);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
@@ -132,16 +132,16 @@
             label3.Text = "메뉴명:";
             label3.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // endDate
+            // startDate
             // 
-            endDate.CustomFormat = "yyyy-MM-dd";
-            endDate.Format = DateTimePickerFormat.Custom;
-            endDate.Location = new Point(189, 8);
-            endDate.Margin = new Padding(2);
-            endDate.Name = "endDate";
-            endDate.Size = new Size(107, 23);
-            endDate.TabIndex = 3;
-            endDate.Value = new DateTime(2025, 5, 18, 2, 19, 19, 0);
+            startDate.CustomFormat = "yyyy-MM-dd";
+            startDate.Format = DateTimePickerFormat.Custom;
+            startDate.Location = new Point(55, 7);
+            startDate.Margin = new Padding(2);
+            startDate.Name = "startDate";
+            startDate.Size = new Size(107, 23);
+            startDate.TabIndex = 3;
+            startDate.Value = new DateTime(2025, 5, 18, 2, 19, 19, 0);
             // 
             // label2
             // 
@@ -153,15 +153,15 @@
             label2.TabIndex = 2;
             label2.Text = "~";
             // 
-            // startDate
+            // endDate
             // 
-            startDate.CustomFormat = "yyyy-MM-dd";
-            startDate.Format = DateTimePickerFormat.Custom;
-            startDate.Location = new Point(57, 8);
-            startDate.Margin = new Padding(2);
-            startDate.Name = "startDate";
-            startDate.Size = new Size(107, 23);
-            startDate.TabIndex = 1;
+            endDate.CustomFormat = "yyyy-MM-dd";
+            endDate.Format = DateTimePickerFormat.Custom;
+            endDate.Location = new Point(186, 7);
+            endDate.Margin = new Padding(2);
+            endDate.Name = "endDate";
+            endDate.Size = new Size(107, 23);
+            endDate.TabIndex = 1;
             // 
             // panel2
             // 
@@ -179,12 +179,12 @@
             // finalsalesLabel
             // 
             finalsalesLabel.AutoSize = true;
-            finalsalesLabel.Location = new Point(744, 316);
+            finalsalesLabel.Location = new Point(739, 318);
             finalsalesLabel.Margin = new Padding(2, 0, 2, 0);
             finalsalesLabel.Name = "finalsalesLabel";
-            finalsalesLabel.Size = new Size(100, 15);
+            finalsalesLabel.Size = new Size(69, 15);
             finalsalesLabel.TabIndex = 3;
-            finalsalesLabel.Text = "총매출: 31,000원";
+            finalsalesLabel.Text = "총매출: 0원";
             // 
             // SalesDataView
             // 
@@ -275,9 +275,9 @@
 
         private Label label1;
         private Panel panel1;
-        private DateTimePicker endDate;
-        private Label label2;
         private DateTimePicker startDate;
+        private Label label2;
+        private DateTimePicker endDate;
         private Button salesSearchButton;
         private TextBox recnumTxt;
         private Label label4;
