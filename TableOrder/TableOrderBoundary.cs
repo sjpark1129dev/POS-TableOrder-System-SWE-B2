@@ -13,17 +13,30 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace TableOrder
 {
+   
+
     public partial class TableOrderBoundary : Form
     {
         private List<CartItem> cart = new List<CartItem>();
         private List<string> categoryList = new List<string>();
         private TableOrderMainController _controller;
+        private Label labelTotalPrice;
         public TableOrderBoundary()
         {
             InitializeComponent();
+            labelTotalPrice = new Label();
+            labelTotalPrice.AutoSize = true;
+            labelTotalPrice.Font = new Font("맑은 고딕", 10, FontStyle.Bold);
+            labelTotalPrice.Location = new Point(shoppingList.Right - 120, shoppingList.Bottom -10); // 적절히 조정
+            labelTotalPrice.Text = "총 가격: 0원";
+            
+            this.Controls.Add(labelTotalPrice);
+            labelTotalPrice.BringToFront();
+
             LoadCategoryButtons();
             LoadMenuItems();
         }
+       
         private void LoadCategoryButtons()
         {
             string[] categories = { "고기", "음료", "식사" };
@@ -62,27 +75,69 @@ namespace TableOrder
             {
                 var item = new MenuItemControl(menu.name, menu.price, dummyImage);
                 item.OnPlusClicked += MenuItemPlusClicked;
+                item.OnMinusClicked += MenuItemMinusClicked;
                 flowLayoutPanelMenus.Controls.Add(item);
             }
         }
         private void MenuItemPlusClicked(object sender, MenuEntity menu)
         {
-            cart.Add(menu);
+            var existingItem = cart.FirstOrDefault(c => c.Menu.menuName == menu.menuName);
+            if (existingItem != null)
+            {
+                existingItem.Quantity++;
+            }
+            else
+            {
+                cart.Add(new CartItem(menu));
+            }
+
             RefreshCart();
+        }
+        private void MenuItemMinusClicked(object sender, MenuEntity menu)
+        {
+            var existing = cart.FirstOrDefault(c => c.Menu.menuName == menu.menuName);
+
+            if (existing != null)
+            {
+                existing.Quantity--;
+
+                if (existing.Quantity <= 0)
+                {
+                    cart.Remove(existing);
+                }
+
+                RefreshCart();
+            }
         }
         public class CartItem
         {
             public MenuEntity Menu { get; set; }
             public int Quantity { get; set; }
+
+            public CartItem(MenuEntity menu)
+            {
+                Menu = menu;
+                Quantity = 1;
+            }
         }
+
         private void RefreshCart()
         {
             shoppingList.Items.Clear();
+
+            int total = 0;
             foreach (var item in cart)
             {
-                shoppingList.Items.Add($"{item.menuName} - {item.menuPrice}원");
+                int lineTotal = item.Menu.menuPrice * item.Quantity;
+                shoppingList.Items.Add($"{item.Menu.menuName}  {item.Quantity}개 {lineTotal}원");
+                total += lineTotal;
             }
+
+            labelTotalPrice.Text = $"총 가격: {total:N0}원";
+
+            
         }
+
         private void orderButton_Click(object sender, EventArgs e)
         {
             if (cart.Count == 0)
@@ -91,7 +146,8 @@ namespace TableOrder
                 return;
             }
 
-            _controller.OrderRequest(cart);
+            var orderList = cart.SelectMany(c => Enumerable.Repeat(c.Menu, c.Quantity)).ToList();
+            _controller.OrderRequest(orderList);
             MessageBox.Show("주문이 완료되었습니다!");
             cart.Clear();
             RefreshCart();
@@ -115,7 +171,7 @@ namespace TableOrder
 
         // 델리게이트 정의
         public event EventHandler<MenuEntity> OnPlusClicked;
-
+        public event EventHandler<MenuEntity> OnMinusClicked;
         public MenuItemControl(string name, int price, Image image)
         {
             this.Width = 140;
@@ -173,6 +229,7 @@ namespace TableOrder
             btnMinus = new Button() { Text = "-", Width = 30, Height = 30 };
 
             btnPlus.Click += (s, e) => OnPlusClicked?.Invoke(this, MenuData);
+            btnMinus.Click += (s, e) => OnMinusClicked?.Invoke(this, MenuData);
 
             btnPanel.Controls.Add(btnPlus);
             btnPanel.Controls.Add(btnMinus);
