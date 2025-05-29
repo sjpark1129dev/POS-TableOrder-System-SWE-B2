@@ -1,4 +1,6 @@
-﻿namespace POS
+﻿using POS.Boundary;
+
+namespace POS
 {
     internal static class PosProgram
     {
