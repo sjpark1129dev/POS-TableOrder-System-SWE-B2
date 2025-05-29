@@ -43,7 +43,7 @@
             // 
             // cancelAll
             // 
-            cancelAll.Location = new Point(147, 253);
+            cancelAll.Location = new Point(82, 253);
             cancelAll.Name = "cancelAll";
             cancelAll.Size = new Size(130, 26);
             cancelAll.TabIndex = 2;
@@ -52,7 +52,7 @@
             // 
             // cancelselect
             // 
-            cancelselect.Location = new Point(312, 253);
+            cancelselect.Location = new Point(284, 253);
             cancelselect.Name = "cancelselect";
             cancelselect.Size = new Size(130, 26);
             cancelselect.TabIndex = 3;
@@ -61,7 +61,7 @@
             // 
             // EditOrder
             // 
-            EditOrder.Location = new Point(482, 253);
+            EditOrder.Location = new Point(469, 253);
             EditOrder.Name = "EditOrder";
             EditOrder.Size = new Size(130, 26);
             EditOrder.TabIndex = 4;
@@ -70,7 +70,7 @@
             // 
             // cardPayment
             // 
-            cardPayment.Location = new Point(147, 298);
+            cardPayment.Location = new Point(82, 313);
             cardPayment.Name = "cardPayment";
             cardPayment.Size = new Size(130, 26);
             cardPayment.TabIndex = 5;
@@ -79,7 +79,7 @@
             // 
             // cashPayment
             // 
-            cashPayment.Location = new Point(312, 298);
+            cashPayment.Location = new Point(284, 313);
             cashPayment.Name = "cashPayment";
             cashPayment.Size = new Size(130, 26);
             cashPayment.TabIndex = 6;
@@ -89,7 +89,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(37, 22);
+            dataGridView1.Location = new Point(23, 22);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(647, 200);
             dataGridView1.TabIndex = 7;
