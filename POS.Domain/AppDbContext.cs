@@ -9,8 +9,10 @@ namespace POS.Domain
 
         public DbSet<TableEntity> Tables { get; set; }
         public DbSet<MenuEntity> Menus { get; set; }
-        // public DbSet<OrderEntity> Orders { get; set; }
-        // public DbSet<UserEntity> Users { get; set; }
+        public DbSet<OrderEntity> Orders { get; set; }
+        public DbSet<OrderItemEntity> OrderItems { get; set; }
+        public DbSet<CategoryEntity> Categories { get; set; }
+        public DbSet<SalesEntity> Sales { get; set; }
 
         public AppDbContext() : base(
             new DbContextOptionsBuilder<AppDbContext>()

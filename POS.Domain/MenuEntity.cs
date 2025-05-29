@@ -8,7 +8,6 @@ namespace POS.Domain
         [Key]
         public int Id { get; set; }
 
-        
         [Required]
         [StringLength(100)]
         [Column("menu_name")]
@@ -18,12 +17,22 @@ namespace POS.Domain
         [Column("menu_price")]
         public int menuPrice { get; set; }
 
+        // 🔽 FK 컬럼 명시
+        [Required]
+        [ForeignKey("Category")]
+        [Column("category_id")]
+        public int CategoryId { get; set; }
+
+        // 🔽 네비게이션 속성 (optional: virtual 붙이면 LazyLoading 가능)
+        public virtual CategoryEntity Category { get; set; }
+
         public MenuEntity() { }
 
-        public MenuEntity(string name, int price)
+        public MenuEntity(string name, int price, int categoryId)
         {
             menuName = name;
             menuPrice = price;
+            CategoryId = categoryId;
         }
     }
 }

@@ -1,16 +1,28 @@
-﻿namespace POS.Domain
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace POS.Domain
 {
     public class OrderEntity
     {
-        private int id { get; set; }
-        private string menuName { get; set; }
-        private int qty { get; set; }
-        private int price { get; set; }
-        private int tableId { get; set; }
-        private bool isPaid { get; set; }
+        [Key]
+        public int Id { get; set; } // 영수증 ID
 
-        public OrderEntity(int price, int qty, string menuName)
+        [Required]
+        public int TableId { get; set; }
+
+        [Required]
+        public bool IsPaid { get; set; } = false;
+
+        [Required]
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+        // 네비게이션 속성
+        public virtual ICollection<OrderItemEntity> Items { get; set; }
+
+        public OrderEntity()
         {
+            Items = new List<OrderItemEntity>();
         }
     }
 }
