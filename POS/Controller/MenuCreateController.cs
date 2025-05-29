@@ -13,14 +13,29 @@ namespace POS.Controller
     
         private MenuRepository menuRepository;
 
-        public void MenuCreate(string name, int price)
+        public bool MenuCreate(string name, int price)
         {
+            List<MenuEntity> menuList = menuRepository.GetAllMenus(); // 모든 메뉴 조회
 
+            if (Isduplicated(menuList, name))
+            {
+                
+                return false;
+            }
+
+            MenuEntity newMenu = new MenuEntity
+            {
+                menuName = name,
+                menuPrice = price
+            };
+
+            menuRepository.Insert(newMenu);
+            return true;
         }
 
         public bool Isduplicated(List<MenuEntity> menuList, string name)
         {
-            return false;
+            return menuList.Any(menu => menu.menuName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
     }
