@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using POS.Controller;
+using POS.Domain;
 
 namespace POS.Boundary
 {
@@ -14,9 +16,6 @@ namespace POS.Boundary
     {
         private List<CategoryEntity> categoryList;
         private CategoryController categoryController;
-        private categoryEdit categoryEdit;
-
-
 
         public CategoryManagerBoundary()
         {

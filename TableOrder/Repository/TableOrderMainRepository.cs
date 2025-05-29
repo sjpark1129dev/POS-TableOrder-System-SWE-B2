@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using POS.Domain;
-using POS.Repository;
 
 namespace TableOrder.Repository
 {

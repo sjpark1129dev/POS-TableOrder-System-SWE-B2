@@ -1,6 +1,6 @@
 ﻿namespace POS.Domain
 {
-    internal class OrderEntity
+    public class OrderEntity
     {
         private int id { get; set; }
         private string menuName { get; set; }

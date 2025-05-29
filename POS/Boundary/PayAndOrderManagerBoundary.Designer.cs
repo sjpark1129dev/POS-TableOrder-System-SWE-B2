@@ -40,7 +40,6 @@
             Total.Size = new Size(42, 15);
             Total.TabIndex = 1;
             Total.Text = "총액 : ";
-            Total.Click += label1_Click;
             // 
             // cancelAll
             // 
@@ -127,7 +126,6 @@
         private object payController;
         private Label totalAmountLabel;
         private int tableId;
-        private List<OrderEntity> orderList;
         private int finalPrice;
         private DataGridView OrderDataView;
 
@@ -154,11 +152,6 @@
 
         private void addOrder(int tableId, string menuName, int qty, int price)
         {
-        }
-
-        private OrderEntity updateOrde(string receiptnum, string menuName, int qty, int price)
-        {
-            return null;
         }
 
         private void deleteOrder(string receiptnum)

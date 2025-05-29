@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using POS.Domain;
 
 namespace POS.Boundary
 {
@@ -17,63 +11,81 @@ namespace POS.Boundary
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void PayManagerBoundary_Load(object sender, EventArgs e)
         {
-            listView1.View = View.Details;
+            // DataGridView 설정
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            // 컬럼 추가
-            listView1.Columns.Add("메뉴명", 150, HorizontalAlignment.Left);
-            listView1.Columns.Add("단가", 70, HorizontalAlignment.Right);
-            listView1.Columns.Add("수량", 50, HorizontalAlignment.Center);
-            listView1.Columns.Add("가격", 90, HorizontalAlignment.Right);
+            // 컬럼 정의
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "메뉴명",
+                Name = "MenuName",
+                Width = 150
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "단가",
+                Name = "UnitPrice",
+                Width = 70,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleRight, Format = "N0" }
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "수량",
+                Name = "Quantity",
+                Width = 50,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "가격",
+                Name = "TotalPrice",
+                Width = 90,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleRight, Format = "N0" }
+            });
 
             // 예시 데이터 추가
             AddMenuItem("불고기", 12000, 2);
             AddMenuItem("김치찌개", 8000, 1);
 
-            UpdateTotalPrice(); // 총액 초기 계산 및 표시
+            UpdateTotalPrice();
         }
 
         private void AddMenuItem(string name, int unitPrice, int quantity)
         {
             int totalPrice = unitPrice * quantity;
 
-            ListViewItem item = new ListViewItem(name);
-            item.SubItems.Add(unitPrice.ToString("N0"));
-            item.SubItems.Add(quantity.ToString());
-            item.SubItems.Add(totalPrice.ToString("N0"));
+            dataGridView1.Rows.Add(name, unitPrice, quantity, totalPrice);
 
-            listView1.Items.Add(item);
-
-            UpdateTotalPrice(); // 아이템 추가 시마다 총액 갱신
+            UpdateTotalPrice();
         }
 
         private void UpdateTotalPrice()
         {
             int total = 0;
 
-            foreach (ListViewItem item in listView1.Items)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                string priceText = item.SubItems[3].Text;
-
-                if (int.TryParse(priceText.Replace(",", ""), out int price))
+                if (row.Cells["TotalPrice"].Value != null &&
+                    int.TryParse(row.Cells["TotalPrice"].Value.ToString(), out int price))
                 {
                     total += price;
                 }
             }
 
-            Total.Text = "총액 : " + total.ToString("N0") + "원"; // 이렇게 바꾸면 됨
+            Total.Text = "총액 : " + total.ToString("N0") + "원";
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-
+            // 선택 이벤트 처리용 (필요 시)
         }
     }
 }
-
