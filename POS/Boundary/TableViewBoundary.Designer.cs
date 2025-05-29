@@ -35,6 +35,7 @@
             orderList4 = new ListBox();
             totalAmount4 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
+            materialButton1 = new MaterialSkin.Controls.MaterialButton();
             Table4.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
@@ -112,12 +113,33 @@
             tableLayoutPanel1.Size = new Size(776, 258);
             tableLayoutPanel1.TabIndex = 6;
             // 
+            // materialButton1
+            // 
+            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton1.BackColor = Color.White;
+            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Depth = 0;
+            materialButton1.HighEmphasis = true;
+            materialButton1.Icon = null;
+            materialButton1.Location = new Point(108, 124);
+            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton1.Name = "materialButton1";
+            materialButton1.NoAccentTextColor = Color.Empty;
+            materialButton1.Size = new Size(158, 36);
+            materialButton1.TabIndex = 7;
+            materialButton1.Text = "materialButton1";
+            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.UseAccentColor = false;
+            materialButton1.UseVisualStyleBackColor = false;
+            // 
             // TableViewBoundary
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(255, 255, 255);
             ClientSize = new Size(800, 450);
+            Controls.Add(materialButton1);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(SalesManagerButton);
             Controls.Add(MenuManagerButton);
@@ -128,6 +150,7 @@
             Table4.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -139,5 +162,6 @@
         private Label totalAmount4;
         private ListBox orderList4;
         private TableLayoutPanel tableLayoutPanel1;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
     }
 }
