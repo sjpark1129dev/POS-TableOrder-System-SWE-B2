@@ -1,4 +1,5 @@
-﻿using POS.Repository;
+﻿using POS.Domain;
+using POS.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace POS.Controller
     {
         private CategoryRepository categoryRepository;
 
-        public void GetAllCategory()
+        public List<CategoryEntity> GetAllCategory()
         {
-
+            return categoryRepository.GetAllCategory();
         }
 
         public void createCategory()

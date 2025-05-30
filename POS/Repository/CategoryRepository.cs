@@ -13,8 +13,9 @@ namespace POS.Repository
         private readonly AppDbContext _context = AppDbContext.Instance;
 
 
-        public void GetAllCategory()
+        public List<CategoryEntity> GetAllCategory()
         {
+            return _context.Categories.ToList();
 
         }
 

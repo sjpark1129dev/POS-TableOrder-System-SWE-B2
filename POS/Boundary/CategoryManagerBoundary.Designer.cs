@@ -31,7 +31,8 @@
             categoryCreateButton = new Button();
             categoryRemoveButton = new Button();
             categoryUpdateButton = new Button();
-            CategoryListView = new ListView();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // categoryCreateButton
@@ -64,25 +65,26 @@
             categoryUpdateButton.UseVisualStyleBackColor = true;
             categoryUpdateButton.Click += categoryUpdateButton_Click;
             // 
-            // CategoryListView
+            // dataGridView1
             // 
-            CategoryListView.Location = new Point(98, 125);
-            CategoryListView.Name = "CategoryListView";
-            CategoryListView.Size = new Size(391, 236);
-            CategoryListView.TabIndex = 3;
-            CategoryListView.UseCompatibleStateImageBehavior = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(52, 135);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(506, 278);
+            dataGridView1.TabIndex = 3;
             // 
             // CategoryManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(606, 459);
-            Controls.Add(CategoryListView);
+            Controls.Add(dataGridView1);
             Controls.Add(categoryUpdateButton);
             Controls.Add(categoryRemoveButton);
             Controls.Add(categoryCreateButton);
             Name = "CategoryManagerBoundary";
             Text = "CategoryManagerBoundary";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -91,6 +93,6 @@
         private Button categoryCreateButton;
         private Button categoryRemoveButton;
         private Button categoryUpdateButton;
-        private ListView CategoryListView;
+        private DataGridView dataGridView1;
     }
 }
