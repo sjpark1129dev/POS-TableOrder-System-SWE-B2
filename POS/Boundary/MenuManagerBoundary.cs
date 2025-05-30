@@ -244,7 +244,16 @@ namespace POS.Boundary
 
         private void menuResetButton_Click(object sender, EventArgs e)
         {
+            menuNameTextBox.Text = string.Empty;
+            menuPriceTextBox.Text = string.Empty;
 
+            if (comboBoxCategory.Items.Count > 0)
+            {
+                comboBoxCategory.SelectedIndex = -1;
+            }
+
+            dataGridViewMenus.ClearSelection();
+            selectedMenuId = null;
         }
     }
 }
