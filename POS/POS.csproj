@@ -11,6 +11,7 @@
 
     <!-- 디자이너만 DPI 비인식으로 강제 설정 (레이아웃 깨짐 방지) -->
     <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>

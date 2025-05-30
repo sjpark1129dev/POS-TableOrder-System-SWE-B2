@@ -1,4 +1,7 @@
-﻿using POS.Controller;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using POS.Controller;
+using POS.Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,8 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialSkin.Controls;
-using POS.Domain;
 
 namespace POS.Boundary
 {
@@ -19,12 +20,18 @@ namespace POS.Boundary
         private MenuEditController menuEditController = new MenuEditController();
         private MenuLoadController menuLoadController = new MenuLoadController();
         private MenuRemoveController menuRemoveController = new MenuRemoveController();
+        private CategoryController categoryController = new CategoryController();
         private List<MenuEntity> menuList;
+        private List<CategoryEntity> categoryList;
         private int? selectedMenuId = null;
 
         public MenuManagerBoundary()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             LoadAllMenus();
             InitializeDataGridView();
         }
@@ -39,9 +46,17 @@ namespace POS.Boundary
         private void LoadAllMenus()
         {
             menuList = menuLoadController.MenuLoad();
+            LoadAllCategories();
             RefreshMenuList();
         }
 
+        private void LoadAllCategories()
+        {
+            categoryList = categoryController.GetAllCategory();
+            comboBoxCategory.DisplayMember = "CategoryName"; // 보여줄 속성
+            comboBoxCategory.ValueMember = "Id";             // 내부 값으로 쓸 속성
+            comboBoxCategory.DataSource = categoryList;      // CategoryEntity 리스트
+        }
         private void RefreshMenuList()
         {
             dataGridViewMenus.DataSource = null;
@@ -119,10 +134,23 @@ namespace POS.Boundary
             }
         }
 
-        private void kategorieManageButton_Click(object sender, EventArgs e)
+        private void CategoryManageButton_Click(object sender, EventArgs e)
         {
             MaterialForm categoryManagerForm = new CategoryManagerBoundary();
             categoryManagerForm.ShowDialog();
+        }
+
+        private void comboBoxCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxCategory.SelectedValue != null)
+            {
+                int selectedCategoryId = (int)comboBoxCategory.SelectedValue;
+                Console.WriteLine($"선택된 카테고리 ID: {selectedCategoryId}");
+
+                // 필요하다면 CategoryEntity 객체도 얻기
+                var selectedCategory = (CategoryEntity)comboBoxCategory.SelectedItem;
+                string name = selectedCategory.CategoryName;
+            }
         }
     }
 }

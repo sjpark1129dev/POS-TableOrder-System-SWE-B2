@@ -30,10 +30,13 @@
         {
             materialListView1 = new MaterialSkin.Controls.MaterialListView();
             categoryCreateButton = new MaterialSkin.Controls.MaterialButton();
-            categoryDeleteButton = new MaterialSkin.Controls.MaterialButton();
+            categoryRemoveButton = new MaterialSkin.Controls.MaterialButton();
             categoryUpdateButton = new MaterialSkin.Controls.MaterialButton();
             categoryNameTextBox = new MaterialSkin.Controls.MaterialTextBox();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            categoryIDtxt = new MaterialSkin.Controls.MaterialTextBox();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            selectResetButton = new MaterialSkin.Controls.MaterialButton();
             SuspendLayout();
             // 
             // materialListView1
@@ -73,25 +76,27 @@
             categoryCreateButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             categoryCreateButton.UseAccentColor = false;
             categoryCreateButton.UseVisualStyleBackColor = true;
+            categoryCreateButton.Click += categoryCreateButton_Click;
             // 
-            // categoryDeleteButton
+            // categoryRemoveButton
             // 
-            categoryDeleteButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            categoryDeleteButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            categoryDeleteButton.Depth = 0;
-            categoryDeleteButton.HighEmphasis = true;
-            categoryDeleteButton.Icon = null;
-            categoryDeleteButton.Location = new Point(238, 81);
-            categoryDeleteButton.Margin = new Padding(4, 6, 4, 6);
-            categoryDeleteButton.MouseState = MaterialSkin.MouseState.HOVER;
-            categoryDeleteButton.Name = "categoryDeleteButton";
-            categoryDeleteButton.NoAccentTextColor = Color.Empty;
-            categoryDeleteButton.Size = new Size(121, 36);
-            categoryDeleteButton.TabIndex = 5;
-            categoryDeleteButton.Text = "카테고리 삭제";
-            categoryDeleteButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            categoryDeleteButton.UseAccentColor = false;
-            categoryDeleteButton.UseVisualStyleBackColor = true;
+            categoryRemoveButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            categoryRemoveButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            categoryRemoveButton.Depth = 0;
+            categoryRemoveButton.HighEmphasis = true;
+            categoryRemoveButton.Icon = null;
+            categoryRemoveButton.Location = new Point(238, 81);
+            categoryRemoveButton.Margin = new Padding(4, 6, 4, 6);
+            categoryRemoveButton.MouseState = MaterialSkin.MouseState.HOVER;
+            categoryRemoveButton.Name = "categoryRemoveButton";
+            categoryRemoveButton.NoAccentTextColor = Color.Empty;
+            categoryRemoveButton.Size = new Size(121, 36);
+            categoryRemoveButton.TabIndex = 5;
+            categoryRemoveButton.Text = "카테고리 삭제";
+            categoryRemoveButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            categoryRemoveButton.UseAccentColor = false;
+            categoryRemoveButton.UseVisualStyleBackColor = true;
+            categoryRemoveButton.Click += categoryRemoveButton_Click;
             // 
             // categoryUpdateButton
             // 
@@ -111,6 +116,7 @@
             categoryUpdateButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             categoryUpdateButton.UseAccentColor = false;
             categoryUpdateButton.UseVisualStyleBackColor = true;
+            categoryUpdateButton.Click += categoryUpdateButton_Click;
             // 
             // categoryNameTextBox
             // 
@@ -119,7 +125,7 @@
             categoryNameTextBox.Depth = 0;
             categoryNameTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             categoryNameTextBox.LeadingIcon = null;
-            categoryNameTextBox.Location = new Point(412, 136);
+            categoryNameTextBox.Location = new Point(410, 203);
             categoryNameTextBox.MaxLength = 50;
             categoryNameTextBox.MouseState = MaterialSkin.MouseState.OUT;
             categoryNameTextBox.Multiline = false;
@@ -134,12 +140,62 @@
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(351, 152);
+            materialLabel1.Location = new Point(357, 221);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(25, 19);
             materialLabel1.TabIndex = 8;
             materialLabel1.Text = "이름";
+            // 
+            // categoryIDtxt
+            // 
+            categoryIDtxt.AnimateReadOnly = false;
+            categoryIDtxt.BorderStyle = BorderStyle.None;
+            categoryIDtxt.Depth = 0;
+            categoryIDtxt.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            categoryIDtxt.LeadingIcon = null;
+            categoryIDtxt.Location = new Point(410, 138);
+            categoryIDtxt.MaxLength = 50;
+            categoryIDtxt.MouseState = MaterialSkin.MouseState.OUT;
+            categoryIDtxt.Multiline = false;
+            categoryIDtxt.Name = "categoryIDtxt";
+            categoryIDtxt.ReadOnly = true;
+            categoryIDtxt.Size = new Size(75, 50);
+            categoryIDtxt.TabIndex = 9;
+            categoryIDtxt.Text = "";
+            categoryIDtxt.TrailingIcon = null;
+            // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.Location = new Point(357, 157);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(16, 19);
+            materialLabel2.TabIndex = 10;
+            materialLabel2.Text = "ID";
+            // 
+            // selectResetButton
+            // 
+            selectResetButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            selectResetButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            selectResetButton.Depth = 0;
+            selectResetButton.HighEmphasis = true;
+            selectResetButton.Icon = null;
+            selectResetButton.Location = new Point(492, 147);
+            selectResetButton.Margin = new Padding(4, 6, 4, 6);
+            selectResetButton.MouseState = MaterialSkin.MouseState.HOVER;
+            selectResetButton.Name = "selectResetButton";
+            selectResetButton.NoAccentTextColor = Color.Empty;
+            selectResetButton.Size = new Size(69, 36);
+            selectResetButton.TabIndex = 11;
+            selectResetButton.Text = "초기화";
+            selectResetButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            selectResetButton.UseAccentColor = false;
+            selectResetButton.UseVisualStyleBackColor = true;
+            selectResetButton.Click += selectResetButton_Click;
             // 
             // CategoryManagerBoundary
             // 
@@ -147,10 +203,13 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSize = true;
             ClientSize = new Size(606, 459);
+            Controls.Add(selectResetButton);
+            Controls.Add(materialLabel2);
+            Controls.Add(categoryIDtxt);
             Controls.Add(materialLabel1);
             Controls.Add(categoryNameTextBox);
             Controls.Add(categoryUpdateButton);
-            Controls.Add(categoryDeleteButton);
+            Controls.Add(categoryRemoveButton);
             Controls.Add(categoryCreateButton);
             Controls.Add(materialListView1);
             Name = "CategoryManagerBoundary";
@@ -163,9 +222,12 @@
 
         private MaterialSkin.Controls.MaterialListView materialListView1;
         private MaterialSkin.Controls.MaterialButton categoryCreateButton;
-        private MaterialSkin.Controls.MaterialButton categoryDeleteButton;
+        private MaterialSkin.Controls.MaterialButton categoryRemoveButton;
         private MaterialSkin.Controls.MaterialButton categoryUpdateButton;
         private MaterialSkin.Controls.MaterialTextBox categoryNameTextBox;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialTextBox categoryIDtxt;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialButton selectResetButton;
     }
 }
