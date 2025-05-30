@@ -32,16 +32,42 @@ namespace POS.Boundary
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
-            LoadAllMenus();
             InitializeDataGridView();
         }
 
         private void InitializeDataGridView()
         {
+            dataGridViewMenus.Columns.Clear(); // 기존 컬럼 제거
             dataGridViewMenus.AutoGenerateColumns = false;
+            dataGridViewMenus.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewMenus.MultiSelect = false;
             dataGridViewMenus.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            LoadAllMenus();
+
+            // 메뉴 ID
+            DataGridViewTextBoxColumn idColumn = new DataGridViewTextBoxColumn();
+            idColumn.HeaderText = "ID";
+            idColumn.DataPropertyName = "Id";
+            idColumn.Name = "Id";
+            idColumn.Width = 50;
+            dataGridViewMenus.Columns.Add(idColumn);
+
+            // 메뉴명
+            DataGridViewTextBoxColumn nameColumn = new DataGridViewTextBoxColumn();
+            nameColumn.HeaderText = "메뉴명";
+            nameColumn.DataPropertyName = "MenuName";
+            nameColumn.Width = 150;
+            dataGridViewMenus.Columns.Add(nameColumn);
+
+            // 가격
+            DataGridViewTextBoxColumn priceColumn = new DataGridViewTextBoxColumn();
+            priceColumn.HeaderText = "가격";
+            priceColumn.DataPropertyName = "MenuPrice";
+            priceColumn.Width = 100;
+            dataGridViewMenus.Columns.Add(priceColumn);
+
+            LoadAllMenus(); // 초기 로딩
         }
+
 
         private void LoadAllMenus()
         {
@@ -136,10 +162,47 @@ namespace POS.Boundary
                 return;
             }
 
-            var id = (int)dataGridViewMenus.SelectedRows[0].Cells["Id"].Value;
+            var value = dataGridViewMenus.SelectedRows[0].Cells["Id"].Value;
+            if (value == null || !int.TryParse(value.ToString(), out int id))
+            {
+                MessageBox.Show("유효한 ID를 찾을 수 없습니다.");
+                return;
+            }
+
             var selectedMenu = menuList.FirstOrDefault(c => c.Id == id);
+            if (selectedMenu == null)
+            {
+                MessageBox.Show("메뉴를 찾을 수 없습니다.");
+                return;
+            }
+
+            string newName = menuNameTextBox.Text.Trim();
+            string newPriceText = menuPriceTextBox.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(newName) || !int.TryParse(newPriceText, out int newPrice))
+            {
+                MessageBox.Show("올바른 메뉴명과 가격을 입력하세요.");
+                return;
+            }
+
+            if (comboBoxCategory.SelectedValue == null)
+            {
+                MessageBox.Show("카테고리를 선택하세요.");
+                return;
+            }
+
+            int newCategoryId = (int)comboBoxCategory.SelectedValue;
+
+            // 실제 수정
+            selectedMenu.MenuName = newName;
+            selectedMenu.MenuPrice = newPrice;
+            selectedMenu.CategoryId = newCategoryId;
+
+            // DB에 반영
+            menuEditController.MenuEdit(selectedMenu);
+
             LoadAllMenus();
-            MessageBox.Show("저장 완료");
+            MessageBox.Show("메뉴가 수정되었습니다.");
         }
 
         private void dataGridViewMenus_SelectionChanged(object sender, EventArgs e)
@@ -152,8 +215,11 @@ namespace POS.Boundary
             var selectedMenu = menuList.FirstOrDefault(m => m.Id == selectedMenuId);
             if (selectedMenu != null)
             {
-                menuNameTextBox.Text = selectedMenu.menuName;
-                menuPriceTextBox.Text = selectedMenu.menuPrice.ToString("N0");
+                menuNameTextBox.Text = selectedMenu.MenuName;
+                menuPriceTextBox.Text = selectedMenu.MenuPrice.ToString();
+
+                // ComboBox에서 해당 카테고리를 선택
+                comboBoxCategory.SelectedValue = selectedMenu.CategoryId;
             }
         }
 
@@ -174,6 +240,11 @@ namespace POS.Boundary
                 var selectedCategory = (CategoryEntity)comboBoxCategory.SelectedItem;
                 string name = selectedCategory.CategoryName;
             }
+        }
+
+        private void menuResetButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

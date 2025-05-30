@@ -16,11 +16,8 @@ namespace POS.Controller
             menuRepository = new MenuRepository();
         }
 
-        public void MenuEdit(MenuEntity menu,string name,int price)
+        public void MenuEdit(MenuEntity menu)
         {
-            menu.menuName = name;
-            menu.menuPrice = price;
-
             menuRepository.Update(menu);
         }
 

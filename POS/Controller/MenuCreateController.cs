@@ -28,9 +28,9 @@ namespace POS.Controller
             }
 
             var menu = new MenuEntity
-            { 
-                menuName = name,
-                menuPrice = price,
+            {
+                MenuName = name,
+                MenuPrice = price,
                 CategoryId = categoryId
             };
 
@@ -40,7 +40,7 @@ namespace POS.Controller
 
         public bool Isduplicated(List<MenuEntity> menuList, string name)
         {
-            return menuList.Any(menu => menu.menuName.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return menuList.Any(menu => menu.MenuName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
     }
