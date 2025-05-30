@@ -10,7 +10,7 @@ namespace POS.Repository
 {
     public class CategoryRepository
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _context = AppDbContext.Instance;
 
 
         public void GetAllCategory()

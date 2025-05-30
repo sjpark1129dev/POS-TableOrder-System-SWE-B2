@@ -9,10 +9,10 @@ namespace POS.Repository
 {
     internal class OrderAndPaymentRepository
     {
-        
-        private AppDbContext context;
 
-     
+        private readonly AppDbContext _context = AppDbContext.Instance;
+
+
         public void insertPayment()
         {
         }

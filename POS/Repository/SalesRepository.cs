@@ -9,7 +9,7 @@ namespace POS.Repository
 {
     public class SalesRepository
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _context = AppDbContext.Instance;
         public List<SalesEntity> GetAllSales()
         {
             // 모든 데이터 반환 (임시)
