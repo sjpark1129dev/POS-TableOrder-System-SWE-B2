@@ -8,27 +8,32 @@ using System.Threading.Tasks;
 
 namespace POS.Controller
 {
-    public  class CategoryController
+    public class CategoryController
     {
-        private CategoryRepository categoryRepository;
+        private CategoryRepository categoryRepository = new CategoryRepository();
 
         public List<CategoryEntity> GetAllCategory()
         {
             return categoryRepository.GetAllCategory();
         }
 
-        public void createCategory()
+        public void createCategory(string categoryName)
         {
-
+            var newCategory = new CategoryEntity
+            {
+                CategoryName = categoryName
+            };
+            categoryRepository.Insert(newCategory);
         }
 
-        public void deleteCategory()
+        public void deleteCategory(CategoryEntity seletedcategory)
         {
-
+            categoryRepository.Delete(seletedcategory);
         }
-        public void editCategory()
-        {
 
+        public void editCategory(CategoryEntity seletedcategory)
+        {
+            categoryRepository.Update(seletedcategory);
         }
     }
 }

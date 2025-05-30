@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using POS.Controller;
 using POS.Domain;
+using MaterialSkin.Controls;
 
 namespace POS.Boundary
 {
-    public partial class CategoryManagerBoundary : Form
+    public partial class CategoryManagerBoundary : MaterialForm
     {
         private List<CategoryEntity> categoryList;
         private CategoryController categoryController;
@@ -20,65 +15,101 @@ namespace POS.Boundary
         public CategoryManagerBoundary()
         {
             InitializeComponent();
+            categoryController = new CategoryController(); // 누락 방지용
             LoadAllCategories();
-            dataGridView_Initalize();
+            materialListView_Initialize();
         }
 
-        public void dataGridView_Initalize()
+        public void materialListView_Initialize()
         {
-            dataGridView1.AutoGenerateColumns = false;  // 수동 컬럼 설정
+            materialListView1.View = View.Details;
+            materialListView1.FullRowSelect = true;
+            materialListView1.GridLines = true;
 
-            // 예: 카테고리 ID
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Id",        // CategoryEntity의 속성명
-                HeaderText = "ID",
-                Name = "colId"
-            });
+            // 컬럼 추가
+            materialListView1.Columns.Add("ID", 100);
+            materialListView1.Columns.Add("CategoryName", 150);
 
-            // 예: 카테고리 이름
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Name",      // CategoryEntity의 속성명
-                HeaderText = "Category Name",
-                Name = "colName"
-            });
-
-            // 예: 설명(옵션)
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                DataPropertyName = "Description",
-                HeaderText = "Description",
-                Name = "colDescription"
-            });
-
-            // 그 외 스타일 설정 (선택)
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.ReadOnly = true;
+            RefreshMaterialListView();
         }
 
+        private void RefreshMaterialListView()
+        {
+            materialListView1.Items.Clear();
+
+            foreach (var category in categoryList)
+            {
+                var item = new ListViewItem(category.Id.ToString());
+                item.SubItems.Add(category.CategoryName);
+                materialListView1.Items.Add(item);
+            }
+        }
 
         private void categoryCreateButton_Click(object sender, EventArgs e)
         {
-            categoryController.createCategory();
+            categoryController.createCategory(categoryNameTextBox.Text);
+            LoadAllCategories();
+            RefreshMaterialListView();
         }
 
         private void categoryRemoveButton_Click(object sender, EventArgs e)
         {
-            categoryController.deleteCategory();
+            if (materialListView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("삭제할 항목을 선택하세요.");
+                return;
+            }
+
+            int selectedId = int.Parse(materialListView1.SelectedItems[0].SubItems[0].Text);  // ID 읽기
+            var selectedCategory = categoryList.FirstOrDefault(c => c.Id == selectedId); // 💡 여기에 바로 넣음
+
+            if (selectedCategory == null)
+            {
+                MessageBox.Show("해당 항목을 찾을 수 없습니다.");
+                return;
+            }
+
+            categoryController.deleteCategory(selectedCategory);
+            LoadAllCategories();
+            RefreshMaterialListView();
         }
 
         private void categoryUpdateButton_Click(object sender, EventArgs e)
         {
-            categoryController.editCategory();
-        }
+            if (materialListView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("수정할 항목을 선택하세요.");
+                return;
+            }
 
+            int selectedId = int.Parse(materialListView1.SelectedItems[0].SubItems[0].Text);
+            var selectedCategory = categoryList.FirstOrDefault(c => c.Id == selectedId);
+
+            if (selectedCategory == null)
+            {
+                MessageBox.Show("해당 항목을 찾을 수 없습니다.");
+                return;
+            }
+
+            selectedCategory.CategoryName = categoryNameTextBox.Text;
+
+            categoryController.editCategory(selectedCategory);
+            LoadAllCategories();
+            RefreshMaterialListView();
+        }
 
         public void LoadAllCategories()
         {
             categoryList = categoryController.GetAllCategory();
         }
-        
 
+        private void materialListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (materialListView1.SelectedItems.Count > 0)
+            {
+                var selected = materialListView1.SelectedItems[0];
+                categoryNameTextBox.Text = selected.SubItems[1].Text;
+            }
+        }
     }
 }

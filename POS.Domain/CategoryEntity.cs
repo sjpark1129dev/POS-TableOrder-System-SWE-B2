@@ -12,7 +12,7 @@ namespace POS.Domain
         [Required]
         [StringLength(50)]
         [Column("category_name")]
-        public string categoryName { get; set; }
+        public string CategoryName { get; set; }
 
         // 관계 설정 (Navigation Property)
         public virtual ICollection<MenuEntity> Menus { get; set; }

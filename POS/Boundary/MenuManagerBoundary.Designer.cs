@@ -28,20 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             panel1 = new Panel();
             menuCreateButton = new Button();
+            menuEditButton = new Button();
             menuDeleteButton = new Button();
             panel2 = new Panel();
             kategorieManageButton = new Button();
             panel4 = new Panel();
             panel3 = new Panel();
+            menuResetButton = new Button();
             menuIdTextBox = new TextBox();
             label7 = new Label();
             pictureAddButton = new Button();
@@ -64,8 +66,6 @@
             Id = new DataGridViewTextBoxColumn();
             menuName = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
-            menuResetButton = new Button();
-            menuEditSaveButton = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -87,27 +87,28 @@
             tableLayoutPanel1.Controls.Add(panel4, 1, 1);
             tableLayoutPanel1.Controls.Add(dataGridViewMenus, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Location = new Point(3, 64);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.4706812F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 86.52932F));
-            tableLayoutPanel1.Size = new Size(603, 502);
+            tableLayoutPanel1.Size = new Size(677, 607);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
             // 
             panel1.Controls.Add(menuCreateButton);
+            panel1.Controls.Add(menuEditButton);
             panel1.Controls.Add(menuDeleteButton);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(295, 61);
+            panel1.Size = new Size(332, 75);
             panel1.TabIndex = 0;
             // 
             // menuCreateButton
             // 
-            menuCreateButton.Location = new Point(136, 9);
+            menuCreateButton.Location = new Point(12, 9);
             menuCreateButton.Name = "menuCreateButton";
             menuCreateButton.Size = new Size(75, 23);
             menuCreateButton.TabIndex = 1;
@@ -115,9 +116,19 @@
             menuCreateButton.UseVisualStyleBackColor = true;
             menuCreateButton.Click += menuCreateButton_Click;
             // 
+            // menuEditButton
+            // 
+            menuEditButton.Location = new Point(235, 9);
+            menuEditButton.Name = "menuEditButton";
+            menuEditButton.Size = new Size(75, 23);
+            menuEditButton.TabIndex = 1;
+            menuEditButton.Text = "수정";
+            menuEditButton.UseVisualStyleBackColor = true;
+            menuEditButton.Click += menuEditButton_Click;
+            // 
             // menuDeleteButton
             // 
-            menuDeleteButton.Location = new Point(217, 9);
+            menuDeleteButton.Location = new Point(128, 9);
             menuDeleteButton.Name = "menuDeleteButton";
             menuDeleteButton.Size = new Size(75, 23);
             menuDeleteButton.TabIndex = 0;
@@ -128,21 +139,21 @@
             // panel2
             // 
             panel2.Controls.Add(kategorieManageButton);
-            panel2.Controls.Add(menuEditSaveButton);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(304, 3);
+            panel2.Location = new Point(341, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(296, 61);
+            panel2.Size = new Size(333, 75);
             panel2.TabIndex = 1;
             // 
             // kategorieManageButton
             // 
-            kategorieManageButton.Location = new Point(0, 9);
+            kategorieManageButton.Location = new Point(31, 9);
             kategorieManageButton.Name = "kategorieManageButton";
             kategorieManageButton.Size = new Size(113, 23);
             kategorieManageButton.TabIndex = 2;
             kategorieManageButton.Text = "카테고리 관리";
             kategorieManageButton.UseVisualStyleBackColor = true;
+            kategorieManageButton.Click += kategorieManageButton_Click;
             // 
             // panel4
             // 
@@ -156,9 +167,9 @@
             panel4.Controls.Add(label2);
             panel4.Controls.Add(label1);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(304, 70);
+            panel4.Location = new Point(341, 84);
             panel4.Name = "panel4";
-            panel4.Size = new Size(296, 429);
+            panel4.Size = new Size(333, 520);
             panel4.TabIndex = 3;
             // 
             // panel3
@@ -178,8 +189,17 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(296, 429);
+            panel3.Size = new Size(333, 520);
             panel3.TabIndex = 8;
+            // 
+            // menuResetButton
+            // 
+            menuResetButton.Location = new Point(203, 6);
+            menuResetButton.Name = "menuResetButton";
+            menuResetButton.Size = new Size(65, 23);
+            menuResetButton.TabIndex = 2;
+            menuResetButton.Text = "초기화";
+            menuResetButton.UseVisualStyleBackColor = true;
             // 
             // menuIdTextBox
             // 
@@ -341,51 +361,51 @@
             dataGridViewMenus.AllowUserToResizeColumns = false;
             dataGridViewMenus.AllowUserToResizeRows = false;
             dataGridViewMenus.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewMenus.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewMenus.Columns.AddRange(new DataGridViewColumn[] { Id, menuName, Price });
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = SystemColors.Window;
-            dataGridViewCellStyle11.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.DefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewMenus.Dock = DockStyle.Fill;
-            dataGridViewMenus.Location = new Point(3, 70);
+            dataGridViewMenus.Location = new Point(3, 84);
             dataGridViewMenus.MultiSelect = false;
             dataGridViewMenus.Name = "dataGridViewMenus";
             dataGridViewMenus.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = SystemColors.Control;
-            dataGridViewCellStyle12.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewMenus.RowHeadersVisible = false;
             dataGridViewMenus.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewMenus.RowTemplate.ReadOnly = true;
             dataGridViewMenus.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewMenus.Size = new Size(295, 429);
+            dataGridViewMenus.Size = new Size(332, 520);
             dataGridViewMenus.TabIndex = 4;
             dataGridViewMenus.SelectionChanged += dataGridViewMenus_SelectionChanged;
             // 
             // Id
             // 
             Id.DataPropertyName = "Id";
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            Id.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            Id.DefaultCellStyle = dataGridViewCellStyle2;
             Id.FillWeight = 10F;
             Id.HeaderText = "ID";
             Id.Name = "Id";
@@ -396,9 +416,9 @@
             // 
             menuName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             menuName.DataPropertyName = "menuName";
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            menuName.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            menuName.DefaultCellStyle = dataGridViewCellStyle3;
             menuName.FillWeight = 60F;
             menuName.HeaderText = "메뉴명";
             menuName.Name = "menuName";
@@ -408,44 +428,25 @@
             // Price
             // 
             Price.DataPropertyName = "menuPrice";
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.Format = "N0";
-            dataGridViewCellStyle10.NullValue = null;
-            Price.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            Price.DefaultCellStyle = dataGridViewCellStyle4;
             Price.FillWeight = 30F;
             Price.HeaderText = "가격";
             Price.Name = "Price";
             Price.ReadOnly = true;
             Price.Resizable = DataGridViewTriState.False;
             // 
-            // menuResetButton
-            // 
-            menuResetButton.Location = new Point(203, 6);
-            menuResetButton.Name = "menuResetButton";
-            menuResetButton.Size = new Size(65, 23);
-            menuResetButton.TabIndex = 2;
-            menuResetButton.Text = "초기화";
-            menuResetButton.UseVisualStyleBackColor = true;
-            // 
-            // menuEditSaveButton
-            // 
-            menuEditSaveButton.Location = new Point(119, 9);
-            menuEditSaveButton.Name = "menuEditSaveButton";
-            menuEditSaveButton.Size = new Size(75, 23);
-            menuEditSaveButton.TabIndex = 1;
-            menuEditSaveButton.Text = "저장";
-            menuEditSaveButton.UseVisualStyleBackColor = true;
-            menuEditSaveButton.Click += menuSaveButton_Click;
-            // 
             // MenuManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(603, 502);
+            ClientSize = new Size(683, 674);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "MenuManagerBoundary";
-            Text = "MenuManagerBoundary";
+            Text = "메뉴 관리";
             tableLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
@@ -493,6 +494,6 @@
         private DataGridViewTextBoxColumn menuName;
         private DataGridViewTextBoxColumn Price;
         private Button menuResetButton;
-        private Button menuEditSaveButton;
+        private Button menuEditButton;
     }
 }

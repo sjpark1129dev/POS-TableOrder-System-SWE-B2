@@ -8,11 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 using POS.Domain;
 
 namespace POS.Boundary
 {
-    public partial class MenuManagerBoundary : Form
+    public partial class MenuManagerBoundary : MaterialForm
     {
         private MenuCreateController menuCreateController = new MenuCreateController();
         private MenuEditController menuEditController = new MenuEditController();
@@ -46,7 +47,7 @@ namespace POS.Boundary
             dataGridViewMenus.DataSource = null;
             dataGridViewMenus.DataSource = menuList;
         }
-        
+
         private void menuCreateButton_Click(object sender, EventArgs e)
         {
             string name = menuNameTextBox.Text.Trim();
@@ -72,7 +73,7 @@ namespace POS.Boundary
             RefreshMenuList();
             MessageBox.Show("메뉴가 추가되었습니다.");
         }
-        
+
         private void menuDeleteButton_Click(object sender, EventArgs e)
         {
             if (dataGridViewMenus.SelectedRows.Count == 0)
@@ -82,13 +83,23 @@ namespace POS.Boundary
             }
 
             var id = (int)dataGridViewMenus.SelectedRows[0].Cells["Id"].Value;
+            var selectedMenu = menuList.FirstOrDefault(c => c.Id == id);
+            menuRemoveController.MenuRemove(selectedMenu);
 
             selectedMenuId = null;
             RefreshMenuList();
         }
-        
-        private void menuSaveButton_Click(object sender, EventArgs e)
+
+        private void menuEditButton_Click(object sender, EventArgs e)
         {
+            if (dataGridViewMenus.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("수정할 메뉴를 선택하세요.");
+                return;
+            }
+
+            var id = (int)dataGridViewMenus.SelectedRows[0].Cells["Id"].Value;
+            var selectedMenu = menuList.FirstOrDefault(c => c.Id == id);
             RefreshMenuList();
             MessageBox.Show("저장 완료");
         }
@@ -106,6 +117,12 @@ namespace POS.Boundary
                 menuNameTextBox.Text = selectedMenu.menuName;
                 menuPriceTextBox.Text = selectedMenu.menuPrice.ToString("N0");
             }
+        }
+
+        private void kategorieManageButton_Click(object sender, EventArgs e)
+        {
+            MaterialForm categoryManagerForm = new CategoryManagerBoundary();
+            categoryManagerForm.ShowDialog();
         }
     }
 }
