@@ -9,9 +9,10 @@ namespace POS.Repository
 {
     public class MenuRepository
     {
-        private readonly AppDbContext _context = AppDbContext.Instance;
+        private readonly AppDbContext _context;
         public MenuRepository()
         {
+            _context = AppDbContext.Instance;
         }
         public List<MenuEntity> GetAllMenus()
         {
@@ -30,14 +31,10 @@ namespace POS.Repository
             _context.SaveChanges(); // 수정 후 커밋
         }
 
-        public void Delete(int id)
+        public void Delete(MenuEntity menu)
         {
-            var menu = _context.Menus.Find(id);
-            if (menu != null)
-            {
-                _context.Menus.Remove(menu);
-                _context.SaveChanges(); // 삭제 후 커밋
-            }
+            _context.Menus.Remove(menu);
+            _context.SaveChanges(); // 삭제 후 커밋
         }
     }
 }

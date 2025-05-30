@@ -11,9 +11,13 @@ namespace POS.Controller
 
     public class MenuCreateController {
     
-        private MenuRepository menuRepository = new MenuRepository();
+        private MenuRepository menuRepository;
+        public MenuCreateController()
+        {
+            menuRepository = new MenuRepository();
+        }
 
-        public bool MenuCreate(string name, int price)
+        public bool MenuCreate(string name, int price, int categoryId)
         {
             List<MenuEntity> menuList = menuRepository.GetAllMenus(); // 모든 메뉴 조회
 
@@ -23,14 +27,14 @@ namespace POS.Controller
                 return false;
             }
 
-            MenuEntity newMenu = new MenuEntity
-            {
+            var menu = new MenuEntity
+            { 
                 menuName = name,
                 menuPrice = price,
-                CategoryId = 1
+                CategoryId = categoryId
             };
 
-            menuRepository.Insert(newMenu);
+            menuRepository.Insert(menu);
             return true;
         }
 

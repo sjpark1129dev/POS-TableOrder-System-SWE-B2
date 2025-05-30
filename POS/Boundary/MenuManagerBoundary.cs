@@ -68,24 +68,35 @@ namespace POS.Boundary
             string name = menuNameTextBox.Text.Trim();
             string priceText = menuPriceTextBox.Text.Trim();
 
+            // 유효성 검사
             if (string.IsNullOrWhiteSpace(name) || !int.TryParse(priceText, out int price))
             {
                 MessageBox.Show("올바른 메뉴명과 가격을 입력하세요.");
                 return;
             }
 
+            // 중복 검사
             if (menuCreateController.Isduplicated(menuList, name))
             {
                 MessageBox.Show("이미 존재하는 메뉴입니다.");
                 return;
             }
 
-            // 바로 DB에 저장
-            menuCreateController.MenuCreate(name, price);
+            // ✅ 카테고리 선택 확인
+            if (comboBoxCategory.SelectedValue == null)
+            {
+                MessageBox.Show("카테고리를 선택하세요.");
+                return;
+            }
 
-            // 다시 전체 목록 로드해서 ID 포함된 상태로 반영
+            int categoryId = (int)comboBoxCategory.SelectedValue;
+
+            // ✅ DB에 저장 (카테고리 ID 포함)
+            menuCreateController.MenuCreate(name, price, categoryId);
+
+            // 목록 다시 불러오기
             menuList = menuLoadController.MenuLoad();
-            RefreshMenuList();
+            LoadAllMenus();
             MessageBox.Show("메뉴가 추가되었습니다.");
         }
 
@@ -97,12 +108,24 @@ namespace POS.Boundary
                 return;
             }
 
-            var id = (int)dataGridViewMenus.SelectedRows[0].Cells["Id"].Value;
-            var selectedMenu = menuList.FirstOrDefault(c => c.Id == id);
-            menuRemoveController.MenuRemove(selectedMenu);
+            var value = dataGridViewMenus.SelectedRows[0].Cells["Id"].Value;
 
+            if (value == null || !int.TryParse(value.ToString(), out int id))
+            {
+                MessageBox.Show("유효한 ID를 찾을 수 없습니다.");
+                return;
+            }
+
+            var selectedMenu = menuList.FirstOrDefault(c => c.Id == id);
+            if (selectedMenu == null)
+            {
+                MessageBox.Show("메뉴를 찾을 수 없습니다.");
+                return;
+            }
+
+            menuRemoveController.MenuRemove(selectedMenu);
             selectedMenuId = null;
-            RefreshMenuList();
+            LoadAllMenus();
         }
 
         private void menuEditButton_Click(object sender, EventArgs e)
@@ -115,7 +138,7 @@ namespace POS.Boundary
 
             var id = (int)dataGridViewMenus.SelectedRows[0].Cells["Id"].Value;
             var selectedMenu = menuList.FirstOrDefault(c => c.Id == id);
-            RefreshMenuList();
+            LoadAllMenus();
             MessageBox.Show("저장 완료");
         }
 

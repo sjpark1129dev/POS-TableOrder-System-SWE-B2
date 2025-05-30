@@ -10,8 +10,11 @@ namespace POS.Controller
 {
     public class MenuLoadController
     {
-        private MenuRepository menuRepository = new MenuRepository();
-
+        private MenuRepository menuRepository;
+        public MenuLoadController()
+        {
+            menuRepository = new MenuRepository();
+        }
         public List<MenuEntity> MenuLoad()
         {
             return menuRepository.GetAllMenus();
