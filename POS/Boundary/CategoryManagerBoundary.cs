@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using MaterialSkin.Controls;
 using POS.Controller;
 using POS.Domain;
-using MaterialSkin.Controls;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace POS.Boundary
 {
@@ -108,8 +109,15 @@ namespace POS.Boundary
             if (materialListView1.SelectedItems.Count > 0)
             {
                 var selected = materialListView1.SelectedItems[0];
+                categoryIDtxt.Text = selected.SubItems[0].Text;
                 categoryNameTextBox.Text = selected.SubItems[1].Text;
             }
+        }
+
+        private void selectResetButton_Click(object sender, EventArgs e)
+        {
+            categoryIDtxt.Text = "";
+            categoryNameTextBox.Text = "";
         }
     }
 }

@@ -11,9 +11,9 @@ namespace TableOrder.Repository
     {
         private readonly AppDbContext _context;
 
-        public TableOrderMainRepository(AppDbContext context)
+        public TableOrderMainRepository()
         {
-            _context = context;
+            _context = AppDbContext.Instance;
         }
 
         public void InsertOrder(List<MenuEntity> cart)

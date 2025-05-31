@@ -13,9 +13,9 @@ namespace TableOrder.Controller
     {
         private readonly TableOrderMainRepository _tableOrderMainRepository;
 
-        public TableOrderMainController(TableOrderMainRepository repository)
+        public TableOrderMainController()
         {
-            _tableOrderMainRepository = repository;
+            _tableOrderMainRepository = new TableOrderMainRepository();
         }
 
         public List<MenuEntity> MenuAndCategoryLoad()

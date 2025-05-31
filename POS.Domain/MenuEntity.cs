@@ -11,11 +11,11 @@ namespace POS.Domain
         [Required]
         [StringLength(100)]
         [Column("menu_name")]
-        public string menuName { get; set; }
+        public string MenuName { get; set; }
 
         [Required]
         [Column("menu_price")]
-        public int menuPrice { get; set; }
+        public int MenuPrice { get; set; }
 
         // 🔽 FK 컬럼 명시
         [Required]
@@ -30,8 +30,8 @@ namespace POS.Domain
 
         public MenuEntity(string name, int price, int categoryId)
         {
-            menuName = name;
-            menuPrice = price;
+            MenuName = name;
+            MenuPrice = price;
             CategoryId = categoryId;
         }
     }

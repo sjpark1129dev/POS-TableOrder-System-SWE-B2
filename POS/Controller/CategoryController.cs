@@ -10,7 +10,11 @@ namespace POS.Controller
 {
     public class CategoryController
     {
-        private CategoryRepository categoryRepository = new CategoryRepository();
+        private CategoryRepository categoryRepository;
+        public CategoryController()
+        {
+            categoryRepository = new CategoryRepository();
+        }
 
         public List<CategoryEntity> GetAllCategory()
         {

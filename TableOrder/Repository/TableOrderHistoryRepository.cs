@@ -11,9 +11,9 @@ namespace TableOrder.Repository
     {
         private readonly AppDbContext _context;
 
-        public TableOrderHistoryRepository(AppDbContext context)
+        public TableOrderHistoryRepository()
         {
-            _context = context;
+            _context = AppDbContext.Instance;
         }
 
         public bool SearchOrderData(int tableID)

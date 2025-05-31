@@ -12,9 +12,13 @@ namespace POS.Controller
     {
         private MenuRepository menuRepository;
 
+        public MenuRemoveController()
+        {
+            menuRepository = new MenuRepository();
+        }
         public void MenuRemove(MenuEntity menu)
         {
-            menuRepository.Delete(menu.Id);
+            menuRepository.Delete(menu);
         }
     }
 }

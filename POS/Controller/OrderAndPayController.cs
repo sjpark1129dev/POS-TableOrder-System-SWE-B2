@@ -13,6 +13,10 @@ namespace POS.Controller
         
         private OrderAndPaymentRepository paymentRepository;
 
+        public OrderAndPayController()
+        {
+            paymentRepository = new OrderAndPaymentRepository();
+        }
         public int getPendingPaymentAmount()
         {
             return 0;

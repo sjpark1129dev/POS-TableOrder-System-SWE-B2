@@ -11,12 +11,13 @@ namespace POS.Controller
     public class MenuEditController
     {
         private MenuRepository menuRepository;
-
-        public void MenuEdit(MenuEntity menu,string name,int price)
+        public MenuEditController()
         {
-            menu.menuName = name;
-            menu.menuPrice = price;
+            menuRepository = new MenuRepository();
+        }
 
+        public void MenuEdit(MenuEntity menu)
+        {
             menuRepository.Update(menu);
         }
 
