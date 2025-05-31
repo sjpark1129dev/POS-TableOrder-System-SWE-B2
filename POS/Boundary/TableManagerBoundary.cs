@@ -100,42 +100,6 @@ namespace POS.Boundary
                 tableIdTextBox.Text = "선택 안됨";
             }
         }
-
-        private void ClearSelection()
-        {
-            selectedTableId = null;
-
-            foreach (Button b in tableLayoutPanelTables.Controls)
-                b.BackColor = Color.White;
-
-            tableNameTextBox.Text = "선택 안됨";
-            tableIdTextBox.Text = "선택 안됨";
-        }
-
-        private void TableManagerBoundary_Load(object sender, EventArgs e)
-        {
-            // 폼의 모든 컨트롤 순회해서 마우스다운 이벤트 연결
-            AttachMouseDownHandlers(this);
-        }
-        private void AttachMouseDownHandlers(Control parent)
-        {
-            foreach (Control ctrl in parent.Controls)
-            {
-                // 버튼은 제외
-                if (ctrl is Button) continue;
-
-                ctrl.MouseDown += NonButtonControl_MouseDown;
-
-                // 컨테이너 안에 또 컨트롤이 있다면 재귀적으로 적용
-                if (ctrl.HasChildren)
-                    AttachMouseDownHandlers(ctrl);
-            }
-        }
-        private void NonButtonControl_MouseDown(object sender, MouseEventArgs e)
-        {
-            ClearSelection();
-        }
-
         private void textBoxResetButton_Click(object sender, EventArgs e)
         {
 
