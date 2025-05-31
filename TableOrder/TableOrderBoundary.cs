@@ -81,7 +81,7 @@ namespace TableOrder
         }
         private void MenuItemPlusClicked(object sender, MenuEntity menu)
         {
-            var existingItem = cart.FirstOrDefault(c => c.Menu.menuName == menu.menuName);
+            var existingItem = cart.FirstOrDefault(c => c.Menu.MenuName == menu.MenuName);
             if (existingItem != null)
             {
                 existingItem.Quantity++;
@@ -95,7 +95,7 @@ namespace TableOrder
         }
         private void MenuItemMinusClicked(object sender, MenuEntity menu)
         {
-            var existing = cart.FirstOrDefault(c => c.Menu.menuName == menu.menuName);
+            var existing = cart.FirstOrDefault(c => c.Menu.MenuName == menu.MenuName);
 
             if (existing != null)
             {
@@ -128,8 +128,8 @@ namespace TableOrder
             int total = 0;
             foreach (var item in cart)
             {
-                int lineTotal = item.Menu.menuPrice * item.Quantity;
-                shoppingList.Items.Add($"{item.Menu.menuName}  {item.Quantity}개 {lineTotal}원");
+                int lineTotal = item.Menu.MenuPrice * item.Quantity;
+                shoppingList.Items.Add($"{item.Menu.MenuName}  {item.Quantity}개 {lineTotal}원");
                 total += lineTotal;
             }
 
@@ -179,8 +179,8 @@ namespace TableOrder
 
             MenuData = new MenuEntity
             {
-                menuName = name,
-                menuPrice = price
+                MenuName = name,
+                MenuPrice = price
             };
 
             var layout = new TableLayoutPanel();
