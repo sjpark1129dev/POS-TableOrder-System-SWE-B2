@@ -28,45 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TableManagerButton = new Button();
-            MenuManagerButton = new Button();
-            SalesManagerButton = new Button();
             Table4 = new Panel();
             orderList4 = new ListBox();
             totalAmount4 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
+            TableManagerButton = new MaterialSkin.Controls.MaterialButton();
+            MenuManagerButton = new MaterialSkin.Controls.MaterialButton();
+            SalesManagerButton = new MaterialSkin.Controls.MaterialButton();
             Table4.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // TableManagerButton
-            // 
-            TableManagerButton.Location = new Point(75, 75);
-            TableManagerButton.Name = "TableManagerButton";
-            TableManagerButton.Size = new Size(111, 40);
-            TableManagerButton.TabIndex = 0;
-            TableManagerButton.Text = "테이블 관리";
-            TableManagerButton.UseVisualStyleBackColor = true;
-            TableManagerButton.Click += TableManagerButton_Click;
-            // 
-            // MenuManagerButton
-            // 
-            MenuManagerButton.Location = new Point(361, 75);
-            MenuManagerButton.Name = "MenuManagerButton";
-            MenuManagerButton.Size = new Size(111, 40);
-            MenuManagerButton.TabIndex = 1;
-            MenuManagerButton.Text = "메뉴 관리";
-            MenuManagerButton.UseVisualStyleBackColor = true;
-            MenuManagerButton.Click += MenuManagerButton_Click;
-            // 
-            // SalesManagerButton
-            // 
-            SalesManagerButton.Location = new Point(603, 75);
-            SalesManagerButton.Name = "SalesManagerButton";
-            SalesManagerButton.Size = new Size(111, 40);
-            SalesManagerButton.TabIndex = 2;
-            SalesManagerButton.Text = "매출 관리";
-            SalesManagerButton.UseVisualStyleBackColor = true;
             // 
             // Table4
             // 
@@ -112,32 +83,94 @@
             tableLayoutPanel1.Size = new Size(776, 258);
             tableLayoutPanel1.TabIndex = 6;
             // 
+            // TableManagerButton
+            // 
+            TableManagerButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            TableManagerButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            TableManagerButton.Depth = 0;
+            TableManagerButton.HighEmphasis = true;
+            TableManagerButton.Icon = null;
+            TableManagerButton.Location = new Point(202, 79);
+            TableManagerButton.Margin = new Padding(4, 6, 4, 6);
+            TableManagerButton.MouseState = MaterialSkin.MouseState.HOVER;
+            TableManagerButton.Name = "TableManagerButton";
+            TableManagerButton.NoAccentTextColor = Color.Empty;
+            TableManagerButton.Size = new Size(105, 36);
+            TableManagerButton.TabIndex = 7;
+            TableManagerButton.Text = "테이블 관리";
+            TableManagerButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            TableManagerButton.UseAccentColor = false;
+            TableManagerButton.UseVisualStyleBackColor = true;
+            TableManagerButton.Click += TableManagerButton2_Click;
+            // 
+            // MenuManagerButton
+            // 
+            MenuManagerButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            MenuManagerButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            MenuManagerButton.Depth = 0;
+            MenuManagerButton.HighEmphasis = true;
+            MenuManagerButton.Icon = null;
+            MenuManagerButton.Location = new Point(354, 79);
+            MenuManagerButton.Margin = new Padding(4, 6, 4, 6);
+            MenuManagerButton.MouseState = MaterialSkin.MouseState.HOVER;
+            MenuManagerButton.Name = "MenuManagerButton";
+            MenuManagerButton.NoAccentTextColor = Color.Empty;
+            MenuManagerButton.Size = new Size(89, 36);
+            MenuManagerButton.TabIndex = 8;
+            MenuManagerButton.Text = "메뉴 관리";
+            MenuManagerButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            MenuManagerButton.UseAccentColor = false;
+            MenuManagerButton.UseVisualStyleBackColor = true;
+            MenuManagerButton.Click += MenuManagerButton2_Click;
+            // 
+            // SalesManagerButton
+            // 
+            SalesManagerButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            SalesManagerButton.BackColor = Color.White;
+            SalesManagerButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            SalesManagerButton.Depth = 0;
+            SalesManagerButton.ForeColor = SystemColors.ControlText;
+            SalesManagerButton.HighEmphasis = true;
+            SalesManagerButton.Icon = null;
+            SalesManagerButton.Location = new Point(494, 79);
+            SalesManagerButton.Margin = new Padding(4, 6, 4, 6);
+            SalesManagerButton.MouseState = MaterialSkin.MouseState.HOVER;
+            SalesManagerButton.Name = "SalesManagerButton";
+            SalesManagerButton.NoAccentTextColor = Color.Empty;
+            SalesManagerButton.Size = new Size(89, 36);
+            SalesManagerButton.TabIndex = 9;
+            SalesManagerButton.Text = "매출 관리";
+            SalesManagerButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            SalesManagerButton.UseAccentColor = false;
+            SalesManagerButton.UseVisualStyleBackColor = false;
+            SalesManagerButton.Click += SalesManagerButton2_Click;
+            // 
             // TableViewBoundary
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(255, 255, 255);
             ClientSize = new Size(800, 450);
-            Controls.Add(tableLayoutPanel1);
             Controls.Add(SalesManagerButton);
             Controls.Add(MenuManagerButton);
             Controls.Add(TableManagerButton);
+            Controls.Add(tableLayoutPanel1);
             Name = "TableViewBoundary";
             Text = "TableViewBoundary";
             Table4.ResumeLayout(false);
             Table4.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Button TableManagerButton;
-        private Button MenuManagerButton;
-        private Button SalesManagerButton;
         private Panel Table4;
         private Label totalAmount4;
         private ListBox orderList4;
         private TableLayoutPanel tableLayoutPanel1;
+        private MaterialSkin.Controls.MaterialButton TableManagerButton;
+        private MaterialSkin.Controls.MaterialButton MenuManagerButton;
+        private MaterialSkin.Controls.MaterialButton SalesManagerButton;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 using POS.Domain;
 using TableOrder.Controller;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
@@ -15,7 +16,7 @@ namespace TableOrder
 {
    
 
-    public partial class TableOrderBoundary : Form
+    public partial class TableOrderBoundary : MaterialForm
     {
         private List<CartItem> cart = new List<CartItem>();
         private List<string> categoryList = new List<string>();

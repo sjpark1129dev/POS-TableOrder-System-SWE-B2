@@ -1,9 +1,10 @@
-﻿using POS.Controller;
+﻿using MaterialSkin.Controls;
+using POS.Controller;
 using POS.Domain;
 
 namespace POS.Boundary
 {
-    public partial class TableManagerBoundary : Form
+    public partial class TableManagerBoundary : MaterialForm
     {
         private TableController tableController = new TableController();
         private List<TableEntity> tableList;
