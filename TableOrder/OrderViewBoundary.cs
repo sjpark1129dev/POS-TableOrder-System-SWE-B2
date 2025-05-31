@@ -1,6 +1,8 @@
+using MaterialSkin.Controls;
+
 namespace TableOrder
 {
-    public partial class OrderViewBoundary : Form
+    public partial class OrderViewBoundary : MaterialForm
     {
         public OrderViewBoundary()
         {

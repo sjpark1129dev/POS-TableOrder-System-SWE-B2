@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 using POS.Domain;
 
 namespace POS.Boundary
 {
-    public partial class PayAndOrderManagerBoundary : Form
+    public partial class PayAndOrderManagerBoundary : MaterialForm
     {
         public PayAndOrderManagerBoundary()
         {
