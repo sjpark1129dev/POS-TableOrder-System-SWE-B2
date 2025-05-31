@@ -13,17 +13,9 @@ namespace POS.Boundary
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
-        private void TableManagerButton_Click(object sender, EventArgs e)
-        {
-            TableManagerBoundary tableManagerBoundary = new TableManagerBoundary();
-            tableManagerBoundary.Show();
-        }
 
-        private void MenuManagerButton_Click(object sender, EventArgs e)
-        {
-            MenuManagerBoundary menuManagerBoundary = new MenuManagerBoundary();
-            menuManagerBoundary.Show();
-        }
+
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -31,6 +23,23 @@ namespace POS.Boundary
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TableManagerButton2_Click(object sender, EventArgs e)
+        {
+            TableManagerBoundary tableManagerBoundary = new TableManagerBoundary();
+            tableManagerBoundary.Show();
+        }
+
+        private void MenuManagerButton2_Click(object sender, EventArgs e)
+        {
+            MenuManagerBoundary menuManagerBoundary = new MenuManagerBoundary();
+            menuManagerBoundary.Show();
+        }
+
+        private void SalesManagerButton2_Click(object sender, EventArgs e)
         {
 
         }
