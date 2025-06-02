@@ -89,9 +89,9 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(23, 22);
+            dataGridView1.Location = new Point(23, 67);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(647, 200);
+            dataGridView1.Size = new Size(647, 155);
             dataGridView1.TabIndex = 7;
             // 
             // PayAndOrderManagerBoundary
