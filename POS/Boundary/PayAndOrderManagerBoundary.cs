@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using POS.Domain;
 
@@ -7,18 +8,32 @@ namespace POS.Boundary
 {
     public partial class PayAndOrderManagerBoundary : MaterialForm
     {
+        private readonly MaterialSkinManager materialSkinManager;
+
         public PayAndOrderManagerBoundary()
         {
             InitializeComponent();
+
+            // MaterialSkin Manager 세팅
+            materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Blue600, Primary.Blue700,
+                Primary.Blue200, Accent.LightBlue200,
+                TextShade.WHITE
+            );
         }
 
         private void PayManagerBoundary_Load(object sender, EventArgs e)
         {
-            // DataGridView 설정
+            // DataGridView 설정 (기본 WinForm 컨트롤 사용)
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dataGridView1.Columns.Clear();
 
             // 컬럼 정의
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
@@ -86,7 +101,22 @@ namespace POS.Boundary
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            // 선택 이벤트 처리용 (필요 시)
+            // 필요 시 선택 이벤트 처리
+        }
+
+        private void materialLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

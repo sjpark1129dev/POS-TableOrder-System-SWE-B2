@@ -19,7 +19,9 @@ namespace POS.Controller
 
         public TableEntity CreateTable(string name)
         {
-            return new TableEntity(name);
+            var table = new TableEntity(name);
+            _repository.Insert(table);
+            return table;
         }
         public bool IsDuplicateName(List<TableEntity> list, string name)
         {
@@ -27,16 +29,19 @@ namespace POS.Controller
         }
         public bool DeleteTable()
         {
-            // 향후 실제 삭제 로직 추가 시 구현
-            return false;
+            return false; // 구현? MarkDeleted가 시행하긴 함.
         }
         public void MarkDeleted(List<TableEntity> tables, int id)
         {
-            var table = GetById(tables, id);
+            _repository.Delete(id);
         }
         public TableEntity? GetById(List<TableEntity> tables, int id)
         {
             return tables.FirstOrDefault(t => t.Id == id);
         }
+
+      
+
+
     }
 }
