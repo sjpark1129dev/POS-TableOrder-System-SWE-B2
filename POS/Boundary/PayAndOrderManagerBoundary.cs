@@ -15,14 +15,10 @@ namespace POS.Boundary
             InitializeComponent();
 
             // MaterialSkin Manager 세팅
-            materialSkinManager = MaterialSkinManager.Instance;
+            var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue600, Primary.Blue700,
-                Primary.Blue200, Accent.LightBlue200,
-                TextShade.WHITE
-            );
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
         private void PayManagerBoundary_Load(object sender, EventArgs e)
