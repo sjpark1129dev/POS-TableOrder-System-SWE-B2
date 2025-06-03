@@ -23,7 +23,6 @@ namespace TableOrder
         private List<CartItem> cart = new List<CartItem>();
         private List<string> categoryList = new List<string>();
         private TableOrderMainController _controller;
-        private Label labelTotalPrice;
         private MenuLoadController menuController;
         private List<MenuEntity> allMenus;
         private List<CategoryEntity> allCategories;
@@ -38,13 +37,9 @@ namespace TableOrder
             allCategories = categoryController.GetAllCategory(); // 전체 카테고리도 로드
             LoadCategoryButtons();   // DB에서 불러온 카테고리로 버튼 생성
             LoadMenuItems(-1);
-            labelTotalPrice = new Label();
             labelTotalPrice.AutoSize = true;
             labelTotalPrice.Font = new Font("맑은 고딕", 10, FontStyle.Bold);
-            labelTotalPrice.Location = new Point(shoppingList.Right - 120, shoppingList.Bottom -10); // 적절히 조정
             labelTotalPrice.Text = "총 가격: 0원";
-            
-            this.Controls.Add(labelTotalPrice);
             labelTotalPrice.BringToFront();
 
             

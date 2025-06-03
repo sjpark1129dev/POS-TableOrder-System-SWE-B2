@@ -34,11 +34,13 @@
             orderCheckButton = new Button();
             orderButton = new Button();
             shoppingList = new ListBox();
+            labelTotalPrice = new MaterialSkin.Controls.MaterialLabel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(labelTotalPrice);
             panel1.Controls.Add(flowLayoutPanelMenus);
             panel1.Controls.Add(flowLayoutPanelCategory);
             panel1.Controls.Add(orderCheckButton);
@@ -95,9 +97,21 @@
             shoppingList.Location = new Point(585, 9);
             shoppingList.Margin = new Padding(3, 4, 3, 4);
             shoppingList.Name = "shoppingList";
-            shoppingList.Size = new Size(200, 394);
+            shoppingList.Size = new Size(200, 364);
             shoppingList.TabIndex = 6;
             shoppingList.Tag = "cart";
+            // 
+            // labelTotalPrice
+            // 
+            labelTotalPrice.AutoSize = true;
+            labelTotalPrice.Depth = 0;
+            labelTotalPrice.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            labelTotalPrice.Location = new Point(650, 384);
+            labelTotalPrice.MouseState = MaterialSkin.MouseState.HOVER;
+            labelTotalPrice.Name = "labelTotalPrice";
+            labelTotalPrice.Size = new Size(66, 19);
+            labelTotalPrice.TabIndex = 53;
+            labelTotalPrice.Text = "총가격: 0원";
             // 
             // TableOrderBoundary
             // 
@@ -109,6 +123,7 @@
             Name = "TableOrderBoundary";
             Text = "TableOrderBoundary";
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -120,6 +135,7 @@
         private System.Windows.Forms.ListBox shoppingList;
         private FlowLayoutPanel flowLayoutPanelMenus;
         private FlowLayoutPanel flowLayoutPanelCategory;
+        private MaterialSkin.Controls.MaterialLabel labelTotalPrice;
     }
 }
 
