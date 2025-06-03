@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\POS.Domain\POS.Domain.csproj" />
+    <ProjectReference Include="..\POS\POS.csproj" />
   </ItemGroup>
 
   <ItemGroup>

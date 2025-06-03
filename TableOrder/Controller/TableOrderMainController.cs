@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using POS.Domain;
 using TableOrder.Repository;
 
@@ -29,9 +30,9 @@ namespace TableOrder.Controller
             // return cart.Sum(item => item.menuPrice * item.Quantity);
         }
 
-        public void OrderRequest(List<MenuEntity> cart)
+        public void OrderRequest(int tableId, List<MenuEntity> cart)
         {
-            _tableOrderMainRepository.InsertOrder(cart);
+            _tableOrderMainRepository.InsertOrder(tableId, cart);
         }
     }
 }
