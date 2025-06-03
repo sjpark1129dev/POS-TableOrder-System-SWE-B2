@@ -31,11 +31,11 @@ namespace TableOrder
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            labelTotalPrice = new MaterialSkin.Controls.MaterialLabel();
+            labelTotalPrice = new MaterialLabel();
             flowLayoutPanelMenus = new FlowLayoutPanel();
             flowLayoutPanelCategory = new FlowLayoutPanel();
-            MaterialButton orderCheckButton = new MaterialButton();
-            MaterialButton orderButton = new MaterialButton();
+            orderCheckButton = new MaterialButton();
+            orderButton = new MaterialButton();
             shoppingList = new ListBox();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -84,25 +84,43 @@ namespace TableOrder
             // 
             // orderCheckButton
             // 
+            orderCheckButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            orderCheckButton.Density = MaterialButton.MaterialButtonDensity.Default;
+            orderCheckButton.Depth = 0;
+            orderCheckButton.HighEmphasis = true;
+            orderCheckButton.Icon = null;
             orderCheckButton.Location = new Point(3, 410);
             orderCheckButton.Margin = new Padding(3, 4, 3, 4);
+            orderCheckButton.MinimumSize = new Size(174, 67);
+            orderCheckButton.MouseState = MaterialSkin.MouseState.HOVER;
             orderCheckButton.Name = "orderCheckButton";
+            orderCheckButton.NoAccentTextColor = Color.Empty;
             orderCheckButton.Size = new Size(174, 67);
-            orderCheckButton.MinimumSize = new Size(174, 67); // 최소 크기 보장
             orderCheckButton.TabIndex = 8;
             orderCheckButton.Text = "주문내역조회";
+            orderCheckButton.Type = MaterialButton.MaterialButtonType.Contained;
+            orderCheckButton.UseAccentColor = false;
             orderCheckButton.UseVisualStyleBackColor = true;
             orderCheckButton.Click += orderCheckButton_Click;
             // 
             // orderButton
             // 
+            orderButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            orderButton.Density = MaterialButton.MaterialButtonDensity.Default;
+            orderButton.Depth = 0;
+            orderButton.HighEmphasis = true;
+            orderButton.Icon = null;
             orderButton.Location = new Point(585, 411);
             orderButton.Margin = new Padding(3, 4, 3, 4);
-            orderButton.Name = "orderButton";
-            orderButton.Size = new Size(200, 66);
             orderButton.MinimumSize = new Size(200, 66);
+            orderButton.MouseState = MaterialSkin.MouseState.HOVER;
+            orderButton.Name = "orderButton";
+            orderButton.NoAccentTextColor = Color.Empty;
+            orderButton.Size = new Size(200, 66);
             orderButton.TabIndex = 7;
             orderButton.Text = "주문";
+            orderButton.Type = MaterialButton.MaterialButtonType.Contained;
+            orderButton.UseAccentColor = false;
             orderButton.UseVisualStyleBackColor = true;
             orderButton.Click += orderButton_Click;
             // 
@@ -134,12 +152,12 @@ namespace TableOrder
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button orderCheckButton;
-        private System.Windows.Forms.Button orderButton;
         private System.Windows.Forms.ListBox shoppingList;
         private FlowLayoutPanel flowLayoutPanelMenus;
         private FlowLayoutPanel flowLayoutPanelCategory;
         private MaterialSkin.Controls.MaterialLabel labelTotalPrice;
+        private MaterialButton orderCheckButton;
+        private MaterialButton orderButton;
     }
 }
 
