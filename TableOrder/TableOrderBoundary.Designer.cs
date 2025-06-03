@@ -1,4 +1,6 @@
-﻿namespace TableOrder
+﻿using MaterialSkin.Controls;
+
+namespace TableOrder
 {
     partial class TableOrderBoundary
     {
@@ -32,8 +34,8 @@
             labelTotalPrice = new MaterialSkin.Controls.MaterialLabel();
             flowLayoutPanelMenus = new FlowLayoutPanel();
             flowLayoutPanelCategory = new FlowLayoutPanel();
-            orderCheckButton = new Button();
-            orderButton = new Button();
+            MaterialButton orderCheckButton = new MaterialButton();
+            MaterialButton orderButton = new MaterialButton();
             shoppingList = new ListBox();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -86,6 +88,7 @@
             orderCheckButton.Margin = new Padding(3, 4, 3, 4);
             orderCheckButton.Name = "orderCheckButton";
             orderCheckButton.Size = new Size(174, 67);
+            orderCheckButton.MinimumSize = new Size(174, 67); // 최소 크기 보장
             orderCheckButton.TabIndex = 8;
             orderCheckButton.Text = "주문내역조회";
             orderCheckButton.UseVisualStyleBackColor = true;
@@ -97,6 +100,7 @@
             orderButton.Margin = new Padding(3, 4, 3, 4);
             orderButton.Name = "orderButton";
             orderButton.Size = new Size(200, 66);
+            orderButton.MinimumSize = new Size(200, 66);
             orderButton.TabIndex = 7;
             orderButton.Text = "주문";
             orderButton.UseVisualStyleBackColor = true;
