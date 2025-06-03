@@ -31,8 +31,6 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            panel1 = new Panel();
-            label1 = new Label();
             panel3 = new Panel();
             finalPrice = new Label();
             OrderDataView = new DataGridView();
@@ -40,41 +38,19 @@
             qty = new DataGridViewTextBoxColumn();
             totalPrice = new DataGridViewTextBoxColumn();
             총금액 = new DataGridViewTextBoxColumn();
-            panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrderDataView).BeginInit();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(label1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(3, 64);
-            panel1.Margin = new Padding(2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(554, 40);
-            panel1.TabIndex = 2;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("맑은 고딕", 20F);
-            label1.Location = new Point(212, 1);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(125, 37);
-            label1.TabIndex = 1;
-            label1.Text = "주문조회";
             // 
             // panel3
             // 
             panel3.Controls.Add(finalPrice);
             panel3.Controls.Add(OrderDataView);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(3, 104);
+            panel3.Location = new Point(3, 64);
             panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(554, 163);
+            panel3.Size = new Size(554, 203);
             panel3.TabIndex = 4;
             // 
             // finalPrice
@@ -93,7 +69,7 @@
             OrderDataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             OrderDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             OrderDataView.Columns.AddRange(new DataGridViewColumn[] { menuName, qty, totalPrice, 총금액 });
-            OrderDataView.Location = new Point(57, -8);
+            OrderDataView.Location = new Point(57, 12);
             OrderDataView.Margin = new Padding(2);
             OrderDataView.Name = "OrderDataView";
             OrderDataView.RowHeadersWidth = 62;
@@ -135,12 +111,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(560, 270);
             Controls.Add(panel3);
-            Controls.Add(panel1);
             Margin = new Padding(2);
             Name = "OrderViewBoundary";
             Text = "주문조회";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)OrderDataView).EndInit();
@@ -148,9 +121,6 @@
         }
 
         #endregion
-
-        private Panel panel1;
-        private Label label1;
         private Panel panel3;
         private DataGridView OrderDataView;
         private Label finalPrice;
