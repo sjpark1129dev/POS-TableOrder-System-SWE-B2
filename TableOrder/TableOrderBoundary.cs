@@ -53,7 +53,7 @@ namespace TableOrder
 
             foreach (var cat in categories)
             {
-                var btn = new MaterialButton()
+                var btn = new Button()
                 {
                     Text = cat.CategoryName,
                     Width = 130,
