@@ -107,7 +107,7 @@
             tableSaveButton.NoAccentTextColor = Color.Empty;
             tableSaveButton.Size = new Size(105, 36);
             tableSaveButton.TabIndex = 13;
-            tableSaveButton.Text = "테이블 저장";
+            tableSaveButton.Text = "테이블 수정";
             tableSaveButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             tableSaveButton.UseAccentColor = false;
             tableSaveButton.UseVisualStyleBackColor = true;
