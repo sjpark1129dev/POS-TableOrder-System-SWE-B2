@@ -31,12 +31,12 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanelTables = new TableLayoutPanel();
             panel7 = new Panel();
-            tableSaveButton = new Button();
+            tableSaveButton = new MaterialSkin.Controls.MaterialButton();
+            tableDeleteButton = new MaterialSkin.Controls.MaterialButton();
+            tableCreateButton2 = new MaterialSkin.Controls.MaterialButton();
             textBoxResetButton = new Button();
             tableIdTextBox = new TextBox();
             tableIdLabel = new Label();
-            tableDeleteButton = new Button();
-            tableCreateButton = new Button();
             tableNameLabel = new Label();
             tableNameTextBox = new TextBox();
             tableLayoutPanel1.SuspendLayout();
@@ -51,12 +51,12 @@
             tableLayoutPanel1.Controls.Add(tableLayoutPanelTables, 0, 0);
             tableLayoutPanel1.Controls.Add(panel7, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Location = new Point(3, 64);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 54.9295769F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 45.0704231F));
-            tableLayoutPanel1.Size = new Size(800, 450);
+            tableLayoutPanel1.Size = new Size(794, 383);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanelTables
@@ -73,34 +73,85 @@
             tableLayoutPanelTables.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanelTables.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanelTables.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            tableLayoutPanelTables.Size = new Size(394, 444);
+            tableLayoutPanelTables.Size = new Size(391, 377);
             tableLayoutPanelTables.TabIndex = 0;
             // 
             // panel7
             // 
             panel7.BackColor = Color.LightSteelBlue;
             panel7.Controls.Add(tableSaveButton);
+            panel7.Controls.Add(tableDeleteButton);
+            panel7.Controls.Add(tableCreateButton2);
             panel7.Controls.Add(textBoxResetButton);
             panel7.Controls.Add(tableIdTextBox);
             panel7.Controls.Add(tableIdLabel);
-            panel7.Controls.Add(tableDeleteButton);
-            panel7.Controls.Add(tableCreateButton);
             panel7.Controls.Add(tableNameLabel);
             panel7.Controls.Add(tableNameTextBox);
             panel7.Dock = DockStyle.Fill;
-            panel7.Location = new Point(403, 3);
+            panel7.Location = new Point(400, 3);
             panel7.Name = "panel7";
-            panel7.Size = new Size(394, 444);
+            panel7.Size = new Size(391, 377);
             panel7.TabIndex = 1;
             // 
             // tableSaveButton
             // 
-            tableSaveButton.Location = new Point(72, 308);
+            tableSaveButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tableSaveButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            tableSaveButton.Depth = 0;
+            tableSaveButton.HighEmphasis = true;
+            tableSaveButton.Icon = null;
+            tableSaveButton.Location = new Point(219, 264);
+            tableSaveButton.Margin = new Padding(4, 6, 4, 6);
+            tableSaveButton.MouseState = MaterialSkin.MouseState.HOVER;
             tableSaveButton.Name = "tableSaveButton";
-            tableSaveButton.Size = new Size(269, 37);
-            tableSaveButton.TabIndex = 10;
+            tableSaveButton.NoAccentTextColor = Color.Empty;
+            tableSaveButton.Size = new Size(105, 36);
+            tableSaveButton.TabIndex = 13;
             tableSaveButton.Text = "테이블 저장";
+            tableSaveButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            tableSaveButton.UseAccentColor = false;
             tableSaveButton.UseVisualStyleBackColor = true;
+            tableSaveButton.Click += tableSaveButton_Click_1;
+            // 
+            // tableDeleteButton
+            // 
+            tableDeleteButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tableDeleteButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            tableDeleteButton.Depth = 0;
+            tableDeleteButton.HighEmphasis = true;
+            tableDeleteButton.Icon = null;
+            tableDeleteButton.Location = new Point(219, 216);
+            tableDeleteButton.Margin = new Padding(4, 6, 4, 6);
+            tableDeleteButton.MouseState = MaterialSkin.MouseState.HOVER;
+            tableDeleteButton.Name = "tableDeleteButton";
+            tableDeleteButton.NoAccentTextColor = Color.Empty;
+            tableDeleteButton.Size = new Size(105, 36);
+            tableDeleteButton.TabIndex = 12;
+            tableDeleteButton.Text = "테이블 삭제";
+            tableDeleteButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            tableDeleteButton.UseAccentColor = false;
+            tableDeleteButton.UseVisualStyleBackColor = true;
+            tableDeleteButton.Click += tableDeleteButton_Click;
+            // 
+            // tableCreateButton2
+            // 
+            tableCreateButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tableCreateButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            tableCreateButton2.Depth = 0;
+            tableCreateButton2.HighEmphasis = true;
+            tableCreateButton2.Icon = null;
+            tableCreateButton2.Location = new Point(219, 168);
+            tableCreateButton2.Margin = new Padding(4, 6, 4, 6);
+            tableCreateButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            tableCreateButton2.Name = "tableCreateButton2";
+            tableCreateButton2.NoAccentTextColor = Color.Empty;
+            tableCreateButton2.Size = new Size(105, 36);
+            tableCreateButton2.TabIndex = 11;
+            tableCreateButton2.Text = "테이블 생성";
+            tableCreateButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            tableCreateButton2.UseAccentColor = false;
+            tableCreateButton2.UseVisualStyleBackColor = true;
+            tableCreateButton2.Click += tableCreateButton_Click;
             // 
             // textBoxResetButton
             // 
@@ -128,26 +179,6 @@
             tableIdLabel.Size = new Size(83, 15);
             tableIdLabel.TabIndex = 7;
             tableIdLabel.Text = "테이블 고유ID";
-            // 
-            // tableDeleteButton
-            // 
-            tableDeleteButton.Location = new Point(72, 265);
-            tableDeleteButton.Name = "tableDeleteButton";
-            tableDeleteButton.Size = new Size(269, 37);
-            tableDeleteButton.TabIndex = 5;
-            tableDeleteButton.Text = "테이블 삭제";
-            tableDeleteButton.UseVisualStyleBackColor = true;
-            tableDeleteButton.Click += tableDeleteButton_Click;
-            // 
-            // tableCreateButton
-            // 
-            tableCreateButton.Location = new Point(72, 222);
-            tableCreateButton.Name = "tableCreateButton";
-            tableCreateButton.Size = new Size(269, 37);
-            tableCreateButton.TabIndex = 2;
-            tableCreateButton.Text = "테이블 생성";
-            tableCreateButton.UseVisualStyleBackColor = true;
-            tableCreateButton.Click += tableCreateButton_Click;
             // 
             // tableNameLabel
             // 
@@ -184,13 +215,13 @@
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanelTables;
         private Panel panel7;
-        private Button tableDeleteButton;
-        private Button tableCreateButton;
         private Label tableNameLabel;
         private TextBox tableNameTextBox;
         private TextBox tableIdTextBox;
         private Label tableIdLabel;
         private Button textBoxResetButton;
-        private Button tableSaveButton;
+        private MaterialSkin.Controls.MaterialButton tableCreateButton2;
+        private MaterialSkin.Controls.MaterialButton tableSaveButton;
+        private MaterialSkin.Controls.MaterialButton tableDeleteButton;
     }
 }
