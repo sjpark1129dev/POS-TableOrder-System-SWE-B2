@@ -44,17 +44,17 @@
             panel1.Controls.Add(orderCheckButton);
             panel1.Controls.Add(orderButton);
             panel1.Controls.Add(shoppingList);
-            panel1.Location = new Point(12, 15);
+            panel1.Location = new Point(6, 68);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(776, 532);
+            panel1.Size = new Size(788, 487);
             panel1.TabIndex = 0;
             // 
             // flowLayoutPanelMenus
             // 
-            flowLayoutPanelMenus.Location = new Point(149, 9);
+            flowLayoutPanelMenus.Location = new Point(180, 9);
             flowLayoutPanelMenus.Name = "flowLayoutPanelMenus";
-            flowLayoutPanelMenus.Size = new Size(430, 456);
+            flowLayoutPanelMenus.Size = new Size(399, 394);
             flowLayoutPanelMenus.TabIndex = 52;
             // 
             // flowLayoutPanelCategory
@@ -63,15 +63,15 @@
             flowLayoutPanelCategory.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanelCategory.Location = new Point(3, 3);
             flowLayoutPanelCategory.Name = "flowLayoutPanelCategory";
-            flowLayoutPanelCategory.Size = new Size(136, 462);
+            flowLayoutPanelCategory.Size = new Size(171, 400);
             flowLayoutPanelCategory.TabIndex = 51;
             // 
             // orderCheckButton
             // 
-            orderCheckButton.Location = new Point(3, 472);
+            orderCheckButton.Location = new Point(3, 410);
             orderCheckButton.Margin = new Padding(3, 4, 3, 4);
             orderCheckButton.Name = "orderCheckButton";
-            orderCheckButton.Size = new Size(174, 56);
+            orderCheckButton.Size = new Size(174, 67);
             orderCheckButton.TabIndex = 8;
             orderCheckButton.Text = "주문내역조회";
             orderCheckButton.UseVisualStyleBackColor = true;
@@ -79,10 +79,10 @@
             // 
             // orderButton
             // 
-            orderButton.Location = new Point(585, 472);
+            orderButton.Location = new Point(585, 411);
             orderButton.Margin = new Padding(3, 4, 3, 4);
             orderButton.Name = "orderButton";
-            orderButton.Size = new Size(188, 56);
+            orderButton.Size = new Size(200, 66);
             orderButton.TabIndex = 7;
             orderButton.Text = "주문";
             orderButton.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@
             shoppingList.Location = new Point(585, 9);
             shoppingList.Margin = new Padding(3, 4, 3, 4);
             shoppingList.Name = "shoppingList";
-            shoppingList.Size = new Size(188, 454);
+            shoppingList.Size = new Size(200, 394);
             shoppingList.TabIndex = 6;
             shoppingList.Tag = "cart";
             // 
