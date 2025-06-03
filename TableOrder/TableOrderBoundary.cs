@@ -14,6 +14,7 @@ using POS.Controller;
 using POS;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
+
 namespace TableOrder
 {
    
@@ -53,12 +54,16 @@ namespace TableOrder
 
             foreach (var cat in categories)
             {
-                var btn = new Button()
+                var btn = new MaterialButton()
                 {
                     Text = cat.CategoryName,
                     Width = 130,
                     Height = 70,
-                    Tag = cat.Id // 나중에 클릭 시 어떤 카테고리인지 알 수 있음
+                    MinimumSize = new Size(130, 70), // 최소 크기 보장
+                    Tag = cat.Id, // 나중에 클릭 시 어떤 카테고리인지 알 수 있음
+                    AutoSize = false,
+                    HighEmphasis = true,
+                    Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default
                 };
 
                 // 클릭 이벤트에 연결 (추후 메뉴 필터링에 사용)
@@ -85,6 +90,7 @@ namespace TableOrder
 
             foreach (var menu in filteredMenus)
             {
+                
                 var item = new MenuItemControl(menu.MenuName, menu.MenuPrice, dummyImage)
                 {
                     MenuData = menu
@@ -217,7 +223,7 @@ namespace TableOrder
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50)); // 이미지
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20)); // 메뉴명
             layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 25)); // 가격
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40)); // 버튼 영역
+            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50)); // 버튼 영역
 
             // 이미지
             picImage = new PictureBox()
@@ -250,10 +256,23 @@ namespace TableOrder
                 Dock = DockStyle.Fill,
                 AutoSize = true,
                 WrapContents = false,
-                Padding = new Padding(20, 0, 0, 0)
+                Padding = new Padding(20, 0, 0, 0),
+                Margin = new Padding(0, -5, 0, 0)
             };
-            btnPlus = new Button() { Text = "+", Width = 30, Height = 30 };
-            btnMinus = new Button() { Text = "-", Width = 30, Height = 30 };
+            btnPlus = new MaterialButton() { Text = "+", Width = 30, Height = 30,
+                Type = MaterialButton.MaterialButtonType.Contained,
+                HighEmphasis = true,
+               
+                AutoSize = false,
+                Density = MaterialButton.MaterialButtonDensity.Default
+            };
+            btnMinus = new MaterialButton() { Text = "-", Width = 30, Height = 30,
+                Type = MaterialButton.MaterialButtonType.Contained,
+                HighEmphasis = true,
+                
+                AutoSize = false,
+                Density = MaterialButton.MaterialButtonDensity.Default
+            };
 
             btnPlus.Click += (s, e) => OnPlusClicked?.Invoke(this, MenuData);
             btnMinus.Click += (s, e) => OnMinusClicked?.Invoke(this, MenuData);
