@@ -53,7 +53,7 @@ namespace TableOrder
 
             foreach (var cat in categories)
             {
-                var btn = new Button()
+                var btn = new MaterialButton()
                 {
                     Text = cat.CategoryName,
                     Width = 130,
@@ -96,7 +96,7 @@ namespace TableOrder
         }
         private void CategoryButton_Click(object sender, EventArgs e)
         {
-            if (sender is Button btn && btn.Tag is int categoryId)
+            if (sender is MaterialButton btn && btn.Tag is int categoryId)
             {
                 LoadMenuItems(categoryId);
             }
