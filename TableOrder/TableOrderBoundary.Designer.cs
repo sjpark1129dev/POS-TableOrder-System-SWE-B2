@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            labelTotalPrice = new MaterialSkin.Controls.MaterialLabel();
             flowLayoutPanelMenus = new FlowLayoutPanel();
             flowLayoutPanelCategory = new FlowLayoutPanel();
             orderCheckButton = new Button();
             orderButton = new Button();
             shoppingList = new ListBox();
-            labelTotalPrice = new MaterialSkin.Controls.MaterialLabel();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,11 +52,23 @@
             panel1.Size = new Size(788, 487);
             panel1.TabIndex = 0;
             // 
+            // labelTotalPrice
+            // 
+            labelTotalPrice.AutoSize = true;
+            labelTotalPrice.Depth = 0;
+            labelTotalPrice.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            labelTotalPrice.Location = new Point(650, 384);
+            labelTotalPrice.MouseState = MaterialSkin.MouseState.HOVER;
+            labelTotalPrice.Name = "labelTotalPrice";
+            labelTotalPrice.Size = new Size(66, 19);
+            labelTotalPrice.TabIndex = 53;
+            labelTotalPrice.Text = "총가격: 0원";
+            // 
             // flowLayoutPanelMenus
             // 
-            flowLayoutPanelMenus.Location = new Point(180, 9);
+            flowLayoutPanelMenus.Location = new Point(180, 3);
             flowLayoutPanelMenus.Name = "flowLayoutPanelMenus";
-            flowLayoutPanelMenus.Size = new Size(399, 394);
+            flowLayoutPanelMenus.Size = new Size(399, 400);
             flowLayoutPanelMenus.TabIndex = 52;
             // 
             // flowLayoutPanelCategory
@@ -100,18 +112,6 @@
             shoppingList.Size = new Size(200, 364);
             shoppingList.TabIndex = 6;
             shoppingList.Tag = "cart";
-            // 
-            // labelTotalPrice
-            // 
-            labelTotalPrice.AutoSize = true;
-            labelTotalPrice.Depth = 0;
-            labelTotalPrice.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            labelTotalPrice.Location = new Point(650, 384);
-            labelTotalPrice.MouseState = MaterialSkin.MouseState.HOVER;
-            labelTotalPrice.Name = "labelTotalPrice";
-            labelTotalPrice.Size = new Size(66, 19);
-            labelTotalPrice.TabIndex = 53;
-            labelTotalPrice.Text = "총가격: 0원";
             // 
             // TableOrderBoundary
             // 
