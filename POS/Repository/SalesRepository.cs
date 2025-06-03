@@ -12,8 +12,7 @@ namespace POS.Repository
         private readonly AppDbContext _context = AppDbContext.Instance;
         public List<SalesEntity> GetAllSales()
         {
-            // 모든 데이터 반환 (임시)
-            return GetMockSales();
+            return _context.Sales.ToList();
         }
 
         public List<SalesEntity> SearchSales(string menuName, DateTime startDate, DateTime endDate, string receiptNum)

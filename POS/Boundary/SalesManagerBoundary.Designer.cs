@@ -30,16 +30,14 @@
         {
             label1 = new Label();
             panel1 = new Panel();
-            salesSearchButton = new Button();
-            recnumTxt = new TextBox();
+            salesSearchBtn = new MaterialSkin.Controls.MaterialButton();
             label4 = new Label();
-            menuTxt = new TextBox();
             label3 = new Label();
             startDate = new DateTimePicker();
             label2 = new Label();
             endDate = new DateTimePicker();
             panel2 = new Panel();
-            finalsalesLabel = new Label();
+            finalsalesLabel = new MaterialSkin.Controls.MaterialLabel();
             SalesDataView = new DataGridView();
             dateTime = new DataGridViewTextBoxColumn();
             recnum = new DataGridViewTextBoxColumn();
@@ -49,6 +47,8 @@
             totalPrice = new DataGridViewTextBoxColumn();
             panel4 = new Panel();
             panel3 = new Panel();
+            menuTxt = new TextBox();
+            recnumTxt = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SalesDataView).BeginInit();
@@ -57,7 +57,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(17, 11);
+            label1.Location = new Point(69, 19);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(34, 15);
@@ -67,45 +67,46 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(salesSearchButton);
             panel1.Controls.Add(recnumTxt);
-            panel1.Controls.Add(label4);
             panel1.Controls.Add(menuTxt);
+            panel1.Controls.Add(salesSearchBtn);
+            panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(startDate);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(endDate);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(3, 64);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(915, 38);
+            panel1.Size = new Size(909, 53);
             panel1.TabIndex = 1;
             // 
-            // salesSearchButton
+            // salesSearchBtn
             // 
-            salesSearchButton.Location = new Point(800, 10);
-            salesSearchButton.Margin = new Padding(2);
-            salesSearchButton.Name = "salesSearchButton";
-            salesSearchButton.Size = new Size(78, 20);
-            salesSearchButton.TabIndex = 8;
-            salesSearchButton.Text = "조회";
-            salesSearchButton.UseVisualStyleBackColor = true;
-            salesSearchButton.Click += salesSearchButton_Click;
-            // 
-            // recnumTxt
-            // 
-            recnumTxt.Location = new Point(619, 8);
-            recnumTxt.Margin = new Padding(2);
-            recnumTxt.Name = "recnumTxt";
-            recnumTxt.Size = new Size(148, 23);
-            recnumTxt.TabIndex = 7;
+            salesSearchBtn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            salesSearchBtn.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            salesSearchBtn.Depth = 0;
+            salesSearchBtn.HighEmphasis = true;
+            salesSearchBtn.Icon = null;
+            salesSearchBtn.Location = new Point(779, 7);
+            salesSearchBtn.Margin = new Padding(4, 6, 4, 6);
+            salesSearchBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            salesSearchBtn.Name = "salesSearchBtn";
+            salesSearchBtn.NoAccentTextColor = Color.Empty;
+            salesSearchBtn.Size = new Size(64, 36);
+            salesSearchBtn.TabIndex = 0;
+            salesSearchBtn.Text = "조회";
+            salesSearchBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            salesSearchBtn.UseAccentColor = false;
+            salesSearchBtn.UseVisualStyleBackColor = true;
+            salesSearchBtn.Click += salesSearchButton_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(536, 11);
+            label4.Location = new Point(505, 18);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
             label4.Size = new Size(74, 15);
@@ -113,18 +114,10 @@
             label4.Text = "계산서 번호:";
             label4.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // menuTxt
-            // 
-            menuTxt.Location = new Point(377, 10);
-            menuTxt.Margin = new Padding(2);
-            menuTxt.Name = "menuTxt";
-            menuTxt.Size = new Size(148, 23);
-            menuTxt.TabIndex = 5;
-            // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(323, 11);
+            label3.Location = new Point(349, 18);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(46, 15);
@@ -136,7 +129,7 @@
             // 
             startDate.CustomFormat = "yyyy-MM-dd";
             startDate.Format = DateTimePickerFormat.Custom;
-            startDate.Location = new Point(55, 7);
+            startDate.Location = new Point(107, 15);
             startDate.Margin = new Padding(2);
             startDate.Name = "startDate";
             startDate.Size = new Size(107, 23);
@@ -146,7 +139,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(167, 8);
+            label2.Location = new Point(219, 16);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(15, 15);
@@ -157,7 +150,7 @@
             // 
             endDate.CustomFormat = "yyyy-MM-dd";
             endDate.Format = DateTimePickerFormat.Custom;
-            endDate.Location = new Point(186, 7);
+            endDate.Location = new Point(238, 15);
             endDate.Margin = new Padding(2);
             endDate.Name = "endDate";
             endDate.Size = new Size(107, 23);
@@ -170,20 +163,22 @@
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 38);
+            panel2.Location = new Point(3, 117);
             panel2.Margin = new Padding(2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(915, 342);
+            panel2.Size = new Size(909, 357);
             panel2.TabIndex = 3;
             // 
             // finalsalesLabel
             // 
             finalsalesLabel.AutoSize = true;
-            finalsalesLabel.Location = new Point(739, 318);
-            finalsalesLabel.Margin = new Padding(2, 0, 2, 0);
+            finalsalesLabel.Depth = 0;
+            finalsalesLabel.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            finalsalesLabel.Location = new Point(740, 315);
+            finalsalesLabel.MouseState = MaterialSkin.MouseState.HOVER;
             finalsalesLabel.Name = "finalsalesLabel";
-            finalsalesLabel.Size = new Size(69, 15);
-            finalsalesLabel.TabIndex = 3;
+            finalsalesLabel.Size = new Size(66, 19);
+            finalsalesLabel.TabIndex = 4;
             finalsalesLabel.Text = "총매출: 0원";
             // 
             // SalesDataView
@@ -196,7 +191,7 @@
             SalesDataView.Margin = new Padding(2);
             SalesDataView.Name = "SalesDataView";
             SalesDataView.RowHeadersWidth = 62;
-            SalesDataView.Size = new Size(789, 305);
+            SalesDataView.Size = new Size(783, 305);
             SalesDataView.TabIndex = 2;
             // 
             // dateTime
@@ -238,10 +233,10 @@
             // panel4
             // 
             panel4.Dock = DockStyle.Right;
-            panel4.Location = new Point(852, 0);
+            panel4.Location = new Point(846, 0);
             panel4.Margin = new Padding(2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(63, 342);
+            panel4.Size = new Size(63, 357);
             panel4.TabIndex = 1;
             // 
             // panel3
@@ -250,19 +245,33 @@
             panel3.Location = new Point(0, 0);
             panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(63, 342);
+            panel3.Size = new Size(63, 357);
             panel3.TabIndex = 0;
+            // 
+            // menuTxt
+            // 
+            menuTxt.Location = new Point(400, 15);
+            menuTxt.Name = "menuTxt";
+            menuTxt.Size = new Size(100, 23);
+            menuTxt.TabIndex = 8;
+            // 
+            // recnumTxt
+            // 
+            recnumTxt.Location = new Point(584, 15);
+            recnumTxt.Name = "recnumTxt";
+            recnumTxt.Size = new Size(100, 23);
+            recnumTxt.TabIndex = 9;
             // 
             // SalesManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(915, 380);
+            ClientSize = new Size(915, 477);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Margin = new Padding(2);
             Name = "SalesManagerBoundary";
-            Text = "SalesManagerBoundary";
+            Text = "결재내역관리";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -278,10 +287,7 @@
         private DateTimePicker startDate;
         private Label label2;
         private DateTimePicker endDate;
-        private Button salesSearchButton;
-        private TextBox recnumTxt;
         private Label label4;
-        private TextBox menuTxt;
         private Label label3;
         private Panel panel2;
         private DataGridView SalesDataView;
@@ -293,6 +299,9 @@
         private DataGridViewTextBoxColumn totalPrice;
         private Panel panel4;
         private Panel panel3;
-        private Label finalsalesLabel;
+        private MaterialSkin.Controls.MaterialButton salesSearchBtn;
+        private MaterialSkin.Controls.MaterialLabel finalsalesLabel;
+        private TextBox recnumTxt;
+        private TextBox menuTxt;
     }
 }
