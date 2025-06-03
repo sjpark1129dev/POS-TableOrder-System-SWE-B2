@@ -27,10 +27,47 @@ namespace TableOrder
         private MenuLoadController menuController;
         private List<MenuEntity> allMenus;
         private List<CategoryEntity> allCategories;
-        
+        private MaterialComboBox comboBoxTableSelector;
+        private TableController tableController;
+        private int selectedTableId = -1;
+        private Label labelSelectedTable;
+
         public TableOrderBoundary()
         {
             InitializeComponent();
+            tableController = new TableController();
+            comboBoxTableSelector = new MaterialComboBox
+            {
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Width = 200,
+                Location = new Point(200, 480), // 위치 조정
+                Font = new Font("맑은 고딕", 10),
+                Hint = "테이블 선택"
+            };
+
+            // 테이블 목록 불러오기
+            var tableList = tableController.GetAllTables();
+            comboBoxTableSelector.DataSource = tableList;
+            comboBoxTableSelector.DisplayMember = "tableName";
+            comboBoxTableSelector.ValueMember = "Id";
+
+            // 선택 변경 이벤트
+            comboBoxTableSelector.SelectedIndexChanged += ComboBoxTableSelector_SelectedIndexChanged;
+
+            // 폼에 추가
+            this.Controls.Add(comboBoxTableSelector);
+            comboBoxTableSelector.BringToFront();
+
+            labelSelectedTable = new Label
+            {
+                Text = "선택된 테이블: 없음",
+                Location = new Point(410, 480),  // comboBox 오른쪽 위치 추천
+                AutoSize = true,
+                Font = new Font("맑은 고딕", 10, FontStyle.Bold)
+            };
+            this.Controls.Add(labelSelectedTable);
+            labelSelectedTable.BringToFront();
+
             _controller = new TableOrderMainController();
             categoryController = new CategoryController();
             menuController = new MenuLoadController();
@@ -44,6 +81,15 @@ namespace TableOrder
             labelTotalPrice.BringToFront();
 
             
+        }
+        private void ComboBoxTableSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxTableSelector.SelectedItem is TableEntity selectedTable)
+            {
+                selectedTableId = selectedTable.Id;
+                labelSelectedTable.Text = $"선택된 테이블: {selectedTable.tableName}";
+
+            }
         }
         private CategoryController categoryController;
         private void LoadCategoryButtons()
