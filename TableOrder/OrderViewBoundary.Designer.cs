@@ -39,6 +39,7 @@
             menuName = new DataGridViewTextBoxColumn();
             qty = new DataGridViewTextBoxColumn();
             totalPrice = new DataGridViewTextBoxColumn();
+            총금액 = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrderDataView).BeginInit();
@@ -48,10 +49,10 @@
             // 
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(3, 64);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(560, 40);
+            panel1.Size = new Size(554, 40);
             panel1.TabIndex = 2;
             // 
             // label1
@@ -70,10 +71,10 @@
             panel3.Controls.Add(finalPrice);
             panel3.Controls.Add(OrderDataView);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(0, 40);
+            panel3.Location = new Point(3, 104);
             panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(560, 230);
+            panel3.Size = new Size(554, 163);
             panel3.TabIndex = 4;
             // 
             // finalPrice
@@ -91,8 +92,8 @@
             OrderDataView.Anchor = AnchorStyles.None;
             OrderDataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             OrderDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            OrderDataView.Columns.AddRange(new DataGridViewColumn[] { menuName, qty, totalPrice });
-            OrderDataView.Location = new Point(60, 26);
+            OrderDataView.Columns.AddRange(new DataGridViewColumn[] { menuName, qty, totalPrice, 총금액 });
+            OrderDataView.Location = new Point(57, -8);
             OrderDataView.Margin = new Padding(2);
             OrderDataView.Name = "OrderDataView";
             OrderDataView.RowHeadersWidth = 62;
@@ -123,6 +124,11 @@
             totalPrice.MinimumWidth = 8;
             totalPrice.Name = "totalPrice";
             // 
+            // 총금액
+            // 
+            총금액.HeaderText = "총금액";
+            총금액.Name = "총금액";
+            // 
             // OrderViewBoundary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -147,9 +153,10 @@
         private Label label1;
         private Panel panel3;
         private DataGridView OrderDataView;
+        private Label finalPrice;
         private DataGridViewTextBoxColumn menuName;
         private DataGridViewTextBoxColumn qty;
         private DataGridViewTextBoxColumn totalPrice;
-        private Label finalPrice;
+        private DataGridViewTextBoxColumn 총금액;
     }
 }

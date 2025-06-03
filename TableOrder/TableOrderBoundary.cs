@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using MaterialSkin.Controls;
 using POS.Domain;
 using TableOrder.Controller;
+using POS.Controller;
+using POS;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace TableOrder
@@ -22,9 +24,20 @@ namespace TableOrder
         private List<string> categoryList = new List<string>();
         private TableOrderMainController _controller;
         private Label labelTotalPrice;
+        private MenuLoadController menuController;
+        private List<MenuEntity> allMenus;
+        private List<CategoryEntity> allCategories;
+        
         public TableOrderBoundary()
         {
             InitializeComponent();
+            _controller = new TableOrderMainController();
+            categoryController = new CategoryController();
+            menuController = new MenuLoadController();
+            allMenus = menuController.MenuLoad();   // DB에서 전체 메뉴 로드
+            allCategories = categoryController.GetAllCategory(); // 전체 카테고리도 로드
+            LoadCategoryButtons();   // DB에서 불러온 카테고리로 버튼 생성
+            LoadMenuItems(-1);
             labelTotalPrice = new Label();
             labelTotalPrice.AutoSize = true;
             labelTotalPrice.Font = new Font("맑은 고딕", 10, FontStyle.Bold);
@@ -34,30 +47,36 @@ namespace TableOrder
             this.Controls.Add(labelTotalPrice);
             labelTotalPrice.BringToFront();
 
-            LoadCategoryButtons();
-            LoadMenuItems();
+            
         }
-       
+        private CategoryController categoryController;
         private void LoadCategoryButtons()
         {
-            string[] categories = { "고기", "음료", "식사" };
+            flowLayoutPanelCategory.Controls.Clear();
+
+            var categories = categoryController.GetAllCategory(); // DB에서 카테고리 목록 불러오기
+
             foreach (var cat in categories)
             {
                 var btn = new Button()
                 {
-                    Text = cat,
+                    Text = cat.CategoryName,
                     Width = 130,
-                    Height = 70
+                    Height = 70,
+                    Tag = cat.Id // 나중에 클릭 시 어떤 카테고리인지 알 수 있음
                 };
+
+                // 클릭 이벤트에 연결 (추후 메뉴 필터링에 사용)
+                btn.Click += CategoryButton_Click;
+               
                 flowLayoutPanelCategory.Controls.Add(btn);
             }
         }
-
-        private void LoadMenuItems()
+       
+        private void LoadMenuItems(int categoryId)
         {
             flowLayoutPanelMenus.Controls.Clear();
 
-            // 임시 이미지 생성
             Bitmap dummyImage = new Bitmap(100, 100);
             using (Graphics g = Graphics.FromImage(dummyImage))
             {
@@ -65,21 +84,32 @@ namespace TableOrder
                 g.DrawString("Image", new Font("Arial", 10), Brushes.White, new PointF(10, 40));
             }
 
-            var menus = new List<(string name, int price)>
-            {
-                ("삼겹살", 12000),
-                ("콜라", 2000),
-                ("된장찌개", 7000)
-            };
+            List<MenuEntity> filteredMenus = (categoryId == -1)
+                ? allMenus
+                : allMenus.Where(m => m.CategoryId == categoryId).ToList();
 
-            foreach (var menu in menus)
+            foreach (var menu in filteredMenus)
             {
-                var item = new MenuItemControl(menu.name, menu.price, dummyImage);
+                var item = new MenuItemControl(menu.MenuName, menu.MenuPrice, dummyImage)
+                {
+                    MenuData = menu
+                };
                 item.OnPlusClicked += MenuItemPlusClicked;
                 item.OnMinusClicked += MenuItemMinusClicked;
                 flowLayoutPanelMenus.Controls.Add(item);
             }
         }
+        private void CategoryButton_Click(object sender, EventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is int categoryId)
+            {
+                LoadMenuItems(categoryId);
+            }
+        }
+
+
+
+        
         private void MenuItemPlusClicked(object sender, MenuEntity menu)
         {
             var existingItem = cart.FirstOrDefault(c => c.Menu.MenuName == menu.MenuName);
@@ -141,6 +171,7 @@ namespace TableOrder
 
         private void orderButton_Click(object sender, EventArgs e)
         {
+            int currentTableId = 1;
             if (cart.Count == 0)
             {
                 MessageBox.Show("장바구니가 비어 있습니다.");
@@ -148,7 +179,7 @@ namespace TableOrder
             }
 
             var orderList = cart.SelectMany(c => Enumerable.Repeat(c.Menu, c.Quantity)).ToList();
-            _controller.OrderRequest(orderList);
+            _controller.OrderRequest(currentTableId, orderList);
             MessageBox.Show("주문이 완료되었습니다!");
             cart.Clear();
             RefreshCart();
@@ -168,7 +199,7 @@ namespace TableOrder
         public Button btnMinus;
         public PictureBox picImage;
 
-        public MenuEntity MenuData { get; private set; }
+        public MenuEntity MenuData { get;  set; }
 
         // 델리게이트 정의
         public event EventHandler<MenuEntity> OnPlusClicked;

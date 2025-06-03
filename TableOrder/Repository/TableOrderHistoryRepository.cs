@@ -18,14 +18,14 @@ namespace TableOrder.Repository
 
         public bool SearchOrderData(int tableID)
         {
-            return false;
-            // return _context.Any(o => o.TableID == tableID);
+            
+            return _context.Orders.Any(o => o.TableId == tableID);
         }
 
-        public void GetAllOrder()
+        public List<OrderEntity> GetAllOrder()
         {
-            // return new List<OrderEntity>();
-            // return _context.Orders;
+
+            return _context.Orders.ToList();
         }
 
         public void ShowErrorMessage()
