@@ -2,7 +2,6 @@
 {
     partial class PayAndOrderManagerBoundary
     {
-       
         private System.ComponentModel.IContainer components = null;
 
         protected override void Dispose(bool disposing)
@@ -16,98 +15,65 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            Total = new Label();
-            cancelAll = new Button();
-            cancelselect = new Button();
-            EditOrder = new Button();
-            cardPayment = new Button();
-            cashPayment = new Button();
+            Total = new MaterialSkin.Controls.MaterialLabel();
             dataGridView1 = new DataGridView();
+            pay = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // Total
             // 
             Total.AutoSize = true;
-            Total.Location = new Point(537, 225);
+            Total.Depth = 0;
+            Total.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            Total.Location = new Point(537, 291);
+            Total.MouseState = MaterialSkin.MouseState.HOVER;
             Total.Name = "Total";
-            Total.Size = new Size(42, 15);
+            Total.Size = new Size(58, 19);
             Total.TabIndex = 1;
-            Total.Text = "총액 : ";
-            // 
-            // cancelAll
-            // 
-            cancelAll.Location = new Point(82, 253);
-            cancelAll.Name = "cancelAll";
-            cancelAll.Size = new Size(130, 26);
-            cancelAll.TabIndex = 2;
-            cancelAll.Text = "전체 취소";
-            cancelAll.UseVisualStyleBackColor = true;
-            // 
-            // cancelselect
-            // 
-            cancelselect.Location = new Point(284, 253);
-            cancelselect.Name = "cancelselect";
-            cancelselect.Size = new Size(130, 26);
-            cancelselect.TabIndex = 3;
-            cancelselect.Text = "선택 취소";
-            cancelselect.UseVisualStyleBackColor = true;
-            // 
-            // EditOrder
-            // 
-            EditOrder.Location = new Point(469, 253);
-            EditOrder.Name = "EditOrder";
-            EditOrder.Size = new Size(130, 26);
-            EditOrder.TabIndex = 4;
-            EditOrder.Text = "주문 수정";
-            EditOrder.UseVisualStyleBackColor = true;
-            // 
-            // cardPayment
-            // 
-            cardPayment.Location = new Point(82, 313);
-            cardPayment.Name = "cardPayment";
-            cardPayment.Size = new Size(130, 26);
-            cardPayment.TabIndex = 5;
-            cardPayment.Text = "카드 결제";
-            cardPayment.UseVisualStyleBackColor = true;
-            // 
-            // cashPayment
-            // 
-            cashPayment.Location = new Point(284, 313);
-            cashPayment.Name = "cashPayment";
-            cashPayment.Size = new Size(130, 26);
-            cashPayment.TabIndex = 6;
-            cashPayment.Text = "현금 결제";
-            cashPayment.UseVisualStyleBackColor = true;
+            Total.Text = "총액 : 0원";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(23, 22);
+            dataGridView1.Location = new Point(26, 79);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(647, 200);
             dataGridView1.TabIndex = 7;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // pay
+            // 
+            pay.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            pay.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            pay.Depth = 0;
+            pay.HighEmphasis = true;
+            pay.Icon = null;
+            pay.Location = new Point(284, 331);
+            pay.Margin = new Padding(4, 6, 4, 6);
+            pay.MouseState = MaterialSkin.MouseState.HOVER;
+            pay.Name = "pay";
+            pay.NoAccentTextColor = Color.Empty;
+            pay.Size = new Size(85, 36);
+            pay.TabIndex = 8;
+            pay.Text = "결제하기";
+            pay.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            pay.UseAccentColor = false;
+            pay.UseVisualStyleBackColor = true;
+            pay.Click += pay_Click;
             // 
             // PayAndOrderManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(696, 450);
-            Controls.Add(dataGridView1);
-            Controls.Add(cashPayment);
-            Controls.Add(cardPayment);
-            Controls.Add(EditOrder);
-            Controls.Add(cancelselect);
-            Controls.Add(cancelAll);
             Controls.Add(Total);
+            Controls.Add(pay);
+            Controls.Add(dataGridView1);
             Name = "PayAndOrderManagerBoundary";
-            Text = "Form1";
+            Text = "결제 관리";
             Load += PayManagerBoundary_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -115,56 +81,49 @@
         }
 
         #endregion
-        private Label Total;
-        private Button cancelAll;
-        private Button cancelselect;
-        private Button EditOrder;
-        private Button cardPayment;
-        private Button cashPayment;
 
-        // 추가된 필드
-        private object payController;
-        private Label totalAmountLabel;
-        private int tableId;
-        private int finalPrice;
-        private DataGridView OrderDataView;
+        // 멤버 변수
+        private MaterialSkin.Controls.MaterialLabel Total;
+        private DataGridView dataGridView1;
+        private MaterialSkin.Controls.MaterialButton pay;
 
-        // 추가된 메서드
+        // 주문 리스트 로드 및 총액 계산
         private void LoadOrdersToListView()
         {
-        }
+            if (dataGridView1.Columns.Count == 0)
+            {
+                dataGridView1.Columns.Add("MenuName", "메뉴");
+                dataGridView1.Columns.Add("Quantity", "수량");
+                dataGridView1.Columns.Add("Price", "가격");
+            }
 
-        private void cancelAllButton_Click(object sender, EventArgs e)
-        {
-        }
+            dataGridView1.Rows.Clear();
 
-        private void paymentCancelButton_Click(object sender, EventArgs e)
-        {
-        }
+            // 테스트용 예시 데이터
+            dataGridView1.Rows.Add("삼겹살", 2, 12000);
+            dataGridView1.Rows.Add("목살", 1, 13000);
+            dataGridView1.Rows.Add("된장찌개", 2, 5000);
 
-        private void cardPaymentButton_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void cashPaymentButton_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void addOrder(int tableId, string menuName, int qty, int price)
-        {
-        }
-
-        private void deleteOrder(string receiptnum)
-        {
-        }
-
-        private void saveOrder(string receiptnum, string menuName, int qty, int price)
-        {
+            CalculateTotalPrice();
         }
 
         private void CalculateTotalPrice()
         {
+            int total = 0;
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells["Quantity"].Value != null && row.Cells["Price"].Value != null)
+                {
+                    if (int.TryParse(row.Cells["Quantity"].Value.ToString(), out int qty) &&
+                        int.TryParse(row.Cells["Price"].Value.ToString(), out int price))
+                    {
+                        total += qty * price;
+                    }
+                }
+            }
+
+            Total.Text = $"총액 : {total:N0}원";
         }
-        private DataGridView dataGridView1;
     }
 }
