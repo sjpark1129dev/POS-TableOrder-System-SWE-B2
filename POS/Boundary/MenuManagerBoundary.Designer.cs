@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
             dataGridViewMenus = new DataGridView();
@@ -41,17 +41,17 @@
             menuName = new DataGridViewTextBoxColumn();
             Price = new DataGridViewTextBoxColumn();
             panel3 = new Panel();
-            lblCategorySelect = new MaterialSkin.Controls.MaterialLabel();
+            materialTextBox3 = new MaterialSkin.Controls.MaterialTextBox();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            menuPriceTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            menuNameTextBox = new MaterialSkin.Controls.MaterialTextBox();
+            addImageButton = new MaterialSkin.Controls.MaterialButton();
+            priceLabel = new MaterialSkin.Controls.MaterialLabel();
+            menuNameLabel = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            menuResetButton = new MaterialSkin.Controls.MaterialButton();
             comboBoxCategory = new MaterialSkin.Controls.MaterialComboBox();
-            menuResetButton = new Button();
-            menuIdTextBox = new TextBox();
-            label7 = new Label();
-            pictureAddButton = new Button();
             pictureBox = new PictureBox();
-            menuPriceTextBox = new TextBox();
-            menuNameTextBox = new TextBox();
-            label6 = new Label();
-            label4 = new Label();
             tableLayoutPanel3 = new TableLayoutPanel();
             CategoryManageButton = new MaterialSkin.Controls.MaterialButton();
             menuEditButton = new MaterialSkin.Controls.MaterialButton();
@@ -78,7 +78,7 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.4706812F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 86.52932F));
-            tableLayoutPanel1.Size = new Size(705, 687);
+            tableLayoutPanel1.Size = new Size(805, 902);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -89,11 +89,11 @@
             tableLayoutPanel2.Controls.Add(dataGridViewMenus, 0, 0);
             tableLayoutPanel2.Controls.Add(panel3, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 95);
+            tableLayoutPanel2.Location = new Point(3, 124);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(699, 589);
+            tableLayoutPanel2.Size = new Size(799, 775);
             tableLayoutPanel2.TabIndex = 4;
             // 
             // dataGridViewMenus
@@ -103,51 +103,51 @@
             dataGridViewMenus.AllowUserToResizeColumns = false;
             dataGridViewMenus.AllowUserToResizeRows = false;
             dataGridViewMenus.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewMenus.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewMenus.Columns.AddRange(new DataGridViewColumn[] { Id, menuName, Price });
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = SystemColors.Window;
-            dataGridViewCellStyle11.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.DefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewMenus.Dock = DockStyle.Fill;
             dataGridViewMenus.Location = new Point(3, 3);
             dataGridViewMenus.MultiSelect = false;
             dataGridViewMenus.Name = "dataGridViewMenus";
             dataGridViewMenus.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = SystemColors.Control;
-            dataGridViewCellStyle12.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewMenus.RowHeadersVisible = false;
             dataGridViewMenus.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewMenus.RowTemplate.ReadOnly = true;
             dataGridViewMenus.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewMenus.Size = new Size(343, 583);
+            dataGridViewMenus.Size = new Size(393, 769);
             dataGridViewMenus.TabIndex = 4;
             dataGridViewMenus.SelectionChanged += dataGridViewMenus_SelectionChanged;
             // 
             // Id
             // 
             Id.DataPropertyName = "Id";
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            Id.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            Id.DefaultCellStyle = dataGridViewCellStyle2;
             Id.FillWeight = 10F;
             Id.HeaderText = "ID";
             Id.Name = "Id";
@@ -158,9 +158,9 @@
             // 
             menuName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             menuName.DataPropertyName = "menuName";
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            menuName.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            menuName.DefaultCellStyle = dataGridViewCellStyle3;
             menuName.FillWeight = 60F;
             menuName.HeaderText = "메뉴명";
             menuName.Name = "menuName";
@@ -170,10 +170,10 @@
             // Price
             // 
             Price.DataPropertyName = "menuPrice";
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.Format = "N0";
-            dataGridViewCellStyle10.NullValue = null;
-            Price.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            Price.DefaultCellStyle = dataGridViewCellStyle4;
             Price.FillWeight = 30F;
             Price.HeaderText = "가격";
             Price.Name = "Price";
@@ -183,34 +183,160 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.Control;
-            panel3.Controls.Add(lblCategorySelect);
-            panel3.Controls.Add(comboBoxCategory);
-            panel3.Controls.Add(menuResetButton);
-            panel3.Controls.Add(menuIdTextBox);
-            panel3.Controls.Add(label7);
-            panel3.Controls.Add(pictureAddButton);
-            panel3.Controls.Add(pictureBox);
+            panel3.Controls.Add(materialTextBox3);
+            panel3.Controls.Add(materialLabel2);
             panel3.Controls.Add(menuPriceTextBox);
             panel3.Controls.Add(menuNameTextBox);
-            panel3.Controls.Add(label6);
-            panel3.Controls.Add(label4);
+            panel3.Controls.Add(addImageButton);
+            panel3.Controls.Add(priceLabel);
+            panel3.Controls.Add(menuNameLabel);
+            panel3.Controls.Add(materialLabel1);
+            panel3.Controls.Add(menuResetButton);
+            panel3.Controls.Add(comboBoxCategory);
+            panel3.Controls.Add(pictureBox);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(352, 3);
+            panel3.Location = new Point(402, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(344, 583);
+            panel3.Size = new Size(394, 769);
             panel3.TabIndex = 8;
             // 
-            // lblCategorySelect
+            // materialTextBox3
             // 
-            lblCategorySelect.AutoSize = true;
-            lblCategorySelect.Depth = 0;
-            lblCategorySelect.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            lblCategorySelect.Location = new Point(37, 396);
-            lblCategorySelect.MouseState = MaterialSkin.MouseState.HOVER;
-            lblCategorySelect.Name = "lblCategorySelect";
-            lblCategorySelect.Size = new Size(49, 19);
-            lblCategorySelect.TabIndex = 11;
-            lblCategorySelect.Text = "카테고리";
+            materialTextBox3.AnimateReadOnly = false;
+            materialTextBox3.BorderStyle = BorderStyle.None;
+            materialTextBox3.Depth = 0;
+            materialTextBox3.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialTextBox3.LeadingIcon = null;
+            materialTextBox3.Location = new Point(99, 20);
+            materialTextBox3.MaxLength = 50;
+            materialTextBox3.MouseState = MaterialSkin.MouseState.OUT;
+            materialTextBox3.Multiline = false;
+            materialTextBox3.Name = "materialTextBox3";
+            materialTextBox3.Size = new Size(115, 50);
+            materialTextBox3.TabIndex = 20;
+            materialTextBox3.Text = "";
+            materialTextBox3.TrailingIcon = null;
+            // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.Location = new Point(53, 33);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(40, 19);
+            materialLabel2.TabIndex = 19;
+            materialLabel2.Text = "메뉴ID";
+            // 
+            // menuPriceTextBox
+            // 
+            menuPriceTextBox.AnimateReadOnly = false;
+            menuPriceTextBox.BorderStyle = BorderStyle.None;
+            menuPriceTextBox.Depth = 0;
+            menuPriceTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            menuPriceTextBox.LeadingIcon = null;
+            menuPriceTextBox.Location = new Point(139, 474);
+            menuPriceTextBox.MaxLength = 50;
+            menuPriceTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            menuPriceTextBox.Multiline = false;
+            menuPriceTextBox.Name = "menuPriceTextBox";
+            menuPriceTextBox.Size = new Size(158, 50);
+            menuPriceTextBox.TabIndex = 18;
+            menuPriceTextBox.Text = "";
+            menuPriceTextBox.TrailingIcon = null;
+            // 
+            // menuNameTextBox
+            // 
+            menuNameTextBox.AnimateReadOnly = false;
+            menuNameTextBox.BorderStyle = BorderStyle.None;
+            menuNameTextBox.Depth = 0;
+            menuNameTextBox.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            menuNameTextBox.LeadingIcon = null;
+            menuNameTextBox.Location = new Point(139, 404);
+            menuNameTextBox.MaxLength = 50;
+            menuNameTextBox.MouseState = MaterialSkin.MouseState.OUT;
+            menuNameTextBox.Multiline = false;
+            menuNameTextBox.Name = "menuNameTextBox";
+            menuNameTextBox.Size = new Size(158, 50);
+            menuNameTextBox.TabIndex = 17;
+            menuNameTextBox.Text = "";
+            menuNameTextBox.TrailingIcon = null;
+            // 
+            // addImageButton
+            // 
+            addImageButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            addImageButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            addImageButton.Depth = 0;
+            addImageButton.HighEmphasis = true;
+            addImageButton.Icon = null;
+            addImageButton.Location = new Point(226, 313);
+            addImageButton.Margin = new Padding(4, 6, 4, 6);
+            addImageButton.MouseState = MaterialSkin.MouseState.HOVER;
+            addImageButton.Name = "addImageButton";
+            addImageButton.NoAccentTextColor = Color.Empty;
+            addImageButton.Size = new Size(89, 36);
+            addImageButton.TabIndex = 16;
+            addImageButton.Text = "사진 추가";
+            addImageButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            addImageButton.UseAccentColor = false;
+            addImageButton.UseVisualStyleBackColor = true;
+            // 
+            // priceLabel
+            // 
+            priceLabel.AutoSize = true;
+            priceLabel.Depth = 0;
+            priceLabel.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            priceLabel.Location = new Point(85, 491);
+            priceLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            priceLabel.Name = "priceLabel";
+            priceLabel.Size = new Size(25, 19);
+            priceLabel.TabIndex = 15;
+            priceLabel.Text = "가격";
+            // 
+            // menuNameLabel
+            // 
+            menuNameLabel.AutoSize = true;
+            menuNameLabel.Depth = 0;
+            menuNameLabel.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            menuNameLabel.Location = new Point(64, 418);
+            menuNameLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            menuNameLabel.Name = "menuNameLabel";
+            menuNameLabel.Size = new Size(49, 19);
+            menuNameLabel.TabIndex = 14;
+            menuNameLabel.Text = "카테고리";
+            // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(61, 565);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(49, 19);
+            materialLabel1.TabIndex = 13;
+            materialLabel1.Text = "카테고리";
+            // 
+            // menuResetButton
+            // 
+            menuResetButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            menuResetButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            menuResetButton.Depth = 0;
+            menuResetButton.HighEmphasis = true;
+            menuResetButton.Icon = null;
+            menuResetButton.Location = new Point(246, 23);
+            menuResetButton.Margin = new Padding(4, 6, 4, 6);
+            menuResetButton.MouseState = MaterialSkin.MouseState.HOVER;
+            menuResetButton.Name = "menuResetButton";
+            menuResetButton.NoAccentTextColor = Color.Empty;
+            menuResetButton.Size = new Size(69, 36);
+            menuResetButton.TabIndex = 12;
+            menuResetButton.Text = "초기화";
+            menuResetButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            menuResetButton.UseAccentColor = false;
+            menuResetButton.UseVisualStyleBackColor = true;
+            menuResetButton.Click += menuResetButton_Click;
             // 
             // comboBoxCategory
             // 
@@ -221,12 +347,12 @@
             comboBoxCategory.DropDownHeight = 174;
             comboBoxCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCategory.DropDownWidth = 121;
-            comboBoxCategory.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            comboBoxCategory.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
             comboBoxCategory.ForeColor = Color.FromArgb(222, 0, 0, 0);
             comboBoxCategory.FormattingEnabled = true;
             comboBoxCategory.IntegralHeight = false;
             comboBoxCategory.ItemHeight = 43;
-            comboBoxCategory.Location = new Point(110, 378);
+            comboBoxCategory.Location = new Point(139, 552);
             comboBoxCategory.MaxDropDownItems = 4;
             comboBoxCategory.MouseState = MaterialSkin.MouseState.OUT;
             comboBoxCategory.Name = "comboBoxCategory";
@@ -235,82 +361,15 @@
             comboBoxCategory.TabIndex = 10;
             comboBoxCategory.SelectedIndexChanged += comboBoxCategory_SelectedIndexChanged;
             // 
-            // menuResetButton
-            // 
-            menuResetButton.Location = new Point(203, 6);
-            menuResetButton.Name = "menuResetButton";
-            menuResetButton.Size = new Size(65, 23);
-            menuResetButton.TabIndex = 2;
-            menuResetButton.Text = "초기화";
-            menuResetButton.UseVisualStyleBackColor = true;
-            menuResetButton.Click += menuResetButton_Click;
-            // 
-            // menuIdTextBox
-            // 
-            menuIdTextBox.Enabled = false;
-            menuIdTextBox.Location = new Point(91, 7);
-            menuIdTextBox.Name = "menuIdTextBox";
-            menuIdTextBox.Size = new Size(106, 23);
-            menuIdTextBox.TabIndex = 9;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(31, 10);
-            label7.Name = "label7";
-            label7.Size = new Size(43, 15);
-            label7.TabIndex = 8;
-            label7.Text = "메뉴ID";
-            // 
-            // pictureAddButton
-            // 
-            pictureAddButton.Location = new Point(193, 249);
-            pictureAddButton.Name = "pictureAddButton";
-            pictureAddButton.Size = new Size(75, 23);
-            pictureAddButton.TabIndex = 7;
-            pictureAddButton.Text = "사진 추가";
-            pictureAddButton.UseVisualStyleBackColor = true;
-            // 
             // pictureBox
             // 
             pictureBox.BackColor = Color.White;
-            pictureBox.Location = new Point(31, 36);
+            pictureBox.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox.Location = new Point(53, 88);
             pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(237, 196);
+            pictureBox.Size = new Size(262, 216);
             pictureBox.TabIndex = 6;
             pictureBox.TabStop = false;
-            // 
-            // menuPriceTextBox
-            // 
-            menuPriceTextBox.Location = new Point(110, 334);
-            menuPriceTextBox.Name = "menuPriceTextBox";
-            menuPriceTextBox.Size = new Size(158, 23);
-            menuPriceTextBox.TabIndex = 4;
-            // 
-            // menuNameTextBox
-            // 
-            menuNameTextBox.Location = new Point(110, 291);
-            menuNameTextBox.Name = "menuNameTextBox";
-            menuNameTextBox.Size = new Size(158, 23);
-            menuNameTextBox.TabIndex = 3;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(31, 337);
-            label6.Name = "label6";
-            label6.Size = new Size(55, 15);
-            label6.TabIndex = 1;
-            label6.Text = "메뉴가격";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(31, 294);
-            label4.Name = "label4";
-            label4.Size = new Size(43, 15);
-            label4.TabIndex = 0;
-            label4.Text = "메뉴명";
             // 
             // tableLayoutPanel3
             // 
@@ -328,7 +387,7 @@
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(699, 86);
+            tableLayoutPanel3.Size = new Size(799, 115);
             tableLayoutPanel3.TabIndex = 3;
             // 
             // CategoryManageButton
@@ -339,7 +398,7 @@
             CategoryManageButton.Depth = 0;
             CategoryManageButton.HighEmphasis = true;
             CategoryManageButton.Icon = null;
-            CategoryManageButton.Location = new Point(550, 25);
+            CategoryManageButton.Location = new Point(637, 39);
             CategoryManageButton.Margin = new Padding(4, 6, 4, 6);
             CategoryManageButton.MouseState = MaterialSkin.MouseState.HOVER;
             CategoryManageButton.Name = "CategoryManageButton";
@@ -360,7 +419,7 @@
             menuEditButton.Depth = 0;
             menuEditButton.HighEmphasis = true;
             menuEditButton.Icon = null;
-            menuEditButton.Location = new Point(403, 25);
+            menuEditButton.Location = new Point(465, 39);
             menuEditButton.Margin = new Padding(4, 6, 4, 6);
             menuEditButton.MouseState = MaterialSkin.MouseState.HOVER;
             menuEditButton.Name = "menuEditButton";
@@ -381,7 +440,7 @@
             menuDeleteButton.Depth = 0;
             menuDeleteButton.HighEmphasis = true;
             menuDeleteButton.Icon = null;
-            menuDeleteButton.Location = new Point(229, 25);
+            menuDeleteButton.Location = new Point(266, 39);
             menuDeleteButton.Margin = new Padding(4, 6, 4, 6);
             menuDeleteButton.MouseState = MaterialSkin.MouseState.HOVER;
             menuDeleteButton.Name = "menuDeleteButton";
@@ -402,7 +461,7 @@
             menuCreateButton.Depth = 0;
             menuCreateButton.HighEmphasis = true;
             menuCreateButton.Icon = null;
-            menuCreateButton.Location = new Point(55, 25);
+            menuCreateButton.Location = new Point(67, 39);
             menuCreateButton.Margin = new Padding(4, 6, 4, 6);
             menuCreateButton.MouseState = MaterialSkin.MouseState.HOVER;
             menuCreateButton.Name = "menuCreateButton";
@@ -419,7 +478,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(711, 754);
+            ClientSize = new Size(811, 969);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "MenuManagerBoundary";
@@ -445,21 +504,21 @@
         private DataGridViewTextBoxColumn Price;
         private MaterialSkin.Controls.MaterialButton menuCreateButton;
         private Panel panel3;
-        private Button menuResetButton;
-        private TextBox menuIdTextBox;
-        private Label label7;
-        private Button pictureAddButton;
         private PictureBox pictureBox;
-        private TextBox menuPriceTextBox;
-        private TextBox menuNameTextBox;
-        private Label label6;
-        private Label label4;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
         private MaterialSkin.Controls.MaterialButton menuDeleteButton;
         private MaterialSkin.Controls.MaterialButton CategoryManageButton;
         private MaterialSkin.Controls.MaterialButton menuEditButton;
-        private MaterialSkin.Controls.MaterialLabel lblCategorySelect;
         private MaterialSkin.Controls.MaterialComboBox comboBoxCategory;
+        private MaterialSkin.Controls.MaterialLabel priceLabel;
+        private MaterialSkin.Controls.MaterialLabel menuNameLabel;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialButton menuResetButton;
+        private MaterialSkin.Controls.MaterialTextBox menuPriceTextBox;
+        private MaterialSkin.Controls.MaterialTextBox menuNameTextBox;
+        private MaterialSkin.Controls.MaterialButton addImageButton;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialTextBox materialTextBox3;
     }
 }

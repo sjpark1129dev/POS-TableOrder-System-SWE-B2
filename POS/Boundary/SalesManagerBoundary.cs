@@ -1,9 +1,10 @@
+using MaterialSkin.Controls;
 using POS.Domain;
 using POS.Controller;
 
 namespace POS.Boundary
 {
-    public partial class SalesManagerBoundary : Form
+    public partial class SalesManagerBoundary : MaterialForm
     {
         private List<SalesEntity> salesList;
         private SalesController salesController;
