@@ -32,8 +32,6 @@ namespace TableOrder
         private int selectedTableId = -1;
         private Label labelSelectedTable;
 
-
-
         public TableOrderBoundary()
         {
             InitializeComponent();
@@ -55,21 +53,19 @@ namespace TableOrder
 
             // 선택 변경 이벤트
             comboBoxTableSelector.SelectedIndexChanged += ComboBoxTableSelector_SelectedIndexChanged;
-            
             // 폼에 추가
             this.Controls.Add(comboBoxTableSelector);
-            comboBoxTableSelector.BringToFront(); // 다른 컨트롤에 가리지 않게
+            comboBoxTableSelector.BringToFront();
 
             labelSelectedTable = new Label
             {
                 Text = "선택된 테이블: 없음",
-                Location = new Point(420, 480),  // comboBox 오른쪽 위치 추천
+                Location = new Point(410, 480),  // comboBox 오른쪽 위치 추천
                 AutoSize = true,
                 Font = new Font("맑은 고딕", 10, FontStyle.Bold)
             };
             this.Controls.Add(labelSelectedTable);
-            labelSelectedTable.BringToFront(); // 다른 컨트롤에 가리지 않게
-
+            labelSelectedTable.BringToFront();
             _controller = new TableOrderMainController();
             categoryController = new CategoryController();
             menuController = new MenuLoadController();
@@ -80,23 +76,17 @@ namespace TableOrder
             labelTotalPrice.AutoSize = true;
             labelTotalPrice.Font = new Font("맑은 고딕", 10, FontStyle.Bold);
             labelTotalPrice.Text = "총 가격: 0원";
-            labelTotalPrice.BringToFront();
-           
-
-
-            
+            labelTotalPrice.BringToFront();      
         }
-       
+        
         private void ComboBoxTableSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxTableSelector.SelectedItem is TableEntity selectedTable)
             {
                 selectedTableId = selectedTable.Id;
                 labelSelectedTable.Text = $"선택된 테이블: {selectedTable.tableName}";
-                
             }
         }
-
         private CategoryController categoryController;
         private void LoadCategoryButtons()
         {
