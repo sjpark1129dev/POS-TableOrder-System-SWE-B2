@@ -53,7 +53,6 @@ namespace TableOrder
 
             // 선택 변경 이벤트
             comboBoxTableSelector.SelectedIndexChanged += ComboBoxTableSelector_SelectedIndexChanged;
-
             // 폼에 추가
             this.Controls.Add(comboBoxTableSelector);
             comboBoxTableSelector.BringToFront();
@@ -67,7 +66,6 @@ namespace TableOrder
             };
             this.Controls.Add(labelSelectedTable);
             labelSelectedTable.BringToFront();
-
             _controller = new TableOrderMainController();
             categoryController = new CategoryController();
             menuController = new MenuLoadController();
@@ -78,17 +76,15 @@ namespace TableOrder
             labelTotalPrice.AutoSize = true;
             labelTotalPrice.Font = new Font("맑은 고딕", 10, FontStyle.Bold);
             labelTotalPrice.Text = "총 가격: 0원";
-            labelTotalPrice.BringToFront();
-
-            
+            labelTotalPrice.BringToFront();      
         }
+        
         private void ComboBoxTableSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxTableSelector.SelectedItem is TableEntity selectedTable)
             {
                 selectedTableId = selectedTable.Id;
                 labelSelectedTable.Text = $"선택된 테이블: {selectedTable.tableName}";
-
             }
         }
         private CategoryController categoryController;
@@ -218,7 +214,7 @@ namespace TableOrder
 
         private void orderButton_Click(object sender, EventArgs e)
         {
-            int currentTableId = 1;
+            
             if (cart.Count == 0)
             {
                 MessageBox.Show("장바구니가 비어 있습니다.");
@@ -226,7 +222,7 @@ namespace TableOrder
             }
 
             var orderList = cart.SelectMany(c => Enumerable.Repeat(c.Menu, c.Quantity)).ToList();
-            _controller.OrderRequest(currentTableId, orderList);
+            _controller.OrderRequest(selectedTableId, orderList);
             MessageBox.Show("주문이 완료되었습니다!");
             cart.Clear();
             RefreshCart();
