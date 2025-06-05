@@ -147,6 +147,10 @@ namespace TableOrder
 
                 RefreshCart();
             }
+            else
+            {
+                MessageBox.Show("장바구니에 해당 메뉴가 없습니다", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void RefreshCart()
