@@ -33,53 +33,41 @@ namespace POS.Boundary
             _refreshTimer.Start();
         }
 
-        private void LoadTables()
+        public void LoadTables()
         {
             try
             {
-                var tables = _db.Tables.Take(10).ToList();
+                var tables = _db.Tables.OrderBy(t => t.Id).Take(10).ToList();
+
+                // ✅ DB에서 실제 미결제 주문 + 아이템 포함 로드
                 var unpaidOrders = _db.Orders
                     .Where(o => !o.IsPaid)
                     .Include(o => o.Items)
                     .ToList();
 
-                if (unpaidOrders.Count == 0)
+                // 🔁 삭제된 테이블 버튼 제거
+                var tableIds = tables.Select(t => t.Id).ToHashSet();
+                var buttonsToRemove = tableLayoutPanel1.Controls
+                    .OfType<MaterialButton>()
+                    .Where(b => !tableIds.Contains((int)b.Tag))
+                    .ToList();
+
+                foreach (var btn in buttonsToRemove)
                 {
-                    var dummyOrders = new List<OrderEntity>();
-                    for (int i = 0; i < tables.Count; i++)
-                    {
-                        dummyOrders.Add(new OrderEntity
-                        {
-                            TableId = tables[i].Id,
-                            IsPaid = false,
-                            CreatedAt = DateTime.Now.AddMinutes(-i * 5),
-                            Items = new List<OrderItemEntity>
-                            {
-                                new OrderItemEntity { MenuName = "김치찌개", Qty = 1, UnitPrice = 8000 },
-                                new OrderItemEntity { MenuName = "계란말이", Qty = 1, UnitPrice = 3500 }
-                            }
-                        });
-                    }
-                    unpaidOrders = dummyOrders;
+                    tableLayoutPanel1.Controls.Remove(btn);
+                    btn.Dispose();
+                    _lastTableSummaries.Remove((int)btn.Tag);
                 }
 
-                for (int i = 0; i < 10; i++)
+                // ✅ 테이블 순서대로 버튼 생성 or 업데이트
+                for (int i = 0; i < tables.Count; i++)
                 {
-                    int col = i / 2;
-                    int row = i % 2;
-
-                    if (i >= tables.Count)
-                    {
-                        continue;
-                    }
-
                     var table = tables[i];
-                    string text = table.tableName;
-
                     var order = unpaidOrders.FirstOrDefault(o => o.TableId == table.Id);
                     string summary = "";
+                    string text = table.tableName;
 
-                    if (order != null && order.Items.Any())
+                    if (order != null && order.Items != null && order.Items.Any())
                     {
                         var items = order.Items.ToList();
                         int totalPrice = items.Sum(item => item.TotalPrice);
@@ -94,13 +82,15 @@ namespace POS.Boundary
 
                     string fullText = text + summary;
 
-                    // 이전 상태와 비교
                     if (_lastTableSummaries.TryGetValue(table.Id, out var prev) && prev == fullText)
                         continue;
 
                     _lastTableSummaries[table.Id] = fullText;
 
-                    // 버튼이 이미 존재하는지 확인
+                    // ✅ 위치 계산 (2행 5열)
+                    int col = i % 5;
+                    int row = i / 5;
+
                     MaterialButton btn = tableLayoutPanel1.Controls
                         .OfType<MaterialButton>()
                         .FirstOrDefault(b => (int)b.Tag == table.Id);
@@ -134,8 +124,7 @@ namespace POS.Boundary
         {
             if (sender is MaterialButton button && button.Tag is int tableId)
             {
-                MessageBox.Show($"테이블 ID: {tableId} 클릭됨");
-                Form payAndOrderManagerBoundary = new PayAndOrderManagerBoundary();
+                Form payAndOrderManagerBoundary = new PayAndOrderManagerBoundary(this, tableId);
                 payAndOrderManagerBoundary.ShowDialog();
             }
         }
@@ -149,20 +138,20 @@ namespace POS.Boundary
 
         private void TableManagerButton_Click(object sender, EventArgs e)
         {
-            Form tableManagerForm = new TableManagerBoundary();
-            tableManagerForm.Show();
+            Form tableManagerForm = new TableManagerBoundary(this);
+            tableManagerForm.ShowDialog();
         }
 
         private void MenuManagerButton_Click(object sender, EventArgs e)
         {
-            Form menuManagerBoundary = new MenuManagerBoundary();
-            menuManagerBoundary.Show();
+            Form menuManagerBoundary = new MenuManagerBoundary(this);
+            menuManagerBoundary.ShowDialog();
         }
 
         private void SalesManagerButton_Click(object sender, EventArgs e)
         {
-            Form salesManagerBoundary = new SalesManagerBoundary();
-            salesManagerBoundary.Show();
+            Form salesManagerBoundary = new SalesManagerBoundary(this);
+            salesManagerBoundary.ShowDialog();
         }
     }
 }

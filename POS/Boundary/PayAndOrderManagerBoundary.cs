@@ -9,8 +9,10 @@ namespace POS.Boundary
     public partial class PayAndOrderManagerBoundary : MaterialForm
     {
         private readonly MaterialSkinManager materialSkinManager;
+        private TableViewBoundary tableViewBoundary;
+        private int tableId; // 테이블 ID 저장
 
-        public PayAndOrderManagerBoundary()
+        public PayAndOrderManagerBoundary(TableViewBoundary tableViewBoundary, int tableId)
         {
             InitializeComponent();
 
@@ -19,6 +21,9 @@ namespace POS.Boundary
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장
+            this.tableId = tableId; // 테이블 ID 저장
+            this.Text = $"테이블 {tableId} 결제 및 주문 관리"; // 폼 제목 설정
         }
 
         private void PayManagerBoundary_Load(object sender, EventArgs e)

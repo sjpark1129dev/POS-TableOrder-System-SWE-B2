@@ -78,7 +78,7 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.4706812F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 86.52932F));
-            tableLayoutPanel1.Size = new Size(845, 736);
+            tableLayoutPanel1.Size = new Size(865, 779);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -89,11 +89,11 @@
             tableLayoutPanel2.Controls.Add(dataGridViewMenus, 0, 0);
             tableLayoutPanel2.Controls.Add(panel3, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 102);
+            tableLayoutPanel2.Location = new Point(3, 107);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(839, 631);
+            tableLayoutPanel2.Size = new Size(859, 669);
             tableLayoutPanel2.TabIndex = 4;
             // 
             // dataGridViewMenus
@@ -138,7 +138,7 @@
             dataGridViewMenus.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewMenus.RowTemplate.ReadOnly = true;
             dataGridViewMenus.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewMenus.Size = new Size(413, 625);
+            dataGridViewMenus.Size = new Size(423, 663);
             dataGridViewMenus.TabIndex = 4;
             dataGridViewMenus.SelectionChanged += dataGridViewMenus_SelectionChanged;
             // 
@@ -195,9 +195,9 @@
             panel3.Controls.Add(comboBoxCategory);
             panel3.Controls.Add(pictureBox);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(422, 3);
+            panel3.Location = new Point(432, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(414, 625);
+            panel3.Size = new Size(424, 663);
             panel3.TabIndex = 8;
             // 
             // materialTextBox3
@@ -387,7 +387,7 @@
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(839, 93);
+            tableLayoutPanel3.Size = new Size(859, 98);
             tableLayoutPanel3.TabIndex = 3;
             // 
             // CategoryManageButton
@@ -398,7 +398,7 @@
             CategoryManageButton.Depth = 0;
             CategoryManageButton.HighEmphasis = true;
             CategoryManageButton.Icon = null;
-            CategoryManageButton.Location = new Point(672, 28);
+            CategoryManageButton.Location = new Point(690, 31);
             CategoryManageButton.Margin = new Padding(4, 6, 4, 6);
             CategoryManageButton.MouseState = MaterialSkin.MouseState.HOVER;
             CategoryManageButton.Name = "CategoryManageButton";
@@ -419,7 +419,7 @@
             menuEditButton.Depth = 0;
             menuEditButton.HighEmphasis = true;
             menuEditButton.Icon = null;
-            menuEditButton.Location = new Point(490, 28);
+            menuEditButton.Location = new Point(503, 31);
             menuEditButton.Margin = new Padding(4, 6, 4, 6);
             menuEditButton.MouseState = MaterialSkin.MouseState.HOVER;
             menuEditButton.Name = "menuEditButton";
@@ -440,7 +440,7 @@
             menuDeleteButton.Depth = 0;
             menuDeleteButton.HighEmphasis = true;
             menuDeleteButton.Icon = null;
-            menuDeleteButton.Location = new Point(281, 28);
+            menuDeleteButton.Location = new Point(289, 31);
             menuDeleteButton.Margin = new Padding(4, 6, 4, 6);
             menuDeleteButton.MouseState = MaterialSkin.MouseState.HOVER;
             menuDeleteButton.Name = "menuDeleteButton";
@@ -461,7 +461,7 @@
             menuCreateButton.Depth = 0;
             menuCreateButton.HighEmphasis = true;
             menuCreateButton.Icon = null;
-            menuCreateButton.Location = new Point(72, 28);
+            menuCreateButton.Location = new Point(75, 31);
             menuCreateButton.Margin = new Padding(4, 6, 4, 6);
             menuCreateButton.MouseState = MaterialSkin.MouseState.HOVER;
             menuCreateButton.Name = "menuCreateButton";
@@ -478,11 +478,12 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(851, 803);
+            ClientSize = new Size(871, 846);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "MenuManagerBoundary";
             Text = "메뉴 관리";
+            FormClosing += MenuManagerBoundary_FormClosing;
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewMenus).EndInit();

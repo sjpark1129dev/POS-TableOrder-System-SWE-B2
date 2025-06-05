@@ -24,8 +24,9 @@ namespace POS.Boundary
         private List<MenuEntity> menuList;
         private List<CategoryEntity> categoryList;
         private int? selectedMenuId = null;
+        private TableViewBoundary tableViewBoundary; // 테이블 뷰 바운더리 참조
 
-        public MenuManagerBoundary()
+        public MenuManagerBoundary(TableViewBoundary tableViewBoundary)
         {
             InitializeComponent();
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -33,6 +34,7 @@ namespace POS.Boundary
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             InitializeDataGridView();
+            this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장
         }
 
         private void InitializeDataGridView()
@@ -254,6 +256,11 @@ namespace POS.Boundary
 
             dataGridViewMenus.ClearSelection();
             selectedMenuId = null;
+        }
+
+        private void MenuManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tableViewBoundary.LoadTables(); // 테이블 뷰 바운더리의 테이블 목록 새로고침
         }
     }
 }
