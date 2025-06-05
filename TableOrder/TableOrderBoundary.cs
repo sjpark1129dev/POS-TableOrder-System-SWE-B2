@@ -39,8 +39,6 @@ namespace TableOrder
             comboBoxTableSelector.ValueMember = "Id";
 
             comboBoxTableSelector.SelectedIndexChanged += ComboBoxTableSelector_SelectedIndexChanged;
-            this.Controls.Add(comboBoxTableSelector);
-            comboBoxTableSelector.BringToFront();
         }
         private void ComboBoxTableSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
