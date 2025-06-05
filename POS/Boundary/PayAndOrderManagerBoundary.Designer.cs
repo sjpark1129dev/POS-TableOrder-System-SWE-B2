@@ -28,7 +28,7 @@
             Total.AutoSize = true;
             Total.Depth = 0;
             Total.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Total.Location = new Point(443, 230);
+            Total.Location = new Point(558, 261);
             Total.MouseState = MaterialSkin.MouseState.HOVER;
             Total.Name = "Total";
             Total.Size = new Size(58, 19);
@@ -51,7 +51,7 @@
             pay.Font = new Font("맑은 고딕", 12F);
             pay.HighEmphasis = true;
             pay.Icon = null;
-            pay.Location = new Point(353, 276);
+            pay.Location = new Point(292, 301);
             pay.Margin = new Padding(4, 6, 4, 6);
             pay.MouseState = MaterialSkin.MouseState.HOVER;
             pay.Name = "pay";
