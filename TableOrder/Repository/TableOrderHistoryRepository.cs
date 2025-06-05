@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using POS.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using POS.Domain;
 
 namespace TableOrder.Repository
 {
@@ -16,10 +17,12 @@ namespace TableOrder.Repository
             _context = AppDbContext.Instance;
         }
 
-        public List<OrderEntity> GetAllOrder()
+        public List<OrderEntity> GetUnpaidOrdersByTable(int tableId)
         {
-
-            return _context.Orders.ToList();
+            return _context.Orders
+                .Where(o => o.TableId == tableId && !o.IsPaid)
+                .Include(o => o.Items)
+                .ToList();
         }
     }
 }

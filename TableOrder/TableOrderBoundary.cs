@@ -208,7 +208,7 @@ namespace TableOrder
 
         private void orderCheckButton_Click(object sender, EventArgs e)
         {
-            var historyForm = new OrderViewBoundary();
+            var historyForm = new OrderViewBoundary(selectedTableId);
             historyForm.ShowDialog();
         }
     }

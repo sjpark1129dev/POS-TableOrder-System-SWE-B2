@@ -114,6 +114,7 @@
             Margin = new Padding(2);
             Name = "OrderViewBoundary";
             Text = "주문조회";
+            Load += OrderViewBoundary_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)OrderDataView).EndInit();
