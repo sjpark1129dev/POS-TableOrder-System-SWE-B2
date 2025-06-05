@@ -16,6 +16,7 @@ namespace POS.Boundary
             InitializeComponent();
             salesController = new SalesController();
             this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장
+            SalesDataView.AllowUserToAddRows = false;
         }
 
         private void salesSearchButton_Click(object sender, EventArgs e)
