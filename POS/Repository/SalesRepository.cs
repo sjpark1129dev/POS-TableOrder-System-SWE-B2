@@ -9,15 +9,9 @@ namespace POS.Repository
 {
     public class SalesRepository
     {
-        private readonly AppDbContext _context = AppDbContext.Instance;
-        public List<SalesEntity> GetAllSales()
-        {
-            return _context.Sales.ToList();
-        }
-
         public List<SalesEntity> SearchSales( DateTime startDate, DateTime endDate, string menuName, string receiptNum)
         {
-            using (var context = new AppDbContext()) // ← 실제 DbContext 이름 사용
+            using (var context = new AppDbContext()) 
             {
                 var query = context.Sales.AsQueryable();
 
