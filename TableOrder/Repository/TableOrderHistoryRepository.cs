@@ -16,21 +16,10 @@ namespace TableOrder.Repository
             _context = AppDbContext.Instance;
         }
 
-        public bool SearchOrderData(int tableID)
-        {
-            
-            return _context.Orders.Any(o => o.TableId == tableID);
-        }
-
         public List<OrderEntity> GetAllOrder()
         {
 
             return _context.Orders.ToList();
-        }
-
-        public void ShowErrorMessage()
-        {
-            Console.WriteLine("주문 내역 없음");
         }
     }
 }

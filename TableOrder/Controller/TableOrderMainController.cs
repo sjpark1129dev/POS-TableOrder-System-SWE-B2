@@ -9,30 +9,34 @@ using TableOrder.Repository;
 
 namespace TableOrder.Controller
 {
-    
+
     public class TableOrderMainController
     {
-        private readonly TableOrderMainRepository _tableOrderMainRepository;
+        private readonly TableOrderMainRepository tableOrderMainRepository;
 
         public TableOrderMainController()
         {
-            _tableOrderMainRepository = new TableOrderMainRepository();
+            tableOrderMainRepository = new TableOrderMainRepository();
         }
 
-        public List<MenuEntity> MenuAndCategoryLoad()
+        public List<MenuEntity> LoadMenus()
         {
-            return _tableOrderMainRepository.GetAllMenus();
+            return tableOrderMainRepository.GetAllMenus();
         }
 
-        public int CartPriceSum(List<MenuEntity> cart)
+        public List<CategoryEntity> LoadCategories()
         {
-            return 1;
-            // return cart.Sum(item => item.menuPrice * item.Quantity);
+            return tableOrderMainRepository.GetAllCategories();
         }
 
-        public void OrderRequest(int tableId, List<MenuEntity> cart)
+        public bool OrderRequest(int tableId, List<MenuEntity> menuList)
         {
-            _tableOrderMainRepository.InsertOrder(tableId, cart);
+            return tableOrderMainRepository.SaveOrder(tableId, menuList);
+        }
+
+        public List<TableEntity> GetAllTables()
+        {
+            return tableOrderMainRepository.GetAllTables();
         }
     }
 }
