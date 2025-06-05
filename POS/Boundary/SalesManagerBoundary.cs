@@ -9,14 +9,15 @@ namespace POS.Boundary
     {
         private List<SalesEntity> salesList;
         private SalesController salesController;
-        private TableViewBoundary tableViewBoundary; // Å×ÀÌºí ºä ¹Ù¿î´õ¸® ÂüÁ¶
+        private TableViewBoundary tableViewBoundary; // í…Œì´ë¸” ë·° ë°”ìš´ë”ë¦¬ ì°¸ì¡°
 
         public SalesManagerBoundary(TableViewBoundary tableViewBoundary)
         {
             InitializeComponent();
             salesController = new SalesController();
-            this.tableViewBoundary = tableViewBoundary; // Å×ÀÌºí ºä ¹Ù¿î´õ¸® ÂüÁ¶ ÀúÀå
+            this.tableViewBoundary = tableViewBoundary; // í…Œì´ë¸” ë·° ë°”ìš´ë”ë¦¬ ì°¸ì¡° ì €ì¥
         }
+
         private void salesSearchButton_Click(object sender, EventArgs e)
         {
             LoadSalesToGridView();
@@ -29,12 +30,12 @@ namespace POS.Boundary
             string menuName = menuTxt.Text.Trim();
             string recnum = recnumTxt.Text.Trim();
 
-            salesList = salesController.SearchSales(menuName, selectedStartDate, selectedEndDate, recnum);
+            salesList = salesController.SearchSales(selectedStartDate, selectedEndDate, menuName, recnum);
 
             if (salesList.Count == 0)
             {
-                MessageBox.Show("Á¶È¸µÈ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
-                finalsalesLabel.Text = "ÃÑ¸ÅÃâ: 0¿ø";
+                MessageBox.Show("ì¡°íšŒëœ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
+                finalsalesLabel.Text = "ì´ë§¤ì¶œ: 0ì›";
                 return;
             }
 
@@ -44,6 +45,7 @@ namespace POS.Boundary
             {
                 SalesDataView.Rows.Add(
                     sale.SalesDate.ToString("yyyy-MM-dd"),
+                    sale.TableId,
                     sale.RecNum,
                     sale.MenuName,
                     sale.Qty,
@@ -53,12 +55,16 @@ namespace POS.Boundary
                 totalSales += sale.Price;
             }
             ;
-            finalsalesLabel.Text = $"ÃÑ¸ÅÃâ: {totalSales:N0}¿ø";
+            finalsalesLabel.Text = $"ì´ë§¤ì¶œ: {totalSales:N0}ì›";
         }
+
+        private void SalesManagerBoundary_Load(object sender, EventArgs e)
+        {
+            LoadSalesToGridView();
 
         private void SalesManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)
         {
-            tableViewBoundary.LoadTables(); // Å×ÀÌºí ºä ¹Ù¿î´õ¸®ÀÇ Å×ÀÌºí ¸ñ·Ï »õ·Î°íÄ§
+            tableViewBoundary.LoadTables(); // í…Œì´ë¸” ë·° ë°”ìš´ë”ë¦¬ì˜ í…Œì´ë¸” ëª©ë¡ ìƒˆë¡œê³ ì¹¨
         }
     }
 }
