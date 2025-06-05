@@ -44,16 +44,16 @@ namespace POS.Boundary
 
             int totalSales = 0;
 
-            foreach (var sale in salesList)
+            foreach (var sale in salesList.OrderByDescending(s => s.SalesDate))
             {
                 SalesDataView.Rows.Add(
-                    sale.SalesDate.ToString("yyyy-MM-dd"),
+                    sale.SalesDate.ToString("yyyy-MM-dd HH:mm:ss"),
                     sale.TableId,
                     sale.RecNum,
                     sale.MenuName,
                     sale.Qty,
-                    sale.UnitPrice,
-                    sale.Price
+                    sale.UnitPrice.ToString("N0"), // ✅ 콤마 추가
+                    sale.Price.ToString("N0")      // ✅ 콤마 추가
                 );
                 totalSales += sale.Price;
             }
