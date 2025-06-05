@@ -41,6 +41,8 @@
             panel2 = new Panel();
             finalsalesLabel = new MaterialSkin.Controls.MaterialLabel();
             SalesDataView = new DataGridView();
+            panel4 = new Panel();
+            panel3 = new Panel();
             dateTime = new DataGridViewTextBoxColumn();
             TableId = new DataGridViewTextBoxColumn();
             recnum = new DataGridViewTextBoxColumn();
@@ -48,8 +50,6 @@
             qty = new DataGridViewTextBoxColumn();
             unitPrice = new DataGridViewTextBoxColumn();
             totalPrice = new DataGridViewTextBoxColumn();
-            panel4 = new Panel();
-            panel3 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SalesDataView).BeginInit();
@@ -210,47 +210,6 @@
             SalesDataView.Size = new Size(783, 305);
             SalesDataView.TabIndex = 2;
             // 
-            // dateTime
-            // 
-            dateTime.HeaderText = "날짜";
-            dateTime.MinimumWidth = 8;
-            dateTime.Name = "dateTime";
-            // 
-            // TableId
-            // 
-            TableId.HeaderText = "테이블ID";
-            TableId.Name = "TableId";
-            // 
-            // recnum
-            // 
-            recnum.HeaderText = "계산서번호";
-            recnum.MinimumWidth = 8;
-            recnum.Name = "recnum";
-            // 
-            // menuName
-            // 
-            menuName.HeaderText = "메뉴명";
-            menuName.MinimumWidth = 8;
-            menuName.Name = "menuName";
-            // 
-            // qty
-            // 
-            qty.HeaderText = "수량";
-            qty.MinimumWidth = 8;
-            qty.Name = "qty";
-            // 
-            // unitPrice
-            // 
-            unitPrice.HeaderText = "단가";
-            unitPrice.MinimumWidth = 8;
-            unitPrice.Name = "unitPrice";
-            // 
-            // totalPrice
-            // 
-            totalPrice.HeaderText = "합계";
-            totalPrice.MinimumWidth = 8;
-            totalPrice.Name = "totalPrice";
-            // 
             // panel4
             // 
             panel4.Dock = DockStyle.Right;
@@ -268,6 +227,57 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(63, 357);
             panel3.TabIndex = 0;
+            // 
+            // dateTime
+            // 
+            dateTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dateTime.HeaderText = "날짜";
+            dateTime.MinimumWidth = 8;
+            dateTime.Name = "dateTime";
+            dateTime.Width = 200;
+            // 
+            // TableId
+            // 
+            TableId.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            TableId.FillWeight = 12.6815863F;
+            TableId.HeaderText = "테이블ID";
+            TableId.Name = "TableId";
+            TableId.Width = 70;
+            // 
+            // recnum
+            // 
+            recnum.FillWeight = 12.6815863F;
+            recnum.HeaderText = "계산서번호";
+            recnum.MinimumWidth = 8;
+            recnum.Name = "recnum";
+            // 
+            // menuName
+            // 
+            menuName.FillWeight = 12.6815863F;
+            menuName.HeaderText = "메뉴명";
+            menuName.MinimumWidth = 8;
+            menuName.Name = "menuName";
+            // 
+            // qty
+            // 
+            qty.FillWeight = 12.6815863F;
+            qty.HeaderText = "수량";
+            qty.MinimumWidth = 8;
+            qty.Name = "qty";
+            // 
+            // unitPrice
+            // 
+            unitPrice.FillWeight = 12.6815863F;
+            unitPrice.HeaderText = "단가";
+            unitPrice.MinimumWidth = 8;
+            unitPrice.Name = "unitPrice";
+            // 
+            // totalPrice
+            // 
+            totalPrice.FillWeight = 12.6815863F;
+            totalPrice.HeaderText = "합계";
+            totalPrice.MinimumWidth = 8;
+            totalPrice.Name = "totalPrice";
             // 
             // SalesManagerBoundary
             // 
