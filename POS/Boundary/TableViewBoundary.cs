@@ -1,74 +1,83 @@
-﻿using MaterialSkin;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Linq;
+using System;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using Microsoft.EntityFrameworkCore;
 using POS.Domain;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace POS.Boundary
 {
     public partial class TableViewBoundary : MaterialForm
     {
         private AppDbContext _db = AppDbContext.Instance;
+        private System.Windows.Forms.Timer _refreshTimer;
+        private Dictionary<int, string> _lastTableSummaries = new();
 
         public TableViewBoundary()
         {
             InitializeComponent();
+
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
 
-            LoadTables();
+            LoadTables(); // 최초 1회
+
+            // 주기적 새로고침 타이머
+            _refreshTimer = new System.Windows.Forms.Timer();
+            _refreshTimer.Interval = 5000;
+            _refreshTimer.Tick += (s, e) => LoadTables();
+            _refreshTimer.Start();
         }
+
         private void LoadTables()
         {
-            var tables = _db.Tables.Take(10).ToList();
-
-            // 미결제 주문 (Items 포함)
-            var unpaidOrders = _db.Orders
-                .Where(o => !o.IsPaid)
-                .Include(o => o.Items) // 중요!
-                .OrderByDescending(o => o.CreatedAt)
-                .ToList();
-
-            // ✅ 더미 데이터 삽입 (만약 주문이 없으면)
-            if (unpaidOrders.Count == 0)
+            try
             {
-                var dummyOrders = new List<OrderEntity>();
+                var tables = _db.Tables.Take(10).ToList();
+                var unpaidOrders = _db.Orders
+                    .Where(o => !o.IsPaid)
+                    .Include(o => o.Items)
+                    .ToList();
 
-                for (int i = 0; i < tables.Count; i++)
+                if (unpaidOrders.Count == 0)
                 {
-                    var dummy = new OrderEntity
+                    var dummyOrders = new List<OrderEntity>();
+                    for (int i = 0; i < tables.Count; i++)
                     {
-                        TableId = tables[i].Id,
-                        IsPaid = false,
-                        CreatedAt = DateTime.Now.AddMinutes(-i * 5),
-                        Items = new List<OrderItemEntity>
-                {
-                    new OrderItemEntity { MenuName = "김치찌개", Qty = 1, UnitPrice = 8000 },
-                    new OrderItemEntity { MenuName = "계란말이", Qty = 1, UnitPrice = 3500 }
+                        dummyOrders.Add(new OrderEntity
+                        {
+                            TableId = tables[i].Id,
+                            IsPaid = false,
+                            CreatedAt = DateTime.Now.AddMinutes(-i * 5),
+                            Items = new List<OrderItemEntity>
+                            {
+                                new OrderItemEntity { MenuName = "김치찌개", Qty = 1, UnitPrice = 8000 },
+                                new OrderItemEntity { MenuName = "계란말이", Qty = 1, UnitPrice = 3500 }
+                            }
+                        });
+                    }
+                    unpaidOrders = dummyOrders;
                 }
-                    };
-                    dummyOrders.Add(dummy);
-                }
 
-                unpaidOrders = dummyOrders;
-            }
-
-            tableLayoutPanel1.Controls.Clear();
-
-            for (int i = 0; i < 10; i++)
-            {
-                int col = i / 2;
-                int row = i % 2;
-
-                if (i < tables.Count)
+                for (int i = 0; i < 10; i++)
                 {
+                    int col = i / 2;
+                    int row = i % 2;
+
+                    if (i >= tables.Count)
+                    {
+                        continue;
+                    }
+
                     var table = tables[i];
                     string text = table.tableName;
 
                     var order = unpaidOrders.FirstOrDefault(o => o.TableId == table.Id);
+                    string summary = "";
 
                     if (order != null && order.Items.Any())
                     {
@@ -80,35 +89,62 @@ namespace POS.Boundary
                             ? $"{firstMenu} 외 {items.Count - 1}"
                             : firstMenu;
 
-                        text += $"\n{summaryText}\n₩{totalPrice:N0}";
+                        summary = $"\n{summaryText}\n₩{totalPrice:N0}";
                     }
 
-                    var btn = new MaterialButton
-                    {
-                        Text = text,
-                        Dock = DockStyle.Fill,
-                        Tag = table.Id,
-                        AutoSize = false
-                    };
-                    btn.Click += TableButton_Click;
+                    string fullText = text + summary;
 
-                    tableLayoutPanel1.Controls.Add(btn, col, row);
+                    // 이전 상태와 비교
+                    if (_lastTableSummaries.TryGetValue(table.Id, out var prev) && prev == fullText)
+                        continue;
+
+                    _lastTableSummaries[table.Id] = fullText;
+
+                    // 버튼이 이미 존재하는지 확인
+                    MaterialButton btn = tableLayoutPanel1.Controls
+                        .OfType<MaterialButton>()
+                        .FirstOrDefault(b => (int)b.Tag == table.Id);
+
+                    if (btn != null)
+                    {
+                        btn.Text = fullText;
+                    }
+                    else
+                    {
+                        btn = new MaterialButton
+                        {
+                            Text = fullText,
+                            Dock = DockStyle.Fill,
+                            Tag = table.Id,
+                            AutoSize = false
+                        };
+                        btn.Click += TableButton_Click;
+
+                        tableLayoutPanel1.Controls.Add(btn, col, row);
+                    }
                 }
-                else
-                {
-                    var placeholder = new Panel { Dock = DockStyle.Fill };
-                    tableLayoutPanel1.Controls.Add(placeholder, col, row);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DB 연결 실패: " + ex.Message, "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void TableButton_Click(object sender, EventArgs e)
         {
-            var button = sender as MaterialButton;
-            int tableId = (int)button.Tag;
-            MessageBox.Show($"테이블 ID: {tableId} 클릭됨");
-            Form payAndOrderManagerBoundary = new PayAndOrderManagerBoundary();
-            payAndOrderManagerBoundary.ShowDialog();
+            if (sender is MaterialButton button && button.Tag is int tableId)
+            {
+                MessageBox.Show($"테이블 ID: {tableId} 클릭됨");
+                Form payAndOrderManagerBoundary = new PayAndOrderManagerBoundary();
+                payAndOrderManagerBoundary.ShowDialog();
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            _refreshTimer?.Stop();
+            _refreshTimer?.Dispose();
+            base.OnFormClosing(e);
         }
 
         private void TableManagerButton_Click(object sender, EventArgs e)
