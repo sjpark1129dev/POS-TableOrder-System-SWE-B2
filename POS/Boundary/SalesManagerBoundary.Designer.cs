@@ -205,6 +205,7 @@
             SalesDataView.Location = new Point(63, 0);
             SalesDataView.Margin = new Padding(2);
             SalesDataView.Name = "SalesDataView";
+            SalesDataView.RowHeadersVisible = false;
             SalesDataView.RowHeadersWidth = 62;
             SalesDataView.Size = new Size(783, 305);
             SalesDataView.TabIndex = 2;
@@ -278,8 +279,8 @@
             Margin = new Padding(2);
             Name = "SalesManagerBoundary";
             Text = "결내역관리";
-            Load += SalesManagerBoundary_Load;
             FormClosing += SalesManagerBoundary_FormClosing;
+            Load += SalesManagerBoundary_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
