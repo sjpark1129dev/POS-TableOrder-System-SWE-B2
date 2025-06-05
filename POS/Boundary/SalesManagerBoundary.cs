@@ -14,6 +14,7 @@ namespace POS.Boundary
             InitializeComponent();
             salesController = new SalesController();
         }
+
         private void salesSearchButton_Click(object sender, EventArgs e)
         {
             LoadSalesToGridView();
@@ -26,7 +27,7 @@ namespace POS.Boundary
             string menuName = menuTxt.Text.Trim();
             string recnum = recnumTxt.Text.Trim();
 
-            salesList = salesController.SearchSales(menuName, selectedStartDate, selectedEndDate, recnum);
+            salesList = salesController.SearchSales(selectedStartDate, selectedEndDate, menuName, recnum);
 
             if (salesList.Count == 0)
             {
@@ -41,6 +42,7 @@ namespace POS.Boundary
             {
                 SalesDataView.Rows.Add(
                     sale.SalesDate.ToString("yyyy-MM-dd"),
+                    sale.TableId,
                     sale.RecNum,
                     sale.MenuName,
                     sale.Qty,
@@ -48,8 +50,14 @@ namespace POS.Boundary
                     sale.Price
                 );
                 totalSales += sale.Price;
-            };
+            }
+            ;
             finalsalesLabel.Text = $"ÃÑ¸ÅÃâ: {totalSales:N0}¿ø";
+        }
+
+        private void SalesManagerBoundary_Load(object sender, EventArgs e)
+        {
+            LoadSalesToGridView();
         }
     }
 }

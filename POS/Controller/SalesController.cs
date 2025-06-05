@@ -22,9 +22,9 @@ namespace POS.Controller
             return salesRepository.GetAllSales();
         }
 
-        public List<SalesEntity> SearchSales(string menuName, DateTime startDate, DateTime endDate, string receiptNum)
+        public List<SalesEntity> SearchSales(DateTime startDate, DateTime endDate, string menuName, string receiptNum)
         {
-            return salesRepository.SearchSales(menuName, startDate, endDate, receiptNum);
+            return salesRepository.SearchSales(startDate, endDate, menuName, receiptNum);
         }
     }
 }

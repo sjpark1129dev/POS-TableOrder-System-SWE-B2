@@ -15,28 +15,30 @@ namespace POS.Repository
             return _context.Sales.ToList();
         }
 
-        public List<SalesEntity> SearchSales(string menuName, DateTime startDate, DateTime endDate, string receiptNum)
+        public List<SalesEntity> SearchSales( DateTime startDate, DateTime endDate, string menuName, string receiptNum)
         {
-            var allSales = GetMockSales();
-
-            // 조건에 맞는 데이터만 필터링 (실제 구현 시 DB 쿼리로 대체됨)
-            var result = allSales.FindAll(s =>
-                s.SalesDate >= startDate && s.SalesDate <= endDate 
-
-            );
-
-            return result;
-        }
-
-        // 임시 더미 데이터
-        private List<SalesEntity> GetMockSales()
-        {
-            return new List<SalesEntity>
+            using (var context = new AppDbContext()) // ← 실제 DbContext 이름 사용
             {
-                new SalesEntity { SalesDate = new DateTime(2025, 5, 28), RecNum = "R001", TableId = 1, MenuName = "Burger", Qty = 2, UnitPrice = 5000, Price = 10000 },
-                new SalesEntity { SalesDate = new DateTime(2025, 5, 28), RecNum = "R002", TableId = 2, MenuName = "Pizza", Qty = 1, UnitPrice = 12000, Price = 12000 },
-                new SalesEntity { SalesDate = new DateTime(2025, 5, 28), RecNum = "R003", TableId = 3, MenuName = "Burger", Qty = 3, UnitPrice = 5000, Price = 15000 }
-            };
+                var query = context.Sales.AsQueryable();
+
+                // 날짜 조건
+                query = query.Where(s => s.SalesDate >= startDate && s.SalesDate <= endDate);
+
+                // 메뉴 이름이 비어있지 않으면 필터링
+                if (!string.IsNullOrWhiteSpace(menuName))
+                {
+                    query = query.Where(s => s.MenuName.Contains(menuName));
+                }
+
+                // 계산서 번호가 비어있지 않으면 필터링
+                if (!string.IsNullOrWhiteSpace(receiptNum))
+                {
+                    query = query.Where(s => s.RecNum.Contains(receiptNum));
+                }
+
+                return query.ToList();
+            }
         }
+
     }
 }
