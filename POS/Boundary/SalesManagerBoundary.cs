@@ -25,6 +25,8 @@ namespace POS.Boundary
 
         private void LoadSalesToGridView()
         {
+            SalesDataView.Rows.Clear(); // ✅ 기존 행 제거
+
             DateTime selectedEndDate = endDate.Value.Date;
             DateTime selectedStartDate = startDate.Value.Date;
             string menuName = menuTxt.Text.Trim();
@@ -54,7 +56,7 @@ namespace POS.Boundary
                 );
                 totalSales += sale.Price;
             }
-            ;
+
             finalsalesLabel.Text = $"총매출: {totalSales:N0}원";
         }
 
