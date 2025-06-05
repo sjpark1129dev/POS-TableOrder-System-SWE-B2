@@ -31,6 +31,7 @@ namespace TableOrder
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            comboBoxTableSelector = new MaterialComboBox();
             labelTotalPrice = new MaterialLabel();
             flowLayoutPanelMenus = new FlowLayoutPanel();
             flowLayoutPanelCategory = new FlowLayoutPanel();
@@ -42,6 +43,7 @@ namespace TableOrder
             // 
             // panel1
             // 
+            panel1.Controls.Add(comboBoxTableSelector);
             panel1.Controls.Add(labelTotalPrice);
             panel1.Controls.Add(flowLayoutPanelMenus);
             panel1.Controls.Add(flowLayoutPanelCategory);
@@ -53,6 +55,28 @@ namespace TableOrder
             panel1.Name = "panel1";
             panel1.Size = new Size(788, 487);
             panel1.TabIndex = 0;
+            // 
+            // comboBoxTableSelector
+            // 
+            comboBoxTableSelector.AutoResize = false;
+            comboBoxTableSelector.BackColor = Color.FromArgb(255, 255, 255);
+            comboBoxTableSelector.Depth = 0;
+            comboBoxTableSelector.DrawMode = DrawMode.OwnerDrawVariable;
+            comboBoxTableSelector.DropDownHeight = 174;
+            comboBoxTableSelector.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxTableSelector.DropDownWidth = 121;
+            comboBoxTableSelector.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            comboBoxTableSelector.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            comboBoxTableSelector.FormattingEnabled = true;
+            comboBoxTableSelector.IntegralHeight = false;
+            comboBoxTableSelector.ItemHeight = 43;
+            comboBoxTableSelector.Location = new Point(286, 420);
+            comboBoxTableSelector.MaxDropDownItems = 4;
+            comboBoxTableSelector.MouseState = MaterialSkin.MouseState.OUT;
+            comboBoxTableSelector.Name = "comboBoxTableSelector";
+            comboBoxTableSelector.Size = new Size(189, 49);
+            comboBoxTableSelector.StartIndex = 0;
+            comboBoxTableSelector.TabIndex = 54;
             // 
             // labelTotalPrice
             // 
@@ -158,6 +182,7 @@ namespace TableOrder
         private MaterialSkin.Controls.MaterialLabel labelTotalPrice;
         private MaterialButton orderCheckButton;
         private MaterialButton orderButton;
+        private MaterialComboBox comboBoxTableSelector;
     }
 }
 
