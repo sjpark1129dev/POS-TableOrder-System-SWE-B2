@@ -5,11 +5,8 @@ using POS.Controller;
 using TableOrder.Controls;
 using TableOrder.Entity;
 
-
 namespace TableOrder
 {
-   
-
     public partial class TableOrderBoundary : MaterialForm
     {
         private List<CartItem> cart = new List<CartItem>();
