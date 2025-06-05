@@ -41,8 +41,6 @@
             panel2 = new Panel();
             finalsalesLabel = new MaterialSkin.Controls.MaterialLabel();
             SalesDataView = new DataGridView();
-            panel4 = new Panel();
-            panel3 = new Panel();
             dateTime = new DataGridViewTextBoxColumn();
             TableId = new DataGridViewTextBoxColumn();
             recnum = new DataGridViewTextBoxColumn();
@@ -50,6 +48,8 @@
             qty = new DataGridViewTextBoxColumn();
             unitPrice = new DataGridViewTextBoxColumn();
             totalPrice = new DataGridViewTextBoxColumn();
+            panel4 = new Panel();
+            panel3 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SalesDataView).BeginInit();
@@ -210,24 +210,6 @@
             SalesDataView.Size = new Size(783, 305);
             SalesDataView.TabIndex = 2;
             // 
-            // panel4
-            // 
-            panel4.Dock = DockStyle.Right;
-            panel4.Location = new Point(846, 0);
-            panel4.Margin = new Padding(2);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(63, 357);
-            panel4.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            panel3.Dock = DockStyle.Left;
-            panel3.Location = new Point(0, 0);
-            panel3.Margin = new Padding(2);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(63, 357);
-            panel3.TabIndex = 0;
-            // 
             // dateTime
             // 
             dateTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -279,6 +261,24 @@
             totalPrice.MinimumWidth = 8;
             totalPrice.Name = "totalPrice";
             // 
+            // panel4
+            // 
+            panel4.Dock = DockStyle.Right;
+            panel4.Location = new Point(846, 0);
+            panel4.Margin = new Padding(2);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(63, 357);
+            panel4.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            panel3.Dock = DockStyle.Left;
+            panel3.Location = new Point(0, 0);
+            panel3.Margin = new Padding(2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(63, 357);
+            panel3.TabIndex = 0;
+            // 
             // SalesManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -288,7 +288,7 @@
             Controls.Add(panel1);
             Margin = new Padding(2);
             Name = "SalesManagerBoundary";
-            Text = "결내역관리";
+            Text = "결제내역관리";
             FormClosing += SalesManagerBoundary_FormClosing;
             Load += SalesManagerBoundary_Load;
             panel1.ResumeLayout(false);
