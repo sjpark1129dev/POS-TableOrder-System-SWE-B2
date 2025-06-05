@@ -1,44 +1,32 @@
-﻿using System.Collections.Generic;
-using POS.Repository;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using POS.Domain;
+using POS.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace POS.Controller
 {
     internal class OrderAndPayController
     {
-        private OrderAndPaymentRepository paymentRepository;
+        
+        private OrderAndPaymentRepository orderAndPaymentRepository;
 
         public OrderAndPayController()
         {
-            paymentRepository = new OrderAndPaymentRepository();
+            orderAndPaymentRepository = new OrderAndPaymentRepository();
         }
 
-        // 결제 예정 금액 계산: 결제 안된 주문들의 아이템 가격 * 수량 합산
-        public int getPendingPaymentAmount()
+        public bool PayTable(int tableId)
         {
-            var unpaidOrders = paymentRepository.LoadAllOrders();
-
-            int totalAmount = 0;
-
-            foreach (var order in unpaidOrders)
-            {
-                // 결제 안 된 주문만 합산
-                if (!order.IsPaid)
-                {
-                    foreach (var item in order.Items)
-                    {
-                        totalAmount += item.UnitPrice * item.Qty;
-                    }
-                }
-            }
-
-            return totalAmount;
+            return orderAndPaymentRepository.ProcessPaymentByTable(tableId);
         }
 
-        // 결제 처리 시 호출: 주문 Entity 받아서 결제 정보 저장
-        public void insertPayment(OrderEntity order)
+        public List<dynamic> GetUnpaidOrderItemsByTable(int tableId)
         {
-            paymentRepository.insertPayment(order);
+            return orderAndPaymentRepository.GetUnpaidOrdersForGridByTable(tableId);
         }
     }
 }

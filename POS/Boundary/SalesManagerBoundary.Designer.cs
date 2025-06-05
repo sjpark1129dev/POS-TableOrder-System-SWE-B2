@@ -30,6 +30,8 @@
         {
             label1 = new Label();
             panel1 = new Panel();
+            recnumTxt = new TextBox();
+            menuTxt = new TextBox();
             salesSearchBtn = new MaterialSkin.Controls.MaterialButton();
             label4 = new Label();
             label3 = new Label();
@@ -47,8 +49,6 @@
             totalPrice = new DataGridViewTextBoxColumn();
             panel4 = new Panel();
             panel3 = new Panel();
-            menuTxt = new TextBox();
-            recnumTxt = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)SalesDataView).BeginInit();
@@ -82,6 +82,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(909, 53);
             panel1.TabIndex = 1;
+            // 
+            // recnumTxt
+            // 
+            recnumTxt.Location = new Point(584, 15);
+            recnumTxt.Name = "recnumTxt";
+            recnumTxt.Size = new Size(100, 23);
+            recnumTxt.TabIndex = 9;
+            // 
+            // menuTxt
+            // 
+            menuTxt.Location = new Point(400, 15);
+            menuTxt.Name = "menuTxt";
+            menuTxt.Size = new Size(100, 23);
+            menuTxt.TabIndex = 8;
             // 
             // salesSearchBtn
             // 
@@ -248,20 +262,6 @@
             panel3.Size = new Size(63, 357);
             panel3.TabIndex = 0;
             // 
-            // menuTxt
-            // 
-            menuTxt.Location = new Point(400, 15);
-            menuTxt.Name = "menuTxt";
-            menuTxt.Size = new Size(100, 23);
-            menuTxt.TabIndex = 8;
-            // 
-            // recnumTxt
-            // 
-            recnumTxt.Location = new Point(584, 15);
-            recnumTxt.Name = "recnumTxt";
-            recnumTxt.Size = new Size(100, 23);
-            recnumTxt.TabIndex = 9;
-            // 
             // SalesManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -272,6 +272,7 @@
             Margin = new Padding(2);
             Name = "SalesManagerBoundary";
             Text = "결재내역관리";
+            FormClosing += SalesManagerBoundary_FormClosing;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

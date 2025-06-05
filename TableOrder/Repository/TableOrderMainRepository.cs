@@ -17,12 +17,20 @@ namespace TableOrder.Repository
             _context = AppDbContext.Instance;
         }
 
-        public void InsertOrder(int tableId, List<MenuEntity> cart)
+        public List<MenuEntity> GetAllMenus()
         {
-            if (cart == null || cart.Count == 0)
-                throw new ArgumentException("Cart is empty.");
+            return _context.Menus.ToList(); // ImageData 포함
+        }
 
-            // 주문 생성
+        public List<CategoryEntity> GetAllCategories()
+        {
+            return _context.Categories.ToList();
+        }
+
+        public bool SaveOrder(int tableId, List<MenuEntity> menuList)
+        {
+            var context = AppDbContext.Instance;
+
             var order = new OrderEntity
             {
                 TableId = tableId,
@@ -31,29 +39,34 @@ namespace TableOrder.Repository
                 Items = new List<OrderItemEntity>()
             };
 
-            // 메뉴별 수량 집계
-            var grouped = cart.GroupBy(m => m.MenuName);
-
-            foreach (var group in grouped)
-            {
-                var menu = group.First();
-                int qty = group.Count();
-
-                order.Items.Add(new OrderItemEntity
+            // 그룹핑: 메뉴별 수량 계산
+            var grouped = menuList
+                .GroupBy(m => m.Id)
+                .Select(g => new
                 {
-                    MenuName = menu.MenuName,
-                    Qty = qty,
-                    UnitPrice = menu.MenuPrice,
-                    // Order 속성은 자동 설정됨
+                    Menu = g.First(),
+                    Qty = g.Count()
                 });
+
+            foreach (var g in grouped)
+            {
+                var item = new OrderItemEntity
+                {
+                    MenuName = g.Menu.MenuName,
+                    Qty = g.Qty,
+                    UnitPrice = g.Menu.MenuPrice
+                };
+                order.Items.Add(item);
             }
-            _context.Orders.Add(order);
-            _context.SaveChanges();
+
+            context.Orders.Add(order);
+            context.SaveChanges();
+            return true;
         }
 
-        public List<MenuEntity> GetAllMenus()
+        public List<TableEntity> GetAllTables()
         {
-            return _context.Menus.ToList();
+            return _context.Tables.ToList();
         }
     }
 }

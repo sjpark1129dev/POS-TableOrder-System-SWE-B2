@@ -18,9 +18,9 @@
         private void InitializeComponent()
         {
             Total = new MaterialSkin.Controls.MaterialLabel();
-            dataGridView1 = new DataGridView();
+            dataGridViewUnpaidOrders = new DataGridView();
             pay = new MaterialSkin.Controls.MaterialButton();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewUnpaidOrders).BeginInit();
             SuspendLayout();
             // 
             // Total
@@ -35,14 +35,13 @@
             Total.TabIndex = 1;
             Total.Text = "총액 : 0원";
             // 
-            // dataGridView1
+            // dataGridViewUnpaidOrders
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(237, 81);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(283, 146);
-            dataGridView1.TabIndex = 7;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridViewUnpaidOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewUnpaidOrders.Location = new Point(26, 79);
+            dataGridViewUnpaidOrders.Name = "dataGridViewUnpaidOrders";
+            dataGridViewUnpaidOrders.Size = new Size(647, 155);
+            dataGridViewUnpaidOrders.TabIndex = 7;
             // 
             // pay
             // 
@@ -72,11 +71,11 @@
             ClientSize = new Size(696, 450);
             Controls.Add(Total);
             Controls.Add(pay);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridViewUnpaidOrders);
             Name = "PayAndOrderManagerBoundary";
             Text = "결제 관리";
             Load += PayManagerBoundary_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewUnpaidOrders).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -85,40 +84,25 @@
 
         // 멤버 변수
         private MaterialSkin.Controls.MaterialLabel Total;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewUnpaidOrders;
         private MaterialSkin.Controls.MaterialButton pay;
 
         // 주문 리스트 로드 및 총액 계산
         private void LoadOrdersToListView()
         {
-            if (dataGridView1.Columns.Count == 0)
+            if (dataGridViewUnpaidOrders.Columns.Count == 0)
             {
-                dataGridView1.Columns.Add("MenuName", "메뉴");
-                dataGridView1.Columns.Add("Quantity", "수량");
-                dataGridView1.Columns.Add("Price", "가격");
-
-                // 공간 꽉 채우도록 설정
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-                // 열 너비 비율 지정
-                dataGridView1.Columns["MenuName"].FillWeight = 50;
-                dataGridView1.Columns["Quantity"].FillWeight = 25;
-                dataGridView1.Columns["Price"].FillWeight = 25;
-
-                // 컬럼 헤더 및 셀 가운데 정렬
-                dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                // 행 높이 자동 조절
-                dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                dataGridViewUnpaidOrders.Columns.Add("MenuName", "메뉴");
+                dataGridViewUnpaidOrders.Columns.Add("Quantity", "수량");
+                dataGridViewUnpaidOrders.Columns.Add("Price", "가격");
             }
 
-            dataGridView1.Rows.Clear();
+            dataGridViewUnpaidOrders.Rows.Clear();
 
             // 테스트용 예시 데이터
-            dataGridView1.Rows.Add("삼겹살", 2, 12000);
-            dataGridView1.Rows.Add("목살", 1, 13000);
-            dataGridView1.Rows.Add("된장찌개", 2, 5000);
+            dataGridViewUnpaidOrders.Rows.Add("삼겹살", 2, 12000);
+            dataGridViewUnpaidOrders.Rows.Add("목살", 1, 13000);
+            dataGridViewUnpaidOrders.Rows.Add("된장찌개", 2, 5000);
 
             CalculateTotalPrice();
         }
@@ -127,7 +111,7 @@
         {
             int total = 0;
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridViewUnpaidOrders.Rows)
             {
                 if (row.Cells["Quantity"].Value != null && row.Cells["Price"].Value != null)
                 {

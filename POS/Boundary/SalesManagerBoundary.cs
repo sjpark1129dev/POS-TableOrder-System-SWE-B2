@@ -1,4 +1,5 @@
 using MaterialSkin.Controls;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using POS.Domain;
 using POS.Controller;
 
@@ -8,11 +9,13 @@ namespace POS.Boundary
     {
         private List<SalesEntity> salesList;
         private SalesController salesController;
+        private TableViewBoundary tableViewBoundary; // 테이블 뷰 바운더리 참조
 
-        public SalesManagerBoundary()
+        public SalesManagerBoundary(TableViewBoundary tableViewBoundary)
         {
             InitializeComponent();
             salesController = new SalesController();
+            this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장
         }
         private void salesSearchButton_Click(object sender, EventArgs e)
         {
@@ -48,8 +51,14 @@ namespace POS.Boundary
                     sale.Price
                 );
                 totalSales += sale.Price;
-            };
+            }
+            ;
             finalsalesLabel.Text = $"총매출: {totalSales:N0}원";
+        }
+
+        private void SalesManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tableViewBoundary.LoadTables(); // 테이블 뷰 바운더리의 테이블 목록 새로고침
         }
     }
 }

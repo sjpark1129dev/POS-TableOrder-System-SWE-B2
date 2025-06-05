@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using POS.Controller;
 using POS.Domain;
 
 namespace POS.Boundary
@@ -9,114 +10,73 @@ namespace POS.Boundary
     public partial class PayAndOrderManagerBoundary : MaterialForm
     {
         private readonly MaterialSkinManager materialSkinManager;
+        private TableViewBoundary tableViewBoundary;
+        private OrderAndPayController orderAndPayController;
+        private int tableId; // 테이블 ID 저장
 
-        public PayAndOrderManagerBoundary()
+        public PayAndOrderManagerBoundary(TableViewBoundary tableViewBoundary, int tableId)
         {
             InitializeComponent();
 
             // MaterialSkin Manager 세팅
-            materialSkinManager = MaterialSkinManager.Instance;
+            var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue600, Primary.Blue700,
-                Primary.Blue200, Accent.LightBlue200,
-                TextShade.WHITE
-            );
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장
+            this.orderAndPayController = new OrderAndPayController(); // 주문 및 결제 컨트롤러 인스턴스 생성
+            this.tableId = tableId; // 테이블 ID 저장
+            this.Text = $"테이블 {tableId} 결제 및 주문 관리"; // 폼 제목 설정
         }
 
         private void PayManagerBoundary_Load(object sender, EventArgs e)
         {
-            // DataGridView 설정 (기본 WinForm 컨트롤 사용)
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dataGridView1.Columns.Clear();
-
-            // 컬럼 정의
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                HeaderText = "메뉴명",
-                Name = "MenuName",
-                Width = 150
-            });
-
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                HeaderText = "단가",
-                Name = "UnitPrice",
-                Width = 70,
-                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleRight, Format = "N0" }
-            });
-
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                HeaderText = "수량",
-                Name = "Quantity",
-                Width = 50,
-                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
-            });
-
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                HeaderText = "가격",
-                Name = "TotalPrice",
-                Width = 90,
-                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleRight, Format = "N0" }
-            });
-
-            // 예시 데이터 추가
-            AddMenuItem("삼겹살", 12000, 2);
-            AddMenuItem("김치찌개", 8000, 1);
-
+            LoadUnpaidOrdersIntoGrid();
             UpdateTotalPrice();
         }
 
-        private void AddMenuItem(string name, int unitPrice, int quantity)
-        {
-            int totalPrice = unitPrice * quantity;
-
-            dataGridView1.Rows.Add(name, unitPrice, quantity, totalPrice);
-
-            UpdateTotalPrice();
+        private void LoadUnpaidOrdersIntoGrid()
+        { 
+            var unpaidItems = orderAndPayController.GetUnpaidOrderItemsByTable(tableId); 
+            dataGridViewUnpaidOrders.DataSource = unpaidItems;
         }
 
         private void UpdateTotalPrice()
         {
             int total = 0;
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+
+            foreach (DataGridViewRow row in dataGridViewUnpaidOrders.Rows)
             {
-                if (row.Cells["TotalPrice"].Value != null &&
-                    int.TryParse(row.Cells["TotalPrice"].Value.ToString(), out int price))
+                // Skip the new row placeholder
+                if (row.IsNewRow)
+                    continue;
+
+                // 컬럼명 확인: 실제 DataGridView에 "Total" 컬럼인지 "TotalPrice"인지 확인
+                var cell = row.Cells["Total"]; // 또는 "TotalPrice"
+                if (cell != null && cell.Value != null && int.TryParse(cell.Value.ToString(), out int price))
                 {
                     total += price;
                 }
             }
 
-            Total.Text = "총액 : " + total.ToString("N0") + "원";
-        }
-
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            // 필요 시 선택 이벤트 처리
-        }
-
-        private void materialLabel1_Click(object sender, EventArgs e)
-        {
-
+            Total.Text = $"총액 : {total:N0}원";
         }
 
         private void pay_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("결제하기가 완료되었습니다.", "결제 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+            bool success = orderAndPayController.PayTable(tableId);
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            if (success)
+            {
+                MessageBox.Show($"테이블 {tableId}번의 결제가 완료되었습니다.");
+                tableViewBoundary.LoadTables(); // 테이블 뷰 갱신
+                this.Close(); // 결제 완료 후 폼 닫기
+            }
+            else
+            {
+                MessageBox.Show("결제할 미결제 주문이 없습니다.");
+            }
         }
     }
 }
