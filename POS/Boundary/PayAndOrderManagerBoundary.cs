@@ -17,12 +17,6 @@ namespace POS.Boundary
         public PayAndOrderManagerBoundary(TableViewBoundary tableViewBoundary, int tableId)
         {
             InitializeComponent();
-
-            // MaterialSkin Manager 세팅
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장
             this.orderAndPayController = new OrderAndPayController(); // 주문 및 결제 컨트롤러 인스턴스 생성
             this.tableId = tableId; // 테이블 ID 저장
