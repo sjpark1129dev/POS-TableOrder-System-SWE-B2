@@ -68,7 +68,7 @@ namespace POS.Boundary
             });
 
             // 예시 데이터 추가
-            AddMenuItem("불고기", 12000, 2);
+            AddMenuItem("삼겹살", 12000, 2);
             AddMenuItem("김치찌개", 8000, 1);
 
             UpdateTotalPrice();
@@ -111,7 +111,7 @@ namespace POS.Boundary
 
         private void pay_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("결제하기가 완료되었습니다.", "결제 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

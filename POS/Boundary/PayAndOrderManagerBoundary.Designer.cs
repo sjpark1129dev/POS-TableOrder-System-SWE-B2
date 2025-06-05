@@ -28,7 +28,7 @@
             Total.AutoSize = true;
             Total.Depth = 0;
             Total.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            Total.Location = new Point(537, 291);
+            Total.Location = new Point(443, 230);
             Total.MouseState = MaterialSkin.MouseState.HOVER;
             Total.Name = "Total";
             Total.Size = new Size(58, 19);
@@ -38,9 +38,9 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(26, 79);
+            dataGridView1.Location = new Point(237, 81);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(647, 155);
+            dataGridView1.Size = new Size(283, 146);
             dataGridView1.TabIndex = 7;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -49,9 +49,10 @@
             pay.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             pay.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             pay.Depth = 0;
+            pay.Font = new Font("맑은 고딕", 12F);
             pay.HighEmphasis = true;
             pay.Icon = null;
-            pay.Location = new Point(284, 331);
+            pay.Location = new Point(353, 276);
             pay.Margin = new Padding(4, 6, 4, 6);
             pay.MouseState = MaterialSkin.MouseState.HOVER;
             pay.Name = "pay";
@@ -95,6 +96,21 @@
                 dataGridView1.Columns.Add("MenuName", "메뉴");
                 dataGridView1.Columns.Add("Quantity", "수량");
                 dataGridView1.Columns.Add("Price", "가격");
+
+                // 공간 꽉 채우도록 설정
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                // 열 너비 비율 지정
+                dataGridView1.Columns["MenuName"].FillWeight = 50;
+                dataGridView1.Columns["Quantity"].FillWeight = 25;
+                dataGridView1.Columns["Price"].FillWeight = 25;
+
+                // 컬럼 헤더 및 셀 가운데 정렬
+                dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // 행 높이 자동 조절
+                dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             }
 
             dataGridView1.Rows.Clear();
