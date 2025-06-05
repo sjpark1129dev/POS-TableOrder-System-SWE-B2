@@ -25,7 +25,7 @@ namespace POS.Repository
                 string recNum = $"{DateTime.Now:yyyyMMdd}-{Guid.NewGuid().ToString()[..4]}";
 
                 foreach (var order in unpaidOrders)
-                {   
+                {
                     foreach (var item in order.Items)
                     {
                         var sale = new SalesEntity
