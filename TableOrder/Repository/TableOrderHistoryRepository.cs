@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using POS.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using POS.Domain;
 
 namespace TableOrder.Repository
 {
@@ -16,21 +17,12 @@ namespace TableOrder.Repository
             _context = AppDbContext.Instance;
         }
 
-        public bool SearchOrderData(int tableID)
+        public List<OrderEntity> GetUnpaidOrdersByTable(int tableId)
         {
-            return false;
-            // return _context.Any(o => o.TableID == tableID);
-        }
-
-        public void GetAllOrder()
-        {
-            // return new List<OrderEntity>();
-            // return _context.Orders;
-        }
-
-        public void ShowErrorMessage()
-        {
-            Console.WriteLine("주문 내역 없음");
+            return _context.Orders
+                .Where(o => o.TableId == tableId && !o.IsPaid)
+                .Include(o => o.Items)
+                .ToList();
         }
     }
 }

@@ -277,8 +277,9 @@
             Controls.Add(panel1);
             Margin = new Padding(2);
             Name = "SalesManagerBoundary";
-            Text = "결재내역관리";
+            Text = "결내역관리";
             Load += SalesManagerBoundary_Load;
+            FormClosing += SalesManagerBoundary_FormClosing;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

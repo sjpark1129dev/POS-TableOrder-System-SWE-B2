@@ -13,6 +13,7 @@ namespace POS.Domain
 
         [Required]
         public bool IsPaid { get; set; } = false;
+     
 
         [Required]
         public DateTime CreatedAt { get; set; } = DateTime.Now;

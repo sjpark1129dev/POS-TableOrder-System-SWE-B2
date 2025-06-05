@@ -9,11 +9,13 @@ namespace POS.Boundary
         private TableController tableController = new TableController();
         private List<TableEntity> tableList;
         private int? selectedTableId = null;  // 선택된 테이블 ID 보관 (nullable int)
-        public TableManagerBoundary()
+        private TableViewBoundary tableViewBoundary; // 테이블 뷰 바운더리 참조
+        public TableManagerBoundary(TableViewBoundary tableViewBoundary)
         {
             InitializeComponent();
             tableList = tableController.GetAllTables();
             LoadTablesToPanel();
+            this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장
         }
 
         private void LoadTablesToPanel()
@@ -34,8 +36,6 @@ namespace POS.Boundary
                 tableLayoutPanelTables.Controls.Add(btn);
             }
         }
-
-
 
         private void TableButton_Click(object sender, EventArgs e)
         {
@@ -142,10 +142,15 @@ namespace POS.Boundary
                 var repository = repoField?.GetValue(tableController) as POS.Repository.TableRepository;
                 repository?.Update(table);
 
-                MessageBox.Show("테이블 이름이 수정되었습니다."); 
-                tableList = tableController.GetAllTables();        
+                MessageBox.Show("테이블 이름이 수정되었습니다.");
+                tableList = tableController.GetAllTables();
                 LoadTablesToPanel();
             }
+        }
+
+        private void TableManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tableViewBoundary.LoadTables();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace POS.Controller
             menuRepository = new MenuRepository();
         }
 
-        public bool MenuCreate(string name, int price, int categoryId)
+        public bool MenuCreate(string name, int price, int categoryId, byte[]? imageBytes)
         {
             List<MenuEntity> menuList = menuRepository.GetAllMenus(); // 모든 메뉴 조회
 
@@ -31,7 +31,8 @@ namespace POS.Controller
             {
                 MenuName = name,
                 MenuPrice = price,
-                CategoryId = categoryId
+                CategoryId = categoryId,
+                MenuImage = imageBytes,
             };
 
             menuRepository.Insert(menu);
