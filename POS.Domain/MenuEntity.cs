@@ -26,6 +26,9 @@ namespace POS.Domain
         // 🔽 네비게이션 속성 (optional: virtual 붙이면 LazyLoading 가능)
         public virtual CategoryEntity Category { get; set; }
 
+        [Column("menu_image")]
+        public byte[]? MenuImage { get; set; } // 기본값 null
+
         public MenuEntity() { }
 
         public MenuEntity(string name, int price, int categoryId)

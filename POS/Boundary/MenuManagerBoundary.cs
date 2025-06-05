@@ -24,8 +24,10 @@ namespace POS.Boundary
         private List<MenuEntity> menuList;
         private List<CategoryEntity> categoryList;
         private int? selectedMenuId = null;
+        private TableViewBoundary tableViewBoundary; // 테이블 뷰 바운더리 참조
+        private byte[]? selectedImageBytes = null;
 
-        public MenuManagerBoundary()
+        public MenuManagerBoundary(TableViewBoundary tableViewBoundary)
         {
             InitializeComponent();
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -33,6 +35,7 @@ namespace POS.Boundary
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             InitializeDataGridView();
+            this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장
         }
 
         private void InitializeDataGridView()
@@ -118,7 +121,7 @@ namespace POS.Boundary
             int categoryId = (int)comboBoxCategory.SelectedValue;
 
             // ✅ DB에 저장 (카테고리 ID 포함)
-            menuCreateController.MenuCreate(name, price, categoryId);
+            menuCreateController.MenuCreate(name, price, categoryId, selectedImageBytes);
 
             // 목록 다시 불러오기
             menuList = menuLoadController.MenuLoad();
@@ -191,6 +194,11 @@ namespace POS.Boundary
                 return;
             }
 
+            if (selectedImageBytes != null)
+            {
+                selectedMenu.MenuImage = selectedImageBytes;
+            }
+
             int newCategoryId = (int)comboBoxCategory.SelectedValue;
 
             // 실제 수정
@@ -221,6 +229,20 @@ namespace POS.Boundary
                 // ComboBox에서 해당 카테고리를 선택
                 comboBoxCategory.SelectedValue = selectedMenu.CategoryId;
             }
+
+            if (selectedMenu.MenuImage != null)
+            {
+                using (var ms = new MemoryStream(selectedMenu.MenuImage))
+                {
+                    pictureBoxPreview.Image = Image.FromStream(ms);
+                    pictureBoxPreview.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
+            else
+            {
+                pictureBoxPreview.Image = null;
+            }
+
         }
 
         private void CategoryManageButton_Click(object sender, EventArgs e)
@@ -254,6 +276,64 @@ namespace POS.Boundary
 
             dataGridViewMenus.ClearSelection();
             selectedMenuId = null;
+        }
+
+        private void MenuManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tableViewBoundary.LoadTables(); // 테이블 뷰 바운더리의 테이블 목록 새로고침
+        }
+
+        private void addImageButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Title = "이미지 선택";
+                ofd.Filter = "이미지 파일|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = ofd.FileName;
+                    var original = Image.FromFile(filePath);
+
+                    var resized = ResizeImage(original, 800, 800); // 최대 800x800
+                    selectedImageBytes = ImageToByteArray(resized); // 여기가 DB에 들어갈 BLOB
+
+                    pictureBoxPreview.Image = resized; // 미리보기
+                }
+            }
+        }
+
+        public static Image ResizeImage(Image original, int maxWidth, int maxHeight)
+        {
+            int width = original.Width;
+            int height = original.Height;
+
+            float scale = Math.Min((float)maxWidth / width, (float)maxHeight / height);
+
+            int newWidth = (int)(width * scale);
+            int newHeight = (int)(height * scale);
+
+            var resized = new Bitmap(newWidth, newHeight);
+
+            using (var graphics = Graphics.FromImage(resized))
+            {
+                graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+
+                graphics.DrawImage(original, 0, 0, newWidth, newHeight);
+            }
+
+            return resized;
+        }
+
+        public static byte[] ImageToByteArray(Image image)
+        {
+            using (var ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // PNG도 가능
+                return ms.ToArray();
+            }
         }
     }
 }

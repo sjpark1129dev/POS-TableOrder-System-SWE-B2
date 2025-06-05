@@ -204,6 +204,7 @@
             Controls.Add(tableLayoutPanel1);
             Name = "TableManagerBoundary";
             Text = "TableManagerBoundary";
+            FormClosing += TableManagerBoundary_FormClosing;
             tableLayoutPanel1.ResumeLayout(false);
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
