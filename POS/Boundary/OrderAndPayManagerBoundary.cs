@@ -7,14 +7,14 @@ using POS.Domain;
 
 namespace POS.Boundary
 {
-    public partial class PayAndOrderManagerBoundary : MaterialForm
+    public partial class OrderAndPayManagerBoundary : MaterialForm
     {
         private readonly MaterialSkinManager materialSkinManager;
         private TableViewBoundary tableViewBoundary;
         private OrderAndPayController orderAndPayController;
         private int tableId; // 테이블 ID 저장
 
-        public PayAndOrderManagerBoundary(TableViewBoundary tableViewBoundary, int tableId)
+        public OrderAndPayManagerBoundary(TableViewBoundary tableViewBoundary, int tableId)
         {
             InitializeComponent();
             this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장

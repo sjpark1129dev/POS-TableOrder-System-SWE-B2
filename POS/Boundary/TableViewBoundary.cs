@@ -124,7 +124,7 @@ namespace POS.Boundary
         {
             if (sender is MaterialButton button && button.Tag is int tableId)
             {
-                Form payAndOrderManagerBoundary = new PayAndOrderManagerBoundary(this, tableId);
+                Form payAndOrderManagerBoundary = new OrderAndPayManagerBoundary(this, tableId);
                 payAndOrderManagerBoundary.ShowDialog();
             }
         }

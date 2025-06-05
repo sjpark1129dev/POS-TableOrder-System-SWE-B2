@@ -12,21 +12,21 @@ namespace POS.Controller
     internal class OrderAndPayController
     {
         
-        private OrderAndPaymentRepository orderAndPaymentRepository;
+        private OrderAndPayRepository _orderAndPayRepository;
 
         public OrderAndPayController()
         {
-            orderAndPaymentRepository = new OrderAndPaymentRepository();
+            _orderAndPayRepository = new OrderAndPayRepository();
         }
 
         public bool PayTable(int tableId)
         {
-            return orderAndPaymentRepository.ProcessPaymentByTable(tableId);
+            return _orderAndPayRepository.ProcessPaymentByTable(tableId);
         }
 
         public List<dynamic> GetUnpaidOrderItemsByTable(int tableId)
         {
-            return orderAndPaymentRepository.GetUnpaidOrdersForGridByTable(tableId);
+            return _orderAndPayRepository.GetUnpaidOrdersForGridByTable(tableId);
         }
     }
 }

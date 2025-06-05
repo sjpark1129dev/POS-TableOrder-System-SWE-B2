@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace POS.Repository
 {
-    internal class OrderAndPaymentRepository
+    public class OrderAndPayRepository
     {
         private readonly AppDbContext _context = AppDbContext.Instance;
         public bool ProcessPaymentByTable(int tableId)
@@ -25,7 +25,7 @@ namespace POS.Repository
                 string recNum = $"{DateTime.Now:yyyyMMdd}-{Guid.NewGuid().ToString()[..4]}";
 
                 foreach (var order in unpaidOrders)
-                {
+                {   
                     foreach (var item in order.Items)
                     {
                         var sale = new SalesEntity

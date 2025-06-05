@@ -6,10 +6,6 @@ namespace POS.Repository
     {
         private readonly AppDbContext _context = AppDbContext.Instance;
 
-        public TableRepository()
-        {
-        }
-
         public List<TableEntity> GetAllTables()
         {
             return _context.Tables.ToList(); // DB에서 테이블 목록 조회

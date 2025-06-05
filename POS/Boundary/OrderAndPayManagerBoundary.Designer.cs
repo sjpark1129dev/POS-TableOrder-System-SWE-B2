@@ -1,6 +1,6 @@
 ﻿namespace POS.Boundary
 {
-    partial class PayAndOrderManagerBoundary
+    partial class OrderAndPayManagerBoundary
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -64,7 +64,7 @@
             pay.UseVisualStyleBackColor = true;
             pay.Click += pay_Click;
             // 
-            // PayAndOrderManagerBoundary
+            // OrderAndPayManagerBoundary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -72,7 +72,7 @@
             Controls.Add(Total);
             Controls.Add(pay);
             Controls.Add(dataGridViewUnpaidOrders);
-            Name = "PayAndOrderManagerBoundary";
+            Name = "OrderAndPayManagerBoundary";
             Text = "결제 관리";
             Load += PayManagerBoundary_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridViewUnpaidOrders).EndInit();

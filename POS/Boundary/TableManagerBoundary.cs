@@ -95,12 +95,8 @@ namespace POS.Boundary
                 MessageBox.Show("삭제할 테이블을 선택하세요.");
                 return;
             }
-
-
-
-            tableController.MarkDeleted(tableList, selectedTableId.Value);
+            
             tableList = tableController.GetAllTables();
-
             selectedTableId = null;
             tableIdTextBox.Text = "";
             tableNameTextBox.Text = "";

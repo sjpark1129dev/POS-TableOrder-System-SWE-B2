@@ -27,9 +27,5 @@ namespace POS.Controller
         {
             return list.Any(t => t.tableName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
-        public void MarkDeleted(List<TableEntity> tables, int id)
-        {
-            _repository.Delete(id);
-        }
     }
 }
