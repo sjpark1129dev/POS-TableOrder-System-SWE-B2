@@ -16,12 +16,6 @@ namespace POS.Controller
         {
             salesRepository = new SalesRepository();
         }
-
-        public List<SalesEntity> GetAllSales()
-        {
-            return salesRepository.GetAllSales();
-        }
-
         public List<SalesEntity> SearchSales(DateTime startDate, DateTime endDate, string menuName, string receiptNum)
         {
             return salesRepository.SearchSales(startDate, endDate, menuName, receiptNum);

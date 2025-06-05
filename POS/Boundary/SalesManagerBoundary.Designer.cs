@@ -173,8 +173,8 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(finalsalesLabel);
             panel2.Controls.Add(SalesDataView);
+            panel2.Controls.Add(finalsalesLabel);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Fill;
