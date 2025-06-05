@@ -61,6 +61,7 @@ namespace POS.Boundary
         private void SalesManagerBoundary_Load(object sender, EventArgs e)
         {
             LoadSalesToGridView();
+        }
 
         private void SalesManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)
         {
