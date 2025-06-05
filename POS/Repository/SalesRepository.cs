@@ -22,7 +22,7 @@ namespace POS.Repository
                 var query = context.Sales.AsQueryable();
 
                 // 날짜 조건
-                query = query.Where(s => s.SalesDate >= startDate && s.SalesDate <= endDate);
+                query = query.Where(s => s.SalesDate >= startDate && s.SalesDate <= endDate.AddDays(1));
 
                 // 메뉴 이름이 비어있지 않으면 필터링
                 if (!string.IsNullOrWhiteSpace(menuName))
