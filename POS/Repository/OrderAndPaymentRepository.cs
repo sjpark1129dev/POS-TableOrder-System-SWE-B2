@@ -8,7 +8,6 @@ namespace POS.Repository
     internal class OrderAndPaymentRepository
     {
         private readonly AppDbContext _context = AppDbContext.Instance;
-
         public bool ProcessPaymentByTable(int tableId)
         {
             using var transaction = _context.Database.BeginTransaction();

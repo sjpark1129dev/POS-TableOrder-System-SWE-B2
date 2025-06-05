@@ -119,5 +119,10 @@ namespace POS.Boundary
             categoryIDtxt.Text = "";
             categoryNameTextBox.Text = "";
         }
+
+        private void CategoryManagerBoundary_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
