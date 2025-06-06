@@ -71,7 +71,6 @@ namespace POS.Boundary
             LoadAllMenus(); // 초기 로딩
         }
 
-
         private void LoadAllMenus()
         {
             menuList = menuLoadController.MenuLoad();
@@ -86,6 +85,7 @@ namespace POS.Boundary
             comboBoxCategory.ValueMember = "Id";             // 내부 값으로 쓸 속성
             comboBoxCategory.DataSource = categoryList;      // CategoryEntity 리스트
         }
+
         private void RefreshMenuList()
         {
             dataGridViewMenus.DataSource = null;
@@ -111,7 +111,7 @@ namespace POS.Boundary
                 return;
             }
 
-            // ✅ 카테고리 선택 확인
+            // 카테고리 선택 확인
             if (comboBoxCategory.SelectedValue == null)
             {
                 MessageBox.Show("카테고리를 선택하세요.");
@@ -120,7 +120,7 @@ namespace POS.Boundary
 
             int categoryId = (int)comboBoxCategory.SelectedValue;
 
-            // ✅ DB에 저장 (카테고리 ID 포함)
+            // DB에 저장 (카테고리 ID 포함)
             menuCreateController.MenuCreate(name, price, categoryId, selectedImageBytes);
 
             // 목록 다시 불러오기
@@ -242,7 +242,6 @@ namespace POS.Boundary
             {
                 pictureBoxPreview.Image = null;
             }
-
         }
 
         private void CategoryManageButton_Click(object sender, EventArgs e)
@@ -263,7 +262,6 @@ namespace POS.Boundary
                 string name = selectedCategory.CategoryName;
             }
         }
-
         private void menuResetButton_Click(object sender, EventArgs e)
         {
             menuNameTextBox.Text = string.Empty;

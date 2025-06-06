@@ -61,7 +61,7 @@ namespace POS.Repository
         {
             var result = _context.Orders
                 .Include(o => o.Items)
-                .Where(o => o.TableId == tableId && !o.IsPaid)  // ✅ 여기!
+                .Where(o => o.TableId == tableId && !o.IsPaid)
                 .SelectMany(order => order.Items.Select(item => new
                 {
                     TableId = order.TableId,

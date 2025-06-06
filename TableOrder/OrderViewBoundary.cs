@@ -26,12 +26,12 @@ namespace TableOrder
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
 
-            var orders = historyRepo.GetUnpaidOrdersByTable(selectedTableId); // ✅ 변경
+            var orders = historyRepo.GetUnpaidOrdersByTable(selectedTableId); // 변경
 
             if (orders == null || orders.Count == 0)
             {
                 MessageBox.Show("해당 테이블의 미결제 주문이 없습니다.");
-                this.DialogResult = DialogResult.Cancel; // ✅ 이유 전달
+                this.DialogResult = DialogResult.Cancel; // 이유 전달
                 this.Close();
                 return;
             }

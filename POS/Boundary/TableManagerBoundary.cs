@@ -29,7 +29,7 @@ namespace POS.Boundary
                 btn.Tag = table.Id;
                 btn.Dock = DockStyle.Fill;
                 btn.Margin = new Padding(10);
-                btn.BackColor = Color.White; // ✅ 기본 배경 흰색
+                btn.BackColor = Color.White; // 기본 배경 흰색
 
                 btn.Click += TableButton_Click;
 
