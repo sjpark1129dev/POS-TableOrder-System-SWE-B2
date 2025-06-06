@@ -127,6 +127,7 @@ namespace POS.Boundary
             var table = tableList.FirstOrDefault(t => t.Id == selectedTableId);
             table.tableName = newName;
             tableController.UpdateTable(table);
+            LoadTablesToPanel();
         }
 
         private void TableManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)

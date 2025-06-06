@@ -146,16 +146,25 @@ namespace POS.Boundary
                 return;
             }
 
-            var selectedMenu = menuList.FirstOrDefault(c => c.Id == id);
+            var selectedMenu = menuList.FirstOrDefault(m => m.Id == id);
             if (selectedMenu == null)
             {
                 MessageBox.Show("메뉴를 찾을 수 없습니다.");
                 return;
             }
 
-            menuRemoveController.MenuRemove(selectedMenu);
+            try
+            {
+                menuRemoveController.MenuRemove(selectedMenu);
+                MessageBox.Show("메뉴가 삭제되었습니다.");
+                LoadAllMenus();
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "삭제 실패", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             selectedMenuId = null;
-            LoadAllMenus();
         }
 
         private void menuEditButton_Click(object sender, EventArgs e)

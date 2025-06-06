@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
             dataGridViewMenus = new DataGridView();
@@ -78,7 +78,7 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 13.4706812F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 86.52932F));
-            tableLayoutPanel1.Size = new Size(777, 779);
+            tableLayoutPanel1.Size = new Size(797, 822);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -89,11 +89,11 @@
             tableLayoutPanel2.Controls.Add(dataGridViewMenus, 0, 0);
             tableLayoutPanel2.Controls.Add(panel3, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 107);
+            tableLayoutPanel2.Location = new Point(3, 113);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(771, 669);
+            tableLayoutPanel2.Size = new Size(791, 706);
             tableLayoutPanel2.TabIndex = 4;
             // 
             // dataGridViewMenus
@@ -103,51 +103,51 @@
             dataGridViewMenus.AllowUserToResizeColumns = false;
             dataGridViewMenus.AllowUserToResizeRows = false;
             dataGridViewMenus.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = SystemColors.Control;
-            dataGridViewCellStyle7.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewMenus.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewMenus.Columns.AddRange(new DataGridViewColumn[] { Id, menuName, Price });
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = SystemColors.Window;
-            dataGridViewCellStyle11.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.DefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewMenus.Dock = DockStyle.Fill;
             dataGridViewMenus.Location = new Point(3, 3);
             dataGridViewMenus.MultiSelect = false;
             dataGridViewMenus.Name = "dataGridViewMenus";
             dataGridViewMenus.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = SystemColors.Control;
-            dataGridViewCellStyle12.Font = new Font("맑은 고딕", 9F);
-            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dataGridViewMenus.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("맑은 고딕", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridViewMenus.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewMenus.RowHeadersVisible = false;
             dataGridViewMenus.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewMenus.RowTemplate.ReadOnly = true;
             dataGridViewMenus.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewMenus.Size = new Size(379, 663);
+            dataGridViewMenus.Size = new Size(389, 700);
             dataGridViewMenus.TabIndex = 4;
             dataGridViewMenus.SelectionChanged += dataGridViewMenus_SelectionChanged;
             // 
             // Id
             // 
             Id.DataPropertyName = "Id";
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            Id.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            Id.DefaultCellStyle = dataGridViewCellStyle2;
             Id.FillWeight = 10F;
             Id.HeaderText = "ID";
             Id.Name = "Id";
@@ -158,9 +158,9 @@
             // 
             menuName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             menuName.DataPropertyName = "menuName";
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            menuName.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            menuName.DefaultCellStyle = dataGridViewCellStyle3;
             menuName.FillWeight = 60F;
             menuName.HeaderText = "메뉴명";
             menuName.Name = "menuName";
@@ -170,10 +170,10 @@
             // Price
             // 
             Price.DataPropertyName = "menuPrice";
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.Format = "N0";
-            dataGridViewCellStyle10.NullValue = null;
-            Price.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            Price.DefaultCellStyle = dataGridViewCellStyle4;
             Price.FillWeight = 30F;
             Price.HeaderText = "가격";
             Price.Name = "Price";
@@ -195,9 +195,9 @@
             panel3.Controls.Add(menuResetButton);
             panel3.Controls.Add(comboBoxCategory);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(388, 3);
+            panel3.Location = new Point(398, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(380, 663);
+            panel3.Size = new Size(390, 700);
             panel3.TabIndex = 8;
             // 
             // pictureBoxPreview
@@ -222,6 +222,7 @@
             menuIdTextBox.MouseState = MaterialSkin.MouseState.OUT;
             menuIdTextBox.Multiline = false;
             menuIdTextBox.Name = "menuIdTextBox";
+            menuIdTextBox.ReadOnly = true;
             menuIdTextBox.Size = new Size(115, 50);
             menuIdTextBox.TabIndex = 20;
             menuIdTextBox.Text = "";
@@ -388,7 +389,7 @@
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(771, 98);
+            tableLayoutPanel3.Size = new Size(791, 104);
             tableLayoutPanel3.TabIndex = 3;
             // 
             // CategoryManageButton
@@ -399,7 +400,7 @@
             CategoryManageButton.Depth = 0;
             CategoryManageButton.HighEmphasis = true;
             CategoryManageButton.Icon = null;
-            CategoryManageButton.Location = new Point(613, 31);
+            CategoryManageButton.Location = new Point(630, 34);
             CategoryManageButton.Margin = new Padding(4, 6, 4, 6);
             CategoryManageButton.MouseState = MaterialSkin.MouseState.HOVER;
             CategoryManageButton.Name = "CategoryManageButton";
@@ -420,7 +421,7 @@
             menuEditButton.Depth = 0;
             menuEditButton.HighEmphasis = true;
             menuEditButton.Icon = null;
-            menuEditButton.Location = new Point(448, 31);
+            menuEditButton.Location = new Point(460, 34);
             menuEditButton.Margin = new Padding(4, 6, 4, 6);
             menuEditButton.MouseState = MaterialSkin.MouseState.HOVER;
             menuEditButton.Name = "menuEditButton";
@@ -441,7 +442,7 @@
             menuDeleteButton.Depth = 0;
             menuDeleteButton.HighEmphasis = true;
             menuDeleteButton.Icon = null;
-            menuDeleteButton.Location = new Point(256, 31);
+            menuDeleteButton.Location = new Point(263, 34);
             menuDeleteButton.Margin = new Padding(4, 6, 4, 6);
             menuDeleteButton.MouseState = MaterialSkin.MouseState.HOVER;
             menuDeleteButton.Name = "menuDeleteButton";
@@ -462,7 +463,7 @@
             menuCreateButton.Depth = 0;
             menuCreateButton.HighEmphasis = true;
             menuCreateButton.Icon = null;
-            menuCreateButton.Location = new Point(64, 31);
+            menuCreateButton.Location = new Point(66, 34);
             menuCreateButton.Margin = new Padding(4, 6, 4, 6);
             menuCreateButton.MouseState = MaterialSkin.MouseState.HOVER;
             menuCreateButton.Name = "menuCreateButton";
@@ -479,7 +480,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(783, 846);
+            ClientSize = new Size(803, 889);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "MenuManagerBoundary";
