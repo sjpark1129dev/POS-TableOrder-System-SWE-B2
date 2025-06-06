@@ -24,12 +24,26 @@ namespace POS.Boundary
             LoadSalesToGridView();
         }
 
-        private void LoadSalesToGridView()
+        private void LoadSalesToGridView(bool isFirstLoad = false)
         {
-            SalesDataView.Rows.Clear(); // 기존 행 제거
+            SalesDataView.Rows.Clear();
 
-            DateTime selectedEndDate = endDate.Value.Date;
-            DateTime selectedStartDate = startDate.Value.Date;
+            DateTime selectedStartDate;
+            DateTime selectedEndDate;
+
+            if (isFirstLoad)
+            {
+                selectedEndDate = DateTime.Today;
+                selectedStartDate = selectedEndDate.AddDays(-7);
+                startDate.Value = selectedStartDate;
+                endDate.Value = selectedEndDate;
+            }
+            else
+            {
+                selectedStartDate = startDate.Value.Date;
+                selectedEndDate = endDate.Value.Date;
+            }
+
             string menuName = menuTxt.Text.Trim();
             string recnum = recnumTxt.Text.Trim();
 
@@ -52,8 +66,8 @@ namespace POS.Boundary
                     sale.RecNum,
                     sale.MenuName,
                     sale.Qty,
-                    sale.UnitPrice.ToString("N0"), // 콤마 추가
-                    sale.Price.ToString("N0")      // 콤마 추가
+                    sale.UnitPrice.ToString("N0"),
+                    sale.Price.ToString("N0")
                 );
                 totalSales += sale.Price;
             }
@@ -63,7 +77,7 @@ namespace POS.Boundary
 
         private void SalesManagerBoundary_Load(object sender, EventArgs e)
         {
-            LoadSalesToGridView();
+            LoadSalesToGridView(isFirstLoad: true);
         }
 
         private void SalesManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)
