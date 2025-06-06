@@ -25,12 +25,12 @@ namespace TableOrder.Repository
 
         public List<CategoryEntity> GetAllCategories()
         {
-            return _context.Categories.ToList();
+            return _context.Categories.AsNoTracking().ToList();
         }
 
         public bool SaveOrder(int tableId, List<MenuEntity> menuList)
         {
-            var context = AppDbContext.Instance;
+            var context = _context;
 
             var order = new OrderEntity
             {
@@ -53,6 +53,7 @@ namespace TableOrder.Repository
             {
                 var item = new OrderItemEntity
                 {
+                    MenuId = g.Menu.Id, // 중요!
                     MenuName = g.Menu.MenuName,
                     Qty = g.Qty,
                     UnitPrice = g.Menu.MenuPrice
