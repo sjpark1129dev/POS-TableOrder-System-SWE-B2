@@ -14,7 +14,6 @@ namespace TableOrder
         private List<MenuEntity> allMenus;
         private List<CategoryEntity> allCategories;
         private int selectedTableId = -1;
-        private Label labelSelectedTable;
 
         public TableOrderBoundary()
         {
