@@ -9,6 +9,7 @@ namespace TableOrder
 {
     public partial class TableOrderBoundary : MaterialForm
     {
+        private System.Windows.Forms.Timer refreshTimer;
         private List<CartItem> cart = new List<CartItem>();
         private TableOrderMainController tableOrderMainController;
         private List<MenuEntity> allMenus;
@@ -19,16 +20,70 @@ namespace TableOrder
         {
             InitializeComponent();
             tableOrderMainController = new TableOrderMainController();
+
             InitializeTableSelector();
+
             allMenus = tableOrderMainController.LoadMenus();
             allCategories = tableOrderMainController.LoadCategories();
+
             LoadCategoryButtons();
             LoadMenuItems(-1);
 
+            // 가격 라벨 설정
             labelTotalPrice.AutoSize = true;
             labelTotalPrice.Font = new Font("맑은 고딕", 10, FontStyle.Bold);
             labelTotalPrice.Text = "총 가격: 0원";
             labelTotalPrice.BringToFront();
+
+            // ✅ 주기적 갱신 타이머
+            refreshTimer = new System.Windows.Forms.Timer();
+            refreshTimer.Interval = 5000; // 5초마다 확인
+            refreshTimer.Tick += RefreshTimer_Tick;
+            refreshTimer.Start();
+        }
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            var newMenus = tableOrderMainController.LoadMenus();
+            var newCategories = tableOrderMainController.LoadCategories();
+
+            bool menusChanged = !MenusEqual(allMenus, newMenus);
+            bool categoriesChanged = !CategoriesEqual(allCategories, newCategories);
+
+            if (menusChanged)
+            {
+                allMenus = newMenus;
+                LoadMenuItems(-1); // 전체 메뉴 갱신
+            }
+
+            if (categoriesChanged)
+            {
+                allCategories = newCategories;
+                LoadCategoryButtons(); // 카테고리 버튼 재로딩
+            }
+        }
+        private bool MenusEqual(List<MenuEntity> oldList, List<MenuEntity> newList)
+        {
+            if (oldList.Count != newList.Count)
+                return false;
+
+            return oldList.OrderBy(m => m.Id).Zip(newList.OrderBy(m => m.Id), (old, newer) =>
+                old.Id == newer.Id &&
+                old.MenuName == newer.MenuName &&
+                old.MenuPrice == newer.MenuPrice &&
+                old.CategoryId == newer.CategoryId &&
+                (old.MenuImage == null && newer.MenuImage == null ||
+                 old.MenuImage != null && newer.MenuImage != null && old.MenuImage.SequenceEqual(newer.MenuImage))
+            ).All(equal => equal);
+        }
+
+        private bool CategoriesEqual(List<CategoryEntity> oldList, List<CategoryEntity> newList)
+        {
+            if (oldList.Count != newList.Count)
+                return false;
+
+            return oldList.OrderBy(c => c.Id).Zip(newList.OrderBy(c => c.Id), (a, b) =>
+                a.Id == b.Id && a.CategoryName == b.CategoryName
+            ).All(equal => equal);
         }
         private void InitializeTableSelector()
         {
