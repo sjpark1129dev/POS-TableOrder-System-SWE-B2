@@ -67,7 +67,7 @@ namespace TableOrder.Repository
 
         public List<TableEntity> GetAllTables()
         {
-            return _context.Tables.ToList();
+            return _context.Tables.AsNoTracking().ToList();
         }
     }
 }

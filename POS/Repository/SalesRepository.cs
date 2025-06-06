@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using POS.Domain;
 
 namespace POS.Repository
@@ -31,7 +32,7 @@ namespace POS.Repository
                     query = query.Where(s => s.RecNum.Contains(receiptNum));
                 }
 
-                return query.ToList();
+                return query.AsNoTracking().ToList();
             }
         }
     }

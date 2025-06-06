@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using POS.Controller;
+using POS.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using POS.Controller;
-using POS.Domain;
 
 namespace POS.Repository
 {
@@ -14,7 +15,7 @@ namespace POS.Repository
 
         public List<CategoryEntity> GetAllCategory()
         {
-            return _context.Categories.ToList();
+            return _context.Categories.AsNoTracking().ToList();
         }
 
         public CategoryEntity GetById(int id)

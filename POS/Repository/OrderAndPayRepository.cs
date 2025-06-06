@@ -70,8 +70,7 @@ namespace POS.Repository
                     UnitPrice = item.UnitPrice,
                     Total = item.Qty * item.UnitPrice,
                     OrderTime = order.CreatedAt
-                }))
-                .ToList<dynamic>();
+                })).AsNoTracking().ToList<dynamic>();
 
             return result;
         }

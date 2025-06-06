@@ -1,4 +1,5 @@
-﻿using POS.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using POS.Domain;
 
 namespace POS.Repository
 {
@@ -8,7 +9,7 @@ namespace POS.Repository
 
         public List<TableEntity> GetAllTables()
         {
-            return _context.Tables.ToList(); // DB에서 테이블 목록 조회
+            return _context.Tables.AsNoTracking().ToList(); // DB에서 테이블 목록 조회
         }
 
         public void Insert(TableEntity table)
