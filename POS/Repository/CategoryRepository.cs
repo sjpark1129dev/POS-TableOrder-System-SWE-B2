@@ -18,11 +18,6 @@ namespace POS.Repository
             return _context.Categories.AsNoTracking().ToList();
         }
 
-        public CategoryEntity GetById(int id)
-        {
-            return _context.Categories.Find(id);
-        }
-
         public void Insert(CategoryEntity category)
         {
             _context.Categories.Add(category);
