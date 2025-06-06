@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace POS.Repository
 {
@@ -32,8 +33,9 @@ namespace POS.Repository
             _context.SaveChanges(); // 수정 후 커밋
         }
 
-        public void Delete(int menuId)
+        public void Delete(MenuEntity menuEntity)
         {
+            int menuId = menuEntity.Id;
             // 1. 사용 내역 있는지 확인
             bool hasOrderItems = _context.OrderItems.Any(o => o.MenuId == menuId);
             if (hasOrderItems)
