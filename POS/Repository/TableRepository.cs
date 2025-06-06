@@ -18,10 +18,15 @@ namespace POS.Repository
             _context.SaveChanges(); // 삽입 후 커밋
         }
 
-        public void Update(TableEntity table)
+        public void Update(TableEntity updatedTable)
         {
-            _context.Tables.Update(table);
-            _context.SaveChanges(); // 수정 후 커밋
+            var existing = _context.Tables.Find(updatedTable.Id);
+
+            if (existing != null)
+            {
+                existing.tableName = updatedTable.tableName;
+                _context.SaveChanges(); // ③ 저장
+            }
         }
 
         public bool RemoveTableById(int id)

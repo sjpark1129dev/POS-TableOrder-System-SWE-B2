@@ -50,12 +50,20 @@ namespace POS.Boundary
 
         private void categoryCreateButton_Click(object sender, EventArgs e)
         {
-            if (categoryNameTextBox.Text == null || categoryNameTextBox.Text == string.Empty)
+            var name = categoryNameTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(name))
             {
                 MessageBox.Show("카테고리명이 없습니다!");
                 return;
             }
-            categoryController.createCategory(categoryNameTextBox.Text);
+
+            if (categoryController.IsDuplicateCategoryName(name))
+            {
+                MessageBox.Show("이미 존재하는 카테고리명입니다!");
+                return;
+            }
+
+            categoryController.createCategory(name);
             LoadAllCategories();
             RefreshMaterialListView();
         }
@@ -96,6 +104,13 @@ namespace POS.Boundary
                 return;
             }
 
+            var name = categoryNameTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("카테고리명을 입력해주세요.");
+                return;
+            }
+
             int selectedId = int.Parse(materialListView1.SelectedItems[0].SubItems[0].Text);
             var selectedCategory = categoryList.FirstOrDefault(c => c.Id == selectedId);
 
@@ -105,12 +120,19 @@ namespace POS.Boundary
                 return;
             }
 
-            selectedCategory.CategoryName = categoryNameTextBox.Text;
+            if (categoryController.IsDuplicateCategoryName(name, selectedId))
+            {
+                MessageBox.Show("다른 카테고리와 이름이 중복됩니다!");
+                return;
+            }
+
+            selectedCategory.CategoryName = name;
 
             categoryController.editCategory(selectedCategory);
             LoadAllCategories();
             RefreshMaterialListView();
         }
+
 
         public void LoadAllCategories()
         {

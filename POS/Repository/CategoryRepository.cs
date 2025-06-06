@@ -31,8 +31,12 @@ namespace POS.Repository
 
         public void Update(CategoryEntity category)
         {
-            _context.Categories.Update(category);
-            _context.SaveChanges();
+            var existing = _context.Categories.Find(category.Id);
+            if (existing != null)
+            {
+                _context.Entry(existing).CurrentValues.SetValues(category);
+                _context.SaveChanges();
+            }
         }
 
         public void Delete(CategoryEntity category)
@@ -43,6 +47,10 @@ namespace POS.Repository
                 _context.Categories.Remove(existing);
                 _context.SaveChanges();
             }
+        }
+        public bool HasMenus(int categoryId)
+        {
+            return _context.Menus.Any(m => m.CategoryId == categoryId);
         }
     }
 }
