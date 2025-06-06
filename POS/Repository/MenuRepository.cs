@@ -32,25 +32,22 @@ namespace POS.Repository
             _context.SaveChanges(); // 수정 후 커밋
         }
 
-        public void Delete(MenuEntity menu)
+        public void Delete(int menuId)
         {
-            // 1. 메뉴가 사용된 적 있는지 검사
-            bool hasOrderItems = _context.OrderItems.Any(o => o.MenuId == menu.Id);
-
+            // 1. 사용 내역 있는지 확인
+            bool hasOrderItems = _context.OrderItems.Any(o => o.MenuId == menuId);
             if (hasOrderItems)
             {
                 throw new InvalidOperationException("해당 메뉴는 주문 내역에 포함되어 있어 삭제할 수 없습니다.");
             }
 
-            // 2. 기존 추적 확인 후 삭제
-            var existing = _context.Menus.Local.FirstOrDefault(m => m.Id == menu.Id);
-            if (existing == null)
+            // 2. DB에서 직접 조회 후 삭제
+            var menu = _context.Menus.Find(menuId);
+            if (menu != null)
             {
-                _context.Menus.Attach(menu);
+                _context.Menus.Remove(menu);
+                _context.SaveChanges();
             }
-
-            _context.Menus.Remove(menu);
-            _context.SaveChanges();
         }
     }
 }

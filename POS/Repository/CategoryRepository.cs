@@ -37,8 +37,12 @@ namespace POS.Repository
 
         public void Delete(CategoryEntity category)
         {
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            var existing = _context.Categories.Find(category.Id);
+            if (existing != null)
+            {
+                _context.Categories.Remove(existing);
+                _context.SaveChanges();
+            }
         }
     }
 }
