@@ -79,7 +79,7 @@ namespace POS.Boundary
             RefreshMenuList();
         }
 
-        private void LoadAllCategories()
+        public void LoadAllCategories()
         {
             categoryList = categoryController.GetAllCategory();
             comboBoxCategory.DisplayMember = "CategoryName"; // 보여줄 속성
@@ -247,7 +247,7 @@ namespace POS.Boundary
 
         private void CategoryManageButton_Click(object sender, EventArgs e)
         {
-            MaterialForm categoryManagerForm = new CategoryManagerBoundary();
+            MaterialForm categoryManagerForm = new CategoryManagerBoundary(this);
             categoryManagerForm.ShowDialog();
         }
 

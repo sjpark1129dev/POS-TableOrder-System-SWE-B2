@@ -214,7 +214,7 @@
             Controls.Add(materialListView1);
             Name = "CategoryManagerBoundary";
             Text = "카테고리 관리";
-            Load += CategoryManagerBoundary_Load;
+            FormClosing += CategoryManagerBoundary_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }

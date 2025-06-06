@@ -9,11 +9,12 @@ namespace POS.Repository
 {
     public class SalesRepository
     {
+        private readonly AppDbContext _context = AppDbContext.Instance;
+
         public List<SalesEntity> SearchSales( DateTime startDate, DateTime endDate, string menuName, string receiptNum)
         {
-            using (var context = new AppDbContext()) 
             {
-                var query = context.Sales.AsQueryable();
+                var query = _context.Sales.AsQueryable();
 
                 // 날짜 조건
                 query = query.Where(s => s.SalesDate >= startDate && s.SalesDate <= endDate.AddDays(1));
@@ -33,6 +34,5 @@ namespace POS.Repository
                 return query.ToList();
             }
         }
-
     }
 }

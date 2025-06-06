@@ -23,14 +23,16 @@ namespace POS.Repository
             _context.SaveChanges(); // 수정 후 커밋
         }
 
-        public void Delete(int id)
+        public bool RemoveTableById(int id)
         {
             var table = _context.Tables.Find(id);
             if (table != null)
             {
                 _context.Tables.Remove(table);
                 _context.SaveChanges(); // 삭제 후 커밋
+                return true;
             }
+            return false;
         }
     }
 }

@@ -12,11 +12,13 @@ namespace POS.Boundary
     {
         private List<CategoryEntity> categoryList;
         private CategoryController categoryController;
+        private MenuManagerBoundary menuManagerBoundary; // 메뉴 매니저 바운더리 참조
 
-        public CategoryManagerBoundary()
+        public CategoryManagerBoundary(MenuManagerBoundary menuManagerBoundary)
         {
             InitializeComponent();
-            categoryController = new CategoryController(); // 누락 방지용
+            this.menuManagerBoundary = menuManagerBoundary; // 메뉴 매니저 바운더리 참조 저장
+            categoryController = new CategoryController();
             LoadAllCategories();
             materialListView_Initialize();
         }
@@ -70,6 +72,12 @@ namespace POS.Boundary
                 return;
             }
 
+            if (categoryController.IsCategoryInUse(selectedId))
+            {
+                MessageBox.Show("해당 카테고리는 메뉴에서 사용 중이므로 삭제할 수 없습니다.");
+                return;
+            }
+
             categoryController.deleteCategory(selectedCategory);
             LoadAllCategories();
             RefreshMaterialListView();
@@ -120,9 +128,9 @@ namespace POS.Boundary
             categoryNameTextBox.Text = "";
         }
 
-        private void CategoryManagerBoundary_Load(object sender, EventArgs e)
+        private void CategoryManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            menuManagerBoundary.LoadAllCategories(); // 메뉴 매니저 바운더리에 카테고리 목록 새로고침 요청
         }
     }
 }

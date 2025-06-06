@@ -31,9 +31,9 @@ namespace TableOrder
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            flowLayoutPanelMenus = new FlowLayoutPanel();
             comboBoxTableSelector = new MaterialComboBox();
             labelTotalPrice = new MaterialLabel();
-            flowLayoutPanelMenus = new FlowLayoutPanel();
             flowLayoutPanelCategory = new FlowLayoutPanel();
             orderCheckButton = new MaterialButton();
             orderButton = new MaterialButton();
@@ -43,9 +43,9 @@ namespace TableOrder
             // 
             // panel1
             // 
+            panel1.Controls.Add(flowLayoutPanelMenus);
             panel1.Controls.Add(comboBoxTableSelector);
             panel1.Controls.Add(labelTotalPrice);
-            panel1.Controls.Add(flowLayoutPanelMenus);
             panel1.Controls.Add(flowLayoutPanelCategory);
             panel1.Controls.Add(orderCheckButton);
             panel1.Controls.Add(orderButton);
@@ -55,6 +55,13 @@ namespace TableOrder
             panel1.Name = "panel1";
             panel1.Size = new Size(788, 487);
             panel1.TabIndex = 0;
+            // 
+            // flowLayoutPanelMenus
+            // 
+            flowLayoutPanelMenus.Location = new Point(180, 3);
+            flowLayoutPanelMenus.Name = "flowLayoutPanelMenus";
+            flowLayoutPanelMenus.Size = new Size(399, 400);
+            flowLayoutPanelMenus.TabIndex = 52;
             // 
             // comboBoxTableSelector
             // 
@@ -89,13 +96,6 @@ namespace TableOrder
             labelTotalPrice.Size = new Size(66, 19);
             labelTotalPrice.TabIndex = 53;
             labelTotalPrice.Text = "총가격: 0원";
-            // 
-            // flowLayoutPanelMenus
-            // 
-            flowLayoutPanelMenus.Location = new Point(180, 3);
-            flowLayoutPanelMenus.Name = "flowLayoutPanelMenus";
-            flowLayoutPanelMenus.Size = new Size(399, 400);
-            flowLayoutPanelMenus.TabIndex = 52;
             // 
             // flowLayoutPanelCategory
             // 
