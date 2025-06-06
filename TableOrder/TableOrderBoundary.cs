@@ -45,6 +45,7 @@ namespace TableOrder
         {
             var newMenus = tableOrderMainController.LoadMenus();
             var newCategories = tableOrderMainController.LoadCategories();
+            var newTables = tableOrderMainController.GetAllTables();
 
             bool menusChanged = !MenusEqual(allMenus, newMenus);
             bool categoriesChanged = !CategoriesEqual(allCategories, newCategories);
@@ -59,6 +60,22 @@ namespace TableOrder
             {
                 allCategories = newCategories;
                 LoadCategoryButtons(); // 카테고리 버튼 재로딩
+            }
+
+            bool tablesChanged = !TablesEqual(comboBoxTableSelector.DataSource as List<TableEntity>, newTables);
+
+            if (tablesChanged)
+            {
+                comboBoxTableSelector.DataSource = null;
+                comboBoxTableSelector.DataSource = newTables;
+                comboBoxTableSelector.DisplayMember = "tableName";
+                comboBoxTableSelector.ValueMember = "Id";
+
+                // 선택된 테이블 유지
+                if (newTables.Any(t => t.Id == selectedTableId))
+                    comboBoxTableSelector.SelectedValue = selectedTableId;
+                else
+                    selectedTableId = newTables.First().Id;
             }
         }
         private bool MenusEqual(List<MenuEntity> oldList, List<MenuEntity> newList)
@@ -85,6 +102,19 @@ namespace TableOrder
                 a.Id == b.Id && a.CategoryName == b.CategoryName
             ).All(equal => equal);
         }
+        private bool TablesEqual(List<TableEntity> oldList, List<TableEntity> newList)
+        {
+            if (oldList == null || newList == null)
+                return false;
+
+            if (oldList.Count != newList.Count)
+                return false;
+
+            return oldList.OrderBy(t => t.Id).Zip(newList.OrderBy(t => t.Id), (a, b) =>
+                a.Id == b.Id && a.tableName == b.tableName
+            ).All(equal => equal);
+        }
+
         private void InitializeTableSelector()
         {
             var tableList = tableOrderMainController.GetAllTables();
