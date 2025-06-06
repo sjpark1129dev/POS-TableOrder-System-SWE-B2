@@ -13,7 +13,7 @@ namespace TableOrder
         private TableOrderMainController tableOrderMainController;
         private List<MenuEntity> allMenus;
         private List<CategoryEntity> allCategories;
-        private int selectedTableId = -1;
+        private int selectedTableId;
 
         public TableOrderBoundary()
         {
@@ -34,6 +34,7 @@ namespace TableOrder
         {
             var tableList = tableOrderMainController.GetAllTables();
             comboBoxTableSelector.DataSource = tableList;
+            selectedTableId = tableList[0].Id;
             comboBoxTableSelector.DisplayMember = "tableName";
             comboBoxTableSelector.ValueMember = "Id";
 

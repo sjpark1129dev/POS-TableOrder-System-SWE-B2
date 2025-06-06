@@ -23,6 +23,17 @@ namespace POS.Controller
             _repository.Insert(table);
             return table;
         }
+
+        public bool RemoveTable(int tableId)
+        {
+            return _repository.RemoveTableById(tableId);
+        }
+
+        public void UpdateTable(TableEntity table)
+        {
+            _repository.Update(table);
+        }
+
         public bool IsDuplicateName(List<TableEntity> list, string name)
         {
             return list.Any(t => t.tableName.Equals(name, StringComparison.OrdinalIgnoreCase));

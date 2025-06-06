@@ -4,14 +4,15 @@ using System.Linq;
 using System;
 using MaterialSkin;
 using MaterialSkin.Controls;
-using Microsoft.EntityFrameworkCore;
 using POS.Domain;
+using POS.Controller; // ✅ 컨트롤러 추가
 
 namespace POS.Boundary
 {
     public partial class TableViewBoundary : MaterialForm
     {
-        private AppDbContext _db = AppDbContext.Instance;
+        private TableController _tableController;
+        private OrderAndPayController _orderController;
         private System.Windows.Forms.Timer _refreshTimer;
         private Dictionary<int, string> _lastTableSummaries = new();
 
@@ -24,9 +25,11 @@ namespace POS.Boundary
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
 
-            LoadTables(); // 최초 1회
+            _tableController = new TableController();
+            _orderController = new OrderAndPayController();
 
-            // 주기적 새로고침 타이머
+            LoadTables();
+
             _refreshTimer = new System.Windows.Forms.Timer();
             _refreshTimer.Interval = 5000;
             _refreshTimer.Tick += (s, e) => LoadTables();
@@ -37,15 +40,8 @@ namespace POS.Boundary
         {
             try
             {
-                var tables = _db.Tables.OrderBy(t => t.Id).Take(10).ToList();
+                var tables = _tableController.GetAllTables();
 
-                // ✅ DB에서 실제 미결제 주문 + 아이템 포함 로드
-                var unpaidOrders = _db.Orders
-                    .Where(o => !o.IsPaid)
-                    .Include(o => o.Items)
-                    .ToList();
-
-                // 🔁 삭제된 테이블 버튼 제거
                 var tableIds = tables.Select(t => t.Id).ToHashSet();
                 var buttonsToRemove = tableLayoutPanel1.Controls
                     .OfType<MaterialButton>()
@@ -59,25 +55,33 @@ namespace POS.Boundary
                     _lastTableSummaries.Remove((int)btn.Tag);
                 }
 
-                // ✅ 테이블 순서대로 버튼 생성 or 업데이트
                 for (int i = 0; i < tables.Count; i++)
                 {
                     var table = tables[i];
-                    var order = unpaidOrders.FirstOrDefault(o => o.TableId == table.Id);
+                    var items = _orderController.GetUnpaidOrderItemsByTable(table.Id); // dynamic list
+
                     string summary = "";
                     string text = table.tableName;
 
-                    if (order != null && order.Items != null && order.Items.Any())
+                    if (items != null && items.Count > 0)
                     {
-                        var items = order.Items.ToList();
-                        int totalPrice = items.Sum(item => item.TotalPrice);
+                        string firstMenu = items[0]?.MenuName ?? "메뉴없음";
+                        int totalPrice = 0;
 
-                        string firstMenu = items[0].MenuName;
+                        foreach (var item in items)
+                        {
+                            try
+                            {
+                                totalPrice += (int)item.Total;
+                            }
+                            catch { } // 혹시 Total 속성이 없거나 오류가 있어도 무시
+                        }
+
                         string summaryText = items.Count > 1
                             ? $"{firstMenu} 외 {items.Count - 1}"
                             : firstMenu;
 
-                        summary = $"\n{summaryText}\n₩{totalPrice:N0}";
+                        summary = $"\n{summaryText}\n\u20A9{totalPrice:N0}";
                     }
 
                     string fullText = text + summary;
@@ -87,7 +91,6 @@ namespace POS.Boundary
 
                     _lastTableSummaries[table.Id] = fullText;
 
-                    // ✅ 위치 계산 (2행 5열)
                     int col = i % 5;
                     int row = i / 5;
 
@@ -109,7 +112,6 @@ namespace POS.Boundary
                             AutoSize = false
                         };
                         btn.Click += TableButton_Click;
-
                         tableLayoutPanel1.Controls.Add(btn, col, row);
                     }
                 }
@@ -119,6 +121,7 @@ namespace POS.Boundary
                 MessageBox.Show("DB 연결 실패: " + ex.Message, "에러", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void TableButton_Click(object sender, EventArgs e)
         {
