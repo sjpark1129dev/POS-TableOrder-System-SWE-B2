@@ -29,7 +29,7 @@ namespace POS.Boundary
                 btn.Tag = table.Id;
                 btn.Dock = DockStyle.Fill;
                 btn.Margin = new Padding(10);
-                btn.BackColor = Color.White; // ✅ 기본 배경 흰색
+                btn.BackColor = Color.White; // 기본 배경 흰색
 
                 btn.Click += TableButton_Click;
 
@@ -56,14 +56,13 @@ namespace POS.Boundary
                 tableNameTextBox.Text = selectedTable.tableName;
                 tableIdTextBox.Text = selectedTable.Id.ToString();
             }
-            else
-            {
-                tableNameTextBox.Text = "선택 안됨";
-                tableIdTextBox.Text = "선택 안됨";
-            }
         }
         private void textBoxResetButton_Click(object sender, EventArgs e)
         {
+            selectedTableId = null;
+            foreach (Button b in tableLayoutPanelTables.Controls)
+                b.BackColor = Color.White;
+            tableIdTextBox.Text = "";
             tableNameTextBox.Text = "";
         }
 
@@ -96,16 +95,13 @@ namespace POS.Boundary
                 return;
             }
             
+            tableController.RemoveTable((int)selectedTableId);
             tableList = tableController.GetAllTables();
             selectedTableId = null;
             tableIdTextBox.Text = "";
             tableNameTextBox.Text = "";
             LoadTablesToPanel();
         }
-
-
-
-
         private void tableSaveButton_Click_1(object sender, EventArgs e)
         {
             if (selectedTableId == null)
@@ -129,19 +125,8 @@ namespace POS.Boundary
             }
 
             var table = tableList.FirstOrDefault(t => t.Id == selectedTableId);
-            if (table != null)
-            {
-                table.tableName = newName;
-
-                // controller 구조 유지 → repository에 직접 접근
-                var repoField = typeof(TableController).GetField("_repository", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                var repository = repoField?.GetValue(tableController) as POS.Repository.TableRepository;
-                repository?.Update(table);
-
-                MessageBox.Show("테이블 이름이 수정되었습니다.");
-                tableList = tableController.GetAllTables();
-                LoadTablesToPanel();
-            }
+            table.tableName = newName;
+            tableController.UpdateTable(table);
         }
 
         private void TableManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)

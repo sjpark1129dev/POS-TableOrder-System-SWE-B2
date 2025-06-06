@@ -39,5 +39,11 @@ namespace POS.Controller
         {
             categoryRepository.Update(seletedcategory);
         }
+
+        public bool IsCategoryInUse(int categoryId)
+        {
+            var category = categoryRepository.GetById(categoryId);
+            return category != null && category.Menus.Any();
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace POS.Repository
                 string recNum = $"{DateTime.Now:yyyyMMdd}-{Guid.NewGuid().ToString()[..4]}";
 
                 foreach (var order in unpaidOrders)
-                {   
+                {
                     foreach (var item in order.Items)
                     {
                         var sale = new SalesEntity
@@ -61,7 +61,7 @@ namespace POS.Repository
         {
             var result = _context.Orders
                 .Include(o => o.Items)
-                .Where(o => o.TableId == tableId && !o.IsPaid)  // ✅ 여기!
+                .Where(o => o.TableId == tableId && !o.IsPaid)
                 .SelectMany(order => order.Items.Select(item => new
                 {
                     TableId = order.TableId,

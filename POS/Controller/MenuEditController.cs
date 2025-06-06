@@ -15,11 +15,9 @@ namespace POS.Controller
         {
             menuRepository = new MenuRepository();
         }
-
         public void MenuEdit(MenuEntity menu)
         {
             menuRepository.Update(menu);
         }
-
     }
 }
