@@ -65,6 +65,7 @@ namespace POS.Boundary
             DataGridViewTextBoxColumn priceColumn = new DataGridViewTextBoxColumn();
             priceColumn.HeaderText = "가격";
             priceColumn.DataPropertyName = "MenuPrice";
+            priceColumn.DefaultCellStyle.Format = "N0"; // 1000단위 쉼표, 소수점 없음
             priceColumn.Width = 100;
             dataGridViewMenus.Columns.Add(priceColumn);
 
@@ -228,6 +229,7 @@ namespace POS.Boundary
 
                 // ComboBox에서 해당 카테고리를 선택
                 comboBoxCategory.SelectedValue = selectedMenu.CategoryId;
+                comboBoxCategory.Refresh(); // UI 강제 갱신
             }
 
             if (selectedMenu.MenuImage != null)
@@ -256,10 +258,6 @@ namespace POS.Boundary
             {
                 int selectedCategoryId = (int)comboBoxCategory.SelectedValue;
                 Console.WriteLine($"선택된 카테고리 ID: {selectedCategoryId}");
-
-                // 필요하다면 CategoryEntity 객체도 얻기
-                var selectedCategory = (CategoryEntity)comboBoxCategory.SelectedItem;
-                string name = selectedCategory.CategoryName;
             }
         }
         private void menuResetButton_Click(object sender, EventArgs e)
