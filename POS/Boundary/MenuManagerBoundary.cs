@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace POS.Boundary
 {
@@ -201,6 +202,13 @@ namespace POS.Boundary
             if (comboBoxCategory.SelectedValue == null)
             {
                 MessageBox.Show("카테고리를 선택하세요.");
+                return;
+            }
+
+            // 중복 검사
+            if (menuCreateController.Isduplicated(menuList, newName))
+            {
+                MessageBox.Show("이미 존재하는 메뉴입니다.");
                 return;
             }
 

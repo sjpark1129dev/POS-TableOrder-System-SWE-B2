@@ -35,7 +35,7 @@ namespace TableOrder
             labelTotalPrice.Text = "총 가격: 0원";
             labelTotalPrice.BringToFront();
 
-            // ✅ 주기적 갱신 타이머
+            // 주기적 갱신 타이머
             refreshTimer = new System.Windows.Forms.Timer();
             refreshTimer.Interval = 5000; // 5초마다 확인
             refreshTimer.Tick += RefreshTimer_Tick;
