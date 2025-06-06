@@ -104,7 +104,9 @@ namespace TableOrder
         }
         private void LoadCategoryButtons()
         {
-            flowLayoutPanelCategory.Controls.Clear();
+            flowLayoutPanelCategory.FlowDirection = FlowDirection.TopDown;  // 세로 방향으로 배치
+            flowLayoutPanelCategory.WrapContents = false;                   // 자동 줄바꿈 비활성화
+            flowLayoutPanelCategory.AutoScroll = true;                      // 스크롤 자동 표시
 
 
             foreach (var cat in allCategories)
