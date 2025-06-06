@@ -15,7 +15,7 @@ namespace TableOrder
         private List<MenuEntity> allMenus;
         private List<CategoryEntity> allCategories;
         private int selectedTableId;
-
+        private int selectedCategoryId;
         public TableOrderBoundary()
         {
             InitializeComponent();
@@ -53,7 +53,11 @@ namespace TableOrder
             if (menusChanged)
             {
                 allMenus = newMenus;
-                LoadMenuItems(-1); // 전체 메뉴 갱신
+
+                if (!allCategories.Any(c => c.Id == selectedCategoryId))
+                    selectedCategoryId = -1; // 필터 ID 유효성 확인
+
+                LoadMenuItems(selectedCategoryId);
             }
 
             if (categoriesChanged)
@@ -164,6 +168,7 @@ namespace TableOrder
         {
             if (sender is MaterialButton button && button.Tag is int categoryId)
             {
+                selectedCategoryId = categoryId; // 선택한 카테고리 ID 기억
                 LoadMenuItems(categoryId);
             }
         }
