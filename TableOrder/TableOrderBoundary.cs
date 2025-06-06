@@ -3,7 +3,6 @@ using POS.Domain;
 using TableOrder.Controller;
 using POS.Controller;
 using TableOrder.Controls;
-using TableOrder.Entity;
 
 namespace TableOrder
 {
