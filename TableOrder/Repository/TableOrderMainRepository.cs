@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using POS.Domain;
 
@@ -19,7 +20,7 @@ namespace TableOrder.Repository
 
         public List<MenuEntity> GetAllMenus()
         {
-            return _context.Menus.ToList(); // ImageData 포함
+            return _context.Menus.AsNoTracking().ToList(); // ImageData 포함
         }
 
         public List<CategoryEntity> GetAllCategories()
