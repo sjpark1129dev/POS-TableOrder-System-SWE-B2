@@ -203,7 +203,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanel1);
             Name = "TableManagerBoundary";
-            Text = "TableManagerBoundary";
+            Text = "테이블 관리";
             FormClosing += TableManagerBoundary_FormClosing;
             tableLayoutPanel1.ResumeLayout(false);
             panel7.ResumeLayout(false);

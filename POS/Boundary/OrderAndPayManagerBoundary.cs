@@ -62,7 +62,7 @@ namespace POS.Boundary
 
             if (success)
             {
-                MessageBox.Show($"테이블 {tableId}번의 결제가 완료되었습니다.");
+                MessageBox.Show($"{tableName} 결제가 완료되었습니다.");
                 tableViewBoundary.LoadTables(); // 테이블 뷰 갱신
                 this.Close(); // 결제 완료 후 폼 닫기
             }
