@@ -236,13 +236,17 @@ namespace POS.Boundary
             {
                 using (var ms = new MemoryStream(selectedMenu.MenuImage))
                 {
-                    pictureBoxPreview.Image = Image.FromStream(ms);
+                    var newImage = Image.FromStream(ms);
+                    pictureBoxPreview.Image = null; // 이전 이미지 클리어 (중복 방지)
+                    pictureBoxPreview.Image = newImage;
                     pictureBoxPreview.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureBoxPreview.Refresh(); // 강제 다시 그리기
                 }
             }
             else
             {
                 pictureBoxPreview.Image = null;
+                pictureBoxPreview.Refresh();
             }
         }
 
