@@ -285,5 +285,15 @@ namespace TableOrder
             historyForm.ShowDialog();
         }
     }
+    public class CartItem
+    {
+        public MenuEntity Menu { get; set; }
+        public int Quantity { get; set; }
 
+        public CartItem(MenuEntity menu)
+        {
+            Menu = menu;
+            Quantity = 1;
+        }
+    }
 }

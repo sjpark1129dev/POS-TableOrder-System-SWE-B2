@@ -11,41 +11,45 @@ namespace POS.Repository
 {
     public class CategoryRepository
     {
-        private readonly AppDbContext _context = AppDbContext.Instance;
-
         public List<CategoryEntity> GetAllCategory()
         {
-            return _context.Categories.AsNoTracking().ToList();
+            using var context = DbContextFactory.Create();
+            return context.Categories.AsNoTracking().ToList();
         }
 
         public void Insert(CategoryEntity category)
         {
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+            using var context = DbContextFactory.Create();
+            context.Categories.Add(category);
+            context.SaveChanges();
         }
 
         public void Update(CategoryEntity category)
         {
-            var existing = _context.Categories.Find(category.Id);
+            using var context = DbContextFactory.Create();
+            var existing = context.Categories.Find(category.Id);
             if (existing != null)
             {
-                _context.Entry(existing).CurrentValues.SetValues(category);
-                _context.SaveChanges();
+                context.Entry(existing).CurrentValues.SetValues(category);
+                context.SaveChanges();
             }
         }
 
         public void Delete(CategoryEntity category)
         {
-            var existing = _context.Categories.Find(category.Id);
+            using var context = DbContextFactory.Create();
+            var existing = context.Categories.Find(category.Id);
             if (existing != null)
             {
-                _context.Categories.Remove(existing);
-                _context.SaveChanges();
+                context.Categories.Remove(existing);
+                context.SaveChanges();
             }
         }
+
         public bool HasMenus(int categoryId)
         {
-            return _context.Menus.Any(m => m.CategoryId == categoryId);
+            using var context = DbContextFactory.Create();
+            return context.Menus.Any(m => m.CategoryId == categoryId);
         }
     }
 }

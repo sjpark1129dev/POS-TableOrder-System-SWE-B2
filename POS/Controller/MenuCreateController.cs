@@ -16,26 +16,9 @@ namespace POS.Controller
             menuRepository = new MenuRepository();
         }
 
-        public bool MenuCreate(string name, int price, int categoryId, byte[]? imageBytes)
+        public void MenuCreate(string name, int price, int categoryId, byte[]? imageBytes)
         {
-            List<MenuEntity> menuList = menuRepository.GetAllMenus(); // 모든 메뉴 조회
-
-            if (Isduplicated(menuList, name))
-            {
-                
-                return false;
-            }
-
-            var menu = new MenuEntity
-            {
-                MenuName = name,
-                MenuPrice = price,
-                CategoryId = categoryId,
-                MenuImage = imageBytes,
-            };
-
-            menuRepository.Insert(menu);
-            return true;
+            menuRepository.Insert(name, price, categoryId, imageBytes);
         }
 
         public bool Isduplicated(List<MenuEntity> menuList, string name)

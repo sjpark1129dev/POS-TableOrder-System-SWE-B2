@@ -13,14 +13,16 @@ namespace POS.Boundary
         private TableViewBoundary tableViewBoundary;
         private OrderAndPayController orderAndPayController;
         private int tableId; // 테이블 ID 저장
+        private string tableName; // 테이블 이름 저장
 
-        public OrderAndPayManagerBoundary(TableViewBoundary tableViewBoundary, int tableId)
+        public OrderAndPayManagerBoundary(TableViewBoundary tableViewBoundary, int tableId, string tableName)
         {
             InitializeComponent();
             this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장
             this.orderAndPayController = new OrderAndPayController(); // 주문 및 결제 컨트롤러 인스턴스 생성
             this.tableId = tableId; // 테이블 ID 저장
-            this.Text = $"테이블 {tableId} 결제 및 주문 관리"; // 폼 제목 설정
+            this.tableName = tableName; // 테이블 이름 저장
+            this.Text = $"테이블 {tableName} 결제 및 주문 관리"; // 폼 제목 설정
         }
 
         private void PayManagerBoundary_Load(object sender, EventArgs e)
@@ -39,15 +41,12 @@ namespace POS.Boundary
         {
             int total = 0;
 
-
             foreach (DataGridViewRow row in dataGridViewUnpaidOrders.Rows)
             {
-                // Skip the new row placeholder
                 if (row.IsNewRow)
                     continue;
 
-                // 컬럼명 확인: 실제 DataGridView에 "Total" 컬럼인지 "TotalPrice"인지 확인
-                var cell = row.Cells["Total"]; // 또는 "TotalPrice"
+                var cell = row.Cells["Total"];
                 if (cell != null && cell.Value != null && int.TryParse(cell.Value.ToString(), out int price))
                 {
                     total += price;
@@ -70,6 +69,7 @@ namespace POS.Boundary
             else
             {
                 MessageBox.Show("결제할 미결제 주문이 없습니다.");
+                this.Close(); // 결제 완료 후 폼 닫기
             }
         }
     }

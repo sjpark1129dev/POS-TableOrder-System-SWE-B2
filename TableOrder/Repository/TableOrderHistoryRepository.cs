@@ -10,16 +10,10 @@ namespace TableOrder.Repository
 {
     public class TableOrderHistoryRepository
     {
-        private readonly AppDbContext _context;
-
-        public TableOrderHistoryRepository()
-        {
-            _context = AppDbContext.Instance;
-        }
-
         public List<OrderEntity> GetUnpaidOrdersByTable(int tableId)
         {
-            return _context.Orders
+            using var context = DbContextFactory.Create();
+            return context.Orders
                 .Where(o => o.TableId == tableId && !o.IsPaid)
                 .Include(o => o.Items)
                 .ToList();

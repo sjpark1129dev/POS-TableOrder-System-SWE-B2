@@ -2,38 +2,45 @@
 using POS.Domain;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace POS.Repository
 {
     public class MenuRepository
     {
-        private readonly AppDbContext _context;
-        public MenuRepository()
-        {
-            _context = AppDbContext.Instance;
-        }
         public List<MenuEntity> GetAllMenus()
         {
-            return _context.Menus.AsNoTracking().ToList(); // DB에서 메뉴 목록 조회
+            using var context = DbContextFactory.Create();
+            return context.Menus.AsNoTracking().ToList();
         }
 
-        public void Insert(MenuEntity menu)
+        public void Insert(string name, int price, int categoryId, byte[]? imageBytes)
         {
-            _context.Menus.Add(menu);
-            _context.SaveChanges(); // 삽입 후 커밋
+            using var context = DbContextFactory.Create();
+            var menu = new MenuEntity
+            {
+                MenuName = name,
+                MenuPrice = price,
+                CategoryId = categoryId,
+                MenuImage = imageBytes,
+            };
+            context.Menus.Add(menu);
+            context.SaveChanges();
         }
 
         public void Update(MenuEntity menu)
         {
-            var existing = _context.Menus.Find(menu.Id);
+            using var context = DbContextFactory.Create();
+            var existing = context.Menus.Find(menu.Id);
             if (existing != null)
             {
-                _context.Entry(existing).CurrentValues.SetValues(menu);
-                _context.SaveChanges(); // 수정
+                context.Entry(existing).CurrentValues.SetValues(menu);
+                context.SaveChanges();
             }
             else
             {
@@ -41,24 +48,19 @@ namespace POS.Repository
             }
         }
 
-
         public void Delete(MenuEntity menuEntity)
         {
+            using var context = DbContextFactory.Create();
             int menuId = menuEntity.Id;
-
-            // 주문에 사용된 내역이 있는지 확인
-            bool hasOrderItems = _context.OrderItems.Any(o => o.MenuId == menuId);
+            bool hasOrderItems = context.OrderItems.Any(o => o.MenuId == menuId);
             if (hasOrderItems)
-            {
                 throw new InvalidOperationException("해당 메뉴는 주문 내역에 포함되어 있어 삭제할 수 없습니다.");
-            }
 
-            // DB에서 다시 조회해서 삭제
-            var menu = _context.Menus.Find(menuId);
+            var menu = context.Menus.Find(menuId);
             if (menu != null)
             {
-                _context.Menus.Remove(menu);
-                _context.SaveChanges();
+                context.Menus.Remove(menu);
+                context.SaveChanges();
             }
             else
             {

@@ -76,6 +76,12 @@ namespace POS.Boundary
                 return;
             }
 
+            if (tableList.Count >= 10)
+            {
+                MessageBox.Show("테이블은 최대 10개까지만 생성할 수 있습니다.");
+                return;
+            }
+
             if (tableController.IsDuplicateName(tableList, newName))
             {
                 MessageBox.Show("이미 존재하는 테이블 이름입니다.");

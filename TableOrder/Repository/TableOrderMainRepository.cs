@@ -11,27 +11,21 @@ namespace TableOrder.Repository
 {
     public class TableOrderMainRepository
     {
-        private readonly AppDbContext _context;
-
-        public TableOrderMainRepository()
-        {
-            _context = AppDbContext.Instance;
-        }
-
         public List<MenuEntity> GetAllMenus()
         {
-            return _context.Menus.AsNoTracking().ToList(); // ImageData 포함
+            using var context = DbContextFactory.Create();
+            return context.Menus.AsNoTracking().ToList();
         }
 
         public List<CategoryEntity> GetAllCategories()
         {
-            return _context.Categories.AsNoTracking().ToList();
+            using var context = DbContextFactory.Create();
+            return context.Categories.AsNoTracking().ToList();
         }
 
         public bool SaveOrder(int tableId, List<MenuEntity> menuList)
         {
-            var context = _context;
-
+            using var context = DbContextFactory.Create();
             var order = new OrderEntity
             {
                 TableId = tableId,
@@ -40,7 +34,6 @@ namespace TableOrder.Repository
                 Items = new List<OrderItemEntity>()
             };
 
-            // 그룹핑: 메뉴별 수량 계산
             var grouped = menuList
                 .GroupBy(m => m.Id)
                 .Select(g => new
@@ -53,7 +46,7 @@ namespace TableOrder.Repository
             {
                 var item = new OrderItemEntity
                 {
-                    MenuId = g.Menu.Id, // 중요!
+                    MenuId = g.Menu.Id,
                     MenuName = g.Menu.MenuName,
                     Qty = g.Qty,
                     UnitPrice = g.Menu.MenuPrice
@@ -68,7 +61,8 @@ namespace TableOrder.Repository
 
         public List<TableEntity> GetAllTables()
         {
-            return _context.Tables.AsNoTracking().ToList();
+            using var context = DbContextFactory.Create();
+            return context.Tables.AsNoTracking().ToList();
         }
     }
 }

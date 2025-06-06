@@ -10,30 +10,18 @@ namespace POS.Repository
 {
     public class SalesRepository
     {
-        private readonly AppDbContext _context = AppDbContext.Instance;
-
-        public List<SalesEntity> SearchSales( DateTime startDate, DateTime endDate, string menuName, string receiptNum)
+        public List<SalesEntity> SearchSales(DateTime startDate, DateTime endDate, string menuName, string receiptNum)
         {
-            {
-                var query = _context.Sales.AsQueryable();
+            using var context = DbContextFactory.Create();
+            var query = context.Sales.AsQueryable();
+            query = query.Where(s => s.SalesDate >= startDate && s.SalesDate <= endDate.AddDays(1));
 
-                // 날짜 조건
-                query = query.Where(s => s.SalesDate >= startDate && s.SalesDate <= endDate.AddDays(1));
+            if (!string.IsNullOrWhiteSpace(menuName))
+                query = query.Where(s => s.MenuName.Contains(menuName));
+            if (!string.IsNullOrWhiteSpace(receiptNum))
+                query = query.Where(s => s.RecNum.Contains(receiptNum));
 
-                // 메뉴 이름이 비어있지 않으면 필터링
-                if (!string.IsNullOrWhiteSpace(menuName))
-                {
-                    query = query.Where(s => s.MenuName.Contains(menuName));
-                }
-
-                // 계산서 번호가 비어있지 않으면 필터링
-                if (!string.IsNullOrWhiteSpace(receiptNum))
-                {
-                    query = query.Where(s => s.RecNum.Contains(receiptNum));
-                }
-
-                return query.AsNoTracking().ToList();
-            }
+            return query.AsNoTracking().ToList();
         }
     }
 }

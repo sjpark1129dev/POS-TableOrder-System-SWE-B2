@@ -7,20 +7,19 @@ namespace POS.Repository
 {
     public class OrderAndPayRepository
     {
-        private readonly AppDbContext _context = AppDbContext.Instance;
         public bool ProcessPaymentByTable(int tableId)
         {
-            using var transaction = _context.Database.BeginTransaction();
+            using var context = DbContextFactory.Create();
+            using var transaction = context.Database.BeginTransaction();
 
             try
             {
-                var unpaidOrders = _context.Orders
+                var unpaidOrders = context.Orders
                     .Include(o => o.Items)
                     .Where(o => o.TableId == tableId && !o.IsPaid)
                     .ToList();
 
-                if (!unpaidOrders.Any())
-                    return false;
+                if (!unpaidOrders.Any()) return false;
 
                 string recNum = $"{DateTime.Now:yyyyMMdd}-{Guid.NewGuid().ToString()[..4]}";
 
@@ -38,16 +37,13 @@ namespace POS.Repository
                             UnitPrice = item.UnitPrice,
                             Price = item.Qty * item.UnitPrice
                         };
-
-                        _context.Sales.Add(sale);
+                        context.Sales.Add(sale);
                     }
-
                     order.IsPaid = true;
                 }
 
-                _context.SaveChanges();
+                context.SaveChanges();
                 transaction.Commit();
-
                 return true;
             }
             catch
@@ -59,7 +55,8 @@ namespace POS.Repository
 
         public List<dynamic> GetUnpaidOrdersForGridByTable(int tableId)
         {
-            var result = _context.Orders
+            using var context = DbContextFactory.Create();
+            return context.Orders
                 .Include(o => o.Items)
                 .Where(o => o.TableId == tableId && !o.IsPaid)
                 .SelectMany(order => order.Items.Select(item => new
@@ -71,8 +68,6 @@ namespace POS.Repository
                     Total = item.Qty * item.UnitPrice,
                     OrderTime = order.CreatedAt
                 })).AsNoTracking().ToList<dynamic>();
-
-            return result;
         }
     }
 }
