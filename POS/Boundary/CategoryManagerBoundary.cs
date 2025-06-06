@@ -50,6 +50,11 @@ namespace POS.Boundary
 
         private void categoryCreateButton_Click(object sender, EventArgs e)
         {
+            if (categoryNameTextBox.Text == null || categoryNameTextBox.Text == string.Empty)
+            {
+                MessageBox.Show("카테고리명이 없습니다!");
+                return;
+            }
             categoryController.createCategory(categoryNameTextBox.Text);
             LoadAllCategories();
             RefreshMaterialListView();

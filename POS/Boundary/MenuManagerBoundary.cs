@@ -220,6 +220,7 @@ namespace POS.Boundary
 
             var row = dataGridViewMenus.SelectedRows[0];
             selectedMenuId = (int)row.Cells["Id"].Value;
+            menuIdTextBox.Text = selectedMenuId.ToString();
 
             var selectedMenu = menuList.FirstOrDefault(m => m.Id == selectedMenuId);
             if (selectedMenu != null)
@@ -266,13 +267,18 @@ namespace POS.Boundary
         }
         private void menuResetButton_Click(object sender, EventArgs e)
         {
+            menuIdTextBox.Text = string.Empty;
             menuNameTextBox.Text = string.Empty;
             menuPriceTextBox.Text = string.Empty;
 
             if (comboBoxCategory.Items.Count > 0)
             {
                 comboBoxCategory.SelectedIndex = -1;
+                comboBoxCategory.Refresh(); // UI 강제 갱신
             }
+
+            pictureBoxPreview.Image = null;
+            pictureBoxPreview.Refresh();
 
             dataGridViewMenus.ClearSelection();
             selectedMenuId = null;

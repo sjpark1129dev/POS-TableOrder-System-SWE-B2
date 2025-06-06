@@ -175,7 +175,6 @@ namespace TableOrder
 
         private void orderButton_Click(object sender, EventArgs e)
         {
-            
             if (cart.Count == 0)
             {
                 MessageBox.Show("장바구니가 비어 있습니다.");
