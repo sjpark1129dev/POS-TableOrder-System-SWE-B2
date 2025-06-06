@@ -81,8 +81,9 @@ namespace TableOrder
         }
         private void LoadMenuItems(int categoryId)
         {
+            flowLayoutPanelMenus.WrapContents = true;
             flowLayoutPanelMenus.Controls.Clear();
-
+            flowLayoutPanelMenus.AutoScroll = true;
             List<MenuEntity> filteredMenus = (categoryId == -1)
                 ? allMenus
                 : allMenus.Where(m => m.CategoryId == categoryId).ToList();
@@ -109,7 +110,9 @@ namespace TableOrder
 
                 var item = new MenuItemControl(menu.MenuName, menu.MenuPrice, imageToShow)
                 {
-                    MenuData = menu
+                    MenuData = menu,
+                    Width = 120,
+                    Height = 190
                 };
 
                 item.OnPlusClicked += MenuItemPlusClicked;
