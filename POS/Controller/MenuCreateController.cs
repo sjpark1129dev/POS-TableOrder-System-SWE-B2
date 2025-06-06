@@ -8,7 +8,6 @@ using POS.Domain;
 
 namespace POS.Controller
 {
-
     public class MenuCreateController {
     
         private MenuRepository menuRepository;
@@ -43,7 +42,5 @@ namespace POS.Controller
         {
             return menuList.Any(menu => menu.MenuName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
-
     }
-
 }

@@ -26,7 +26,7 @@ namespace POS.Boundary
 
         private void LoadSalesToGridView()
         {
-            SalesDataView.Rows.Clear(); // ✅ 기존 행 제거
+            SalesDataView.Rows.Clear(); // 기존 행 제거
 
             DateTime selectedEndDate = endDate.Value.Date;
             DateTime selectedStartDate = startDate.Value.Date;
@@ -52,8 +52,8 @@ namespace POS.Boundary
                     sale.RecNum,
                     sale.MenuName,
                     sale.Qty,
-                    sale.UnitPrice.ToString("N0"), // ✅ 콤마 추가
-                    sale.Price.ToString("N0")      // ✅ 콤마 추가
+                    sale.UnitPrice.ToString("N0"), // 콤마 추가
+                    sale.Price.ToString("N0")      // 콤마 추가
                 );
                 totalSales += sale.Price;
             }
