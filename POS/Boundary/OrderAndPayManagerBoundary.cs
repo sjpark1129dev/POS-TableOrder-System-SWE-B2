@@ -22,7 +22,7 @@ namespace POS.Boundary
             this.orderAndPayController = new OrderAndPayController(); // 주문 및 결제 컨트롤러 인스턴스 생성
             this.tableId = tableId; // 테이블 ID 저장
             this.tableName = tableName; // 테이블 이름 저장
-            this.Text = $"테이블 {tableName} 결제 및 주문 관리"; // 폼 제목 설정
+            this.Text = $"{tableName} 결제 및 주문 관리"; // 폼 제목 설정
         }
 
         private void PayManagerBoundary_Load(object sender, EventArgs e)
@@ -32,9 +32,31 @@ namespace POS.Boundary
         }
 
         private void LoadUnpaidOrdersIntoGrid()
-        { 
-            var unpaidItems = orderAndPayController.GetUnpaidOrderItemsByTable(tableId); 
+        {
+            var unpaidItems = orderAndPayController.GetUnpaidOrderItemsByTable(tableId);
             dataGridViewUnpaidOrders.DataSource = unpaidItems;
+
+            // ▼ DataGridView 설정 추가
+            dataGridViewUnpaidOrders.RowHeadersVisible = false; // RowHeader 제거
+            dataGridViewUnpaidOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Fill 모드 설정
+
+            // ▼ 컬럼 헤더 한글로 변경
+            dataGridViewUnpaidOrders.Columns["TableId"].HeaderText = "테이블";
+            dataGridViewUnpaidOrders.Columns["MenuName"].HeaderText = "메뉴명";
+            dataGridViewUnpaidOrders.Columns["Qty"].HeaderText = "수량";
+            dataGridViewUnpaidOrders.Columns["UnitPrice"].HeaderText = "단가";
+            dataGridViewUnpaidOrders.Columns["Total"].HeaderText = "합계";
+            dataGridViewUnpaidOrders.Columns["OrderTime"].HeaderText = "주문시간";
+
+            // 열 너비 비율 설정
+            dataGridViewUnpaidOrders.Columns["TableId"].FillWeight = 50;      // ↓ 좁게
+            dataGridViewUnpaidOrders.Columns["Qty"].FillWeight = 50;          // ↓ 좁게
+            dataGridViewUnpaidOrders.Columns["OrderTime"].FillWeight = 150;   // ↑ 넓게
+
+            // 나머지 항목은 적절한 기본값 (ex. 100)으로 둬도 됩니다.
+            dataGridViewUnpaidOrders.Columns["MenuName"].FillWeight = 100;
+            dataGridViewUnpaidOrders.Columns["UnitPrice"].FillWeight = 100;
+            dataGridViewUnpaidOrders.Columns["Total"].FillWeight = 100;
         }
 
         private void UpdateTotalPrice()

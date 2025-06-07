@@ -21,9 +21,12 @@ namespace POS.Controller
             menuRepository.Insert(name, price, categoryId, imageBytes);
         }
 
-        public bool Isduplicated(List<MenuEntity> menuList, string name)
+        public bool IsDuplicated(List<MenuEntity> menus, string newName, int? currentId = null)
         {
-            return menuList.Any(menu => menu.MenuName.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return menus.Any(m =>
+                m.MenuName == newName &&
+                (!currentId.HasValue || m.Id != currentId.Value)
+            );
         }
     }
 }

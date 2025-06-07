@@ -107,7 +107,7 @@ namespace POS.Boundary
             }
 
             // 중복 검사
-            if (menuCreateController.Isduplicated(menuList, name))
+            if (menuCreateController.IsDuplicated(menuList, name))
             {
                 MessageBox.Show("이미 존재하는 메뉴입니다.");
                 return;
@@ -206,7 +206,7 @@ namespace POS.Boundary
             }
 
             // 중복 검사
-            if (menuCreateController.Isduplicated(menuList, newName))
+            if (menuCreateController.IsDuplicated(menuList, newName, selectedMenu.Id))
             {
                 MessageBox.Show("이미 존재하는 메뉴입니다.");
                 return;
