@@ -36,7 +36,7 @@ namespace TableOrder
 
             // 주기적 갱신 타이머
             refreshTimer = new System.Windows.Forms.Timer();
-            refreshTimer.Interval = 5000; // 5초마다 확인
+            refreshTimer.Interval = 60000; // 5초마다 확인
             refreshTimer.Tick += RefreshTimer_Tick;
             refreshTimer.Start();
         }
