@@ -40,6 +40,8 @@
             dataGridViewUnpaidOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewUnpaidOrders.Location = new Point(26, 79);
             dataGridViewUnpaidOrders.Name = "dataGridViewUnpaidOrders";
+            dataGridViewUnpaidOrders.ReadOnly = true;
+            dataGridViewUnpaidOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewUnpaidOrders.Size = new Size(647, 155);
             dataGridViewUnpaidOrders.TabIndex = 7;
             // 

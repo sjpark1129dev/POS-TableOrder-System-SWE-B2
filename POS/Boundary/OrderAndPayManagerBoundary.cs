@@ -38,7 +38,6 @@ namespace POS.Boundary
             dataGridViewUnpaidOrders.AutoGenerateColumns = false;
             dataGridViewUnpaidOrders.RowHeadersVisible = false;
             dataGridViewUnpaidOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewUnpaidOrders.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // 테이블 ID
             var colTableId = new DataGridViewTextBoxColumn
@@ -46,8 +45,8 @@ namespace POS.Boundary
                 Name = "TableId",
                 HeaderText = "테이블",
                 DataPropertyName = "TableId",
-                FillWeight = 60,
-                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                FillWeight = 100,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleLeft } // ← 명시적 정렬 해제
             };
 
             // 메뉴명
@@ -57,7 +56,7 @@ namespace POS.Boundary
                 HeaderText = "메뉴명",
                 DataPropertyName = "MenuName",
                 FillWeight = 100,
-                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleLeft }
             };
 
             // 수량
@@ -66,8 +65,8 @@ namespace POS.Boundary
                 Name = "Qty",
                 HeaderText = "수량",
                 DataPropertyName = "Qty",
-                FillWeight = 50,
-                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                FillWeight = 100,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleLeft }
             };
 
             // 단가
@@ -77,7 +76,10 @@ namespace POS.Boundary
                 HeaderText = "단가",
                 DataPropertyName = "UnitPrice",
                 FillWeight = 100,
-                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                DefaultCellStyle = {
+                    Format = "N0", // 콤마 추가
+                    Alignment = DataGridViewContentAlignment.MiddleLeft
+                }
             };
 
             // 합계
@@ -87,7 +89,10 @@ namespace POS.Boundary
                 HeaderText = "합계",
                 DataPropertyName = "Total",
                 FillWeight = 100,
-                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                DefaultCellStyle = {
+                    Format = "N0", // 콤마 추가
+                    Alignment = DataGridViewContentAlignment.MiddleLeft
+                }
             };
 
             // 주문시간
@@ -96,15 +101,18 @@ namespace POS.Boundary
                 Name = "OrderTime",
                 HeaderText = "주문시간",
                 DataPropertyName = "OrderTime",
-                FillWeight = 150,
-                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+                FillWeight = 200,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleLeft }
             };
 
-            dataGridViewUnpaidOrders.Columns.AddRange(new DataGridViewColumn[]
-            {
-        colTableId, colMenuName, colQty, colUnitPrice, colTotal, colOrderTime
-            });
+            dataGridViewUnpaidOrders.Columns.Add(colTableId);
+            dataGridViewUnpaidOrders.Columns.Add(colMenuName);
+            dataGridViewUnpaidOrders.Columns.Add(colQty);
+            dataGridViewUnpaidOrders.Columns.Add(colUnitPrice);
+            dataGridViewUnpaidOrders.Columns.Add(colTotal);
+            dataGridViewUnpaidOrders.Columns.Add(colOrderTime);
         }
+
 
         private void LoadUnpaidOrdersIntoGrid()
         {
