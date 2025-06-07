@@ -27,36 +27,89 @@ namespace POS.Boundary
 
         private void PayManagerBoundary_Load(object sender, EventArgs e)
         {
+            InitializeDataGridViewColumns(); // ← 여기 추가
             LoadUnpaidOrdersIntoGrid();
             UpdateTotalPrice();
+        }
+
+        private void InitializeDataGridViewColumns()
+        {
+            dataGridViewUnpaidOrders.Columns.Clear();
+            dataGridViewUnpaidOrders.AutoGenerateColumns = false;
+            dataGridViewUnpaidOrders.RowHeadersVisible = false;
+            dataGridViewUnpaidOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewUnpaidOrders.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // 테이블 ID
+            var colTableId = new DataGridViewTextBoxColumn
+            {
+                Name = "TableId",
+                HeaderText = "테이블",
+                DataPropertyName = "TableId",
+                FillWeight = 60,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            };
+
+            // 메뉴명
+            var colMenuName = new DataGridViewTextBoxColumn
+            {
+                Name = "MenuName",
+                HeaderText = "메뉴명",
+                DataPropertyName = "MenuName",
+                FillWeight = 100,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            };
+
+            // 수량
+            var colQty = new DataGridViewTextBoxColumn
+            {
+                Name = "Qty",
+                HeaderText = "수량",
+                DataPropertyName = "Qty",
+                FillWeight = 50,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            };
+
+            // 단가
+            var colUnitPrice = new DataGridViewTextBoxColumn
+            {
+                Name = "UnitPrice",
+                HeaderText = "단가",
+                DataPropertyName = "UnitPrice",
+                FillWeight = 100,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            };
+
+            // 합계
+            var colTotal = new DataGridViewTextBoxColumn
+            {
+                Name = "Total",
+                HeaderText = "합계",
+                DataPropertyName = "Total",
+                FillWeight = 100,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            };
+
+            // 주문시간
+            var colOrderTime = new DataGridViewTextBoxColumn
+            {
+                Name = "OrderTime",
+                HeaderText = "주문시간",
+                DataPropertyName = "OrderTime",
+                FillWeight = 150,
+                DefaultCellStyle = { Alignment = DataGridViewContentAlignment.MiddleCenter }
+            };
+
+            dataGridViewUnpaidOrders.Columns.AddRange(new DataGridViewColumn[]
+            {
+        colTableId, colMenuName, colQty, colUnitPrice, colTotal, colOrderTime
+            });
         }
 
         private void LoadUnpaidOrdersIntoGrid()
         {
             var unpaidItems = orderAndPayController.GetUnpaidOrderItemsByTable(tableId);
             dataGridViewUnpaidOrders.DataSource = unpaidItems;
-
-            // ▼ DataGridView 설정 추가
-            dataGridViewUnpaidOrders.RowHeadersVisible = false; // RowHeader 제거
-            dataGridViewUnpaidOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Fill 모드 설정
-
-            // ▼ 컬럼 헤더 한글로 변경
-            dataGridViewUnpaidOrders.Columns["TableId"].HeaderText = "테이블";
-            dataGridViewUnpaidOrders.Columns["MenuName"].HeaderText = "메뉴명";
-            dataGridViewUnpaidOrders.Columns["Qty"].HeaderText = "수량";
-            dataGridViewUnpaidOrders.Columns["UnitPrice"].HeaderText = "단가";
-            dataGridViewUnpaidOrders.Columns["Total"].HeaderText = "합계";
-            dataGridViewUnpaidOrders.Columns["OrderTime"].HeaderText = "주문시간";
-
-            // 열 너비 비율 설정
-            dataGridViewUnpaidOrders.Columns["TableId"].FillWeight = 60;      // ↓ 좁게
-            dataGridViewUnpaidOrders.Columns["Qty"].FillWeight = 50;          // ↓ 좁게
-            dataGridViewUnpaidOrders.Columns["OrderTime"].FillWeight = 150;   // ↑ 넓게
-
-            // 나머지 항목은 적절한 기본값 (ex. 100)으로 둬도 됩니다.
-            dataGridViewUnpaidOrders.Columns["MenuName"].FillWeight = 100;
-            dataGridViewUnpaidOrders.Columns["UnitPrice"].FillWeight = 100;
-            dataGridViewUnpaidOrders.Columns["Total"].FillWeight = 100;
         }
 
         private void UpdateTotalPrice()
