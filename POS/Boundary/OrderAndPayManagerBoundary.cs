@@ -49,7 +49,7 @@ namespace POS.Boundary
             dataGridViewUnpaidOrders.Columns["OrderTime"].HeaderText = "주문시간";
 
             // 열 너비 비율 설정
-            dataGridViewUnpaidOrders.Columns["TableId"].FillWeight = 50;      // ↓ 좁게
+            dataGridViewUnpaidOrders.Columns["TableId"].FillWeight = 60;      // ↓ 좁게
             dataGridViewUnpaidOrders.Columns["Qty"].FillWeight = 50;          // ↓ 좁게
             dataGridViewUnpaidOrders.Columns["OrderTime"].FillWeight = 150;   // ↑ 넓게
 
