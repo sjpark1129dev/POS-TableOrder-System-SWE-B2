@@ -190,6 +190,7 @@ namespace POS.Boundary
                 return;
             }
 
+            // 새로운 입력값
             string newName = menuNameTextBox.Text.Trim();
             string newPriceText = menuPriceTextBox.Text.Trim();
 
@@ -205,19 +206,33 @@ namespace POS.Boundary
                 return;
             }
 
-            // 중복 검사
+            int newCategoryId = (int)comboBoxCategory.SelectedValue;
+
+            // 실제 변경 여부 확인
+            bool isChanged =
+                selectedMenu.MenuName != newName ||
+                selectedMenu.MenuPrice != newPrice ||
+                selectedMenu.CategoryId != newCategoryId ||
+                selectedImageBytes != null;
+
+            if (!isChanged)
+            {
+                MessageBox.Show("변경된 내용이 없습니다.");
+                return;
+            }
+
+            // 중복 검사 (자기 자신은 제외)
             if (menuCreateController.IsDuplicated(menuList, newName, selectedMenu.Id))
             {
                 MessageBox.Show("이미 존재하는 메뉴입니다.");
                 return;
             }
 
+            // 이미지 변경 시 반영
             if (selectedImageBytes != null)
             {
                 selectedMenu.MenuImage = selectedImageBytes;
             }
-
-            int newCategoryId = (int)comboBoxCategory.SelectedValue;
 
             // 실제 수정
             selectedMenu.MenuName = newName;
@@ -229,6 +244,7 @@ namespace POS.Boundary
 
             LoadAllMenus();
             MessageBox.Show("메뉴가 수정되었습니다.");
+
         }
 
         private void dataGridViewMenus_SelectionChanged(object sender, EventArgs e)
