@@ -32,7 +32,7 @@ namespace POS.Boundary
             LoadTables();
             　
             _refreshTimer = new System.Windows.Forms.Timer();
-            _refreshTimer.Interval = 5000;
+            _refreshTimer.Interval = 60000;
             _refreshTimer.Tick += (s, e) => LoadTables();
             _refreshTimer.Start();
         }
