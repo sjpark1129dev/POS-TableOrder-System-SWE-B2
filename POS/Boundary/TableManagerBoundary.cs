@@ -110,7 +110,7 @@ namespace POS.Boundary
             tableNameTextBox.Text = "";
             LoadTablesToPanel();
         }
-        private void tableSaveButton_Click_1(object sender, EventArgs e)
+        private void tableEditSaveButton_Click(object sender, EventArgs e)
         {
             if (selectedTableId == null)
             {
