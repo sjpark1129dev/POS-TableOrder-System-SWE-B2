@@ -33,13 +33,13 @@ namespace POS.Repository
             context.SaveChanges();
         }
 
-        public void Update(MenuEntity menu)
+        public void Update(MenuEntity menuEntity)
         {
             using var context = DbContextFactory.Create();
-            var existing = context.Menus.Find(menu.Id);
+            var existing = context.Menus.Find(menuEntity.Id);
             if (existing != null)
             {
-                context.Entry(existing).CurrentValues.SetValues(menu);
+                context.Entry(existing).CurrentValues.SetValues(menuEntity);
                 context.SaveChanges();
             }
             else
