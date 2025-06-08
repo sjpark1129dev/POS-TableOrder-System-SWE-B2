@@ -33,5 +33,4 @@ namespace POS.Domain
         [NotMapped]
         public int TotalPrice => Qty * UnitPrice;
     }
-
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace POS.Controller
 {
-    internal class OrderAndPayController
+    public class OrderAndPayController
     {
         
         private OrderAndPayRepository _orderAndPayRepository;

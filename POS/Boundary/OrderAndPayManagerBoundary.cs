@@ -27,7 +27,7 @@ namespace POS.Boundary
 
         private void PayManagerBoundary_Load(object sender, EventArgs e)
         {
-            InitializeDataGridViewColumns(); // ← 여기 추가
+            InitializeDataGridViewColumns();
             LoadUnpaidOrdersIntoGrid();
             UpdateTotalPrice();
         }
