@@ -30,14 +30,26 @@ namespace POS.Controller
             categoryRepository.Insert(newCategory);
         }
 
-        public void deleteCategory(CategoryEntity seletedcategory)
+        public void deleteCategory(CategoryEntity selectedCategory)
         {
-            categoryRepository.Delete(seletedcategory);
+            categoryRepository.Delete(selectedCategory);
         }
+
 
         public void editCategory(CategoryEntity seletedcategory)
         {
             categoryRepository.Update(seletedcategory);
+        }
+
+        public bool IsCategoryInUse(int categoryId)
+        {
+            return categoryRepository.HasMenus(categoryId);
+        }
+
+        public bool IsDuplicateCategoryName(string name, int? excludeId = null)
+        {
+            var all = categoryRepository.GetAllCategory();
+            return all.Any(c => c.CategoryName == name && (!excludeId.HasValue || c.Id != excludeId.Value));
         }
     }
 }

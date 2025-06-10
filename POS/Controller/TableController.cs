@@ -23,25 +23,20 @@ namespace POS.Controller
             _repository.Insert(table);
             return table;
         }
+
+        public bool RemoveTable(int tableId)
+        {
+            return _repository.RemoveTableById(tableId);
+        }
+
+        public void UpdateTable(TableEntity table)
+        {
+            _repository.Update(table);
+        }
+
         public bool IsDuplicateName(List<TableEntity> list, string name)
         {
             return list.Any(t => t.tableName.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
-        public bool DeleteTable()
-        {
-            return false; // 구현? MarkDeleted가 시행하긴 함.
-        }
-        public void MarkDeleted(List<TableEntity> tables, int id)
-        {
-            _repository.Delete(id);
-        }
-        public TableEntity? GetById(List<TableEntity> tables, int id)
-        {
-            return tables.FirstOrDefault(t => t.Id == id);
-        }
-
-      
-
-
     }
 }

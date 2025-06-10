@@ -31,8 +31,9 @@ namespace TableOrder
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            labelTotalPrice = new MaterialLabel();
             flowLayoutPanelMenus = new FlowLayoutPanel();
+            comboBoxTableSelector = new MaterialComboBox();
+            labelTotalPrice = new MaterialLabel();
             flowLayoutPanelCategory = new FlowLayoutPanel();
             orderCheckButton = new MaterialButton();
             orderButton = new MaterialButton();
@@ -42,8 +43,9 @@ namespace TableOrder
             // 
             // panel1
             // 
-            panel1.Controls.Add(labelTotalPrice);
             panel1.Controls.Add(flowLayoutPanelMenus);
+            panel1.Controls.Add(comboBoxTableSelector);
+            panel1.Controls.Add(labelTotalPrice);
             panel1.Controls.Add(flowLayoutPanelCategory);
             panel1.Controls.Add(orderCheckButton);
             panel1.Controls.Add(orderButton);
@@ -53,6 +55,35 @@ namespace TableOrder
             panel1.Name = "panel1";
             panel1.Size = new Size(788, 487);
             panel1.TabIndex = 0;
+            // 
+            // flowLayoutPanelMenus
+            // 
+            flowLayoutPanelMenus.Location = new Point(180, 3);
+            flowLayoutPanelMenus.Name = "flowLayoutPanelMenus";
+            flowLayoutPanelMenus.Size = new Size(399, 400);
+            flowLayoutPanelMenus.TabIndex = 52;
+            // 
+            // comboBoxTableSelector
+            // 
+            comboBoxTableSelector.AutoResize = false;
+            comboBoxTableSelector.BackColor = Color.FromArgb(255, 255, 255);
+            comboBoxTableSelector.Depth = 0;
+            comboBoxTableSelector.DrawMode = DrawMode.OwnerDrawVariable;
+            comboBoxTableSelector.DropDownHeight = 174;
+            comboBoxTableSelector.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxTableSelector.DropDownWidth = 121;
+            comboBoxTableSelector.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            comboBoxTableSelector.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            comboBoxTableSelector.FormattingEnabled = true;
+            comboBoxTableSelector.IntegralHeight = false;
+            comboBoxTableSelector.ItemHeight = 43;
+            comboBoxTableSelector.Location = new Point(286, 420);
+            comboBoxTableSelector.MaxDropDownItems = 4;
+            comboBoxTableSelector.MouseState = MaterialSkin.MouseState.OUT;
+            comboBoxTableSelector.Name = "comboBoxTableSelector";
+            comboBoxTableSelector.Size = new Size(189, 49);
+            comboBoxTableSelector.StartIndex = 0;
+            comboBoxTableSelector.TabIndex = 54;
             // 
             // labelTotalPrice
             // 
@@ -65,13 +96,6 @@ namespace TableOrder
             labelTotalPrice.Size = new Size(66, 19);
             labelTotalPrice.TabIndex = 53;
             labelTotalPrice.Text = "총가격: 0원";
-            // 
-            // flowLayoutPanelMenus
-            // 
-            flowLayoutPanelMenus.Location = new Point(180, 3);
-            flowLayoutPanelMenus.Name = "flowLayoutPanelMenus";
-            flowLayoutPanelMenus.Size = new Size(399, 400);
-            flowLayoutPanelMenus.TabIndex = 52;
             // 
             // flowLayoutPanelCategory
             // 
@@ -143,7 +167,7 @@ namespace TableOrder
             Controls.Add(panel1);
             Margin = new Padding(3, 4, 3, 4);
             Name = "TableOrderBoundary";
-            Text = "TableOrderBoundary";
+            Text = "테이블오더 - 주문하기";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -158,6 +182,7 @@ namespace TableOrder
         private MaterialSkin.Controls.MaterialLabel labelTotalPrice;
         private MaterialButton orderCheckButton;
         private MaterialButton orderButton;
+        private MaterialComboBox comboBoxTableSelector;
     }
 }
 

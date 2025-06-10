@@ -12,11 +12,13 @@ namespace POS.Boundary
     {
         private List<CategoryEntity> categoryList;
         private CategoryController categoryController;
+        private MenuManagerBoundary menuManagerBoundary; // 메뉴 매니저 바운더리 참조
 
-        public CategoryManagerBoundary()
+        public CategoryManagerBoundary(MenuManagerBoundary menuManagerBoundary)
         {
             InitializeComponent();
-            categoryController = new CategoryController(); // 누락 방지용
+            this.menuManagerBoundary = menuManagerBoundary; // 메뉴 매니저 바운더리 참조 저장
+            categoryController = new CategoryController();
             LoadAllCategories();
             materialListView_Initialize();
         }
@@ -48,7 +50,20 @@ namespace POS.Boundary
 
         private void categoryCreateButton_Click(object sender, EventArgs e)
         {
-            categoryController.createCategory(categoryNameTextBox.Text);
+            var name = categoryNameTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("카테고리명이 없습니다!");
+                return;
+            }
+
+            if (categoryController.IsDuplicateCategoryName(name))
+            {
+                MessageBox.Show("이미 존재하는 카테고리명입니다!");
+                return;
+            }
+
+            categoryController.createCategory(name);
             LoadAllCategories();
             RefreshMaterialListView();
         }
@@ -70,6 +85,12 @@ namespace POS.Boundary
                 return;
             }
 
+            if (categoryController.IsCategoryInUse(selectedId))
+            {
+                MessageBox.Show("해당 카테고리는 메뉴에서 사용 중이므로 삭제할 수 없습니다.");
+                return;
+            }
+
             categoryController.deleteCategory(selectedCategory);
             LoadAllCategories();
             RefreshMaterialListView();
@@ -83,6 +104,13 @@ namespace POS.Boundary
                 return;
             }
 
+            var name = categoryNameTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(name))
+            {
+                MessageBox.Show("카테고리명을 입력해주세요.");
+                return;
+            }
+
             int selectedId = int.Parse(materialListView1.SelectedItems[0].SubItems[0].Text);
             var selectedCategory = categoryList.FirstOrDefault(c => c.Id == selectedId);
 
@@ -92,12 +120,19 @@ namespace POS.Boundary
                 return;
             }
 
-            selectedCategory.CategoryName = categoryNameTextBox.Text;
+            if (categoryController.IsDuplicateCategoryName(name, selectedId))
+            {
+                MessageBox.Show("다른 카테고리와 이름이 중복됩니다!");
+                return;
+            }
+
+            selectedCategory.CategoryName = name;
 
             categoryController.editCategory(selectedCategory);
             LoadAllCategories();
             RefreshMaterialListView();
         }
+
 
         public void LoadAllCategories()
         {
@@ -118,6 +153,11 @@ namespace POS.Boundary
         {
             categoryIDtxt.Text = "";
             categoryNameTextBox.Text = "";
+        }
+
+        private void CategoryManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            menuManagerBoundary.LoadAllCategories(); // 메뉴 매니저 바운더리에 카테고리 목록 새로고침 요청
         }
     }
 }

@@ -1,100 +1,149 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MaterialSkin.Controls;
+﻿using MaterialSkin.Controls;
 using POS.Domain;
 using TableOrder.Controller;
 using POS.Controller;
-using POS;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
-
+using TableOrder.Controls;
 
 namespace TableOrder
 {
-   
-
     public partial class TableOrderBoundary : MaterialForm
     {
+        private System.Windows.Forms.Timer refreshTimer;
         private List<CartItem> cart = new List<CartItem>();
-        private List<string> categoryList = new List<string>();
-        private TableOrderMainController _controller;
-        private MenuLoadController menuController;
+        private TableOrderMainController tableOrderMainController;
         private List<MenuEntity> allMenus;
         private List<CategoryEntity> allCategories;
-        private MaterialComboBox comboBoxTableSelector;
-        private TableController tableController;
-        private int selectedTableId = -1;
-        private Label labelSelectedTable;
-
+        private int selectedTableId;
+        private int selectedCategoryId;
         public TableOrderBoundary()
         {
             InitializeComponent();
-            tableController = new TableController();
-            comboBoxTableSelector = new MaterialComboBox
-            {
-                DropDownStyle = ComboBoxStyle.DropDownList,
-                Width = 200,
-                Location = new Point(200, 480), // 위치 조정
-                Font = new Font("맑은 고딕", 10),
-                Hint = "테이블 선택"
-            };
+            tableOrderMainController = new TableOrderMainController();
 
-            // 테이블 목록 불러오기
-            var tableList = tableController.GetAllTables();
-            comboBoxTableSelector.DataSource = tableList;
-            comboBoxTableSelector.DisplayMember = "tableName";
-            comboBoxTableSelector.ValueMember = "Id";
+            InitializeTableSelector();
 
-            // 선택 변경 이벤트
-            comboBoxTableSelector.SelectedIndexChanged += ComboBoxTableSelector_SelectedIndexChanged;
-            // 폼에 추가
-            this.Controls.Add(comboBoxTableSelector);
-            comboBoxTableSelector.BringToFront();
+            allMenus = tableOrderMainController.LoadMenus();
+            allCategories = tableOrderMainController.LoadCategories();
 
-            labelSelectedTable = new Label
-            {
-                Text = "선택된 테이블: 없음",
-                Location = new Point(410, 480),  // comboBox 오른쪽 위치 추천
-                AutoSize = true,
-                Font = new Font("맑은 고딕", 10, FontStyle.Bold)
-            };
-            this.Controls.Add(labelSelectedTable);
-            labelSelectedTable.BringToFront();
-            _controller = new TableOrderMainController();
-            categoryController = new CategoryController();
-            menuController = new MenuLoadController();
-            allMenus = menuController.MenuLoad();   // DB에서 전체 메뉴 로드
-            allCategories = categoryController.GetAllCategory(); // 전체 카테고리도 로드
-            LoadCategoryButtons();   // DB에서 불러온 카테고리로 버튼 생성
+            LoadCategoryButtons();
             LoadMenuItems(-1);
+
+            // 가격 라벨 설정
             labelTotalPrice.AutoSize = true;
             labelTotalPrice.Font = new Font("맑은 고딕", 10, FontStyle.Bold);
             labelTotalPrice.Text = "총 가격: 0원";
-            labelTotalPrice.BringToFront();      
+            labelTotalPrice.BringToFront();
+
+            // 주기적 갱신 타이머
+            refreshTimer = new System.Windows.Forms.Timer();
+            refreshTimer.Interval = 60000; // 60초마다 확인
+            refreshTimer.Tick += RefreshTimer_Tick;
+            refreshTimer.Start();
         }
-        
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            var newMenus = tableOrderMainController.LoadMenus();
+            var newCategories = tableOrderMainController.LoadCategories();
+            var newTables = tableOrderMainController.GetAllTables();
+
+            bool menusChanged = !MenusEqual(allMenus, newMenus);
+            bool categoriesChanged = !CategoriesEqual(allCategories, newCategories);
+
+            if (menusChanged)
+            {
+                allMenus = newMenus;
+
+                if (!allCategories.Any(c => c.Id == selectedCategoryId))
+                    selectedCategoryId = -1; // 필터 ID 유효성 확인
+
+                LoadMenuItems(selectedCategoryId);
+            }
+
+            if (categoriesChanged)
+            {
+                allCategories = newCategories;
+                LoadCategoryButtons(); // 카테고리 버튼 재로딩
+            }
+
+            bool tablesChanged = !TablesEqual(comboBoxTableSelector.DataSource as List<TableEntity>, newTables);
+
+            if (tablesChanged)
+            {
+                comboBoxTableSelector.DataSource = null;
+                comboBoxTableSelector.DataSource = newTables;
+                comboBoxTableSelector.DisplayMember = "tableName";
+                comboBoxTableSelector.ValueMember = "Id";
+
+                // 선택된 테이블 유지
+                if (newTables.Any(t => t.Id == selectedTableId))
+                    comboBoxTableSelector.SelectedValue = selectedTableId;
+                else
+                    selectedTableId = newTables.First().Id;
+            }
+        }
+        private bool MenusEqual(List<MenuEntity> oldList, List<MenuEntity> newList)
+        {
+            if (oldList.Count != newList.Count)
+                return false;
+
+            return oldList.OrderBy(m => m.Id).Zip(newList.OrderBy(m => m.Id), (old, newer) =>
+                old.Id == newer.Id &&
+                old.MenuName == newer.MenuName &&
+                old.MenuPrice == newer.MenuPrice &&
+                old.CategoryId == newer.CategoryId &&
+                (old.MenuImage == null && newer.MenuImage == null ||
+                 old.MenuImage != null && newer.MenuImage != null && old.MenuImage.SequenceEqual(newer.MenuImage))
+            ).All(equal => equal);
+        }
+
+        private bool CategoriesEqual(List<CategoryEntity> oldList, List<CategoryEntity> newList)
+        {
+            if (oldList.Count != newList.Count)
+                return false;
+
+            return oldList.OrderBy(c => c.Id).Zip(newList.OrderBy(c => c.Id), (a, b) =>
+                a.Id == b.Id && a.CategoryName == b.CategoryName
+            ).All(equal => equal);
+        }
+        private bool TablesEqual(List<TableEntity> oldList, List<TableEntity> newList)
+        {
+            if (oldList == null || newList == null)
+                return false;
+
+            if (oldList.Count != newList.Count)
+                return false;
+
+            return oldList.OrderBy(t => t.Id).Zip(newList.OrderBy(t => t.Id), (a, b) =>
+                a.Id == b.Id && a.tableName == b.tableName
+            ).All(equal => equal);
+        }
+
+        private void InitializeTableSelector()
+        {
+            var tableList = tableOrderMainController.GetAllTables();
+            comboBoxTableSelector.DataSource = tableList;
+            selectedTableId = tableList[0].Id;
+            comboBoxTableSelector.DisplayMember = "tableName";
+            comboBoxTableSelector.ValueMember = "Id";
+
+            comboBoxTableSelector.SelectedIndexChanged += ComboBoxTableSelector_SelectedIndexChanged;
+        }
         private void ComboBoxTableSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxTableSelector.SelectedItem is TableEntity selectedTable)
             {
                 selectedTableId = selectedTable.Id;
-                labelSelectedTable.Text = $"선택된 테이블: {selectedTable.tableName}";
             }
         }
-        private CategoryController categoryController;
         private void LoadCategoryButtons()
         {
             flowLayoutPanelCategory.Controls.Clear();
+            flowLayoutPanelCategory.FlowDirection = FlowDirection.TopDown;  // 세로 방향으로 배치
+            flowLayoutPanelCategory.WrapContents = false;                   // 자동 줄바꿈 비활성화
+            flowLayoutPanelCategory.AutoScroll = true;                      // 스크롤 자동 표시
 
-            var categories = categoryController.GetAllCategory(); // DB에서 카테고리 목록 불러오기
 
-            foreach (var cat in categories)
+            foreach (var cat in allCategories)
             {
                 var btn = new MaterialButton()
                 {
@@ -114,45 +163,56 @@ namespace TableOrder
                 flowLayoutPanelCategory.Controls.Add(btn);
             }
         }
-       
+        private void CategoryButton_Click(object sender, EventArgs e)
+        {
+            if (sender is MaterialButton button && button.Tag is int categoryId)
+            {
+                selectedCategoryId = categoryId; // 선택한 카테고리 ID 기억
+                LoadMenuItems(categoryId);
+            }
+        }
         private void LoadMenuItems(int categoryId)
         {
+            flowLayoutPanelMenus.WrapContents = true;
             flowLayoutPanelMenus.Controls.Clear();
-
-            Bitmap dummyImage = new Bitmap(100, 100);
-            using (Graphics g = Graphics.FromImage(dummyImage))
-            {
-                g.Clear(Color.Gray);
-                g.DrawString("Image", new Font("Arial", 10), Brushes.White, new PointF(10, 40));
-            }
-
+            flowLayoutPanelMenus.AutoScroll = true;
             List<MenuEntity> filteredMenus = (categoryId == -1)
                 ? allMenus
                 : allMenus.Where(m => m.CategoryId == categoryId).ToList();
 
             foreach (var menu in filteredMenus)
             {
-                
-                var item = new MenuItemControl(menu.MenuName, menu.MenuPrice, dummyImage)
+                // 이미지 데이터 → Bitmap 변환
+                Bitmap imageToShow;
+                if (menu.MenuImage != null)
                 {
-                    MenuData = menu
+                    using var ms = new MemoryStream(menu.MenuImage);
+                    imageToShow = new Bitmap(ms);
+                }
+                else
+                {
+                    // 대체 이미지
+                    imageToShow = new Bitmap(100, 100);
+                    using (Graphics g = Graphics.FromImage(imageToShow))
+                    {
+                        g.Clear(Color.Gray);
+                        g.DrawString("No Image", new Font("Arial", 10), Brushes.White, new PointF(10, 40));
+                    }
+                }
+
+                var item = new MenuItemControl(menu.MenuName, menu.MenuPrice, imageToShow)
+                {
+                    MenuData = menu,
+                    Width = 120,
+                    Height = 190
                 };
+
                 item.OnPlusClicked += MenuItemPlusClicked;
                 item.OnMinusClicked += MenuItemMinusClicked;
                 flowLayoutPanelMenus.Controls.Add(item);
             }
         }
-        private void CategoryButton_Click(object sender, EventArgs e)
-        {
-            if (sender is MaterialButton btn && btn.Tag is int categoryId)
-            {
-                LoadMenuItems(categoryId);
-            }
-        }
 
-
-
-        
         private void MenuItemPlusClicked(object sender, MenuEntity menu)
         {
             var existingItem = cart.FirstOrDefault(c => c.Menu.MenuName == menu.MenuName);
@@ -182,16 +242,9 @@ namespace TableOrder
 
                 RefreshCart();
             }
-        }
-        public class CartItem
-        {
-            public MenuEntity Menu { get; set; }
-            public int Quantity { get; set; }
-
-            public CartItem(MenuEntity menu)
+            else
             {
-                Menu = menu;
-                Quantity = 1;
+                MessageBox.Show("장바구니에 해당 메뉴가 없습니다", "알림", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -208,13 +261,10 @@ namespace TableOrder
             }
 
             labelTotalPrice.Text = $"총 가격: {total:N0}원";
-
-            
         }
 
         private void orderButton_Click(object sender, EventArgs e)
         {
-            
             if (cart.Count == 0)
             {
                 MessageBox.Show("장바구니가 비어 있습니다.");
@@ -222,7 +272,7 @@ namespace TableOrder
             }
 
             var orderList = cart.SelectMany(c => Enumerable.Repeat(c.Menu, c.Quantity)).ToList();
-            _controller.OrderRequest(selectedTableId, orderList);
+            tableOrderMainController.OrderRequest(selectedTableId, orderList);
             MessageBox.Show("주문이 완료되었습니다!");
             cart.Clear();
             RefreshCart();
@@ -230,105 +280,19 @@ namespace TableOrder
 
         private void orderCheckButton_Click(object sender, EventArgs e)
         {
-            var historyForm = new OrderViewBoundary();
+            var historyForm = new OrderViewBoundary(selectedTableId);
             historyForm.ShowDialog();
         }
     }
-    public class MenuItemControl : UserControl
+    public class CartItem
     {
-        public Label lblName;
-        public Label lblPrice;
-        public Button btnPlus;
-        public Button btnMinus;
-        public PictureBox picImage;
+        public MenuEntity Menu { get; set; }
+        public int Quantity { get; set; }
 
-        public MenuEntity MenuData { get;  set; }
-
-        // 델리게이트 정의
-        public event EventHandler<MenuEntity> OnPlusClicked;
-        public event EventHandler<MenuEntity> OnMinusClicked;
-        public MenuItemControl(string name, int price, Image image)
+        public CartItem(MenuEntity menu)
         {
-            this.Width = 140;
-            this.Height = 180;
-
-            MenuData = new MenuEntity
-            {
-                MenuName = name,
-                MenuPrice = price
-            };
-
-            var layout = new TableLayoutPanel();
-            layout.RowCount = 4;
-            layout.ColumnCount = 1;
-            layout.Dock = DockStyle.Fill;
-            layout.RowStyles.Add(new RowStyle(SizeType.Percent, 50)); // 이미지
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20)); // 메뉴명
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 25)); // 가격
-            layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50)); // 버튼 영역
-
-            // 이미지
-            picImage = new PictureBox()
-            {
-                Image = image,
-                SizeMode = PictureBoxSizeMode.StretchImage,
-                Dock = DockStyle.Fill
-            };
-
-            // 메뉴명
-            lblName = new Label()
-            {
-                Text = name,
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-
-            // 가격
-            lblPrice = new Label()
-            {
-                Text = price + "원",
-                Dock = DockStyle.Fill,
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-
-            // 수량 버튼
-            var btnPanel = new FlowLayoutPanel()
-            {
-                FlowDirection = FlowDirection.LeftToRight,
-                Dock = DockStyle.Fill,
-                AutoSize = true,
-                WrapContents = false,
-                Padding = new Padding(20, 0, 0, 0),
-                Margin = new Padding(0, -5, 0, 0)
-            };
-            btnPlus = new MaterialButton() { Text = "+", Width = 30, Height = 30,
-                Type = MaterialButton.MaterialButtonType.Contained,
-                HighEmphasis = true,
-               
-                AutoSize = false,
-                Density = MaterialButton.MaterialButtonDensity.Default
-            };
-            btnMinus = new MaterialButton() { Text = "-", Width = 30, Height = 30,
-                Type = MaterialButton.MaterialButtonType.Contained,
-                HighEmphasis = true,
-                
-                AutoSize = false,
-                Density = MaterialButton.MaterialButtonDensity.Default
-            };
-
-            btnPlus.Click += (s, e) => OnPlusClicked?.Invoke(this, MenuData);
-            btnMinus.Click += (s, e) => OnMinusClicked?.Invoke(this, MenuData);
-
-            btnPanel.Controls.Add(btnPlus);
-            btnPanel.Controls.Add(btnMinus);
-
-            layout.Controls.Add(picImage, 0, 0);
-            layout.Controls.Add(lblName, 0, 1);
-            layout.Controls.Add(lblPrice, 0, 2);
-            layout.Controls.Add(btnPanel, 0, 3);
-
-            this.Controls.Add(layout);
+            Menu = menu;
+            Quantity = 1;
         }
     }
-
 }

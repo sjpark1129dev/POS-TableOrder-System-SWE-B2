@@ -1,4 +1,4 @@
-using MaterialSkin.Controls;
+ï»¿using MaterialSkin.Controls;
 using TableOrder.Repository;
 using POS.Domain;
 
@@ -8,26 +8,31 @@ namespace TableOrder
     public partial class OrderViewBoundary : MaterialForm
     {
         private TableOrderHistoryRepository historyRepo;
-        public OrderViewBoundary()
+        private int selectedTableId;
+        // ìƒì„±ì
+        public OrderViewBoundary(int selectedTableId)
         {
             InitializeComponent();
+            this.selectedTableId = selectedTableId;
             historyRepo = new TableOrderHistoryRepository();
-            LoadData();
+
+            OrderDataView.AllowUserToAddRows = false;
         }
         private void LoadData()
         {
-
             foreach (DataGridViewColumn column in OrderDataView.Columns)
             {
                 column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
 
-            var orders = historyRepo.GetAllOrder();
+            var orders = historyRepo.GetUnpaidOrdersByTable(selectedTableId); // ë³€ê²½
 
             if (orders == null || orders.Count == 0)
             {
-                MessageBox.Show("ÁÖ¹® ³»¿ªÀÌ ¾ø½À´Ï´Ù.");
+                MessageBox.Show("í•´ë‹¹ í…Œì´ë¸”ì˜ ë¯¸ê²°ì œ ì£¼ë¬¸ì´ ì—†ìŠµë‹ˆë‹¤.");
+                this.DialogResult = DialogResult.Cancel; // ì´ìœ  ì „ë‹¬
+                this.Close();
                 return;
             }
 
@@ -41,18 +46,15 @@ namespace TableOrder
                 {
                     OrderDataView.Rows.Add(item.MenuName, item.Qty, item.TotalPrice);
                     totalPrice += item.TotalPrice;
-
-                    
                 }
             }
-            int totalRowIndex = OrderDataView.Rows.Add(); // »õ Çà Ãß°¡
-            var totalRow = OrderDataView.Rows[totalRowIndex];
-            totalRow.Cells["ÃÑ±İ¾×"].Value = $" {totalPrice:N0}¿ø";
+
+            finalPrice.Text = $"ì´ì•¡: {totalPrice:N0}ì›";
         }
 
-        private void goBackBtn_Click(object sender, EventArgs e)
+        private void OrderViewBoundary_Load(object sender, EventArgs e)
         {
-
+            LoadData();
         }
     }
 }

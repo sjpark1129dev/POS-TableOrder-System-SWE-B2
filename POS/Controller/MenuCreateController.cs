@@ -8,7 +8,6 @@ using POS.Domain;
 
 namespace POS.Controller
 {
-
     public class MenuCreateController {
     
         private MenuRepository menuRepository;
@@ -17,32 +16,17 @@ namespace POS.Controller
             menuRepository = new MenuRepository();
         }
 
-        public bool MenuCreate(string name, int price, int categoryId)
+        public void MenuCreate(string name, int price, int categoryId, byte[]? imageBytes)
         {
-            List<MenuEntity> menuList = menuRepository.GetAllMenus(); // 모든 메뉴 조회
-
-            if (Isduplicated(menuList, name))
-            {
-                
-                return false;
-            }
-
-            var menu = new MenuEntity
-            {
-                MenuName = name,
-                MenuPrice = price,
-                CategoryId = categoryId
-            };
-
-            menuRepository.Insert(menu);
-            return true;
+            menuRepository.Insert(name, price, categoryId, imageBytes);
         }
 
-        public bool Isduplicated(List<MenuEntity> menuList, string name)
+        public bool IsDuplicated(List<MenuEntity> menus, string newName, int? currentId = null)
         {
-            return menuList.Any(menu => menu.MenuName.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return menus.Any(m =>
+                m.MenuName == newName &&
+                (!currentId.HasValue || m.Id != currentId.Value)
+            );
         }
-
     }
-
 }

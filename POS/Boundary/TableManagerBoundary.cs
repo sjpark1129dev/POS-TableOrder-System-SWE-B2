@@ -9,11 +9,13 @@ namespace POS.Boundary
         private TableController tableController = new TableController();
         private List<TableEntity> tableList;
         private int? selectedTableId = null;  // 선택된 테이블 ID 보관 (nullable int)
-        public TableManagerBoundary()
+        private TableViewBoundary tableViewBoundary; // 테이블 뷰 바운더리 참조
+        public TableManagerBoundary(TableViewBoundary tableViewBoundary)
         {
             InitializeComponent();
             tableList = tableController.GetAllTables();
             LoadTablesToPanel();
+            this.tableViewBoundary = tableViewBoundary; // 테이블 뷰 바운더리 참조 저장
         }
 
         private void LoadTablesToPanel()
@@ -27,7 +29,7 @@ namespace POS.Boundary
                 btn.Tag = table.Id;
                 btn.Dock = DockStyle.Fill;
                 btn.Margin = new Padding(10);
-                btn.BackColor = Color.White; // ✅ 기본 배경 흰색
+                btn.BackColor = Color.White; // 기본 배경 흰색
 
                 btn.Click += TableButton_Click;
 
@@ -54,14 +56,13 @@ namespace POS.Boundary
                 tableNameTextBox.Text = selectedTable.tableName;
                 tableIdTextBox.Text = selectedTable.Id.ToString();
             }
-            else
-            {
-                tableNameTextBox.Text = "선택 안됨";
-                tableIdTextBox.Text = "선택 안됨";
-            }
         }
         private void textBoxResetButton_Click(object sender, EventArgs e)
         {
+            selectedTableId = null;
+            foreach (Button b in tableLayoutPanelTables.Controls)
+                b.BackColor = Color.White;
+            tableIdTextBox.Text = "";
             tableNameTextBox.Text = "";
         }
 
@@ -75,6 +76,12 @@ namespace POS.Boundary
                 return;
             }
 
+            if (tableList.Count >= 10)
+            {
+                MessageBox.Show("테이블은 최대 10개까지만 생성할 수 있습니다.");
+                return;
+            }
+
             if (tableController.IsDuplicateName(tableList, newName))
             {
                 MessageBox.Show("이미 존재하는 테이블 이름입니다.");
@@ -83,6 +90,8 @@ namespace POS.Boundary
 
             var newTable = tableController.CreateTable(newName);
             tableList.Add(newTable);
+            tableIdTextBox.Text = "";
+            tableNameTextBox.Text = "";
             LoadTablesToPanel();
         }
 
@@ -93,22 +102,15 @@ namespace POS.Boundary
                 MessageBox.Show("삭제할 테이블을 선택하세요.");
                 return;
             }
-
-
-
-            tableController.MarkDeleted(tableList, selectedTableId.Value);
+            
+            tableController.RemoveTable((int)selectedTableId);
             tableList = tableController.GetAllTables();
-
             selectedTableId = null;
             tableIdTextBox.Text = "";
             tableNameTextBox.Text = "";
             LoadTablesToPanel();
         }
-
-
-
-
-        private void tableSaveButton_Click_1(object sender, EventArgs e)
+        private void tableEditSaveButton_Click(object sender, EventArgs e)
         {
             if (selectedTableId == null)
             {
@@ -131,19 +133,16 @@ namespace POS.Boundary
             }
 
             var table = tableList.FirstOrDefault(t => t.Id == selectedTableId);
-            if (table != null)
-            {
-                table.tableName = newName;
+            table.tableName = newName;
+            tableController.UpdateTable(table);
+            tableIdTextBox.Text = "";
+            tableNameTextBox.Text = "";
+            LoadTablesToPanel();
+        }
 
-                // controller 구조 유지 → repository에 직접 접근
-                var repoField = typeof(TableController).GetField("_repository", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                var repository = repoField?.GetValue(tableController) as POS.Repository.TableRepository;
-                repository?.Update(table);
-
-                MessageBox.Show("테이블 이름이 수정되었습니다."); 
-                tableList = tableController.GetAllTables();        
-                LoadTablesToPanel();
-            }
+        private void TableManagerBoundary_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tableViewBoundary.LoadTables();
         }
     }
 }

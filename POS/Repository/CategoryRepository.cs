@@ -1,43 +1,55 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using POS.Controller;
+using POS.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using POS.Controller;
-using POS.Domain;
 
 namespace POS.Repository
 {
     public class CategoryRepository
     {
-        private readonly AppDbContext _context = AppDbContext.Instance;
-
         public List<CategoryEntity> GetAllCategory()
         {
-            return _context.Categories.ToList();
-        }
-
-        public CategoryEntity GetById(int id)
-        {
-            return _context.Categories.Find(id);
+            using var context = DbContextFactory.Create();
+            return context.Categories.AsNoTracking().ToList();
         }
 
         public void Insert(CategoryEntity category)
         {
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+            using var context = DbContextFactory.Create();
+            context.Categories.Add(category);
+            context.SaveChanges();
         }
 
         public void Update(CategoryEntity category)
         {
-            _context.Categories.Update(category);
-            _context.SaveChanges();
+            using var context = DbContextFactory.Create();
+            var existing = context.Categories.Find(category.Id);
+            if (existing != null)
+            {
+                context.Entry(existing).CurrentValues.SetValues(category);
+                context.SaveChanges();
+            }
         }
 
         public void Delete(CategoryEntity category)
         {
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            using var context = DbContextFactory.Create();
+            var existing = context.Categories.Find(category.Id);
+            if (existing != null)
+            {
+                context.Categories.Remove(existing);
+                context.SaveChanges();
+            }
+        }
+
+        public bool HasMenus(int categoryId)
+        {
+            using var context = DbContextFactory.Create();
+            return context.Menus.Any(m => m.CategoryId == categoryId);
         }
     }
 }

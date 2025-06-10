@@ -31,7 +31,7 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanelTables = new TableLayoutPanel();
             panel7 = new Panel();
-            tableSaveButton = new MaterialSkin.Controls.MaterialButton();
+            tableEditSaveButton = new MaterialSkin.Controls.MaterialButton();
             tableDeleteButton = new MaterialSkin.Controls.MaterialButton();
             tableCreateButton2 = new MaterialSkin.Controls.MaterialButton();
             textBoxResetButton = new Button();
@@ -79,7 +79,7 @@
             // panel7
             // 
             panel7.BackColor = Color.LightSteelBlue;
-            panel7.Controls.Add(tableSaveButton);
+            panel7.Controls.Add(tableEditSaveButton);
             panel7.Controls.Add(tableDeleteButton);
             panel7.Controls.Add(tableCreateButton2);
             panel7.Controls.Add(textBoxResetButton);
@@ -93,25 +93,25 @@
             panel7.Size = new Size(391, 377);
             panel7.TabIndex = 1;
             // 
-            // tableSaveButton
+            // tableEditSaveButton
             // 
-            tableSaveButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            tableSaveButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            tableSaveButton.Depth = 0;
-            tableSaveButton.HighEmphasis = true;
-            tableSaveButton.Icon = null;
-            tableSaveButton.Location = new Point(219, 264);
-            tableSaveButton.Margin = new Padding(4, 6, 4, 6);
-            tableSaveButton.MouseState = MaterialSkin.MouseState.HOVER;
-            tableSaveButton.Name = "tableSaveButton";
-            tableSaveButton.NoAccentTextColor = Color.Empty;
-            tableSaveButton.Size = new Size(105, 36);
-            tableSaveButton.TabIndex = 13;
-            tableSaveButton.Text = "테이블 수정";
-            tableSaveButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            tableSaveButton.UseAccentColor = false;
-            tableSaveButton.UseVisualStyleBackColor = true;
-            tableSaveButton.Click += tableSaveButton_Click_1;
+            tableEditSaveButton.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tableEditSaveButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            tableEditSaveButton.Depth = 0;
+            tableEditSaveButton.HighEmphasis = true;
+            tableEditSaveButton.Icon = null;
+            tableEditSaveButton.Location = new Point(219, 264);
+            tableEditSaveButton.Margin = new Padding(4, 6, 4, 6);
+            tableEditSaveButton.MouseState = MaterialSkin.MouseState.HOVER;
+            tableEditSaveButton.Name = "tableEditSaveButton";
+            tableEditSaveButton.NoAccentTextColor = Color.Empty;
+            tableEditSaveButton.Size = new Size(105, 36);
+            tableEditSaveButton.TabIndex = 13;
+            tableEditSaveButton.Text = "테이블 수정";
+            tableEditSaveButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            tableEditSaveButton.UseAccentColor = false;
+            tableEditSaveButton.UseVisualStyleBackColor = true;
+            tableEditSaveButton.Click += tableEditSaveButton_Click;
             // 
             // tableDeleteButton
             // 
@@ -203,7 +203,8 @@
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanel1);
             Name = "TableManagerBoundary";
-            Text = "TableManagerBoundary";
+            Text = "테이블 관리";
+            FormClosing += TableManagerBoundary_FormClosing;
             tableLayoutPanel1.ResumeLayout(false);
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
@@ -221,7 +222,7 @@
         private Label tableIdLabel;
         private Button textBoxResetButton;
         private MaterialSkin.Controls.MaterialButton tableCreateButton2;
-        private MaterialSkin.Controls.MaterialButton tableSaveButton;
+        private MaterialSkin.Controls.MaterialButton tableEditSaveButton;
         private MaterialSkin.Controls.MaterialButton tableDeleteButton;
     }
 }

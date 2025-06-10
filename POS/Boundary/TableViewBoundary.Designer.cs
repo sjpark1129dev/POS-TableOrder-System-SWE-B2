@@ -151,7 +151,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanelRoot);
             Name = "TableViewBoundary";
-            Text = "TableViewBoundary";
+            Text = "POS";
             tableLayoutPanelRoot.ResumeLayout(false);
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();

@@ -1,40 +1,50 @@
-﻿using POS.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using POS.Domain;
 
 namespace POS.Repository
 {
     public class TableRepository
     {
-        private readonly AppDbContext _context = AppDbContext.Instance;
-
-        public TableRepository()
-        {
-        }
-
         public List<TableEntity> GetAllTables()
         {
-            return _context.Tables.ToList(); // DB에서 테이블 목록 조회
+            using var context = DbContextFactory.Create();
+            return context.Tables.AsNoTracking().ToList();
         }
 
         public void Insert(TableEntity table)
         {
-            _context.Tables.Add(table);
-            _context.SaveChanges(); // 삽입 후 커밋
+            using var context = DbContextFactory.Create();
+
+            // 테이블 개수 제한 확인
+            if (context.Tables.Count() >= 10)
+                throw new InvalidOperationException("테이블은 최대 10개까지만 생성할 수 있습니다.");
+
+            context.Tables.Add(table);
+            context.SaveChanges();
         }
 
-        public void Update(TableEntity table)
+        public void Update(TableEntity updatedTable)
         {
-            _context.Tables.Update(table);
-            _context.SaveChanges(); // 수정 후 커밋
+            using var context = DbContextFactory.Create();
+            var existing = context.Tables.Find(updatedTable.Id);
+            if (existing != null)
+            {
+                existing.tableName = updatedTable.tableName;
+                context.SaveChanges();
+            }
         }
 
-        public void Delete(int id)
+        public bool RemoveTableById(int id)
         {
-            var table = _context.Tables.Find(id);
+            using var context = DbContextFactory.Create();
+            var table = context.Tables.Find(id);
             if (table != null)
             {
-                _context.Tables.Remove(table);
-                _context.SaveChanges(); // 삭제 후 커밋
+                context.Tables.Remove(table);
+                context.SaveChanges();
+                return true;
             }
+            return false;
         }
     }
 }

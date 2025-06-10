@@ -3,40 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using POS.Domain;
 
 namespace POS.Repository
 {
     public class SalesRepository
     {
-        private readonly AppDbContext _context = AppDbContext.Instance;
-        public List<SalesEntity> GetAllSales()
+        public List<SalesEntity> SearchSales(DateTime startDate, DateTime endDate, string menuName, string receiptNum)
         {
-            return _context.Sales.ToList();
-        }
+            using var context = DbContextFactory.Create();
+            var query = context.Sales.AsQueryable();
+            query = query.Where(s => s.SalesDate >= startDate && s.SalesDate <= endDate.AddDays(1));
 
-        public List<SalesEntity> SearchSales(string menuName, DateTime startDate, DateTime endDate, string receiptNum)
-        {
-            var allSales = GetMockSales();
+            if (!string.IsNullOrWhiteSpace(menuName))
+                query = query.Where(s => s.MenuName.Contains(menuName));
+            if (!string.IsNullOrWhiteSpace(receiptNum))
+                query = query.Where(s => s.RecNum.Contains(receiptNum));
 
-            // 조건에 맞는 데이터만 필터링 (실제 구현 시 DB 쿼리로 대체됨)
-            var result = allSales.FindAll(s =>
-                s.SalesDate >= startDate && s.SalesDate <= endDate 
-
-            );
-
-            return result;
-        }
-
-        // 임시 더미 데이터
-        private List<SalesEntity> GetMockSales()
-        {
-            return new List<SalesEntity>
-            {
-                new SalesEntity { SalesDate = new DateTime(2025, 5, 28), RecNum = "R001", TableId = 1, MenuName = "Burger", Qty = 2, UnitPrice = 5000, Price = 10000 },
-                new SalesEntity { SalesDate = new DateTime(2025, 5, 28), RecNum = "R002", TableId = 2, MenuName = "Pizza", Qty = 1, UnitPrice = 12000, Price = 12000 },
-                new SalesEntity { SalesDate = new DateTime(2025, 5, 28), RecNum = "R003", TableId = 3, MenuName = "Burger", Qty = 3, UnitPrice = 5000, Price = 15000 }
-            };
+            return query.AsNoTracking().ToList();
         }
     }
 }

@@ -37,7 +37,6 @@
             menuName = new DataGridViewTextBoxColumn();
             qty = new DataGridViewTextBoxColumn();
             totalPrice = new DataGridViewTextBoxColumn();
-            총금액 = new DataGridViewTextBoxColumn();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrderDataView).BeginInit();
             SuspendLayout();
@@ -68,10 +67,11 @@
             OrderDataView.Anchor = AnchorStyles.None;
             OrderDataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             OrderDataView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            OrderDataView.Columns.AddRange(new DataGridViewColumn[] { menuName, qty, totalPrice, 총금액 });
+            OrderDataView.Columns.AddRange(new DataGridViewColumn[] { menuName, qty, totalPrice });
             OrderDataView.Location = new Point(57, 12);
             OrderDataView.Margin = new Padding(2);
             OrderDataView.Name = "OrderDataView";
+            OrderDataView.RowHeadersVisible = false;
             OrderDataView.RowHeadersWidth = 62;
             OrderDataView.Size = new Size(447, 143);
             OrderDataView.TabIndex = 2;
@@ -100,11 +100,6 @@
             totalPrice.MinimumWidth = 8;
             totalPrice.Name = "totalPrice";
             // 
-            // 총금액
-            // 
-            총금액.HeaderText = "총금액";
-            총금액.Name = "총금액";
-            // 
             // OrderViewBoundary
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -114,6 +109,7 @@
             Margin = new Padding(2);
             Name = "OrderViewBoundary";
             Text = "주문조회";
+            Load += OrderViewBoundary_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)OrderDataView).EndInit();
@@ -127,6 +123,5 @@
         private DataGridViewTextBoxColumn menuName;
         private DataGridViewTextBoxColumn qty;
         private DataGridViewTextBoxColumn totalPrice;
-        private DataGridViewTextBoxColumn 총금액;
     }
 }

@@ -1,62 +1,32 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using POS.Domain;
+using POS.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using POS.Repository;
-using POS.Domain;
 
 namespace POS.Controller
 {
-    internal class OrderAndPayController
+    public class OrderAndPayController
     {
         
-        private OrderAndPaymentRepository paymentRepository;
+        private OrderAndPayRepository _orderAndPayRepository;
 
         public OrderAndPayController()
         {
-            paymentRepository = new OrderAndPaymentRepository();
-        }
-        public int getPendingPaymentAmount()
-        {
-            return 0;
+            _orderAndPayRepository = new OrderAndPayRepository();
         }
 
-        public void processCashPayment()
+        public bool PayTable(int tableId)
         {
+            return _orderAndPayRepository.ProcessPaymentByTable(tableId);
         }
 
-        public void processCardPayment()
+        public List<dynamic> GetUnpaidOrderItemsByTable(int tableId)
         {
-        }
-
-        public void toggleSpecialMenu()
-        {
-        }
-
-        public void registerServiceItem()
-        {
-        }
-
-        public void cancelPayment()
-        {
-        }
-
-        public List<OrderEntity> getAllOrder()
-        {
-            return null;
-        }
-
-        public void updateOrder(OrderEntity order)
-        {
-        }
-
-        public void deleteOrder(OrderEntity order)
-        {
-        }
-
-        public void saveOrder(List<OrderEntity> orders)
-        {
+            return _orderAndPayRepository.GetUnpaidOrdersForGridByTable(tableId);
         }
     }
 }
