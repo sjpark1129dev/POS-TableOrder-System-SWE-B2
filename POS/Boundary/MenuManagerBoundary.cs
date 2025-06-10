@@ -117,8 +117,8 @@ namespace POS.Boundary
 
             int categoryId = (int)comboBoxCategory.SelectedValue;
 
-            // ✅ DB에 저장 (카테고리 ID 포함)
-            menuCreateController.MenuCreate(name, price, categoryId);
+            // DB에 저장 (카테고리 ID 포함)
+            menuCreateController.MenuCreate(name, price, categoryId, selectedImageBytes);
 
             // 목록 다시 불러오기
             menuList = menuLoadController.MenuLoad();
