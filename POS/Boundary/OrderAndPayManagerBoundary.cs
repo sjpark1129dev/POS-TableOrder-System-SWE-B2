@@ -151,7 +151,7 @@ namespace POS.Boundary
             }
             else
             {
-                MessageBox.Show("결제할 미결제 주문이 없습니다.");
+                MessageBox.Show("결제할 주문 내역이 없습니다.");
                 this.Close(); // 결제 완료 후 폼 닫기
             }
         }
