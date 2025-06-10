@@ -17,16 +17,15 @@ namespace POS.Controller
             return _repository.GetAllTables();
         }
 
-        public TableEntity CreateTable(string name)
+        public void CreateTable(string name)
         {
             var table = new TableEntity(name);
             _repository.Insert(table);
-            return table;
         }
 
-        public bool RemoveTable(int tableId)
+        public void RemoveTable(int tableId)
         {
-            return _repository.RemoveTableById(tableId);
+            _repository.RemoveTableById(tableId);
         }
 
         public void UpdateTable(TableEntity table)

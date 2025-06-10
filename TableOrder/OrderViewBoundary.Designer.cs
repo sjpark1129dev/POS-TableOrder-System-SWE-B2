@@ -55,7 +55,7 @@
             // finalPrice
             // 
             finalPrice.AutoSize = true;
-            finalPrice.Location = new Point(481, 171);
+            finalPrice.Location = new Point(466, 172);
             finalPrice.Margin = new Padding(2, 0, 2, 0);
             finalPrice.Name = "finalPrice";
             finalPrice.Size = new Size(26, 15);

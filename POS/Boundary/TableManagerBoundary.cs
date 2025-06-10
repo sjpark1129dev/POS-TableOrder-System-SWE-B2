@@ -88,8 +88,8 @@ namespace POS.Boundary
                 return;
             }
 
-            var newTable = tableController.CreateTable(newName);
-            tableList.Add(newTable);
+            tableController.CreateTable(newName);
+            tableList = tableController.GetAllTables();
             tableIdTextBox.Text = "";
             tableNameTextBox.Text = "";
             LoadTablesToPanel();
@@ -135,6 +135,7 @@ namespace POS.Boundary
             var table = tableList.FirstOrDefault(t => t.Id == selectedTableId);
             table.tableName = newName;
             tableController.UpdateTable(table);
+            tableList = tableController.GetAllTables();
             tableIdTextBox.Text = "";
             tableNameTextBox.Text = "";
             LoadTablesToPanel();
