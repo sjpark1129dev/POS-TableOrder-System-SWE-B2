@@ -124,9 +124,6 @@ namespace POS.Boundary
 
             // DB에 저장 (카테고리 ID 포함)
             menuCreateController.MenuCreate(name, price, categoryId, selectedImageBytes);
-
-            // 목록 다시 불러오기
-            menuList = menuLoadController.MenuLoad();
             LoadAllMenus();
             MessageBox.Show("메뉴가 추가되었습니다.");
         }
