@@ -29,9 +29,9 @@ namespace TableOrder.Controller
             return tableOrderMainRepository.GetAllCategories();
         }
 
-        public bool OrderRequest(int tableId, List<MenuEntity> menuList)
+        public void OrderRequest(int tableId, List<MenuEntity> menuList)
         {
-            return tableOrderMainRepository.SaveOrder(tableId, menuList);
+            tableOrderMainRepository.SaveOrder(tableId, menuList);
         }
 
         public List<TableEntity> GetAllTables()

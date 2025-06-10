@@ -23,7 +23,7 @@ namespace TableOrder.Repository
             return context.Categories.AsNoTracking().ToList();
         }
 
-        public bool SaveOrder(int tableId, List<MenuEntity> menuList)
+        public void SaveOrder(int tableId, List<MenuEntity> menuList)
         {
             using var context = DbContextFactory.Create();
             var order = new OrderEntity
@@ -56,7 +56,6 @@ namespace TableOrder.Repository
 
             context.Orders.Add(order);
             context.SaveChanges();
-            return true;
         }
 
         public List<TableEntity> GetAllTables()
